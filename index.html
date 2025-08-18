@@ -172,24 +172,23 @@
             align-items: center;
         }
         
-        /* Nova fonte para o logo */
+        /* Nova fonte e tamanho para o logo */
         .logo .title {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
+            font-size: 2rem; /* Aumentado para 2rem */
             font-weight: 700;
-            color: #8B4513; /* Use a cor da marca */
+            color: #8B4513;
         }
         
+        /* Remove a linha de subtítulo */
         .logo .subtitle {
-            font-size: 0.7rem;
-            font-weight: normal;
-            opacity: 0.7;
+            display: none; 
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 1rem; /* Ajustado para 1rem */
+            gap: 1rem;
         }
 
         .nav-menu a {
@@ -261,7 +260,7 @@
                 rgba(232, 221, 209, 0.7) 50%,
                 rgba(245, 240, 232, 0.8) 75%,
                 rgba(250, 247, 242, 0.9) 100%);
-            padding: 100px 0 80px;
+            padding: 80px 0 80px; /* Padding reduzido para diminuir o espaçamento */
             position: relative;
             overflow: hidden;
             min-height: 100vh;
@@ -1351,7 +1350,7 @@
                 </div>
                 <div>
                     <div class="title">De Vó para Vó</div>
-                    <div class="subtitle">Serviços • Depoimentos • Contato</div>
+                    <!-- Subtítulo removido -->
                 </div>
             </div>
             <nav>
@@ -1377,7 +1376,7 @@
                 <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
                 <div class="hero-cta">
                     <button class="whatsapp-btn" onclick="openWhatsApp()">
-                        📱 Fale conosco
+                        � Fale conosco
                     </button>
                 </div>
             </div>
@@ -1397,7 +1396,7 @@
                 </div>
                 <div class="story-image reveal-right parallax-element">
                     <div class="story-badge">94 anos</div>
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8dHllY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjI0IiB4PSIxMjAiIHk9IjEzMCIgZmlsbD0iIzhCNTUxMyIgcng9IjEyIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQ1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj45NCBhbm9zPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSI5MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM4QjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Eb25hIFRlcmVjYTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
                 </div>
             </div>
         </div>
@@ -1972,6 +1971,7 @@
             const openButtons = document.querySelectorAll('.open-modal-btn');
             const closeButton = document.querySelector('.modal-close-btn');
             const modal = document.getElementById('contactModal');
+            const form = document.getElementById('modal-contact-form');
 
             openButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -1991,6 +1991,10 @@
                         closeModal();
                     }
                 });
+            }
+
+            if (form) {
+                form.addEventListener('submit', handleModalSubmit);
             }
 
             // Manipuladores para formatar o telefone no modal
@@ -2054,3 +2058,4 @@
     </script>
 </body>
 </html>
+�

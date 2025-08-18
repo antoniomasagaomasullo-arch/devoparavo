@@ -186,10 +186,6 @@
             opacity: 0.7;
         }
 
-        .logo-icon {
-            display: none;
-        }
-
         .nav-menu {
             display: flex;
             list-style: none;
@@ -752,12 +748,27 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .testimonial-slide {
+            flex-shrink: 0;
+            width: 100%;
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 3rem;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
 
         .testimonial-content {
@@ -893,6 +904,33 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            color: #8B4513;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .prev-btn {
+            left: 1rem;
+        }
+
+        .next-btn {
+            right: 1rem;
         }
 
         /* ==================== Seção Contato (Contact) ==================== */
@@ -1282,6 +1320,50 @@
                 padding: 2rem;
             }
         }
+        
+        /* Estilos do Slider de Depoimentos */
+        .testimonial-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .testimonial-slide {
+            flex-shrink: 0;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            color: #8B4513;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .prev-btn {
+            left: 1rem;
+        }
+
+        .next-btn {
+            right: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -1306,6 +1388,7 @@
             </div>
             <nav>
                 <ul class="nav-menu">
+                    <li><a href="#about-us">Sobre Nós</a></li>
                     <li><a href="#servicos">Serviços</a></li>
                     <li><a href="#depoimentos">Depoimentos</a></li>
                     <li><a href="#contato">Contato</a></li>
@@ -1336,7 +1419,7 @@
         </div>
     </section>
 
-    <section class="our-story">
+    <section class="our-story" id="about-us">
         <div class="container">
             <div class="story-content">
                 <div class="story-text reveal-left">
@@ -1366,7 +1449,7 @@
                     </div>
                     <h3>Cuidadoras</h3>
                     <p>Acompanhamento diário</p>
-                    <button class="open-modal-btn">Solicitar Orçamento</button>
+                    <button class="open-modal-btn" onclick="openModal('Cuidadoras')">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.2s;">
                     <div class="service-icon">
@@ -1379,7 +1462,7 @@
                     </div>
                     <h3>Manicure e cabeleireiro</h3>
                     <p>Atendimento em casa</p>
-                    <button class="open-modal-btn">Solicitar Orçamento</button>
+                    <button class="open-modal-btn" onclick="openModal('Manicure e cabeleireiro')">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.3s;">
                     <div class="service-icon">
@@ -1389,7 +1472,7 @@
                     </div>
                     <h3>Apoio psicológico</h3>
                     <p>Uma vez por semana</p>
-                    <button class="open-modal-btn">Solicitar Orçamento</button>
+                    <button class="open-modal-btn" onclick="openModal('Apoio psicológico')">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.4s;">
                     <div class="service-icon">
@@ -1401,25 +1484,59 @@
                     </div>
                     <h3>Motorista</h3>
                     <p>1 a 2 vezes por semana</p>
-                    <button class="open-modal-btn">Solicitar Orçamento</button>
+                    <button class="open-modal-btn" onclick="openModal('Motorista')">Solicitar Orçamento</button>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="testimonials" id="depoimentos">
-        <div class="testimonial-container">
-            <div class="testimonial-content reveal-left">
-                <div class="testimonial-text">
-                    Desde que minha mãe passou no programa, ela ficou muito mais animada e segura. Estou muito satisfeita com os cuidados que ela recebe.
+        <div class="container">
+            <h2 class="section-title reveal">Depoimentos</h2>
+            <div class="testimonial-container">
+                <button class="carousel-btn prev-btn">&lt;</button>
+                <div class="testimonial-carousel">
+                    <!-- Depoimento 1 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content reveal-left">
+                            <div class="testimonial-text">
+                                Desde que minha mãe passou no programa, ela ficou muito mais animada e segura. Estou muito satisfeita com os cuidados que ela recebe.
+                            </div>
+                            <div class="testimonial-author">- Maria Silva, filha de Dona Antônia</div>
+                        </div>
+                        <div class="testimonial-image reveal-right parallax-element">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Eb25hIEFudMO0bmlhPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Antônia sorrindo">
+                        </div>
+                    </div>
+                    <!-- Depoimento 2 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content reveal-left">
+                            <div class="testimonial-text">
+                                A equipe é extremamente atenciosa e profissional. Meu pai se sente muito bem cuidado e nós ficamos tranquilos sabendo que ele está em boas mãos. Recomendo muito!
+                            </div>
+                            <div class="testimonial-author">- João Pereira, filho de Sr. Carlos</div>
+                        </div>
+                        <div class="testimonial-image reveal-right parallax-element">
+                             <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RkTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Tci4gQ2FybG9zPC90ZXh0Pgo8L3N2Zz4K" alt="Sr. Carlos">
+                        </div>
+                    </div>
+                    <!-- Depoimento 3 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content reveal-left">
+                            <div class="testimonial-text">
+                                Ter um motorista para as consultas médicas e passeios fez uma diferença enorme na vida da minha avó. Ela se sente mais independente e feliz. O serviço é impecável.
+                            </div>
+                            <div class="testimonial-author">- Ana Clara, neta de D. Fátima</div>
+                        </div>
+                        <div class="testimonial-image reveal-right parallax-element">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ELiBGw6F0aW1hPC90ZXh0Pgo8L3N2Zz4K" alt="D. Fátima">
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial-author">- Maria Silva, filha de Dona Antônia</div>
+                <button class="carousel-btn next-btn">&gt;</button>
             </div>
-            <div class="testimonial-image reveal-right parallax-element">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Eb25hIEFudMO0bmlhPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Antônia sorrindo">
-            </div>
+            <h2 class="focus-title reveal" id="current-testimonial-title">Foco em Dona Antônia</h2>
         </div>
-        <h2 class="focus-title reveal">Foco em Dona Antônia</h2>
     </section>
 
     <section class="contact" id="contato">
@@ -1602,6 +1719,7 @@
             initParallax();
             initFormHandlers();
             initModalHandlers();
+            initCarousel();
             
             // Força a remoção da tela de loading após a animação da barra, garantindo que o conteúdo seja visível.
             setTimeout(function() {
@@ -1914,6 +2032,37 @@
                     value = value.replace(/(\d{2})(\d)/, '($1) $2');
                     value = value.replace(/(\d{5})(\d)/, '$1-$2');
                     e.target.value = value;
+                });
+            }
+        }
+
+        // ==================== Funções do Slider de Depoimentos ====================
+        function initCarousel() {
+            const carousel = document.querySelector('.testimonial-carousel');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const testimonialTitle = document.getElementById('current-testimonial-title');
+            const slideTitles = ["Dona Antônia", "Sr. Carlos", "D. Fátima"];
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                const offset = -currentIndex * 100;
+                carousel.style.transform = `translateX(${offset}%)`;
+                testimonialTitle.textContent = `Foco em ${slideTitles[currentIndex]}`;
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                    updateCarousel();
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+                    updateCarousel();
                 });
             }
         }

@@ -1208,12 +1208,15 @@
         .full-article-content {
             display: none;
             margin-top: 1rem;
+            max-height: 0;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: all 0.5s ease-in-out;
+            overflow: hidden;
         }
 
         .full-article-content.visible {
             display: block;
+            max-height: 1000px; /* Valor alto para transição suave */
             opacity: 1;
         }
 
@@ -1452,7 +1455,7 @@
                 </div>
                 <div class="story-image reveal-right parallax-element">
                     <div class="story-badge">94 anos</div>
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSI5MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM4QjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Eb25hIFRlcmVjYTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
                 </div>
             </div>
         </div>
@@ -2004,22 +2007,24 @@
 
         /* Funções de Navegação do Blog */
         function initBlogLinks() {
-            const blogLinks = document.querySelectorAll('.blog-card .read-more-btn');
-            blogLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
+            const readMoreButtons = document.querySelectorAll('.blog-card .read-more-btn');
+
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const card = e.target.closest('.blog-card-content');
-                    const articleContent = card.querySelector('.full-article-content');
-                    const articleHeader = card.querySelector('.article-header');
+                    const cardContent = e.target.closest('.blog-card-content');
+                    const shortText = cardContent.querySelector('.short-article-content');
+                    const fullContent = cardContent.querySelector('.full-article-content');
+                    const readMoreLink = e.target;
                     
-                    if (articleContent.classList.contains('visible')) {
-                        articleContent.classList.remove('visible');
-                        e.target.textContent = 'Ler artigo';
-                        articleHeader.querySelector('h3').style.cursor = 'pointer';
+                    if (fullContent.classList.contains('visible')) {
+                        fullContent.classList.remove('visible');
+                        shortText.style.display = 'block';
+                        readMoreLink.textContent = 'Ler artigo';
                     } else {
-                        articleContent.classList.add('visible');
-                        e.target.textContent = 'Diminuir';
-                        articleHeader.querySelector('h3').style.cursor = 'default';
+                        fullContent.classList.add('visible');
+                        shortText.style.display = 'none';
+                        readMoreLink.textContent = 'Diminuir';
                     }
                 });
             });
@@ -2028,19 +2033,19 @@
             const articleHeaders = document.querySelectorAll('.blog-card .article-header h3');
             articleHeaders.forEach(header => {
                 header.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const card = e.target.closest('.blog-card-content');
-                    const articleContent = card.querySelector('.full-article-content');
-                    const readMoreBtn = card.querySelector('.read-more-btn');
+                    const cardContent = e.target.closest('.blog-card-content');
+                    const shortText = cardContent.querySelector('.short-article-content');
+                    const fullContent = cardContent.querySelector('.full-article-content');
+                    const readMoreLink = cardContent.querySelector('.read-more-btn');
                     
-                    if (articleContent.classList.contains('visible')) {
-                        articleContent.classList.remove('visible');
-                        readMoreBtn.textContent = 'Ler artigo';
-                        e.target.style.cursor = 'pointer';
+                    if (fullContent.classList.contains('visible')) {
+                        fullContent.classList.remove('visible');
+                        shortText.style.display = 'block';
+                        readMoreLink.textContent = 'Ler artigo';
                     } else {
-                        articleContent.classList.add('visible');
-                        readMoreBtn.textContent = 'Diminuir';
-                        e.target.style.cursor = 'default';
+                        fullContent.classList.add('visible');
+                        shortText.style.display = 'none';
+                        readMoreLink.textContent = 'Diminuir';
                     }
                 });
             });

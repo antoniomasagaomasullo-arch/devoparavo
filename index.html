@@ -177,7 +177,7 @@
             font-family: 'Dancing Script', cursive;
             font-size: 2rem; /* Aumentado para 2rem */
             font-weight: 700;
-            color: #8B4513;
+            color: #8B4513; /* Use a cor da marca */
         }
         
         /* Remove a linha de subtítulo */
@@ -260,7 +260,7 @@
                 rgba(232, 221, 209, 0.7) 50%,
                 rgba(245, 240, 232, 0.8) 75%,
                 rgba(250, 247, 242, 0.9) 100%);
-            padding: 80px 0 80px; /* Padding reduzido para diminuir o espaçamento */
+            padding: 60px 0 60px; /* Padding reduzido para diminuir o espaçamento */
             position: relative;
             overflow: hidden;
             min-height: 100vh;
@@ -586,6 +586,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            align-items: stretch;
+            margin-top: -30px; /* Reduz o espaçamento com o título da seção */
         }
 
         .service-card {
@@ -1361,7 +1363,7 @@
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-            <button class="cta-button" onclick="scrollToContact()">Falar conosco</button>
+            <button class="cta-button" id="header-contact-btn">Falar conosco</button>
         </div>
     </header>
 
@@ -1375,8 +1377,8 @@
                 <h1>❤️ Cuidando de quem você ama</h1>
                 <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
                 <div class="hero-cta">
-                    <button class="whatsapp-btn" onclick="openWhatsApp()">
-                        � Fale conosco
+                    <button class="whatsapp-btn" id="hero-whatsapp-btn">
+                        📱 Fale conosco
                     </button>
                 </div>
             </div>
@@ -1510,7 +1512,7 @@
     <section class="contact" id="contato">
         <div class="container">
             <h2 class="section-title reveal">Entre em contato</h2>
-            <form class="contact-form reveal-scale" onsubmit="handleSubmit(event)">
+            <form class="contact-form reveal-scale">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="nome">Nome completo</label>
@@ -2058,4 +2060,3 @@
     </script>
 </body>
 </html>
-�

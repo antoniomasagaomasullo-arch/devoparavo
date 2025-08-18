@@ -263,7 +263,7 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(circle at 30% 50%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(210, 105, 30, 0.08) 0%, transparent 60%);
+                radial-gradient(circle at 70% 80%, rgba(210, 105, 30, 0.08) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -426,7 +426,7 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(circle at 70% 30%, rgba(139, 69, 19, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 20% 80%, rgba(210, 105, 30, 0.03) 0%, transparent 60%);
+                radial-gradient(circle at 20% 80%, rgba(210, 105, 30, 0.03) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -1036,6 +1036,31 @@
             opacity: 0.8;
         }
 
+        /* Floating WhatsApp Button */
+        .whatsapp-float-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, #25D366 0%, #1DA04C 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .whatsapp-float-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+        }
+
+
         /* Animations */
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0px); }
@@ -1083,6 +1108,21 @@
                 width: 300px;
                 height: 300px;
                 opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
             }
         }
 
@@ -1153,7 +1193,7 @@
         <div class="loading-logo"></div>
         <div class="loading-text">De Vó para Vó</div>
         <div class="loading-subtitle">Cuidando com amor e carinho</div>
-        <div class.loading-progress">
+        <div class="loading-progress">
             <div class="loading-bar"></div>
         </div>
     </div>
@@ -1162,7 +1202,7 @@
         <div class="nav-container">
             <div class="logo">
                 <div class="logo-icon">
-                    </div>
+                </div>
                 <div>
                     <div>De Vó para Vó</div>
                     <div style="font-size: 0.7rem; font-weight: normal; opacity: 0.7;">Serviços • Depoimentos • Contato</div>
@@ -1210,7 +1250,7 @@
                 </div>
                 <div class="story-image reveal-right parallax-element">
                     <div class="story-badge">94 anos</div>
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHR2ZWN0IHdpZHRoPSIyMjAiIGhlaWdodD0iMTIwIiB4PSI0MCIgeT0iNDAiIGZpbGw9IiNmOWY3ZjQiIHJ4PSI2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iOTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOEI0NTEzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iYm9sZCI+RG9uYSBUZXJlY2E8L3RleHQ+Cjx0ZXh0IHg9IjE1MCIgeT0iMTEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Tm9zc2EgcHJpbWVpcmEgY2xpZW50ZTwvdGV4dD4KPHR5ZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSIyNCIgeD0iMTIwIiB5PSIxMzAiIGZpbGw9IiM4QjQ1MTMiIHJ4PSIxMiIvPgo8dGV4dCB4PSIxNTAiIHk9IjE0NSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iYm9sZCI+OTQgYW5vczwvdGV4dD4KPC9zdmc+" alt="Dona Tereca - Nossa primeira cliente">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHR2ZWN0IHdpZHRoPSIyMjAiIGhlaWdodD0iMTIwIiB4PSI0MCIgeT00MCIgZmlsbD0iI2Y5ZjdmNCIgcng9IjYiLz4KPHRleHQgeD0iMTUwIiB5PSI5MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM4QjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Eb25hIFRlcmVjYTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8dHllY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjI0IiB4PSIxMjAiIHk9IjEzMCIgZmlsbD0iIzhCNTUxMyIgcng9IjEyIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQ1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj45NCBhbm9zPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
                 </div>
             </div>
         </div>
@@ -1276,7 +1316,7 @@
                 <div class="testimonial-author">- Maria Silva, filha de Dona Antônia</div>
             </div>
             <div class="testimonial-image reveal-right parallax-element">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHR leHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Eb25hIEFudMO0bmlhPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Antônia sorrindo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Eb25hIEFudMO0bmlhPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Antônia sorrindo">
             </div>
         </div>
         <h2 class="focus-title reveal">Foco em Dona Antônia</h2>
@@ -1391,6 +1431,12 @@
             <p>&copy; 2025 De Vó para Vó. Cuidando com amor e carinho.</p>
         </div>
     </footer>
+
+    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20do%20De%20V%C3%B3%20para%20V%C3%B3." class="whatsapp-float-btn" target="_blank" aria-label="Fale conosco pelo WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+    </a>
 
     <script>
         // ########## ALTERAÇÃO PRINCIPAL AQUI ##########
@@ -1602,4 +1648,3 @@
     </script>
 </body>
 </html>
-

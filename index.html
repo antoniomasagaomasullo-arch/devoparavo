@@ -414,7 +414,7 @@
         }
 
         .hero-image:hover::before {
-            left: 100%;
+            transform: translateX(100%);
         }
 
         .hero-image img {
@@ -778,7 +778,6 @@
             grid-template-columns: 1fr 300px;
             gap: 3rem;
             align-items: center;
-            padding: 0 2rem;
         }
         
         /* Centraliza os depoimentos no carrossel */
@@ -786,6 +785,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0 1rem;
         }
 
         .testimonial-content {
@@ -1397,7 +1397,7 @@
                 </div>
                 <div class="story-image reveal-right parallax-element">
                     <div class="story-badge">94 anos</div>
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3Lm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8dHllY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjI0IiB4PSIxMjAiIHk9IjEzMCIgZmlsbD0iIzhCNTUxMyIgcng9IjEyIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQ1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj45NCBhbm9zPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8dHllY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjI0IiB4PSIxMjAiIHk9IjEzMCIgZmlsbD0iIzhCNTUxMyIgcng9IjEyIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQ1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj45NCBhbm9zPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
                 </div>
             </div>
         </div>
@@ -1417,7 +1417,7 @@
                     </div>
                     <h3>Cuidadoras</h3>
                     <p>Acompanhamento diário</p>
-                    <button class="open-modal-btn">Solicitar Orçamento</button>
+                    <button class="open-modal-btn" data-service="Cuidadoras">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.2s;">
                     <div class="service-icon">
@@ -1430,7 +1430,7 @@
                     </div>
                     <h3>Manicure e cabeleireiro</h3>
                     <p>Atendimento em casa</p>
-                    <button class="open-modal-btn">Solicitar Orçamento</button>
+                    <button class="open-modal-btn" data-service="Manicure e cabeleireiro">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.3s;">
                     <div class="service-icon">
@@ -1440,7 +1440,7 @@
                     </div>
                     <h3>Apoio psicológico</h3>
                     <p>Uma vez por semana</p>
-                    <button class="open-modal-btn">Solicitar Orçamento</button>
+                    <button class="open-modal-btn" data-service="Apoio psicológico">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.4s;">
                     <div class="service-icon">
@@ -1452,7 +1452,7 @@
                     </div>
                     <h3>Motorista</h3>
                     <p>1 a 2 vezes por semana</p>
-                    <button class="open-modal-btn">Solicitar Orçamento</button>
+                    <button class="open-modal-btn" data-service="Motorista">Solicitar Orçamento</button>
                 </div>
             </div>
         </div>
@@ -1631,7 +1631,7 @@
             <button class="modal-close-btn">&times;</button>
             <h3 style="text-align: center; margin-bottom: 2rem; background: linear-gradient(135deg, #2c2c2c 0%, #8B4513 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Solicitar Orçamento</h3>
             
-            <form id="modal-contact-form" onsubmit="handleModalSubmit(event)">
+            <form id="modal-contact-form">
                 <input type="hidden" id="modal-servico-selecionado" name="servico-selecionado">
                 <div class="form-row">
                     <div class="form-group">

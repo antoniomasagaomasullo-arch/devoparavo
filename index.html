@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Vó para Vó - Cuidando de quem você ama</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #8B4513;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #8B4513;
+        }
+
+        .cta-button {
+            background: #8B4513;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #6B3410;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8ddd1 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c2c2c;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: #fafafa;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #8B4513;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2c2c2c;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Testimonial Section */
+        .testimonials {
+            padding: 80px 0;
+            background: #f9f7f4;
+        }
+
+        .testimonial-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .testimonial-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            font-size: 4rem;
+            color: #8B4513;
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .testimonial-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .focus-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            text-align: center;
+            color: #2c2c2c;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #f0ebe4;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B4513;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #8B4513;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #6B3410;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .testimonial-container {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                margin: 0 1rem;
+                padding: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card,
+        .testimonial-content {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">👵</div>
+                <div>
+                    <div>De Vó para Vó</div>
+                    <div style="font-size: 0.7rem; font-weight: normal; opacity: 0.7;">Serviços • Depoimentos • Contato</div>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="cta-button" onclick="scrollToContact()">Falar conosco</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Cuidando de quem você ama</h1>
+                <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
+                <div class="hero-cta">
+                    <button class="whatsapp-btn" onclick="openWhatsApp()">
+                        📱 Fale conosco
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTgwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtSDwn5GkPC90ZXh0Pgo8dGV4dCB4PSIyMDAiIHk9IjIyMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkN1aWRhZG8gY29tIGFtb3IgZSBjYXJpbmhvPC90ZXh0Pgo8L3N2Zz4K" alt="Cuidador e idoso sorrindo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <h2 class="section-title">Nossos serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">👩‍⚕️</div>
+                    <h3>Cuidadoras</h3>
+                    <p>Acompanhamento diário</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💅</div>
+                    <h3>Manicure e cabeleireiro</h3>
+                    <p>Atendimento em casa</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧠</div>
+                    <h3>Apoio psicológico</h3>
+                    <p>Uma vez por semana</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Motorista</h3>
+                    <p>1 a 2 vezes por semana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="depoimentos">
+        <div class="testimonial-container">
+            <div class="testimonial-content">
+                <div class="testimonial-text">
+                    Desde que minha mãe passou no programa, ela ficou muito mais animada e segura. Estou muito satisfeita com os cuidados que ela recebe.
+                </div>
+                <div class="testimonial-author">- Maria Silva, filha de Dona Antônia</div>
+            </div>
+            <div class="testimonial-image">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHR leHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Eb25hIEFudMO0bmlhPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Antônia sorrindo">
+            </div>
+        </div>
+        <h2 class="focus-title">Foco em Dona Antônia</h2>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em contato</h2>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="para-quem">Para quem seriam os serviços</label>
+                    <select id="para-quem" name="para-quem" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="para-mim">Para mim</option>
+                        <option value="familiar">Para um familiar</option>
+                        <option value="amigo">Para um amigo</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="servicos-interesse">Serviços que tenho interesse</label>
+                    <input type="text" id="servicos-interesse" name="servicos-interesse" placeholder="Ex: Cuidadora, Manicure, Apoio psicológico..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" id="endereco" name="endereco" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bairro">Mora em qual bairro em SP</label>
+                    <input type="text" id="bairro" name="bairro" placeholder="Ex: Itaim Bibi, Vila Olímpia..." required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Solicitar contato</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 De Vó para Vó. Cuidando com amor e carinho.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        function scrollToContact() {
+            document.getElementById('contato').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // WhatsApp integration
+        function openWhatsApp() {
+            const message = encodeURIComponent("Olá! Gostaria de saber mais sobre os serviços de cuidadores do De Vó para Vó.");
+            window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+        }
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Create WhatsApp message with form data
+            let message = "Solicitação de contato - De Vó para Vó\n\n";
+            message += `Nome: ${data.nome}\n`;
+            message += `CPF: ${data.cpf}\n`;
+            message += `Serviços para: ${data['para-quem']}\n`;
+            message += `Serviços de interesse: ${data['servicos-interesse']}\n`;
+            message += `Endereço: ${data.endereco}\n`;
+            message += `Bairro: ${data.bairro}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, '_blank');
+            
+            // Show success message
+            alert('Obrigado! Seu contato foi enviado via WhatsApp. Retornaremos em breve!');
+            event.target.reset();
+        }
+
+        // CPF mask
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = value;
+        });
+
+        // Scroll animations
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.service-card, .testimonial-content');
+            elements.forEach(el => {
+                if (isElementInViewport(el)) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+    </script>
+</body>
+</html>

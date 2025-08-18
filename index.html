@@ -606,6 +606,9 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .service-card::before {
@@ -709,6 +712,22 @@
         .service-card:hover p {
             color: #555;
             transform: translateY(-2px);
+        }
+
+        /* Botão para abrir o modal no card de serviço */
+        .service-card .open-modal-btn {
+            background: radial-gradient(circle at center, #A0522D 0%, #8B4513 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-top: 1.5rem;
         }
 
         /* ==================== Seção Depoimentos (Testimonials) ==================== */
@@ -1052,6 +1071,64 @@
             opacity: 0.8;
         }
 
+        /* ==================== Modal de Contato ==================== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #8B4513;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-close-btn:hover {
+            opacity: 1;
+        }
+
         /* ==================== Botão Flutuante do WhatsApp ==================== */
         .whatsapp-float-btn {
             position: fixed;
@@ -1289,6 +1366,7 @@
                     </div>
                     <h3>Cuidadoras</h3>
                     <p>Acompanhamento diário</p>
+                    <button class="open-modal-btn">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.2s;">
                     <div class="service-icon">
@@ -1301,6 +1379,7 @@
                     </div>
                     <h3>Manicure e cabeleireiro</h3>
                     <p>Atendimento em casa</p>
+                    <button class="open-modal-btn">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.3s;">
                     <div class="service-icon">
@@ -1310,6 +1389,7 @@
                     </div>
                     <h3>Apoio psicológico</h3>
                     <p>Uma vez por semana</p>
+                    <button class="open-modal-btn">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.4s;">
                     <div class="service-icon">
@@ -1321,6 +1401,7 @@
                     </div>
                     <h3>Motorista</h3>
                     <p>1 a 2 vezes por semana</p>
+                    <button class="open-modal-btn">Solicitar Orçamento</button>
                 </div>
             </div>
         </div>
@@ -1384,7 +1465,7 @@
                     <label for="servicos-interesse">Serviços que tenho interesse</label>
                     <div class="services-tags">
                         <label class="service-tag">
-                            <input type="checkbox" name="servicos[]" value="Cuidadora" required>
+                            <input type="checkbox" name="servicos[]" value="Cuidadora">
                             <span>Cuidadora</span>
                         </label>
                         <label class="service-tag">
@@ -1412,7 +1493,7 @@
                             <span>Geriatra</span>
                         </label>
                     </div>
-                    <small>*Selecione pelo menos um serviço</small>
+                    <small>Selecione pelo menos um serviço (formulário principal)</small>
                 </div>
                 
                 <div class="form-group">
@@ -1458,6 +1539,59 @@
         </svg>
     </a>
 
+    <!-- ==================== Modal de Contato para Serviços ==================== -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 style="text-align: center; margin-bottom: 2rem; background: linear-gradient(135deg, #2c2c2c 0%, #8B4513 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Solicitar Orçamento</h3>
+            
+            <form id="modal-contact-form" onsubmit="handleModalSubmit(event)">
+                <input type="hidden" id="modal-servico-selecionado" name="servico-selecionado">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-nome">Nome completo</label>
+                        <input type="text" id="modal-nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modal-email">E-mail</label>
+                        <input type="email" id="modal-email" name="email" placeholder="seu@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-telefone">Telefone/WhatsApp</label>
+                        <input type="tel" id="modal-telefone" name="telefone" placeholder="(11) 99999-9999" required>
+                        <small>📱 Entraremos em contato via WhatsApp</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-para-quem">Para quem seriam os serviços</label>
+                    <select id="modal-para-quem" name="para-quem" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="para-mim">Para mim</option>
+                        <option value="familiar">Para um familiar</option>
+                        <option value="amigo">Para um amigo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Serviço selecionado</label>
+                    <input type="text" id="modal-servico-display" readonly>
+                </div>
+                
+                <div id="modal-message-box" style="margin-bottom: 1rem; padding: 1rem; border-radius: 10px; text-align: center; font-weight: bold; display: none;"></div>
+
+                <button type="submit" class="submit-btn">
+                    ✨ Solicitar contato
+                </button>
+            </form>
+        </div>
+    </div>
+
+
     <script>
         // ==================== Scripts de Inicialização ====================
         
@@ -1467,6 +1601,7 @@
             initScrollReveal();
             initParallax();
             initFormHandlers();
+            initModalHandlers();
             
             // Força a remoção da tela de loading após a animação da barra, garantindo que o conteúdo seja visível.
             setTimeout(function() {
@@ -1551,20 +1686,19 @@
             window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
         }
 
-        // ==================== Funções do Formulário de Contato ====================
+        // ==================== Funções do Formulário de Contato Principal ====================
         
-        // Valida se pelo menos um serviço foi selecionado no formulário.
+        // Valida se pelo menos um serviço foi selecionado no formulário principal.
         function validateForm() {
             const selectedServices = document.querySelectorAll('input[name="servicos[]"]:checked');
             if (selectedServices.length === 0) {
-                // Use uma modal personalizada em vez de alert() para melhor experiência.
-                // alert('Por favor, selecione pelo menos um serviço.');
+                console.log('Por favor, selecione pelo menos um serviço.');
                 return false;
             }
             return true;
         }
 
-        // Lida com o envio do formulário, validando e enviando os dados via WhatsApp.
+        // Lida com o envio do formulário principal, validando e enviando os dados via WhatsApp.
         function handleSubmit(event) {
             event.preventDefault();
             if (!validateForm()) {
@@ -1588,8 +1722,7 @@
             
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, '_blank');
-            // Alerta de confirmação. Idealmente, substituir por uma modal.
-            // alert('Obrigado! Seu contato foi enviado via WhatsApp. Retornaremos em breve!');
+            console.log('Obrigado! Seu contato foi enviado via WhatsApp. Retornaremos em breve!');
             event.target.reset();
             
             const enderecoField = document.getElementById('endereco');
@@ -1602,7 +1735,7 @@
             }
         }
 
-        // Busca o endereço a partir de um CEP usando a API ViaCEP.
+        // Busca o endereço a partir de um CEP usando a API ViaCEP (para o formulário principal).
         async function searchCEP(cep) {
             const statusElement = document.getElementById('cep-status');
             if (!statusElement) return;
@@ -1637,7 +1770,7 @@
             }
         }
 
-        // Inicializa os manipuladores de eventos para formatar e buscar dados nos campos do formulário.
+        // Inicializa os manipuladores de eventos para formatar e buscar dados nos campos do formulário principal.
         function initFormHandlers() {
             const cepField = document.getElementById('cep');
             if (cepField) {
@@ -1682,6 +1815,109 @@
                 });
             }
         }
+
+        // ==================== Funções e Manipuladores do Modal ====================
+        
+        // Abre o modal e preenche o serviço selecionado.
+        function openModal(serviceName) {
+            const modal = document.getElementById('contactModal');
+            const selectedServiceInput = document.getElementById('modal-servico-selecionado');
+            const selectedServiceDisplay = document.getElementById('modal-servico-display');
+            if (modal) {
+                selectedServiceInput.value = serviceName;
+                selectedServiceDisplay.value = serviceName;
+                modal.classList.add('active');
+            }
+        }
+
+        // Fecha o modal e limpa o formulário.
+        function closeModal() {
+            const modal = document.getElementById('contactModal');
+            const form = document.getElementById('modal-contact-form');
+            const messageBox = document.getElementById('modal-message-box');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+            if (form) {
+                form.reset();
+            }
+            if (messageBox) {
+                messageBox.style.display = 'none';
+            }
+        }
+
+        // Lida com o envio do formulário dentro do modal.
+        function handleModalSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            const serviceName = data['servico-selecionado'];
+
+            const messageBox = document.getElementById('modal-message-box');
+            messageBox.style.display = 'block';
+
+            if (!data.nome || !data.email || !data.telefone || !data['para-quem']) {
+                messageBox.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+                messageBox.style.backgroundColor = '#f8d7da';
+                messageBox.style.color = '#721c24';
+                return;
+            }
+
+            let message = "Solicitação de orçamento - De Vó para Vó\n\n";
+            message += `Nome: ${data.nome}\n`;
+            message += `E-mail: ${data.email}\n`;
+            message += `Telefone: ${data.telefone}\n`;
+            message += `Serviço de interesse: ${serviceName}\n`;
+            message += `Para quem: ${data['para-quem']}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, '_blank');
+            
+            messageBox.textContent = 'Obrigado! Sua solicitação foi enviada via WhatsApp. Retornaremos em breve!';
+            messageBox.style.backgroundColor = '#d4edda';
+            messageBox.style.color = '#155724';
+            form.reset();
+        }
+
+        // Inicializa os manipuladores de eventos para abrir e fechar o modal.
+        function initModalHandlers() {
+            const openButtons = document.querySelectorAll('.open-modal-btn');
+            const closeButton = document.querySelector('.modal-close-btn');
+            const modal = document.getElementById('contactModal');
+
+            openButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Pega o título do serviço do h3 dentro do mesmo card.
+                    const serviceName = button.parentElement.querySelector('h3').textContent;
+                    openModal(serviceName);
+                });
+            });
+
+            if (closeButton) {
+                closeButton.addEventListener('click', closeModal);
+            }
+            
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // Manipuladores para formatar o telefone no modal
+            const modalTelefoneField = document.getElementById('modal-telefone');
+            if (modalTelefoneField) {
+                modalTelefoneField.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                    e.target.value = value;
+                });
+            }
+        }
+
     </script>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Vó para Vó - Cuidando de quem você ama</title>
     <style>
+        /* ==================== Estilos Globais e Reset ==================== */
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +21,7 @@
             overflow-x: hidden;
         }
 
-        /* Loading Screen */
+        /* ==================== Tela de Carregamento (Loading Screen) ==================== */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -92,7 +93,7 @@
             animation: loadingProgress 2.5s ease-in-out;
         }
 
-        /* Scroll Reveal Classes */
+        /* ==================== Animações de Scroll Reveal ==================== */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -137,12 +138,12 @@
             transform: scale(1);
         }
 
-        /* Parallax Elements */
+        /* ==================== Efeitos de Parallax ==================== */
         .parallax-element {
             will-change: transform;
         }
 
-        /* Header */
+        /* ==================== Cabeçalho (Header) ==================== */
         .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
@@ -241,7 +242,7 @@
             left: 100%;
         }
 
-        /* Hero Section */
+        /* ==================== Seção Hero (Principal) ==================== */
         .hero {
             background: linear-gradient(135deg,
                 rgba(245, 240, 232, 0.9) 0%,
@@ -249,7 +250,7 @@
                 rgba(232, 221, 209, 0.7) 50%,
                 rgba(245, 240, 232, 0.8) 75%,
                 rgba(250, 247, 242, 0.9) 100%);
-            padding: 140px 0 80px;
+            padding: 100px 0 80px;
             position: relative;
             overflow: hidden;
             min-height: 100vh;
@@ -411,7 +412,7 @@
             object-fit: cover;
         }
 
-        /* Our Story Section */
+        /* ==================== Seção Nossa História (Our Story) ==================== */
         .our-story {
             padding: 80px 0;
             position: relative;
@@ -535,7 +536,7 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Services Section */
+        /* ==================== Seção Serviços ==================== */
         .services {
             padding: 80px 0;
             position: relative;
@@ -695,7 +696,7 @@
             transform: translateY(-2px);
         }
 
-        /* Testimonial Section */
+        /* ==================== Seção Depoimentos (Testimonials) ==================== */
         .testimonials {
             padding: 80px 0;
             position: relative;
@@ -860,7 +861,7 @@
             background-clip: text;
         }
 
-        /* Contact Section */
+        /* ==================== Seção Contato (Contact) ==================== */
         .contact {
             padding: 80px 0;
             position: relative;
@@ -938,7 +939,7 @@
             transform: scale(1.02);
         }
 
-        /* Service Tags */
+        /* Tags de Serviços (Serviços Tags) */
         .services-tags {
             display: flex;
             flex-wrap: wrap;
@@ -1022,7 +1023,7 @@
             left: 100%;
         }
 
-        /* Footer */
+        /* ==================== Rodapé (Footer) ==================== */
         .footer {
             background: rgba(44, 44, 44, 0.95);
             backdrop-filter: blur(20px);
@@ -1036,7 +1037,7 @@
             opacity: 0.8;
         }
 
-        /* Floating WhatsApp Button */
+        /* ==================== Botão Flutuante do WhatsApp ==================== */
         .whatsapp-float-btn {
             position: fixed;
             bottom: 25px;
@@ -1060,8 +1061,7 @@
             box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
         }
 
-
-        /* Animations */
+        /* ==================== Animações ==================== */
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -1126,7 +1126,7 @@
             }
         }
 
-        /* Floating elements with enhanced parallax */
+        /* Efeitos de Parallax Avançados */
         .parallax-bg-1,
         .parallax-bg-2,
         .parallax-bg-3 {
@@ -1148,10 +1148,14 @@
             animation-duration: 12s;
         }
 
-        /* Responsive */
+        /* ==================== Responsividade (Media Queries) ==================== */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
+            }
+
+            .hero {
+                padding: 120px 0 60px; /* Ajuste para telas menores */
             }
 
             .hero-container {
@@ -1432,6 +1436,7 @@
         </div>
     </footer>
 
+    <!-- Botão Flutuante do WhatsApp -->
     <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20do%20De%20V%C3%B3%20para%20V%C3%B3." class="whatsapp-float-btn" target="_blank" aria-label="Fale conosco pelo WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
@@ -1439,23 +1444,27 @@
     </a>
 
     <script>
-        // ########## ALTERAÇÃO PRINCIPAL AQUI ##########
-        // Espera apenas o HTML carregar, não todas as imagens.
+        // ==================== Scripts de Inicialização ====================
+        
+        // Espera o DOM carregar completamente antes de executar os scripts.
         document.addEventListener('DOMContentLoaded', function() {
-            // Inicia as funções essenciais assim que o documento estiver pronto
+            // Inicializa as funcionalidades de animação, parallax e formulário.
             initScrollReveal();
             initParallax();
             initFormHandlers();
             
-            // Força a remoção da tela de loading após a animação da barra
+            // Força a remoção da tela de loading após a animação da barra, garantindo que o conteúdo seja visível.
             setTimeout(function() {
                 const loadingScreen = document.getElementById('loadingScreen');
                 if (loadingScreen) {
                     loadingScreen.classList.add('hidden');
                 }
-            }, 2500); // 2.5 segundos, mesmo tempo da animação da barra
+            }, 2500); // O tempo (2500ms) corresponde à duração da animação da barra de progresso.
         });
 
+        // ==================== Funções de Efeitos Visuais ====================
+        
+        // Inicializa o IntersectionObserver para revelar elementos à medida que eles entram na viewport.
         function initScrollReveal() {
             const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
             if (revealElements.length === 0) return;
@@ -1464,12 +1473,12 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting && entry.target) {
                         entry.target.classList.add('revealed');
-                        revealObserver.unobserve(entry.target);
+                        revealObserver.unobserve(entry.target); // Para de observar o elemento após a animação.
                     }
                 });
             }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -50px 0px'
+                threshold: 0.15, // Porcentagem do elemento visível para disparar a animação.
+                rootMargin: '0px 0px -50px 0px' // Margem que ajuda a carregar os elementos um pouco antes.
             });
 
             revealElements.forEach(element => {
@@ -1479,6 +1488,7 @@
             });
         }
 
+        // Aplica o efeito de parallax em elementos com a classe .parallax-element.
         function initParallax() {
             const parallaxElements = document.querySelectorAll('.parallax-element');
             if (parallaxElements.length === 0) return;
@@ -1508,6 +1518,9 @@
             });
         }
 
+        // ==================== Funções de Navegação e Interatividade ====================
+        
+        // Rola a página suavemente até a seção de contato.
         function scrollToContact() {
             const contactElement = document.getElementById('contato');
             if (contactElement) {
@@ -1517,20 +1530,26 @@
             }
         }
 
+        // Abre uma nova janela do WhatsApp com uma mensagem pré-definida.
         function openWhatsApp() {
             const message = encodeURIComponent("Olá! Gostaria de saber mais sobre os serviços de cuidadores do De Vó para Vó.");
             window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
         }
 
+        // ==================== Funções do Formulário de Contato ====================
+        
+        // Valida se pelo menos um serviço foi selecionado no formulário.
         function validateForm() {
             const selectedServices = document.querySelectorAll('input[name="servicos[]"]:checked');
             if (selectedServices.length === 0) {
-                alert('Por favor, selecione pelo menos um serviço.');
+                // Use uma modal personalizada em vez de alert() para melhor experiência.
+                // alert('Por favor, selecione pelo menos um serviço.');
                 return false;
             }
             return true;
         }
 
+        // Lida com o envio do formulário, validando e enviando os dados via WhatsApp.
         function handleSubmit(event) {
             event.preventDefault();
             if (!validateForm()) {
@@ -1554,7 +1573,8 @@
             
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, '_blank');
-            alert('Obrigado! Seu contato foi enviado via WhatsApp. Retornaremos em breve!');
+            // Alerta de confirmação. Idealmente, substituir por uma modal.
+            // alert('Obrigado! Seu contato foi enviado via WhatsApp. Retornaremos em breve!');
             event.target.reset();
             
             const enderecoField = document.getElementById('endereco');
@@ -1567,6 +1587,7 @@
             }
         }
 
+        // Busca o endereço a partir de um CEP usando a API ViaCEP.
         async function searchCEP(cep) {
             const statusElement = document.getElementById('cep-status');
             if (!statusElement) return;
@@ -1601,6 +1622,7 @@
             }
         }
 
+        // Inicializa os manipuladores de eventos para formatar e buscar dados nos campos do formulário.
         function initFormHandlers() {
             const cepField = document.getElementById('cep');
             if (cepField) {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Vó para Vó - Cuidando de quem você ama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         /* ==================== Estilos Globais e Reset ==================== */
         * {
@@ -165,10 +166,24 @@
             align-items: center;
             padding: 0 2rem;
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
+        }
+        
+        /* Nova fonte para o logo */
+        .logo .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B4513; /* Use a cor da marca */
+        }
+        
+        .logo .subtitle {
+            font-size: 0.7rem;
+            font-weight: normal;
+            opacity: 0.7;
         }
 
         .logo-icon {
@@ -178,7 +193,7 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem; /* Ajustado para 1rem */
         }
 
         .nav-menu a {
@@ -209,7 +224,7 @@
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+            background: radial-gradient(circle at center, #A0522D 0%, #8B4513 100%);
             color: white;
             padding: 0.8rem 1.5rem;
             border: none;
@@ -338,7 +353,7 @@
         }
 
         .whatsapp-btn {
-            background: linear-gradient(135deg, #25D366 0%, #20B358 50%, #1DA04C 100%);
+            background: radial-gradient(circle at center, #20B358 0%, #25D366 100%);
             color: white;
             padding: 1rem 2rem;
             border: none;
@@ -989,7 +1004,7 @@
 
         .submit-btn {
             width: 100%;
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+            background: radial-gradient(circle at center, #A0522D 0%, #8B4513 100%);
             color: white;
             padding: 1rem 2rem;
             border: none;
@@ -1042,7 +1057,7 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: linear-gradient(135deg, #25D366 0%, #1DA04C 100%);
+            background: radial-gradient(circle at center, #20B358 0%, #25D366 100%);
             color: white;
             width: 60px;
             height: 60px;
@@ -1208,8 +1223,8 @@
                 <div class="logo-icon">
                 </div>
                 <div>
-                    <div>De Vó para Vó</div>
-                    <div style="font-size: 0.7rem; font-weight: normal; opacity: 0.7;">Serviços • Depoimentos • Contato</div>
+                    <div class="title">De Vó para Vó</div>
+                    <div class="subtitle">Serviços • Depoimentos • Contato</div>
                 </div>
             </div>
             <nav>

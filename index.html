@@ -50,20 +50,25 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #333;
+            color: #8B4513;
         }
 
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: #8B4513;
+            background: white;
             border-radius: 50%;
             margin-right: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.2rem;
+            border: 2px solid #8B4513;
+            padding: 2px;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
         }
 
         .nav-menu {
@@ -560,7 +565,45 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-icon">👵</div>
+                <div class="logo-icon">
+                    <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Círculo externo -->
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="#8B4513" stroke-width="8"/>
+                        <!-- Círculo interno -->
+                        <circle cx="100" cy="100" r="75" fill="none" stroke="#8B4513" stroke-width="3"/>
+                        
+                        <!-- Cabelo da vovó (formato mais feminino) -->
+                        <path d="M65 80 Q70 65 85 68 Q100 60 115 68 Q130 65 135 80 Q130 75 115 78 Q100 70 85 78 Q70 75 65 80Z" fill="none" stroke="#8B4513" stroke-width="3"/>
+                        
+                        <!-- Rosto -->
+                        <circle cx="100" cy="95" r="25" fill="none" stroke="#8B4513" stroke-width="3"/>
+                        
+                        <!-- Óculos (mais delicados) -->
+                        <circle cx="92" cy="90" r="6" fill="none" stroke="#8B4513" stroke-width="2"/>
+                        <circle cx="108" cy="90" r="6" fill="none" stroke="#8B4513" stroke-width="2"/>
+                        <line x1="98" y1="90" x2="102" y2="90" stroke="#8B4513" stroke-width="2"/>
+                        <!-- Hastes dos óculos -->
+                        <line x1="86" y1="90" x2="82" y2="88" stroke="#8B4513" stroke-width="1.5"/>
+                        <line x1="114" y1="90" x2="118" y2="88" stroke="#8B4513" stroke-width="1.5"/>
+                        
+                        <!-- Nariz delicado -->
+                        <path d="M98 95 Q100 98 102 95" fill="none" stroke="#8B4513" stroke-width="1.5"/>
+                        
+                        <!-- Sorriso acolhedor -->
+                        <path d="M90 105 Q100 112 110 105" fill="none" stroke="#8B4513" stroke-width="2"/>
+                        
+                        <!-- Colar/joia (toque feminino) -->
+                        <circle cx="100" cy="125" r="3" fill="none" stroke="#8B4513" stroke-width="2"/>
+                        <path d="M85 130 Q100 135 115 130" fill="none" stroke="#8B4513" stroke-width="2"/>
+                        
+                        <!-- Corpo/blusa -->
+                        <path d="M80 140 Q100 150 120 140 L115 165 Q100 170 85 165 Z" fill="none" stroke="#8B4513" stroke-width="3"/>
+                        
+                        <!-- Detalhes do cabelo (mais volume) -->
+                        <path d="M75 75 Q80 70 85 75" fill="none" stroke="#8B4513" stroke-width="2"/>
+                        <path d="M115 75 Q120 70 125 75" fill="none" stroke="#8B4513" stroke-width="2"/>
+                    </svg>
+                </div>
                 <div>
                     <div>De Vó para Vó</div>
                     <div style="font-size: 0.7rem; font-weight: normal; opacity: 0.7;">Serviços • Depoimentos • Contato</div>

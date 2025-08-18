@@ -670,7 +670,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.6s ease;
         }
 
@@ -1164,20 +1164,15 @@
         .blog-card-content {
             padding: 2rem;
         }
-        
-        .blog-card-content h3 {
+
+        .blog-card-content .article-header h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: #2c2c2c;
+            cursor: pointer;
         }
-        
-        .blog-card-content p {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        
-        .blog-card-content a {
+
+        .blog-card-content .article-header a {
             display: inline-block;
             color: #8B4513;
             font-weight: bold;
@@ -1185,7 +1180,7 @@
             position: relative;
         }
         
-        .blog-card-content a::after {
+        .blog-card-content .article-header a::after {
             content: '';
             position: absolute;
             bottom: -2px;
@@ -1198,9 +1193,44 @@
             transition: transform 0.3s ease;
         }
         
-        .blog-card-content a:hover::after {
+        .blog-card-content .article-header a:hover::after {
             transform: scaleX(1);
             transform-origin: left;
+        }
+
+        .blog-card-content p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Estilos do conteúdo expandido do blog */
+        .full-article-content {
+            display: none;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .full-article-content.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        .article-content h4 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        
+        .article-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .article-footer {
+            margin-top: 2rem;
+            text-align: right;
         }
 
         /* ==================== Botão Flutuante do WhatsApp ==================== */
@@ -1422,7 +1452,7 @@
                 </div>
                 <div class="story-image reveal-right parallax-element">
                     <div class="story-badge">94 anos</div>
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSI5MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM4QjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Eb25hIFRlcmVjYTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
                 </div>
             </div>
         </div>
@@ -1491,9 +1521,23 @@
                 <div class="blog-card reveal" style="animation-delay: 0.1s;">
                     <img class="blog-card-image" src="https://placehold.co/600x400/f8e9d8/333333?text=Cuidados+di%C3%A1rios" alt="">
                     <div class="blog-card-content">
-                        <h3>Dicas essenciais para o dia a dia do idoso</h3>
-                        <p>Descubra como pequenas mudanças na rotina podem fazer uma grande diferença na qualidade de vida...</p>
-                        <a href="javascript:void(0);" onclick="openArticle('Cuidados diários')">Ler artigo</a>
+                        <div class="article-header">
+                            <h3>Dicas essenciais para o dia a dia do idoso</h3>
+                            <a href="#" class="read-more-btn" data-article="article-1">Ler artigo</a>
+                        </div>
+                        <div class="full-article-content" id="article-1">
+                            <h4>O que são cuidados diários?</h4>
+                            <p>Cuidar de um idoso vai muito além de garantir a sua saúde física. Envolve proporcionar um ambiente seguro, com carinho, atenção e respeito à sua história e individualidade.</p>
+                            <h4>Dicas práticas para a rotina:</h4>
+                            <ul>
+                                <li>**Hidratação e nutrição:** Garanta que a pessoa se hidrate bem ao longo do dia e tenha uma dieta rica e balanceada.</li>
+                                <li>**Atividades sociais:** Incentive a interação com amigos e familiares, seja presencialmente ou por videochamadas.</li>
+                                <li>**Ambiente seguro:** Evite tapetes, fios soltos e garanta boa iluminação para prevenir quedas.</li>
+                            </ul>
+                            <div class="article-footer">
+                                <a href="#" class="read-more-btn" data-article="article-1">Diminuir</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -1501,9 +1545,23 @@
                 <div class="blog-card reveal" style="animation-delay: 0.2s;">
                     <img class="blog-card-image" src="https://placehold.co/600x400/f8e9d8/333333?text=Saude+e+bem-estar" alt="">
                     <div class="blog-card-content">
-                        <h3>A importância da estimulação cognitiva</h3>
-                        <p>Conheça atividades e jogos que ajudam a manter a mente ativa e previnem o declínio cognitivo...</p>
-                        <a href="javascript:void(0);" onclick="openArticle('Estimulação cognitiva')">Ler artigo</a>
+                        <div class="article-header">
+                            <h3>A importância da estimulação cognitiva</h3>
+                            <a href="#" class="read-more-btn" data-article="article-2">Ler artigo</a>
+                        </div>
+                        <div class="full-article-content" id="article-2">
+                            <h4>O que é estimulação cognitiva?</h4>
+                            <p>São exercícios e atividades que visam manter e aprimorar as funções cerebrais, como memória, raciocínio e atenção. É fundamental para a saúde mental na terceira idade.</p>
+                            <h4>Atividades que ajudam:</h4>
+                            <ul>
+                                <li>**Jogos de tabuleiro:** Xadrez, damas e jogos de cartas.</li>
+                                <li>**Leitura:** Livros, jornais ou revistas para manter a mente ativa.</li>
+                                <li>**Passatempos:** Palavras cruzadas, quebra-cabeças e jogos de memória.</li>
+                            </ul>
+                            <div class="article-footer">
+                                <a href="#" class="read-more-btn" data-article="article-2">Diminuir</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1511,9 +1569,23 @@
                 <div class="blog-card reveal" style="animation-delay: 0.3s;">
                     <img class="blog-card-image" src="https://placehold.co/600x400/f8e9d8/333333?text=Dieta+e+nutri%C3%A7%C3%A3o" alt="">
                     <div class="blog-card-content">
-                        <h3>Nutrição na terceira idade: um guia completo</h3>
-                        <p>Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
-                        <a href="javascript:void(0);" onclick="openArticle('Nutrição na terceira idade')">Ler artigo</a>
+                        <div class="article-header">
+                            <h3>Nutrição na terceira idade: um guia completo</h3>
+                            <a href="#" class="read-more-btn" data-article="article-3">Ler artigo</a>
+                        </div>
+                        <div class="full-article-content" id="article-3">
+                            <h4>A importância de uma dieta balanceada</h4>
+                            <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular e prevenir doenças.</p>
+                            <h4>Alimentos essenciais:</h4>
+                            <ul>
+                                <li>**Cálcio:** Laticínios e vegetais de folhas escuras para a saúde dos ossos.</li>
+                                <li>**Proteínas:** Carnes magras, ovos e leguminosas para a manutenção muscular.</li>
+                                <li>**Fibras:** Frutas, verduras e grãos integrais para um bom funcionamento intestinal.</li>
+                            </ul>
+                            <div class="article-footer">
+                                <a href="#" class="read-more-btn" data-article="article-3">Diminuir</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1932,12 +2004,44 @@
 
         /* Funções de Navegação do Blog */
         function initBlogLinks() {
-            const blogLinks = document.querySelectorAll('.blog-card-content a');
+            const blogLinks = document.querySelectorAll('.blog-card .read-more-btn');
             blogLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const articleUrl = e.target.getAttribute('href');
-                    window.location.href = articleUrl; // Navega para o link do artigo
+                    const card = e.target.closest('.blog-card-content');
+                    const articleContent = card.querySelector('.full-article-content');
+                    const articleHeader = card.querySelector('.article-header');
+                    
+                    if (articleContent.classList.contains('visible')) {
+                        articleContent.classList.remove('visible');
+                        e.target.textContent = 'Ler artigo';
+                        articleHeader.querySelector('h3').style.cursor = 'pointer';
+                    } else {
+                        articleContent.classList.add('visible');
+                        e.target.textContent = 'Diminuir';
+                        articleHeader.querySelector('h3').style.cursor = 'default';
+                    }
+                });
+            });
+
+            // Adiciona a mesma funcionalidade de clique no título do artigo
+            const articleHeaders = document.querySelectorAll('.blog-card .article-header h3');
+            articleHeaders.forEach(header => {
+                header.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const card = e.target.closest('.blog-card-content');
+                    const articleContent = card.querySelector('.full-article-content');
+                    const readMoreBtn = card.querySelector('.read-more-btn');
+                    
+                    if (articleContent.classList.contains('visible')) {
+                        articleContent.classList.remove('visible');
+                        readMoreBtn.textContent = 'Ler artigo';
+                        e.target.style.cursor = 'pointer';
+                    } else {
+                        articleContent.classList.add('visible');
+                        readMoreBtn.textContent = 'Diminuir';
+                        e.target.style.cursor = 'default';
+                    }
                 });
             });
         }

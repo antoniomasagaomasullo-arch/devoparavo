@@ -1,4 +1,203 @@
-<!DOCTYPE html>
+/* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Hero Image Enhanced Animation */
+        .hero-image {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 1s ease;
+        }
+
+        .hero-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image:hover::before {
+            left: 100%;
+        }
+
+        /* Story Image Enhanced Animation */
+        .story-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(139, 69, 19, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            box-shadow: 0 20px 45px rgba(139, 69, 19, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: float 8s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+        }
+
+        .story-image:hover {
+            transform: translateY(-12px) scale(1.05) rotate(2deg);
+            box-shadow: 0 30px 60px rgba(139, 69, 19, 0.3);
+        }
+
+        .story-image:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Contact Form Enhanced Animations */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B4513;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Floating elements with enhanced parallax */
+        .parallax-bg-1,
+        .parallax-bg-2,
+        .parallax-bg-3 {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .parallax-bg-1 {
+            animation-delay: 0s;
+            animation-duration: 8s;
+        }
+
+        .parallax-bg-2 {
+            animation-delay: 2s;
+            animation-duration: 10s;
+        }
+
+        .parallax-bg-3 {
+            animation-delay: 4s;
+            animation-duration: 12s;
+        }
+
+        /* Button hover enhancements */
+        .cta-button,
+        .whatsapp-btn,
+        .submit-btn {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .cta-button:hover,
+        .whatsapp-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +216,149 @@
             color: #333;
             background: linear-gradient(135deg, #faf7f2 0%, #f0ebe4 50%, #e8ddd1 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            animation: logoFloat 2s ease-in-out infinite, logoGlow 3s ease-in-out infinite;
+        }
+
+        .loading-logo::before {
+            content: '👵🏼';
+            font-size: 3rem;
+            animation: logoSpin 4s linear infinite;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .loading-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, white 50%, rgba(255, 255, 255, 0.8) 100%);
+            border-radius: 2px;
+            animation: loadingProgress 2.5s ease-in-out;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
+        }
+
+        @keyframes logoSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Scroll Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-left.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-right.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Parallax Elements */
+        .parallax-element {
+            will-change: transform;
         }
 
         /* Glassmorphism utility classes */
@@ -152,6 +494,7 @@
             padding: 120px 0 80px;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
         }
 
         .hero::before {
@@ -163,6 +506,39 @@
             bottom: 0;
             background: radial-gradient(circle at 30% 50%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
                         radial-gradient(circle at 70% 80%, rgba(210, 105, 30, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .parallax-bg-1 {
+            position: absolute;
+            top: 10%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(139, 69, 19, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .parallax-bg-2 {
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(210, 105, 30, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .parallax-bg-3 {
+            position: absolute;
+            top: 30%;
+            left: 5%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(205, 133, 63, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
             pointer-events: none;
         }
 
@@ -411,10 +787,11 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .service-card::before {
@@ -426,17 +803,48 @@
             bottom: 0;
             background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, transparent 100%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.6s ease;
+            transform: scale(0);
         }
 
         .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(139, 69, 19, 0.2);
         }
 
         .service-card:hover::before {
             opacity: 1;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+            transform: scale(1);
+            animation: ripple 0.6s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
         }
 
         .service-icon {
@@ -451,12 +859,29 @@
             color: white;
             font-size: 1.5rem;
             box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
         }
 
         .service-card:hover .service-icon {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.4);
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.5);
+        }
+
+        .service-card:hover .service-icon::before {
+            left: 100%;
         }
 
         .service-card h3 {
@@ -464,11 +889,23 @@
             margin-bottom: 0.5rem;
             color: #2c2c2c;
             font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            color: #8B4513;
+            transform: translateY(-2px);
         }
 
         .service-card p {
             color: #666;
             font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover p {
+            color: #555;
+            transform: translateY(-2px);
         }
 
         /* Testimonial Section */
@@ -510,12 +947,9 @@
             border-radius: 25px;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
             position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            overflow: hidden;
         }
 
         .testimonial-content::before {
@@ -529,6 +963,36 @@
             top: 1rem;
             left: 2rem;
             opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-content::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 69, 19, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.6s ease;
+            transform: scale(0);
+        }
+
+        .testimonial-content:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .testimonial-content:hover::before {
+            opacity: 0.6;
+            transform: scale(1.1);
+        }
+
+        .testimonial-content:hover::after {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .testimonial-text {
@@ -537,6 +1001,12 @@
             margin-bottom: 1.5rem;
             color: #555;
             font-style: italic;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-content:hover .testimonial-text {
+            color: #444;
+            transform: translateY(-2px);
         }
 
         .testimonial-author {
@@ -545,6 +1015,11 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-content:hover .testimonial-author {
+            transform: translateY(-2px);
         }
 
         .testimonial-image {
@@ -554,12 +1029,31 @@
             backdrop-filter: blur(15px);
             border: 1px solid rgba(139, 69, 19, 0.2);
             box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
         }
 
         .testimonial-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.25);
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 30px 60px rgba(139, 69, 19, 0.3);
+        }
+
+        .testimonial-image:hover::before {
+            transform: translateX(100%);
         }
 
         .testimonial-image img {
@@ -804,42 +1298,191 @@
             50% { transform: translateY(-10px); }
         }
 
-        .service-card,
-        .testimonial-content {
-            animation: fadeInUp 0.6s ease-out;
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Hero Image Enhanced Animation */
         .hero-image {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
             animation: float 6s ease-in-out infinite;
         }
 
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 1s ease;
+        }
+
+        .hero-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image:hover::before {
+            left: 100%;
+        }
+
+        /* Story Image Enhanced Animation */
         .story-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(139, 69, 19, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            box-shadow: 0 20px 45px rgba(139, 69, 19, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             animation: float 8s ease-in-out infinite;
+            cursor: pointer;
         }
 
-        /* Floating elements */
-        .hero::after {
+        .story-image::before {
             content: '';
             position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(139, 69, 19, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 4s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
         }
 
-        .our-story::after {
-            content: '';
-            position: absolute;
-            bottom: 20%;
-            left: 5%;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(210, 105, 30, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 5s ease-in-out infinite reverse;
+        .story-image:hover {
+            transform: translateY(-12px) scale(1.05) rotate(2deg);
+            box-shadow: 0 30px 60px rgba(139, 69, 19, 0.3);
+        }
+
+        .story-image:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Contact Form Enhanced Animations */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B4513;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Floating elements with enhanced parallax */
+        .parallax-bg-1,
+        .parallax-bg-2,
+        .parallax-bg-3 {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .parallax-bg-1 {
+            animation-delay: 0s;
+            animation-duration: 8s;
+        }
+
+        .parallax-bg-2 {
+            animation-delay: 2s;
+            animation-duration: 10s;
+        }
+
+        .parallax-bg-3 {
+            animation-delay: 4s;
+            animation-duration: 12s;
+        }
+
+        /* Button hover enhancements */
+        .cta-button,
+        .whatsapp-btn,
+        .submit-btn {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .cta-button:hover,
+        .whatsapp-btn:hover,
+        .submit-btn:hover {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
@@ -1066,11 +1709,149 @@
     </footer>
 
     <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hidden');
+                }
+                
+                // Initialize scroll reveal after loading
+                setTimeout(initScrollReveal, 800);
+            }, 2500);
+        });
+
+        // Scroll Reveal System
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+            
+            if (revealElements.length === 0) return;
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target) {
+                        entry.target.classList.add('revealed');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(element => {
+                if (element) {
+                    revealObserver.observe(element);
+                }
+            });
+        }
+
+        // Enhanced Parallax Effect
+        function initParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            if (parallaxElements.length === 0) return;
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                const rateTwo = scrolled * -0.25;
+                const rateThree = scrolled * -0.15;
+
+                parallaxElements.forEach((element, index) => {
+                    if (!element) return;
+                    
+                    let speed;
+                    switch(index % 3) {
+                        case 0: speed = rate; break;
+                        case 1: speed = rateTwo; break;
+                        case 2: speed = rateThree; break;
+                    }
+                    
+                    if (element.classList.contains('parallax-bg-1') ||
+                        element.classList.contains('parallax-bg-2') ||
+                        element.classList.contains('parallax-bg-3')) {
+                        element.style.transform = `translate3d(0, ${speed * 0.3}px, 0)`;
+                    } else {
+                        element.style.transform = `translate3d(0, ${speed * 0.1}px, 0)`;
+                    }
+                });
+            });
+        }
+
+        // Initialize parallax on load
+        window.addEventListener('load', initParallax);
+
+        // Service Cards Enhanced Hover Effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach(card => {
+                if (!card) return;
+                
+                card.addEventListener('mouseenter', function() {
+                    // Add subtle rotation and glow effect
+                    this.style.transform = 'translateY(-15px) scale(1.03) rotateY(5deg)';
+                    
+                    // Create ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        width: 0;
+                        height: 0;
+                        background: radial-gradient(circle, rgba(139, 69, 19, 0.2) 0%, transparent 70%);
+                        border-radius: 50%;
+                        transform: translate(-50%, -50%);
+                        animation: rippleOut 0.6s ease-out;
+                        pointer-events: none;
+                        z-index: 0;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    // Remove ripple after animation
+                    setTimeout(() => {
+                        if (ripple && ripple.parentNode) {
+                            ripple.parentNode.removeChild(ripple);
+                        }
+                    }, 600);
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rippleOut {
+                from {
+                    width: 0;
+                    height: 0;
+                    opacity: 1;
+                }
+                to {
+                    width: 300px;
+                    height: 300px;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
         // Smooth scroll
         function scrollToContact() {
-            document.getElementById('contato').scrollIntoView({
-                behavior: 'smooth'
-            });
+            const contactElement = document.getElementById('contato');
+            if (contactElement) {
+                contactElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // WhatsApp integration
@@ -1128,13 +1909,22 @@
             event.target.reset();
             
             // Reset address fields
-            document.getElementById('endereco').setAttribute('readonly', true);
-            document.getElementById('cep-status').textContent = '';
+            const enderecoField = document.getElementById('endereco');
+            const cepStatus = document.getElementById('cep-status');
+            
+            if (enderecoField) {
+                enderecoField.setAttribute('readonly', true);
+            }
+            if (cepStatus) {
+                cepStatus.textContent = '';
+            }
         }
 
         // CEP search functionality
         async function searchCEP(cep) {
             const statusElement = document.getElementById('cep-status');
+            
+            if (!statusElement) return;
             
             try {
                 statusElement.textContent = '🔍 Buscando endereço...';
@@ -1148,65 +1938,112 @@
                 }
                 
                 // Fill address fields
-                document.getElementById('endereco').value = `${data.logradouro}, ${data.complemento || ''}`.trim();
-                document.getElementById('bairro').value = data.bairro;
-                document.getElementById('cidade').value = `${data.localidade} - ${data.uf}`;
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                
+                if (enderecoField) {
+                    enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
+                    enderecoField.removeAttribute('readonly');
+                }
+                if (bairroField) {
+                    bairroField.value = data.bairro;
+                }
+                if (cidadeField) {
+                    cidadeField.value = `${data.localidade} - ${data.uf}`;
+                }
                 
                 statusElement.textContent = '✅ Endereço encontrado!';
                 statusElement.style.color = '#25D366';
-                
-                // Enable address fields for editing
-                document.getElementById('endereco').removeAttribute('readonly');
                 
             } catch (error) {
                 statusElement.textContent = '❌ CEP não encontrado. Verifique o número.';
                 statusElement.style.color = '#dc3545';
                 
                 // Clear fields
-                document.getElementById('endereco').value = '';
-                document.getElementById('bairro').value = '';
-                document.getElementById('cidade').value = '';
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                
+                if (enderecoField) enderecoField.value = '';
+                if (bairroField) bairroField.value = '';
+                if (cidadeField) cidadeField.value = '';
             }
         }
 
-        // CEP mask and validation
-        document.getElementById('cep').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{5})(\d)/, '$1-$2');
-            e.target.value = value;
-            
-            // Search CEP when complete
-            if (value.length === 9) {
-                const cepNumbers = value.replace('-', '');
-                searchCEP(cepNumbers);
-            } else {
-                document.getElementById('cep-status').textContent = '';
-                document.getElementById('endereco').value = '';
-                document.getElementById('bairro').value = '';
-                document.getElementById('cidade').value = '';
-                document.getElementById('endereco').setAttribute('readonly', true);
+        // Initialize form handlers when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // CEP mask and validation
+            const cepField = document.getElementById('cep');
+            if (cepField) {
+                cepField.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                    e.target.value = value;
+                    
+                    // Search CEP when complete
+                    if (value.length === 9) {
+                        const cepNumbers = value.replace('-', '');
+                        searchCEP(cepNumbers);
+                    } else {
+                        const cepStatus = document.getElementById('cep-status');
+                        const enderecoField = document.getElementById('endereco');
+                        const bairroField = document.getElementById('bairro');
+                        const cidadeField = document.getElementById('cidade');
+                        
+                        if (cepStatus) cepStatus.textContent = '';
+                        if (enderecoField) {
+                            enderecoField.value = '';
+                            enderecoField.setAttribute('readonly', true);
+                        }
+                        if (bairroField) bairroField.value = '';
+                        if (cidadeField) cidadeField.value = '';
+                    }
+                });
+            }
+
+            // Phone mask
+            const telefoneField = document.getElementById('telefone');
+            if (telefoneField) {
+                telefoneField.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                    e.target.value = value;
+                });
+            }
+
+            // CPF mask
+            const cpfField = document.getElementById('cpf');
+            if (cpfField) {
+                cpfField.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                    e.target.value = value;
+                });
             }
         });
 
-        // Phone mask
-        document.getElementById('telefone').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{2})(\d)/, '($1) $2');
-            value = value.replace(/(\d{5})(\d)/, '$1-$2');
-            e.target.value = value;
-        });
+        // Enhanced scroll animations with stagger effect
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.service-card, .testimonial-content');
+            elements.forEach((el, index) => {
+                if (el && isElementInViewport(el)) {
+                    setTimeout(() => {
+                        if (el.style) {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }
+                    }, index * 100);
+                }
+            });
+        }
 
-        // CPF mask
-        document.getElementById('cpf').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            e.target.value = value;
-        });
-
-        // Scroll animations
         function isElementInViewport(el) {
+            if (!el) return false;
+            
             const rect = el.getBoundingClientRect();
             return (
                 rect.top >= 0 &&
@@ -1216,28 +2053,67 @@
             );
         }
 
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.service-card, .testimonial-content');
-            elements.forEach(el => {
-                if (isElementInViewport(el)) {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }
-            });
-        }
-
         window.addEventListener('scroll', handleScrollAnimations);
         window.addEventListener('load', handleScrollAnimations);
 
-        // Parallax effect for background elements
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelectorAll('.hero::after, .our-story::after');
-            const speed = 0.5;
+        // Mouse tracking for interactive effects (with safety checks)
+        document.addEventListener('mousemove', function(e) {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            // Subtle parallax for background elements
+            const parallaxBgs = document.querySelectorAll('.parallax-bg-1, .parallax-bg-2, .parallax-bg-3');
+            parallaxBgs.forEach((bg, index) => {
+                if (bg && bg.style) {
+                    const speed = (index + 1) * 0.5;
+                    const x = (mouseX - 0.5) * speed;
+                    const y = (mouseY - 0.5) * speed;
+                    bg.style.transform += ` translate(${x}px, ${y}px)`;
+                }
+            });
+        });
 
-            parallax.forEach(element => {
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        // Add performance optimization
+        let ticking = false;
+        
+        function updateParallax() {
+            if (!ticking) {
+                requestAnimationFrame(function() {
+                    // Parallax updates here
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', updateParallax);
+
+        // Intersection Observer for better performance
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.target && entry.target.style) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    } else {
+                        entry.target.style.animationPlayState = 'paused';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe animated elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.hero-image, .story-image, .parallax-bg-1, .parallax-bg-2, .parallax-bg-3');
+            animatedElements.forEach(el => {
+                if (el) {
+                    animationObserver.observe(el);
+                }
             });
         });
     </script>

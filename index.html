@@ -1091,6 +1091,39 @@
             position: relative;
             overflow: hidden;
         }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hydration-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 400px;
+        }
+
+        .hydration-table th, .hydration-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(224, 224, 224, 0.5);
+        }
+
+        .hydration-table th {
+            background-color: var(--primary-light);
+            color: var(--text-on-dark);
+            font-weight: bold;
+            font-size: var(--text-sm);
+        }
+        
+        .hydration-table tr:nth-child(even) {
+            background-color: rgba(245, 245, 245, 0.8);
+        }
 
         .blog-grid {
             display: grid;
@@ -1215,6 +1248,19 @@
         .article-content p {
             margin-bottom: 1rem;
         }
+
+        .article-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .article-content ul li {
+            margin-bottom: 0.5rem;
+        }
+
 
         .article-footer {
             margin-top: 2rem;
@@ -1880,6 +1926,35 @@
                             <div class="article-content">
                                 <h4>Por que é tão importante?</h4>
                                 <p>A hidratação adequada previne problemas renais, melhora a função cognitiva, ajuda na digestão e mantém a pele saudável. Com o avanço da idade, a composição corporal muda e a capacidade dos rins de reter água diminui. Portanto, a ingestão regular de líquidos se torna ainda mais vital.</p>
+                                <h4>Tabela de Hidratação Diária</h4>
+                                <div class="table-container">
+                                    <table class="hydration-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Idade</th>
+                                                <th>Peso Corporal</th>
+                                                <th>Recomendação Mínima de Água</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>60-70 anos</td>
+                                                <td>70 kg</td>
+                                                <td>2,1 L (aproximadamente 10 copos)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>70-80 anos</td>
+                                                <td>65 kg</td>
+                                                <td>1,95 L (aproximadamente 9 copos)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>80+ anos</td>
+                                                <td>60 kg</td>
+                                                <td>1,8 L (aproximadamente 8 copos)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <h4>Como incentivar?</h4>
                                 <p>Ofereça água em copos pequenos e em horários fixos. Inclua alimentos ricos em água na dieta, como frutas (melancia, laranja) e sopas. Tenha sempre uma garrafa de fácil acesso e explore opções como chás, sucos naturais e água saborizada com frutas.</p>
                             </div>
@@ -1911,6 +1986,14 @@
                             <div class="article-content">
                                 <h4>Benefícios da atividade física</h4>
                                 <p>Além de prevenir quedas, os exercícios melhoram a circulação sanguínea, fortalecem os ossos e promovem o bem-estar mental, combatendo o estresse e a ansiedade. Eles também contribuem para a autonomia e a independência do idoso no dia a dia.</p>
+                                <h4>Ideias de exercícios</h4>
+                                <p>É importante começar devagar e sempre consultar um médico ou fisioterapeuta antes de iniciar qualquer nova rotina de exercícios. Algumas atividades recomendadas incluem:</p>
+                                <ul>
+                                    <li>**Caminhada:** Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
+                                    <li>**Natação e Hidroginástica:** A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
+                                    <li>**Yoga ou Pilates:** Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
+                                    <li>**Exercícios com faixas elásticas:** Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
+                                </ul>
                             </div>
                         </div>
                         <div class="blog-card-actions">
@@ -1998,20 +2081,10 @@
                         <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
                     <div class="faq-answer" id="faq-answer-3" aria-labelledby="faq-question-3" role="region">
-                        <p>Oferecemos cuidadores especializados, enfermagem domiciliar, fisioterapia, apoio psicológico, serviços de manicure e cabeleireiro, motorista para consultas e passeios, além de atendimento de emergência 24 horas. Todos os serviços são personalizados conforme a necessidade de cada família.</p>
+                        <p>Oferecemos cuidadores especializados, enfermagem domiciliar, fisioterapia, apoio psicológico, serviços de manicure e cabeleireiro, e motorista para consultas e passeios. Todos os serviços são personalizados conforme a necessidade de cada família.</p>
                     </div>
                 </div>
                 
-                <!-- Pergunta 4 -->
-                <div class="faq-item reveal" style="animation-delay: 0.4s;">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
-                        <span>Como funciona o atendimento de emergência?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-4" aria-labelledby="faq-question-4" role="region">
-                        <p>Temos um serviço de emergência 24h para situações inesperadas. Em caso de qualquer incidente, nosso cuidador entra em contato imediatamente com a família e com nossa equipe de apoio, que acionará o serviço médico necessário. Sua tranquilidade é nossa prioridade.</p>
-                    </div>
-                </div>
                 
                 <!-- Pergunta 5 -->
                 <div class="faq-item reveal" style="animation-delay: 0.5s;">

@@ -1121,43 +1121,30 @@
             margin-top: 1.5rem;
         }
         
-        /* Estilos do botão "Ler Artigo" e "Diminuir" */
+        /* Estilos do botão "Ler Artigo" e "Diminuir" como tag */
         .blog-card-actions .read-more-btn {
             background-color: transparent;
-            border: none;
+            border: 1px solid var(--primary-color);
             color: var(--primary-color);
-            font-weight: bold;
-            font-size: var(--text-base);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: var(--text-sm);
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
-            padding: 0;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .blog-card-actions .read-more-btn::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: var(--primary-color);
-            bottom: -2px;
-            left: 0;
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
-        }
-
-        .blog-card-actions .read-more-btn:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
+            box-shadow: none;
         }
 
         .blog-card-actions .read-more-btn:hover {
-            color: var(--secondary-color);
+            background-color: var(--primary-color);
+            color: var(--text-on-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
         
         .blog-card-actions .read-more-btn svg {
@@ -1165,7 +1152,12 @@
         }
         
         .blog-card-actions .read-more-btn.expanded svg {
-            transform: rotate(-90deg);
+            transform: rotate(180deg);
+        }
+
+        /* Removendo o pseudo-elemento ::after que causava o underline */
+        .blog-card-actions .read-more-btn::after {
+            display: none;
         }
 
         .blog-card-actions .generate-tip-btn {
@@ -2502,10 +2494,10 @@
                         </div>
                         <h3>A importância da hidratação para idosos</h3>
                         <p class="short-text">Manter-se hidratado é crucial na terceira idade. A sensação de sede diminui, o que pode levar à desidratação sem que a pessoa perceba. Entenda a importância da hidratação e como incentivá-la no dia a dia.</p>
-                        <button class="read-more-btn">
-                            Ler artigo
+                        <a href="#" class="read-more-btn" data-action="toggle-content">
+                            <span>Ler artigo</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
+                        </a>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Por que é tão importante?</h4>
@@ -2570,10 +2562,10 @@
                         </div>
                         <h3>Exercícios leves para a mobilidade</h3>
                         <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
-                        <button class="read-more-btn">
-                            Ler artigo
+                        <a href="#" class="read-more-btn" data-action="toggle-content">
+                            <span>Ler artigo</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
+                        </a>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Benefícios da atividade física</h4>
@@ -2615,10 +2607,10 @@
                         </div>
                         <h3>Estratégias para uma boa noite de sono</h3>
                         <p class="short-text">O sono de qualidade é essencial para a saúde e o bem-estar em todas as idades, mas pode se tornar um desafio para os idosos. Saiba como criar uma rotina noturna que promova um descanso mais tranquilo e reparador.</p>
-                        <button class="read-more-btn">
-                            Ler artigo
+                        <a href="#" class="read-more-btn" data-action="toggle-content">
+                            <span>Ler artigo</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
+                        </a>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Por que o sono muda?</h4>
@@ -2654,10 +2646,10 @@
                         </div>
                         <h3>Alimentação saudável na terceira idade</h3>
                         <p class="short-text">Uma dieta equilibrada é fundamental para manter a saúde e a vitalidade. Descubra quais são os nutrientes essenciais e como preparar refeições saborosas e nutritivas para os idosos.</p>
-                        <button class="read-more-btn">
-                            Ler artigo
+                        <a href="#" class="read-more-btn" data-action="toggle-content">
+                            <span>Ler artigo</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
+                        </a>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Nutrientes essenciais</h4>
@@ -3350,6 +3342,8 @@
             
             blogCards.forEach(card => {
                 const readMoreBtn = card.querySelector('.read-more-btn');
+                const readMoreText = readMoreBtn.querySelector('span');
+                const readMoreIcon = readMoreBtn.querySelector('svg');
                 const fullContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
 
@@ -3359,12 +3353,14 @@
 
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
-                        readMoreBtn.innerHTML = `Ler artigo <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
+                        readMoreText.textContent = 'Ler artigo';
+                        readMoreIcon.innerHTML = `<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>`;
                         readMoreBtn.classList.remove('expanded');
                         shortText.classList.remove('hidden');
                     } else {
                         fullContent.classList.add('visible');
-                        readMoreBtn.innerHTML = `Diminuir <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up"><path d="m18 15-6-6-6 6"/></svg>`;
+                        readMoreText.textContent = 'Diminuir';
+                        readMoreIcon.innerHTML = `<path d="m18 15-6-6-6 6"/>`;
                         readMoreBtn.classList.add('expanded');
                         shortText.classList.add('hidden');
                     }

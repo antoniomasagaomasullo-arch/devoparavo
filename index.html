@@ -773,19 +773,18 @@
         }
 
         /* Container de tags de serviços (check-boxes) */
-        .services-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-        }
-        .services-tags label.service-tag {
-            position: relative;
-            user-select: none;
-            flex-grow: 1; /* Faz as tags ocuparem o espaço disponível */
-            flex-basis: auto;
-            text-align: center;
-        }
+     .services-tags {
+    display: grid; /* Usa grid para alinhar itens */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Distribui o espaço igualmente */
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+.services-tags label.service-tag {
+    position: relative;
+    user-select: none;
+    text-align: center;
+    width: 100%; /* Ocupa a largura total da célula do grid */
+}
         .services-tags input[type="checkbox"]:disabled + span {
             opacity: 0.6;
             cursor: not-allowed;
@@ -824,24 +823,27 @@
         }
 
         /* Tags de Bairros (radio buttons) */
-        #bairros-atuacao.services-tags {
-            justify-content: space-between;
-            gap: 1rem;
-        }
-        #bairros-atuacao .service-tag {
-            background: rgba(245, 245, 245, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 25px;
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            padding: 0.6rem 1.2rem;
-            text-align: center;
-            outline: none;
-            white-space: nowrap;
-        }
+       #bairros-atuacao.services-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+#bairros-atuacao .service-tag {
+    background: rgba(245, 245, 245, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    text-align: center;
+    outline: none;
+    white-space: nowrap;
+}
         #bairros-atuacao .service-tag:focus,
         #bairros-atuacao .service-tag.selected {
             background: var(--primary-color);

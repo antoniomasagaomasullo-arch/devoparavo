@@ -70,7 +70,7 @@
         }
 
         .loading-logo::before {
-            content: '👵�';
+            content: '👵🏼';
             font-size: 3rem;
             animation: logoSpin 4s linear infinite;
         }
@@ -1128,24 +1128,15 @@
             margin-top: 1rem;
         }
         
-        .blog-card-content .article-header .read-more-btn {
-            color: var(--primary-color);
-            font-weight: bold;
-            text-decoration: underline;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
         .blog-card-content .read-more-btn {
-            background-color: transparent;
-            border: none;
             color: var(--primary-color);
-            padding: 0;
             font-weight: bold;
             text-decoration: underline;
             cursor: pointer;
             transition: all 0.3s ease;
             align-self: flex-end;
+            margin-top: 1rem;
+            margin-bottom: 0;
         }
         
         .blog-card-content .read-more-btn:hover {
@@ -1201,7 +1192,7 @@
         }
 
         .full-article-content.visible {
-            max-height: 1000px;
+            max-height: 2000px; /* Aumentado para garantir que o conteúdo caiba */
             opacity: 1;
         }
 
@@ -1680,11 +1671,11 @@
                                 </ul>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="read-more-btn decrease">Diminuir</a>
+                                <a href="#" class="read-more-btn">Diminuir</a>
                             </div>
                         </div>
                         <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn">Ler artigo</a>
+                            <a href="#" class="read-more-btn expand-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="dicas para o dia a dia de idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -1722,7 +1713,7 @@
                             </div>
                         </div>
                         <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn">Ler artigo</a>
+                            <a href="#" class="read-more-btn expand-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="estimulação cognitiva para idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -1760,7 +1751,7 @@
                             </div>
                         </div>
                         <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn">Ler artigo</a>
+                            <a href="#" class="read-more-btn expand-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="nutrição para idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -2316,46 +2307,34 @@
             const blogCards = document.querySelectorAll('.blog-card');
             
             blogCards.forEach(card => {
-                const readMoreBtn = card.querySelector('.read-more-btn');
+                const readMoreBtnInFooter = card.querySelector('.article-footer .read-more-btn');
+                const readMoreBtnInActions = card.querySelector('.blog-card-actions .read-more-btn');
                 const fullContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
                 const title = card.querySelector('.article-header h3');
 
-                // Garante que o botão 'Ler artigo' existe
-                if (!readMoreBtn) {
-                    const actionsDiv = card.querySelector('.blog-card-actions');
-                    const readMoreLink = document.createElement('a');
-                    readMoreLink.href = '#';
-                    readMoreLink.className = 'read-more-btn';
-                    readMoreLink.textContent = 'Ler artigo';
-                    actionsDiv.prepend(readMoreLink);
-                }
-                
                 const toggleContent = (e) => {
                     e.preventDefault();
                     e.stopPropagation();
 
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
-                        readMoreBtn.textContent = 'Ler artigo';
+                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.add('hidden');
                         shortText.classList.remove('hidden');
-                        readMoreBtn.classList.remove('decrease');
-                        readMoreBtn.style.display = 'block';
+                        if (readMoreBtnInActions) readMoreBtnInActions.classList.remove('hidden');
                     } else {
                         fullContent.classList.add('visible');
-                        readMoreBtn.textContent = 'Diminuir';
+                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.remove('hidden');
                         shortText.classList.add('hidden');
-                        readMoreBtn.classList.add('decrease');
-                        // Oculta o botão "Ler artigo" quando o conteúdo completo estiver visível
-                        const otherReadMoreBtn = card.querySelector('.blog-card-actions .read-more-btn');
-                        if(otherReadMoreBtn) {
-                           otherReadMoreBtn.style.display = 'none';
-                        }
+                        if (readMoreBtnInActions) readMoreBtnInActions.classList.add('hidden');
                     }
                 };
                 
-                if (readMoreBtn) {
-                    readMoreBtn.addEventListener('click', toggleContent);
+                if (readMoreBtnInFooter) {
+                    readMoreBtnInFooter.addEventListener('click', toggleContent);
+                }
+                if (readMoreBtnInActions) {
+                    readMoreBtnInActions.addEventListener('click', toggleContent);
                 }
                 if (title) {
                     title.addEventListener('click', toggleContent);
@@ -2570,22 +2549,19 @@
 
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
-                        if (readMoreBtnInFooter) readMoreBtnInFooter.textContent = 'Ler artigo';
+                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.add('hidden');
                         shortText.classList.remove('hidden');
-                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.remove('decrease');
                         if (readMoreBtnInActions) readMoreBtnInActions.classList.remove('hidden');
                     } else {
                         fullContent.classList.add('visible');
-                        if (readMoreBtnInFooter) readMoreBtnInFooter.textContent = 'Diminuir';
+                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.remove('hidden');
                         shortText.classList.add('hidden');
-                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.add('decrease');
                         if (readMoreBtnInActions) readMoreBtnInActions.classList.add('hidden');
                     }
                 };
                 
                 if (readMoreBtnInFooter) {
                     readMoreBtnInFooter.addEventListener('click', toggleContent);
-                    readMoreBtnInFooter.classList.add('hidden');
                 }
                 if (readMoreBtnInActions) {
                     readMoreBtnInActions.addEventListener('click', toggleContent);
@@ -2598,4 +2574,3 @@
     </script>
 </body>
 </html>
-�

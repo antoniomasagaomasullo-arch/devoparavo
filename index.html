@@ -23,6 +23,10 @@
             --text-color: #333;
             --dark-text: #2c2c2c;
             --light-text: #666;
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.1);
         }
 
         body {
@@ -558,7 +562,7 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -593,8 +597,8 @@
         }
 
         .service-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
             background: rgba(255, 255, 255, 0.5);
             border-color: rgba(139, 69, 19, 0.2);
         }
@@ -693,7 +697,7 @@
         .testimonial-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0; /* Removido o padding para diminuir o espaçamento */
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -728,21 +732,21 @@
 
         .testimonial-content {
             background: var(--background-start);
-            padding: 4rem; /* Aumentado o padding para aumentar o tamanho do card */
+            padding: 4rem;
             border-radius: 25px;
-            box-shadow: none; /* Removido box-shadow do card de depoimento */
+            box-shadow: none;
             border: none;
             position: relative;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
             overflow: hidden;
-            margin: 0; /* Removido o margin para diminuir o espaçamento */
+            margin: 0;
         }
         
         /* Adicionado um novo box-shadow para um efeito de "flutuação" sutil e suave */
         .testimonial-content:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
         }
         
         .testimonial-content::before {
@@ -871,7 +875,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 3rem;
             border-radius: 25px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            box-shadow: var(--shadow-xl);
             position: relative;
             z-index: 1;
             transition: all 0.3s ease;
@@ -1052,15 +1056,16 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--shadow-lg);
         }
 
         .blog-card-content {
@@ -1301,6 +1306,14 @@
         /* Remove a seta que estava sendo adicionada */
         .blog-card-actions .read-more-btn::after {
             display: none;
+        }
+        
+        .generate-tip-btn.loading {
+            cursor: not-allowed;
+            opacity: 0.7;
+            background: var(--light-text);
+            border-color: var(--light-text);
+            color: white;
         }
 
         /* ==================== Animações ==================== */
@@ -2030,8 +2043,8 @@
             const data = Object.fromEntries(formData.entries());
             
             const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
-                                          .map(checkbox => checkbox.value)
-                                          .join(', ');
+                                                  .map(checkbox => checkbox.value)
+                                                  .join(', ');
 
             let message = "Olá, gostaria de um orçamento!\n\n";
             message += `Nome: ${data.nome}\n`;
@@ -2306,6 +2319,8 @@
                     aiTipText.textContent = '';
                     aiTipContainer.style.display = 'block';
                     loader.style.display = 'block';
+                    button.classList.add('loading');
+                    button.disabled = true;
                     audioBtn.style.display = 'none';
 
                     try {
@@ -2318,6 +2333,8 @@
                         console.error('Erro ao gerar a dica:', error);
                     } finally {
                         loader.style.display = 'none';
+                        button.classList.remove('loading');
+                        button.disabled = false;
                     }
                 });
             });
@@ -2515,5 +2532,3 @@
     </script>
 </body>
 </html>
-
-

@@ -109,6 +109,7 @@
         @keyframes pulse-dots {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
         @media (prefers-reduced-motion: reduce) {
@@ -2023,6 +2024,7 @@
                 <button class="blog-filter-btn" data-filter="sono">Sono</button>
                 <button class="blog-filter-btn" data-filter="alimentacao">Alimentação</button>
                 <button class="blog-filter-btn" data-filter="saude-mental">Saúde Mental</button>
+                <button class="blog-filter-btn" data-filter="apoio-ortopedico">Apoio Ortopédico</button>
             </div>
             <div class="blog-grid">
                 <div class="blog-card reveal delay-1" data-tag="hidratacao">
@@ -2203,6 +2205,84 @@
                             <div class="article-content">
                                 <h4>Nutrientes essenciais</h4>
                                 <p>Com a idade, a absorção de certos nutrientes diminui. É importante incluir na dieta alimentos ricos em cálcio para a saúde dos ossos, vitamina D, fibras para a digestão, e proteínas para a manutenção da massa muscular.</p>
+                            </div>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-5" data-tag="saude-mental">
+                    <img src="https://images.unsplash.com/photo-1516246415277-3310069b76c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHw3fHxzdWlkYWRvciUyMGVsZGVybHl8ZW58MHx8fHwxNzE3NTM4MDc0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso e cuidador conversando" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Saúde Mental</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Mantendo a mente ativa e o bem-estar</h3>
+                        <p class="short-text">O bem-estar mental é tão importante quanto o físico. O isolamento social e a solidão podem afetar gravemente a saúde dos idosos. Conheça estratégias simples para promover a felicidade e a saúde emocional.</p>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="saúde mental para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Combatendo o isolamento</h4>
+                                <p>Incentive a participação em atividades de grupo, como aulas de dança ou jogos de tabuleiro. O contato com a família e amigos, mesmo que por videochamada, é fundamental. Nossos cuidadores são treinados para serem companheiros atenciosos, estimulando a conversa e o convívio social.</p>
+                                <h4>Atividades para a mente</h4>
+                                <p>Manter o cérebro em atividade é crucial. Sugira a leitura de livros, a resolução de palavras cruzadas, quebra-cabeças ou aprender uma nova habilidade. A música, em particular, pode evocar memórias e melhorar o humor.</p>
+                            </div>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-6" data-tag="apoio-ortopedico">
+                    <img src="https://images.unsplash.com/photo-1621216668749-3e0e7a25a40b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHw3fHxlbGRlcmx5JTIwaWRvc28lMjBpbmRvb3JzfGVufDB8fHx8MTY5MDc3NDU1M3ww&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso em uma cadeira de rodas" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Apoio Ortopédico</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Dicas para um ambiente seguro e confortável</h3>
+                        <p class="short-text">A prevenção de quedas é uma das maiores preocupações no cuidado de idosos. Um ambiente adaptado e seguro faz toda a diferença. Veja como simples mudanças podem transformar a casa em um local mais acolhedor.</p>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="prevenção de quedas para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Adaptando a casa</h4>
+                                <p>Remova tapetes soltos e obstáculos. Instale barras de apoio no banheiro e corrimãos em escadas. Garanta uma iluminação adequada, especialmente em corredores e escadas. Use pisos antiderrapantes para aumentar a segurança.</p>
+                                <h4>Equipamentos de auxílio</h4>
+                                <p>Andadores, bengalas e cadeiras de rodas podem ser grandes aliados para a mobilidade. A escolha do equipamento certo deve ser feita com orientação profissional. Nossos cuidadores podem auxiliar na utilização correta desses dispositivos.</p>
                             </div>
                         </div>
                         <div class="ai-tip-container" style="display:none;">

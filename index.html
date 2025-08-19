@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Vó para Vó - Cuidando de quem você ama</title>
-    <!-- Pré-carregamento para melhorar a performance de carregamento das fontes -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
-    <!-- Links para as fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==================== Estilos Globais e Reset ==================== */
@@ -968,15 +966,17 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         
-        /* Estilos do botão "Ler Artigo" e "Diminuir" como tag */
-        .blog-card-actions .read-more-btn {
+        /* Novo estilo para os botões do blog */
+        .blog-action-btn {
             background-color: transparent;
             border: 1px solid var(--primary-color);
             color: var(--primary-color);
             padding: 0.6rem 1.2rem;
-            border-radius: 25px;
+            border-radius: 20px;
             font-weight: 500;
             font-size: var(--text-sm);
             cursor: pointer;
@@ -986,44 +986,28 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            box-shadow: none;
         }
-
-        .blog-card-actions .read-more-btn:hover {
+        .blog-action-btn:hover {
             background-color: var(--primary-color);
+            border-color: var(--primary-color);
             color: var(--text-on-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow-sm);
         }
         
-        .blog-card-actions .read-more-btn svg {
+        /* Estilos do botão "Ler Artigo" e "Diminuir" */
+        .blog-action-btn svg {
             transition: transform 0.3s ease;
+            stroke: var(--primary-color);
         }
-        
-        .blog-card-actions .read-more-btn.expanded svg {
+        .blog-action-btn:hover svg {
+            stroke: var(--text-on-dark);
+        }
+        .blog-action-btn.expanded svg {
             transform: rotate(180deg);
         }
-
-        /* Removendo o pseudo-elemento ::after que causava o underline */
-        .blog-card-actions .read-more-btn::after {
+        .blog-action-btn::after {
             display: none;
-        }
-
-        /* Botão para gerar a dica de IA */
-        .blog-card-actions .generate-tip-btn {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: var(--text-xs);
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .blog-card-actions .generate-tip-btn:hover {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
         }
 
         /* Conteúdo do artigo completo */
@@ -1107,7 +1091,7 @@
             font-size: var(--text-sm);
             color: var(--text-primary);
         }
-        .generate-tip-btn.loading {
+        .blog-action-btn.loading {
             cursor: not-allowed;
             opacity: 0.7;
             background: var(--text-tertiary);
@@ -1467,410 +1451,6 @@
         }
         .modal.visible .modal-content {
             transform: scale(1);
-        }
-        .modal-content h3 {
-            color: var(--primary-dark);
-            font-size: var(--text-2xl);
-            margin-bottom: 1rem;
-        }
-        .modal-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        .close-btn {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-        .close-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            background-color: var(--primary-dark);
-        }
-        .chatbot-content {
-            background-color: var(--background-start);
-            padding: 2.5rem;
-            border-radius: 25px;
-            box-shadow: var(--shadow-xl);
-            max-width: 90%;
-            width: 500px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .chatbot-header h3 {
-            margin: 0;
-            color: var(--primary-dark);
-        }
-        .chatbot-header .close-btn-chat {
-            background: none;
-            border: none;
-            font-size: var(--text-3xl);
-            font-weight: 300;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .chatbot-header .close-btn-chat:hover {
-            color: var(--secondary-color);
-        }
-        .chatbox {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--chat-bg);
-            border-radius: 15px;
-            overflow-y: auto;
-            max-height: 400px;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            -webkit-overflow-scrolling: touch;
-        }
-        .message {
-            max-width: 80%;
-            padding: 0.8rem 1.2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-sm);
-            line-height: 1.5;
-            word-wrap: break-word;
-        }
-        .message.user {
-            background-color: var(--user-message-bg);
-            color: var(--text-primary);
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-        .message.ai {
-            background-color: var(--ai-message-bg);
-            color: var(--text-secondary);
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-        }
-        .message.ai-typing {
-            font-style: italic;
-            color: var(--text-tertiary);
-        }
-        .chatbot-input {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        .chatbot-input input {
-            flex-grow: 1;
-            padding: 1rem 1.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 25px;
-            font-size: var(--text-base);
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-        }
-        .chatbot-input button {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-        .chatbot-input button:hover {
-            background-color: var(--primary-dark);
-            box-shadow: var(--shadow-md);
-            transform: scale(1.05);
-        }
-        
-        /* ==================== Calculadora de Orçamento ==================== */
-        .calculadora-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--background-end) 0%, var(--background-start) 100%);
-        }
-        .calculadora-container {
-            max-width: 800px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 30px;
-            padding: 3rem;
-            box-shadow: var(--shadow-xl);
-            position: relative;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-        .calc-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-        .calc-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: var(--text-3xl);
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-        }
-        .calc-header p {
-            font-size: var(--text-lg);
-            color: var(--text-secondary);
-            opacity: 0.8;
-        }
-        .calc-steps {
-            display: grid;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-        .calc-step {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        .calc-step:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        .calc-step.completed {
-            border-color: var(--primary-color);
-            background: rgba(93, 47, 9, 0.05);
-        }
-        .step-label {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .step-number {
-            width: 32px;
-            height: 32px;
-            background: var(--primary-color);
-            color: var(--text-on-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        .step-number.completed {
-            background: var(--secondary-color);
-        }
-        .step-title {
-            font-size: var(--text-xl);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .step-subtitle {
-            font-size: var(--text-base);
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-        }
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        .option-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .option-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary-light);
-        }
-        .option-card.selected {
-            border-color: var(--primary-color);
-            background: var(--primary-color);
-            color: var(--text-on-dark);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        .option-content {
-            position: relative;
-            z-index: 1;
-        }
-        .option-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        .option-title {
-            font-weight: 600;
-            font-size: var(--text-lg);
-            margin-bottom: 0.5rem;
-        }
-        .option-description {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        .option-price {
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            font-weight: 500;
-            opacity: 0.7;
-        }
-        .resultado-container {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            padding: 3rem;
-            border-radius: 25px;
-            text-align: center;
-            color: var(--text-on-dark);
-            position: relative;
-            overflow: hidden;
-            margin-top: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .resultado-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .resultado-content {
-            position: relative;
-            z-index: 1;
-        }
-        .resultado-title {
-            font-size: var(--text-2xl);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0.9;
-        }
-        .preco-display {
-            margin: 2rem 0;
-        }
-        .preco-valor {
-            font-family: 'Playfair Display', serif;
-            font-size: var(--text-4xl);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .preco-periodo {
-            font-size: var(--text-lg);
-            opacity: 0.8;
-        }
-        .preco-detalhes {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            backdrop-filter: blur(10px);
-        }
-        .detalhe-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: var(--text-base);
-        }
-        .detalhe-item:last-child {
-            margin-bottom: 0;
-            font-weight: 600;
-            padding-top: 0.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        .btn-primary {
-            background: var(--text-on-dark);
-            color: var(--primary-dark);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: var(--text-base);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.95);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-on-dark);
-            border: 2px solid var(--text-on-dark);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: var(--text-base);
-            text-decoration: none;
-        }
-        .btn-secondary:hover {
-            background: var(--text-on-dark);
-            color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* ==================== Modal e Chatbot ==================== */
-        .modal {
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .modal.visible {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-content {
-            background-color: var(--background-start);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow-xl);
-            max-width: 90%;
-            width: 450px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .modal-content h3 {
             color: var(--primary-dark);
@@ -2457,10 +2037,16 @@
                         </div>
                         <h3>A importância da hidratação para idosos</h3>
                         <p class="short-text">Manter-se hidratado é crucial na terceira idade. A sensação de sede diminui, o que pode levar à desidratação sem que a pessoa perceba. Entenda a importância da hidratação e como incentivá-la no dia a dia.</p>
-                        <button class="read-more-btn" data-action="toggle-content">
-                            <span>Ler artigo</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="hidratação">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Por que é tão importante?</h4>
@@ -2498,12 +2084,6 @@
                                 <p>Ofereça água em copos pequenos e em horários fixos. Inclua alimentos ricos em água na dieta, como frutas (melancia, laranja) e sopas. Tenha sempre uma garrafa de fácil acesso e explore opções como chás, sucos naturais e água saborizada com frutas.</p>
                             </div>
                         </div>
-                        <div class="blog-card-actions">
-                            <button class="generate-tip-btn" data-topic="hidratação">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
                         <div class="ai-tip-container" style="display:none;">
                             <div class="loading-skeleton">
                                 <div class="skeleton-line skeleton-title"></div>
@@ -2525,10 +2105,16 @@
                         </div>
                         <h3>Exercícios leves para a mobilidade</h3>
                         <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
-                        <button class="read-more-btn" data-action="toggle-content">
-                            <span>Ler artigo</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="exercícios para mobilidade">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Benefícios da atividade física</h4>
@@ -2542,12 +2128,6 @@
                                     <li><strong>Exercícios com faixas elásticas:</strong> Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="generate-tip-btn" data-topic="exercícios para mobilidade">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
                         </div>
                         <div class="ai-tip-container" style="display:none;">
                             <div class="loading-skeleton">
@@ -2570,10 +2150,16 @@
                         </div>
                         <h3>Estratégias para uma boa noite de sono</h3>
                         <p class="short-text">O sono de qualidade é essencial para a saúde e o bem-estar em todas as idades, mas pode se tornar um desafio para os idosos. Saiba como criar uma rotina noturna que promova um descanso mais tranquilo e reparador.</p>
-                        <button class="read-more-btn" data-action="toggle-content">
-                            <span>Ler artigo</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="rotina de sono para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Por que o sono muda?</h4>
@@ -2581,12 +2167,6 @@
                                 <h4>Dicas para melhorar o sono</h4>
                                 <p>Estabeleça horários regulares para dormir e acordar, mesmo nos fins de semana. Evite cafeína e refeições pesadas à noite. Crie um ambiente relaxante no quarto, com pouca luz e temperatura agradável. A leitura de um livro ou ouvir música calma antes de dormir pode ajudar a relaxar a mente.</p>
                             </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="generate-tip-btn" data-topic="rotina de sono para idosos">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
                         </div>
                         <div class="ai-tip-container" style="display:none;">
                             <div class="loading-skeleton">
@@ -2609,21 +2189,21 @@
                         </div>
                         <h3>Alimentação saudável na terceira idade</h3>
                         <p class="short-text">Uma dieta equilibrada é fundamental para manter a saúde e a vitalidade. Descubra quais são os nutrientes essenciais e como preparar refeições saborosas e nutritivas para os idosos.</p>
-                        <button class="read-more-btn" data-action="toggle-content">
-                            <span>Ler artigo</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="alimentação para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Nutrientes essenciais</h4>
                                 <p>Com a idade, a absorção de certos nutrientes diminui. É importante incluir na dieta alimentos ricos em cálcio para a saúde dos ossos, vitamina D, fibras para a digestão, e proteínas para a manutenção da massa muscular.</p>
                             </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="generate-tip-btn" data-topic="alimentação para idosos">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
                         </div>
                         <div class="ai-tip-container" style="display:none;">
                             <div class="loading-skeleton">
@@ -2794,8 +2374,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="cidade">Cidade</label>
-                    <input type="text" id="cidade" name="cidade" placeholder="Será preenchido automaticamente" readonly required>
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Será preenchido automaticamente" readonly required>
                 </div>
                 
                 <button type="submit" class="submit-btn">

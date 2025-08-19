@@ -365,17 +365,6 @@
             overflow: hidden;
         }
 
-        .whatsapp-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
         .whatsapp-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
@@ -1118,20 +1107,11 @@
             color: var(--dark-text);
             cursor: pointer;
         }
-
-        .blog-card-content .article-header a {
-            display: inline-block;
-            color: var(--primary-color);
-            font-weight: bold;
-            text-decoration: none;
-            position: relative;
-            margin-top: 1rem;
-        }
         
         .blog-card-content .read-more-btn {
             color: var(--primary-color);
             font-weight: bold;
-            text-decoration: underline;
+            text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
             align-self: flex-end;
@@ -1141,11 +1121,7 @@
         
         .blog-card-content .read-more-btn:hover {
             color: var(--secondary-color);
-        }
-
-        .blog-card-content .read-more-btn.decrease {
-             text-decoration: none;
-             
+            text-decoration: underline;
         }
 
         .blog-card-content p {
@@ -1246,6 +1222,23 @@
             font-size: 0.95rem;
             color: var(--dark-text);
         }
+        /* Corrigido para o botão Ler Artigo/Diminuir na área de ações, mantendo o estilo de link */
+        .blog-card-actions .read-more-btn {
+            text-decoration: none; /* remove a underline padrão */
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card-actions .read-more-btn:hover {
+            text-decoration: underline; /* Adiciona underline no hover */
+            color: var(--secondary-color);
+        }
+
+        /* Oculta o botão de expandir do rodapé, deixando apenas o da área de ações */
+        .article-footer .read-more-btn {
+            display: none !important;
+        }
 
         /* ==================== Botão Flutuante do WhatsApp ==================== */
         .whatsapp-float-btn {
@@ -1326,6 +1319,7 @@
             background-color: var(--secondary-color);
         }
         
+        /* Corrigido o estilo para o botão "Diminuir" */
         .blog-card .read-more-btn.decrease {
              text-decoration: none;
              font-weight: bold;
@@ -1334,23 +1328,11 @@
         .blog-card .read-more-btn.decrease:hover {
             text-decoration: underline;
         }
-        .blog-card .read-more-btn:not(.decrease)::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 5px;
-            vertical-align: middle;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid var(--primary-color);
-            transition: all 0.3s ease;
+
+        /* Remove a seta que estava sendo adicionada */
+        .blog-card-actions .read-more-btn::after {
+            display: none;
         }
-        .blog-card .read-more-btn.decrease:not(.decrease)::after {
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid var(--primary-color);
-        }
-        
 
         /* ==================== Animações ==================== */
         @keyframes logoFloat {
@@ -1670,12 +1652,9 @@
                                     <li><strong>Cuidados com a medicação:</strong> Organize os horários dos medicamentos para garantir a administração correta e evitar esquecimentos.</li>
                                 </ul>
                             </div>
-                            <div class="article-footer">
-                                <a href="#" class="read-more-btn">Diminuir</a>
-                            </div>
                         </div>
                         <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn expand-btn">Ler artigo</a>
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="dicas para o dia a dia de idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -1708,12 +1687,9 @@
                                     <li><strong>Aprender algo novo:</strong> Aprender uma nova habilidade, como um idioma ou um hobby, pode criar novas conexões neurais e fortalecer o cérebro.</li>
                                 </ul>
                             </div>
-                            <div class="article-footer">
-                                <a href="#" class="read-more-btn decrease">Diminuir</a>
-                            </div>
                         </div>
                         <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn expand-btn">Ler artigo</a>
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="estimulação cognitiva para idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -1746,12 +1722,9 @@
                                     <li><strong>Ômega-3:</strong> Ajuda na saúde do cérebro e na redução de inflamações. Peixes como salmão, chia e nozes são ricos nesse nutriente.</li>
                                 </ul>
                             </div>
-                            <div class="article-footer">
-                                <a href="#" class="read-more-btn decrease">Diminuir</a>
-                            </div>
                         </div>
                         <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn expand-btn">Ler artigo</a>
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="nutrição para idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -2307,8 +2280,7 @@
             const blogCards = document.querySelectorAll('.blog-card');
             
             blogCards.forEach(card => {
-                const readMoreBtnInFooter = card.querySelector('.article-footer .read-more-btn');
-                const readMoreBtnInActions = card.querySelector('.blog-card-actions .read-more-btn');
+                const readMoreBtn = card.querySelector('.blog-card-actions .read-more-btn');
                 const fullContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
                 const title = card.querySelector('.article-header h3');
@@ -2319,22 +2291,17 @@
 
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
-                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.add('hidden');
+                        readMoreBtn.textContent = 'Ler artigo';
                         shortText.classList.remove('hidden');
-                        if (readMoreBtnInActions) readMoreBtnInActions.classList.remove('hidden');
                     } else {
                         fullContent.classList.add('visible');
-                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.remove('hidden');
+                        readMoreBtn.textContent = 'Diminuir';
                         shortText.classList.add('hidden');
-                        if (readMoreBtnInActions) readMoreBtnInActions.classList.add('hidden');
                     }
                 };
                 
-                if (readMoreBtnInFooter) {
-                    readMoreBtnInFooter.addEventListener('click', toggleContent);
-                }
-                if (readMoreBtnInActions) {
-                    readMoreBtnInActions.addEventListener('click', toggleContent);
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', toggleContent);
                 }
                 if (title) {
                     title.addEventListener('click', toggleContent);
@@ -2537,34 +2504,36 @@
             const blogCards = document.querySelectorAll('.blog-card');
             
             blogCards.forEach(card => {
-                const readMoreBtnInFooter = card.querySelector('.article-footer .read-more-btn');
-                const readMoreBtnInActions = card.querySelector('.blog-card-actions .read-more-btn');
+                const readMoreBtn = card.querySelector('.blog-card-actions .read-more-btn');
                 const fullContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
                 const title = card.querySelector('.article-header h3');
 
+                // Esconde o botão de diminuir no footer inicialmente para todos os cards
+                const readMoreBtnInFooter = card.querySelector('.article-footer .read-more-btn');
+                if (readMoreBtnInFooter) {
+                    readMoreBtnInFooter.style.display = 'none';
+                }
+                
                 const toggleContent = (e) => {
                     e.preventDefault();
                     e.stopPropagation();
 
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
-                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.add('hidden');
+                        readMoreBtn.textContent = 'Ler artigo';
                         shortText.classList.remove('hidden');
-                        if (readMoreBtnInActions) readMoreBtnInActions.classList.remove('hidden');
+                        readMoreBtn.classList.remove('decrease');
                     } else {
                         fullContent.classList.add('visible');
-                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.remove('hidden');
+                        readMoreBtn.textContent = 'Diminuir';
                         shortText.classList.add('hidden');
-                        if (readMoreBtnInActions) readMoreBtnInActions.classList.add('hidden');
+                        readMoreBtn.classList.add('decrease');
                     }
                 };
                 
-                if (readMoreBtnInFooter) {
-                    readMoreBtnInFooter.addEventListener('click', toggleContent);
-                }
-                if (readMoreBtnInActions) {
-                    readMoreBtnInActions.addEventListener('click', toggleContent);
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', toggleContent);
                 }
                 if (title) {
                     title.addEventListener('click', toggleContent);

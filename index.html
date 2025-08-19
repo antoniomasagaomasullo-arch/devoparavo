@@ -388,9 +388,9 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 1s ease;
         }
@@ -401,7 +401,7 @@
         }
 
         .hero-image:hover::before {
-            transform: translateX(100%);
+            left: 100%;
         }
 
         .hero-image img {
@@ -1431,7 +1431,7 @@
                 </div>
             </div>
             <div class="hero-image reveal-right parallax-element">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTgwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHRleHQgeD0iMjAwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Tci4gQ2FybG9zPC90ZXh0Pgo8L3N2Zz4K" alt="Cuidador e idoso sorrindo">
+                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Cuidador e idoso sorrindo">
             </div>
         </div>
     </section>
@@ -1448,7 +1448,7 @@
                 </div>
                 <div class="story-image reveal-right parallax-element">
                     <div class="story-badge">94 anos</div>
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmMGU4IiByeD0iMTAiLz4KPHR2ZWN0IHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiB4PSIyMCIgeT0iMjAiIGZpbGw9IndoaXRlIiByeD0iOCIgc3Ryb2tlPSIjZTBlMGUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTUwIiB5PSI5MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM4QjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Eb25hIFRlcmVjYTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ob3NzYSBwcmltZWlyYSBjbGllbnRlPC90ZXh0Pgo8L3N2Zz4K" alt="Dona Tereca - Nossa primeira cliente">
+                    <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Tereca - Nossa primeira cliente">
                 </div>
             </div>
         </div>
@@ -1519,9 +1519,9 @@
                     <div class="blog-card-content">
                         <div class="article-header">
                             <h3>Dicas essenciais para o dia a dia do idoso</h3>
-                            <p class="short-text">Descubra como pequenas mudanças na rotina podem fazer uma grande diferença na qualidade de vida...</p>
-                            <a href="#" class="read-more-btn" data-article="article-1">Ler artigo</a>
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                         </div>
+                        <p class="short-text">Descubra como pequenas mudanças na rotina podem fazer uma grande diferença na qualidade de vida...</p>
                         <div class="full-article-content" id="article-1">
                             <div class="article-full-text">
                                 <h4>O que são cuidados diários?</h4>
@@ -1537,7 +1537,7 @@
                                 </ul>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="read-more-btn" data-article="article-1">Diminuir</a>
+                                <a href="#" class="read-more-btn">Diminuir</a>
                             </div>
                         </div>
                     </div>
@@ -1550,7 +1550,7 @@
                         <div class="article-header">
                             <h3>A importância da estimulação cognitiva</h3>
                             <p class="short-text">Conheça atividades e jogos que ajudam a manter a mente ativa e previnem o declínio cognitivo...</p>
-                            <a href="#" class="read-more-btn" data-article="article-2">Ler artigo</a>
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                         </div>
                         <div class="full-article-content" id="article-2">
                             <div class="article-full-text">
@@ -1566,7 +1566,7 @@
                                 </ul>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="read-more-btn" data-article="article-2">Diminuir</a>
+                                <a href="#" class="read-more-btn">Diminuir</a>
                             </div>
                         </div>
                     </div>
@@ -1579,23 +1579,15 @@
                         <div class="article-header">
                             <h3>Nutrição na terceira idade: um guia completo</h3>
                             <p class="short-text">Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
-                            <a href="#" class="read-more-btn" data-article="article-3">Ler artigo</a>
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                         </div>
                         <div class="full-article-content" id="article-3">
                             <div class="article-full-text">
                                 <h4>A importância de uma dieta balanceada</h4>
                                 <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular, prevenir doenças crônicas e até mesmo melhorar o humor. O corpo de uma pessoa na terceira idade tem necessidades nutricionais diferentes, e a dieta deve ser adaptada para garantir que todas elas sejam atendidas.</p>
-                                <h4>Alimentos essenciais:</h4>
-                                <ul>
-                                    <li>**Cálcio:** Essencial para a saúde dos ossos. Inclua laticínios, como iogurte e queijo, e vegetais de folhas escuras, como espinafre e couve, na dieta.</li>
-                                    <li>**Proteínas:** Fundamental para a manutenção da massa muscular, que tende a diminuir com a idade. Carnes magras, ovos, peixes e leguminosas (feijão, lentilha) são ótimas fontes.</li>
-                                    <li>**Fibras:** Ajudam no bom funcionamento intestinal e na prevenção de doenças. Frutas, verduras e grãos integrais são ricos em fibras.</li>
-                                    <li>**Vitamina D:** Essencial para a absorção de cálcio. A exposição ao sol é a principal fonte, mas também pode ser encontrada em peixes gordurosos como salmão e sardinha.</li>
-                                    <li>**Ômega-3:** Ajuda na saúde do cérebro e na redução de inflamações. Peixes como salmão, chia e nozes são ricos nesse nutriente.</li>
-                                </ul>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="read-more-btn" data-article="article-3">Diminuir</a>
+                                <a href="#" class="read-more-btn">Diminuir</a>
                             </div>
                         </div>
                     </div>
@@ -2031,15 +2023,11 @@
                             fullContent.classList.remove('visible');
                             readMoreBtn.textContent = 'Ler artigo';
                             shortText.style.display = 'block';
-                            // Ajusta a transição
-                            card.style.maxHeight = '350px'; // Altura inicial do card
                         } else {
                             // Expande o artigo
                             fullContent.classList.add('visible');
                             readMoreBtn.textContent = 'Diminuir';
                             shortText.style.display = 'none';
-                            // Ajusta a transição
-                            card.style.maxHeight = `${card.scrollHeight}px`; // Altura do conteúdo completo
                         }
                     });
                 }

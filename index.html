@@ -8,6 +8,9 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Incluindo Three.js para o efeito 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         /* ==================== Estilos Globais e Reset ==================== */
         * {
@@ -123,7 +126,7 @@
         }
 
         .loading-logo::before {
-            content: '👵�';
+            content: '👵🏼';
             font-size: 2.5rem;
             animation: logoSpin 5s linear infinite;
         }
@@ -203,6 +206,17 @@
         /* ==================== Efeitos de Parallax ==================== */
         .parallax-element {
             will-change: transform;
+        }
+        
+        /* Estilos para o canvas 3D no header */
+        #three-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
         }
 
         /* ==================== Cabeçalho (Header) ==================== */
@@ -392,7 +406,6 @@
             height: 450px;
             object-fit: cover;
             object-position: center;
-            /* loading="lazy" foi adicionado para otimização */
             loading="lazy";
         }
 
@@ -1635,6 +1648,7 @@
     </div>
 
     <header class="header reveal">
+        <canvas id="three-canvas"></canvas>
         <div class="nav-container">
             <div class="logo">
                 <div class="logo-icon">
@@ -2158,6 +2172,8 @@
                     isThrottled = true;
                 }
             });
+            
+            init3DCanvas();
         });
 
         // ==================== Funções de Efeitos Visuais ====================
@@ -2209,6 +2225,92 @@
                     tick = true;
                 }
             });
+        }
+        
+        // Função para inicializar e animar o canvas 3D
+        function init3DCanvas() {
+            const canvas = document.getElementById('three-canvas');
+            if (!canvas) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            const pointLight = new THREE.PointLight(0xffffff, 1);
+            pointLight.position.set(10, 10, 10);
+            scene.add(pointLight);
+
+            const iconShape = new THREE.Shape();
+            iconShape.moveTo(0, 0.8);
+            iconShape.lineTo(0.5, 0);
+            iconShape.lineTo(0, -0.8);
+            iconShape.lineTo(-0.5, 0);
+            iconShape.lineTo(0, 0.8);
+
+            const extrudeSettings = {
+                steps: 2,
+                depth: 0.2,
+                bevelEnabled: true,
+                bevelThickness: 0.05,
+                bevelSize: 0.05,
+                bevelSegments: 1
+            };
+
+            const geometry = new THREE.ExtrudeGeometry(iconShape, extrudeSettings);
+            const material = new THREE.MeshStandardMaterial({ color: 0xB56557, roughness: 0.8, metalness: 0.5 });
+            const icons = [];
+            for (let i = 0; i < 50; i++) {
+                const icon = new THREE.Mesh(geometry, material);
+                icon.position.x = (Math.random() - 0.5) * 50;
+                icon.position.y = (Math.random() - 0.5) * 50;
+                icon.position.z = (Math.random() - 0.5) * 50;
+                icon.rotation.x = Math.random() * Math.PI;
+                icon.rotation.y = Math.random() * Math.PI;
+                icon.scale.set(Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5);
+                scene.add(icon);
+                icons.push(icon);
+            }
+
+            camera.position.z = 5;
+
+            let mouseX = 0;
+            let mouseY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            window.addEventListener('resize', () => {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Animação dos ícones flutuantes
+                icons.forEach(icon => {
+                    icon.rotation.x += 0.001;
+                    icon.rotation.y += 0.002;
+                    icon.position.y += Math.sin(Date.now() * 0.0005) * 0.0005;
+                });
+
+                // Movimento da câmera com o mouse
+                camera.position.x += (mouseX - camera.position.x) * 0.05;
+                camera.position.y += (mouseY - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+
+                renderer.render(scene, camera);
+            }
+            animate();
         }
 
         // ==================== Funções de Navegação e Interatividade ====================
@@ -2814,4 +2916,3 @@
     </script>
 </body>
 </html>
-�

@@ -681,26 +681,19 @@
 
         /* ==================== Seção Depoimentos (Testimonials) ==================== */
         .testimonials {
-            padding: 80px 0;
+            padding: 40px 0;
             position: relative;
             overflow: hidden;
         }
 
         .testimonials::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(249, 247, 244, 0.8) 0%, rgba(240, 235, 228, 0.6) 100%);
-            pointer-events: none;
+            display: none;
         }
 
         .testimonial-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0; /* Removido o padding para diminuir o espaçamento */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -735,17 +728,23 @@
 
         .testimonial-content {
             background: var(--background-start);
-            padding: 3rem;
+            padding: 4rem; /* Aumentado o padding para aumentar o tamanho do card */
             border-radius: 25px;
             box-shadow: none; /* Removido box-shadow do card de depoimento */
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: none;
             position: relative;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
             overflow: hidden;
-            margin: 0 1rem;
+            margin: 0; /* Removido o margin para diminuir o espaçamento */
         }
-
+        
+        /* Adicionado um novo box-shadow para um efeito de "flutuação" sutil e suave */
+        .testimonial-content:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
         .testimonial-content::before {
             content: '"';
             font-size: 4rem;
@@ -778,14 +777,13 @@
             transform: scale(0);
         }
 
-        .testimonial-content:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
-            background: rgba(255, 255, 255, 0.5);
+        .testimonial-content:hover::after {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .testimonial-text {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
             color: #555;

@@ -823,14 +823,16 @@
         }
 
         /* Tags de Bairros (radio buttons) */
-       #bairros-atuacao.services-tags {
+  /* Tags de Bairros (radio buttons) */
+#bairros-atuacao.services-tags {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.75rem;
+    justify-content: center; /* Alinha o conteúdo no centro */
+    gap: 0.75rem; /* Adiciona um espaçamento consistente entre as tags */
     margin-top: 0.5rem;
 }
 #bairros-atuacao .service-tag {
+    /* Mantenha o estilo dos botões como está, mas sem a propriedade width: 100% ou flex-basis */
     background: rgba(245, 245, 245, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 25px;
@@ -844,18 +846,18 @@
     outline: none;
     white-space: nowrap;
 }
-        #bairros-atuacao .service-tag:focus,
-        #bairros-atuacao .service-tag.selected {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            color: var(--text-on-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
-        }
-        #bairros-atuacao .service-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-        }
+#bairros-atuacao .service-tag:focus,
+#bairros-atuacao .service-tag.selected {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-on-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+}
+#bairros-atuacao .service-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
+}
         
         .submit-btn {
             width: 100%;

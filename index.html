@@ -1794,7 +1794,7 @@
         <div class="hero-container">
             <div class="hero-content reveal-left">
                 <h1>Cuidando de quem você ama</h1>
-                <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
+                <p class="hero-subtitle">Tratamento 360º: cuidados médicos, mobilidade e estética para idosos no Itaim</p>
                 <div class="hero-cta">
                     <button class="whatsapp-btn" id="hero-whatsapp-btn">
                         Fale conosco
@@ -2255,7 +2255,7 @@
                     </div>
                 </div>
                 <div class="blog-card reveal delay-4" data-tag="alimentacao">
-                    <img src="https://images.unsplash.com/photo-1571772922119-913a826435c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxMHx8ZGlldGElMjBhdm98ZW58MHx8fHwxNzE3NTM2Nzk1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um avó preparando uma refeição" class="blog-card-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1571772922119-913a26435c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxMHx8ZGlldGElMjBhdm98ZW58MHx8fHwxNzE3NTM2Nzk1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um avó preparando uma refeição" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <div class="blog-card-header">
                             <span class="blog-card-tag">Alimentação</span>
@@ -2407,6 +2407,38 @@
                     </button>
                     <div class="faq-answer">
                         <p>Sim! Além dos nossos cuidadores, oferecemos uma gama de serviços complementares, como manicure e cabeleireiro, apoio psicológico, motorista e terapia ocupacional. Esses serviços podem ser contratados de forma avulsa ou em pacotes personalizados.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="animation-delay: 0.8s;">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Qual a diferença do cuidado da De Vó para Vó para outras empresas?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O nosso maior diferencial é o nosso modelo de treinamento. Todos os nossos cuidadores são treinados na prática, em nossa própria casa, sob a orientação e supervisão constante, garantindo não apenas a competência técnica, mas também a empatia e o carinho que tratamos os idosos como se fossem da nossa família.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="animation-delay: 1s;">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>A De Vó para Vó atende casos de emergência?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Para casos de emergência e agendamentos de última hora, recomendamos o contato direto por telefone ou WhatsApp, pois o formulário pode levar algumas horas para ser processado. Nossa equipe de plantão fará o possível para te atender prontamente.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="animation-delay: 1.2s;">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Os serviços podem ser personalizados?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, todos os nossos serviços são totalmente personalizáveis. Após o contato inicial, nossa equipe fará uma avaliação completa para entender as necessidades específicas do idoso e da família, criando um plano de cuidados que se encaixe perfeitamente em sua rotina e orçamento.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="animation-delay: 1.4s;">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Os cuidadores são fixos ou rotativos?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nossa prioridade é garantir a estabilidade e a criação de laços afetivos. Por isso, procuramos manter o mesmo cuidador para cada família o máximo de tempo possível. Em casos de substituição, por férias ou folgas, garantimos que o novo profissional passe por um período de adaptação com o cuidador habitual, para garantir a continuidade e a qualidade do serviço.</p>
                     </div>
                 </div>
             </div>
@@ -2931,7 +2963,7 @@
                     statusElement.style.color = 'var(--validation-success)';
                     enderecoField.removeAttribute('readonly');
                     const tagCorreta = document.querySelector(`#bairros-atuacao .service-tag[data-bairro-principal="${bairroPrincipal}"]`);
-                    if (tagCorreta) tagCorreta.classList.add('selected');
+                    if (tagCorreta) tag.classList.add('selected');
                 } else {
                     statusElement.textContent = '❌ Infelizmente ainda não atendemos a sua região.';
                     statusElement.style.color = 'var(--validation-error)';

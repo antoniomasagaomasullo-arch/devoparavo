@@ -771,27 +771,23 @@
             color: var(--validation-success);
             opacity: 1;
         }
-        .services-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-        }
-        .service-tag {
+        
+        /* Restaura o estilo original dos botões de serviço */
+        .services-tags .service-tag {
             position: relative;
             user-select: none;
         }
-        .service-tag input[type="checkbox"]:disabled + span {
+        .services-tags .service-tag input[type="checkbox"]:disabled + span {
             opacity: 0.6;
             cursor: not-allowed;
         }
-        .service-tag input[type="checkbox"] {
+        .services-tags .service-tag input[type="checkbox"] {
             position: absolute;
             opacity: 0;
             width: 0;
             height: 0;
         }
-        .service-tag span {
+        .services-tags .service-tag span {
             display: inline-block;
             padding: 0.6rem 1.2rem;
             background: rgba(245, 245, 245, 0.8);
@@ -804,12 +800,12 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        .service-tag:hover span {
+        .services-tags .service-tag:hover span {
             border-color: var(--primary-color);
             background: rgba(249, 247, 244, 0.9);
             transform: translateY(-2px);
         }
-        .service-tag input[type="checkbox"]:checked+span {
+        .services-tags .service-tag input[type="checkbox"]:checked+span {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
             color: var(--text-on-dark);
@@ -831,22 +827,17 @@
             position: relative;
             padding: 0.6rem 1.2rem;
             text-align: center;
+            outline: none; /* remove a borda padrão */
         }
-
-        #bairros-atuacao .service-tag.selected,
-        #bairros-atuacao .service-tag:hover {
-            border-color: var(--primary-color);
-            background: rgba(249, 247, 244, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-        }
-
+        #bairros-atuacao .service-tag:focus,
         #bairros-atuacao .service-tag.selected {
-            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            background: var(--primary-color);
             color: var(--text-on-dark);
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
         }
-
+        
         .submit-btn {
             width: 100%;
             background-color: var(--primary-color);
@@ -2430,28 +2421,28 @@
                     <label for="bairros-atuacao">Nossa área de cobertura:</label>
                     <div class="services-tags" id="bairros-atuacao">
                         <button type="button" class="service-tag" data-bairro-principal="Itaim">
-                            <span>Itaim</span>
+                            Itaim
                         </button>
                         <button type="button" class="service-tag" data-bairro-principal="Jardins">
-                            <span>Jardins</span>
+                            Jardins
                         </button>
                         <button type="button" class="service-tag" data-bairro-principal="Panamby">
-                            <span>Panamby</span>
+                            Panamby
                         </button>
                         <button type="button" class="service-tag" data-bairro-principal="Morumbi">
-                            <span>Morumbi</span>
+                            Morumbi
                         </button>
                         <button type="button" class="service-tag" data-bairro-principal="Moema">
-                            <span>Moema</span>
+                            Moema
                         </button>
                         <button type="button" class="service-tag" data-bairro-principal="Pinheiros">
-                            <span>Pinheiros</span>
+                            Pinheiros
                         </button>
                         <button type="button" class="service-tag" data-bairro-principal="Vila Madalena">
-                            <span>Vila Madalena</span>
+                            Vila Madalena
                         </button>
                         <button type="button" class="service-tag" data-bairro-principal="Higienópolis">
-                            <span>Higienópolis</span>
+                            Higienópolis
                         </button>
                     </div>
                 </div>

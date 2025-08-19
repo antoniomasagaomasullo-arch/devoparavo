@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Vó para Vó - Cuidando de quem você ama</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==================== Estilos Globais e Reset ==================== */
         * {
@@ -66,7 +65,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23efebe4" fill-opacity="0.4"%3E%3Cpath d="M36 34.542V13.84L54.764 24.288l-5.32 3.07a2 0 0 1-1.92-1.28L44 20v24L24 34.542V13.84L5.236 24.288l5.32 3.07a2 0 0 1 1.92-1.28L16 20v24l20-10.458z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23efebe4" fill-opacity="0.4"%3E%3Cpath d="M36 34.542V13.84L54.764 24.288l-5.32 3.07a2 2 0 1-1.92-1.28L44 20v24L24 34.542V13.84L5.236 24.288l5.32 3.07a2 2 0 1 1.92-1.28L16 20v24l20-10.458z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
             opacity: 0.2;
             pointer-events: none;
             z-index: -1;
@@ -81,6 +80,18 @@
 
         p, .blog-card-content, .article-content {
             font-family: 'Lora', serif;
+        }
+        
+        /* Novo estilo para o bloco de citação */
+        .quote-box {
+            background: rgba(181, 101, 87, 0.1);
+            border-left: 5px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--secondary-color);
+            font-size: var(--text-lg);
+            border-radius: 0 10px 10px 0;
         }
 
         /* ==================== Animações ==================== */
@@ -352,24 +363,17 @@
             font-weight: 400;
             max-width: 80%;
         }
-        .whatsapp-btn {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
+        /* Novo estilo para o botão do hero */
+        .hero-cta .cta-button {
             padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-md);
             font-size: var(--text-base);
-        }
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
+            text-transform: capitalize;
+            border-radius: 50px;
             box-shadow: 0 10px 20px rgba(93, 47, 9, 0.4);
+        }
+        .hero-cta .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(93, 47, 9, 0.5);
             background-color: var(--primary-dark);
         }
         .hero-image {
@@ -1085,7 +1089,7 @@
         }
         .skeleton-line {
             height: 15px;
-            background-color: var(--skeleton-bg-color);
+            background-color: var(--background-end);
             border-radius: 5px;
         }
         .ai-tip-container.loaded .loading-skeleton {
@@ -1737,12 +1741,12 @@
         
         <div class="hero-container">
             <div class="hero-content reveal-left">
-                <h1>Cuidando de quem você ama</h1>
-                <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
+                <h1>Cuidando de quem você ama, como família.</h1>
+                <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim, com a atenção que a sua família merece.</p>
                 <div class="hero-cta">
-                    <button class="whatsapp-btn" id="hero-whatsapp-btn">
-                        Fale conosco
-                    </button>
+                    <a href="#servicos" class="cta-button" id="hero-cta-btn">
+                        Conheça Nossos Serviços
+                    </a>
                 </div>
             </div>
             <div class="hero-image reveal-right parallax-element">
@@ -1759,10 +1763,12 @@
                     <h3>Uma história de família, cuidado e paixão</h3>
                     <p>O <strong>De Vó para Vó</strong> nasceu de uma necessidade real e de um amor incondicional. Aos 94 anos, nossa querida avó, Dona Tereca, foi nossa primeira inspiração. Percebemos o quão desafiador é encontrar cuidadores que realmente tratem os idosos como parte da família. Foi então que decidimos criar uma empresa com um modelo único, onde a empatia e o carinho são a base de tudo.</p>
                     <p>Nosso grande diferencial é que <strong>todos os nossos profissionais são treinados e trabalham em nossa própria casa</strong> antes de atender nossos clientes. Eles aprendem na prática o que significa cuidar com dedicação, respeito e, acima de tudo, amor. Isso garante que cada um de nossos cuidadores não apenas tenha as habilidades técnicas, mas a filosofia de cuidado que nos move.</p>
-                    <p class="highlight">O nosso lema é simples: "Porque quem cuidamos, cuidamos como família. 💛"</p>
+                    <div class="quote-box">
+                        <p>O nosso lema é simples: "Porque quem cuidamos, cuidamos como família. 💛"</p>
+                    </div>
                 </div>
                 <div class="story-image reveal-right parallax-element">
-                    <div class="story-badge">94 anos</div>
+                    <div class="story-badge">Dona Tereca</div>
                     <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Tereca - Nossa primeira cliente" loading="lazy">
                 </div>
             </div>
@@ -1777,24 +1783,24 @@
                     <div class="service-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
-                    <h3>Cuidadoras</h3>
-                    <p>Acompanhamento diário</p>
+                    <h3>Cuidadores</h3>
+                    <p>Acompanhamento diário para todas as necessidades, com foco em conforto e segurança.</p>
                     <button class="open-whatsapp-service-btn" data-service="Cuidadora">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.2s;">
                     <div class="service-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scissors"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg>
                     </div>
-                    <h3>Manicure e cabeleireiro</h3>
-                    <p>Atendimento em casa</p>
+                    <h3>Manicure e Cabeleireiro</h3>
+                    <p>Cuidados com a aparência no conforto do lar para elevar a autoestima e o bem-estar.</p>
                     <button class="open-whatsapp-service-btn" data-service="Manicure e cabeleireiro">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.3s;">
                     <div class="service-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-pulse"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.2 11.2h4.5l2-7.2 3.5 10.7L16 6l3 7H22"/></svg>
                     </div>
-                    <h3>Apoio psicológico</h3>
-                    <p>Uma vez por semana</p>
+                    <h3>Apoio Psicológico</h3>
+                    <p>Sessões semanais para promover o bem-estar mental e emocional de forma contínua.</p>
                     <button class="open-whatsapp-service-btn" data-service="Apoio psicológico">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.4s;">
@@ -1802,7 +1808,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car"><path d="M19 17h2c.5 0 1-.5 1-1v-3c0-.5-.5-1-1-1h-1V3c0-.5-.5-1-1-1H3c-.5 0-1 .5-1 1v14h2"/><path d="M14 17h-4"/><path d="M7 17v-4"/><path d="M17 5h-4"/><path d="M12 12v3"/><circle cx="17" cy="19" r="2"/><circle cx="7" cy="19" r="2"/></svg>
                     </div>
                     <h3>Motorista</h3>
-                    <p>1 a 2 vezes por semana</p>
+                    <p>Transporte seguro e pontual para consultas, passeios e compromissos sociais.</p>
                     <button class="open-whatsapp-service-btn" data-service="Motorista">Solicitar Orçamento</button>
                 </div>
             </div>
@@ -1864,9 +1870,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="calc-step completed" id="step2">
+                <div class="calc-step" id="step2">
                     <div class="step-label">
-                        <div class="step-number completed">2</div>
+                        <div class="step-number">2</div>
                         <div>
                             <div class="step-title">Período de Cuidado</div>
                             <div class="step-subtitle">Quantas horas por dia?</div>
@@ -1896,9 +1902,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="calc-step completed" id="step3">
+                <div class="calc-step" id="step3">
                     <div class="step-label">
-                        <div class="step-number completed">3</div>
+                        <div class="step-number">3</div>
                         <div>
                             <div class="step-title">Frequência Semanal</div>
                             <div class="step-subtitle">Quantos dias por semana?</div>
@@ -3500,4 +3506,3 @@
     </script>
 </body>
 </html>
-

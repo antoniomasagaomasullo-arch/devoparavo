@@ -1278,7 +1278,6 @@
             position: relative;
             z-index: 1;
         }
-        /* Correção para o problema de espaço */
         .calc-step {
             opacity: 0;
             position: absolute;
@@ -1286,15 +1285,17 @@
             left: 0;
             width: 100%;
             pointer-events: none;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform: translateX(100%);
+            transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 0;
+            margin: 0;
         }
 
         .calc-step.active {
             opacity: 1;
             position: relative;
-            transform: translateX(0);
             pointer-events: auto;
+            padding: 2rem;
+            margin-bottom: 1rem;
         }
         .step-indicator {
             display: flex;
@@ -1302,12 +1303,14 @@
             gap: 1rem;
             margin-bottom: 2rem;
         }
+        /* Adicionado cursor pointer para indicar que o elemento é clicável */
         .indicator-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            cursor: pointer; 
         }
         .indicator-dot.active {
             background: var(--primary-color);
@@ -1916,9 +1919,9 @@
                 <p>Em 3 passos simples, descubra o investimento para o cuidado ideal</p>
             </div>
             <div class="step-indicator">
-                <div class="indicator-dot active" data-step="1"></div>
-                <div class="indicator-dot" data-step="2"></div>
-                <div class="indicator-dot" data-step="3"></div>
+                <button class="indicator-dot active" data-step="1"></button>
+                <button class="indicator-dot" data-step="2"></button>
+                <button class="indicator-dot" data-step="3"></button>
             </div>
             <div class="calc-steps">
                 <div class="calc-step active" id="step1">
@@ -2192,7 +2195,7 @@
                     </div>
                 </div>
                 <div class="blog-card reveal delay-2" data-tag="exercicios">
-                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhhZmljZXN8c2VhcmNofDE1fHxjdWlkYWRvcixlbGRlcmx5fGVufDB8fHx8MTcxNzU0NDEzMHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <div class="blog-card-header">
                             <span class="blog-card-tag">Exercícios</span>
@@ -3177,6 +3180,9 @@
                                 }
                             });
                         });
+                    });
+                    this.indicators.forEach((dot, index) => {
+                        dot.addEventListener('click', () => this.showStep(index));
                     });
                     document.getElementById('btnWhatsApp').addEventListener('click', (e) => {
                         e.preventDefault();

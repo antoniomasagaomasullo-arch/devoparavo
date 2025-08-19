@@ -282,37 +282,34 @@
             pointer-events: none;
         }
 
-        .parallax-bg-1 {
+        .parallax-bg-1, .parallax-bg-2, .parallax-bg-3 {
             position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .parallax-bg-1 {
             top: 10%;
             right: 15%;
             width: 150px;
             height: 150px;
             background: radial-gradient(circle, rgba(139, 69, 19, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
         }
 
         .parallax-bg-2 {
-            position: absolute;
             bottom: 20%;
             left: 10%;
             width: 100px;
             height: 100px;
             background: radial-gradient(circle, rgba(210, 105, 30, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
         }
 
         .parallax-bg-3 {
-            position: absolute;
             top: 30%;
             left: 5%;
             width: 80px;
             height: 80px;
             background: radial-gradient(circle, rgba(205, 133, 63, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
         }
 
         .hero-container {
@@ -400,24 +397,9 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 1s ease;
-        }
-
         .hero-image:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero-image:hover::before {
-            transform: translateX(100%);
         }
 
         .hero-image img {
@@ -509,25 +491,9 @@
             cursor: pointer;
         }
 
-        .story-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.8s ease;
-        }
-
         .story-image:hover {
             transform: translateY(-12px) scale(1.05) rotate(2deg);
             box-shadow: 0 30px 60px rgba(139, 69, 19, 0.3);
-        }
-
-        .story-image:hover::before {
-            transform: translateX(100%);
         }
 
         .story-image img {
@@ -669,17 +635,6 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
-        }
-
-        .service-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
         }
 
         .service-card:hover .service-icon {
@@ -849,11 +804,6 @@
             background: rgba(255, 255, 255, 0.5);
         }
 
-        .testimonial-content:hover::after {
-            opacity: 1;
-            transform: scale(1);
-        }
-
         .testimonial-text {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -894,25 +844,9 @@
             overflow: hidden;
         }
 
-        .testimonial-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.8s ease;
-        }
-
         .testimonial-image:hover {
             transform: scale(1.08) rotate(2deg);
             box-shadow: 0 30px 60px rgba(139, 69, 19, 0.3);
-        }
-
-        .testimonial-image:hover::before {
-            transform: translateX(100%);
         }
 
         .testimonial-image img {
@@ -1135,6 +1069,7 @@
 
         .footer p {
             opacity: 0.8;
+            margin: 0.5rem 0;
         }
 
         /* ==================== Seção de Blog ==================== */
@@ -1172,15 +1107,8 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .blog-card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
         .blog-card-content {
             padding: 2rem;
-            transition: all 0.5s ease-in-out;
         }
 
         .blog-card-content .article-header h3 {
@@ -1196,6 +1124,7 @@
             font-weight: bold;
             text-decoration: none;
             position: relative;
+            margin-top: 1rem;
         }
 
         .blog-card-content .article-header a::after {
@@ -1590,9 +1519,9 @@
     </header>
 
     <section class="hero">
-        <div class="parallax-bg-1 parallax-element"></div>
-        <div class="parallax-bg-2 parallax-element"></div>
-        <div class="parallax-bg-3 parallax-element"></div>
+        <div class="parallax-bg-1 parallax-element" data-speed="0.3"></div>
+        <div class="parallax-bg-2 parallax-element" data-speed="0.2"></div>
+        <div class="parallax-bg-3 parallax-element" data-speed="0.1"></div>
         
         <div class="hero-container">
             <div class="hero-content reveal-left">
@@ -1689,11 +1618,9 @@
             <div class="blog-grid">
                 <!-- Artigo 1 -->
                 <div class="blog-card reveal" style="animation-delay: 0.1s;">
-                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Imagem de um idoso e seu cuidador" loading="lazy">
                     <div class="blog-card-content">
                         <div class="article-header">
                             <h3>Dicas essenciais para o dia a dia do idoso</h3>
-                            <a href="#" class="read-more-btn">Ler artigo</a>
                         </div>
                         <p class="short-text">Descubra como pequenas mudanças na rotina podem fazer uma grande diferença na qualidade de vida...</p>
                         <div class="full-article-content" id="article-1">
@@ -1716,11 +1643,11 @@
                         </div>
                         <div class="blog-card-actions">
                             <button class="generate-tip-btn" data-topic="dicas para o dia a dia de idosos">✨ Gerar nova dica</button>
-                            <button class="audio-btn" data-text-for-audio="">
+                            <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
                             </button>
                         </div>
-                        <div class="ai-tip-container">
+                        <div class="ai-tip-container" style="display: none;">
                             <div class="loader"></div>
                             <p class="ai-tip-text"></p>
                         </div>
@@ -1729,11 +1656,9 @@
                 
                 <!-- Artigo 2 -->
                 <div class="blog-card reveal" style="animation-delay: 0.2s;">
-                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1579294191024-c102a3a5e8f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwzfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de uma avó e sua neta sorrindo" loading="lazy">
                     <div class="blog-card-content">
                         <div class="article-header">
                             <h3>A importância da estimulação cognitiva</h3>
-                            <a href="#" class="read-more-btn">Ler artigo</a>
                         </div>
                         <p class="short-text">Conheça atividades e jogos que ajudam a manter a mente ativa e previnem o declínio cognitivo...</p>
                         <div class="full-article-content" id="article-2">
@@ -1755,11 +1680,11 @@
                         </div>
                         <div class="blog-card-actions">
                             <button class="generate-tip-btn" data-topic="estimulação cognitiva para idosos">✨ Gerar nova dica</button>
-                            <button class="audio-btn" data-text-for-audio="">
+                            <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
                             </button>
                         </div>
-                        <div class="ai-tip-container">
+                        <div class="ai-tip-container" style="display: none;">
                             <div class="loader"></div>
                             <p class="ai-tip-text"></p>
                         </div>
@@ -1768,11 +1693,9 @@
 
                 <!-- Artigo 3 -->
                 <div class="blog-card reveal" style="animation-delay: 0.3s;">
-                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1550920042-b05423f03b87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHw1fHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Imagem de alimentos saudáveis" loading="lazy">
                     <div class="blog-card-content">
                         <div class="article-header">
                             <h3>Nutrição na terceira idade: um guia completo</h3>
-                            <a href="#" class="read-more-btn">Ler artigo</a>
                         </div>
                         <p class="short-text">Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
                         <div class="full-article-content" id="article-3">
@@ -1794,11 +1717,11 @@
                         </div>
                         <div class="blog-card-actions">
                             <button class="generate-tip-btn" data-topic="nutrição para idosos">✨ Gerar nova dica</button>
-                            <button class="audio-btn" data-text-for-audio="">
+                            <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
                             </button>
                         </div>
-                        <div class="ai-tip-container">
+                        <div class="ai-tip-container" style="display: none;">
                             <div class="loader"></div>
                             <p class="ai-tip-text"></p>
                         </div>
@@ -1970,11 +1893,9 @@
 
     <footer class="footer">
         <div class="container">
-            <p>
-                © 2025 De Vó para Vó. Cuidando com amor e carinho.
-                <br>
-                CNPJ: xxxx
-            </p>
+            <p>Cuidando com amor e carinho.</p>
+            <p>CNPJ: xxxx</p>
+            <p>© 2025 - De Vó para Vó</p>
         </div>
     </footer>
     
@@ -2421,7 +2342,7 @@
                         audioIcon.textContent = '...';
                         audioIcon.classList.add('loading-audio');
                         await playAudio(text, button);
-                        audioIcon.textContent = '�';
+                        audioIcon.textContent = '📢';
                         audioIcon.classList.remove('loading-audio');
                     }
                 });
@@ -2601,4 +2522,3 @@
     </script>
 </body>
 </html>
-�

@@ -2877,7 +2877,7 @@
             }
         }
         
-       async function searchCEP(cep) {
+   async function searchCEP(cep) {
     const statusElement = document.getElementById('cep-status');
     const enderecoField = document.getElementById('endereco');
     const bairroField = document.getElementById('bairro');
@@ -2885,10 +2885,18 @@
 
     if (!statusElement || !enderecoField || !bairroField || !cidadeField) return;
 
-    // Lista de bairros atendidos
-    const bairrosAtendidos = [
-        'Itaim Bibi', 'Jardim Paulista', 'Jardins', 'Panamby', 'Morumbi', 'Moema', 'Pinheiros', 'Vila Madalena', 'Higienópolis'
-    ];
+    // Lista de bairros atendidos e seus sub-bairros/equivalentes
+    const bairrosAtendidos = {
+        'Itaim Bibi': ['Itaim Bibi'],
+        'Jardim Paulista': ['Jardim Paulista'],
+        'Jardins': ['Jardins'],
+        'Panamby': ['Panamby', 'Paraíso do Morumbi', 'Vila Andrade'],
+        'Morumbi': ['Morumbi'],
+        'Moema': ['Moema'],
+        'Pinheiros': ['Pinheiros'],
+        'Vila Madalena': ['Vila Madalena'],
+        'Higienópolis': ['Higienópolis']
+    };
 
     try {
         statusElement.textContent = '🔍 Buscando endereço...';
@@ -2904,11 +2912,22 @@
         bairroField.value = data.bairro;
         cidadeField.value = `${data.localidade} - ${data.uf}`;
 
-        if (bairrosAtendidos.includes(data.bairro)) {
-            statusElement.textContent = '✅ Endereço encontrado e atendemos sua região!';
+        // Lógica de verificação do bairro
+        let isBairroAtendido = false;
+        let bairroPrincipal = '';
+
+        for (const [key, value] of Object.entries(bairrosAtendidos)) {
+            if (value.includes(data.bairro)) {
+                isBairroAtendido = true;
+                bairroPrincipal = key;
+                break;
+            }
+        }
+
+        if (isBairroAtendido) {
+            statusElement.textContent = `✅ Endereço encontrado. Atendemos no bairro ${bairroPrincipal}!`;
             statusElement.style.color = 'var(--validation-success)';
             enderecoField.removeAttribute('readonly');
-            // Você pode adicionar mais lógica aqui, como marcar a tag do bairro.
         } else {
             statusElement.textContent = '❌ Infelizmente ainda não atendemos a sua região.';
             statusElement.style.color = 'var(--validation-error)';

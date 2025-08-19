@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Vó para Vó - Cuidando de quem você ama</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==================== Estilos Globais e Reset ==================== */
         * {
@@ -46,6 +46,7 @@
             --text-3xl: 1.875rem;
             --text-4xl: 2.5rem;
             --text-5xl: 3.5rem;
+            --skeleton-bg-color: rgba(0, 0, 0, 0.1);
         }
 
         body {
@@ -114,6 +115,10 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
+        }
+        
+        .loading-audio {
+            animation: pulse-dots 1s infinite ease-in-out;
         }
         
         @media (prefers-reduced-motion: reduce) {
@@ -1000,7 +1005,6 @@
             box-shadow: var(--shadow-sm);
         }
         
-        /* Estilos do botão "Ler Artigo" e "Diminuir" */
         .blog-action-btn svg {
             transition: transform 0.3s ease;
             stroke: var(--primary-color);
@@ -1062,6 +1066,21 @@
             position: absolute;
             left: 0;
             color: var(--secondary-color);
+            font-weight: bold;
+        }
+        .blog-card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .blog-card th, .blog-card td {
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 0.75rem;
+            text-align: left;
+            font-size: var(--text-sm);
+        }
+        .blog-card th {
+            background-color: var(--background-end);
             font-weight: bold;
         }
 
@@ -1157,6 +1176,16 @@
         .faq-question:hover {
             background: rgba(245, 245, 245, 0.8);
             color: var(--primary-color);
+        }
+        .faq-question .faq-icon {
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            transition: transform 0.3s ease;
+            line-height: 1;
+            color: var(--primary-light);
+        }
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(45deg);
         }
         .faq-answer {
             max-height: 0;
@@ -1301,6 +1330,9 @@
         .option-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
+        }
+        .option-card.selected .option-icon {
+            filter: grayscale(1) invert(1);
         }
         .option-title {
             font-weight: 600;
@@ -1821,9 +1853,9 @@
                 <div class="indicator-dot" data-step="3"></div>
             </div>
             <div class="calc-steps">
-                <div class="calc-step completed" id="step1">
+                <div class="calc-step" id="step1">
                     <div class="step-label">
-                        <div class="step-number completed">1</div>
+                        <div class="step-number">1</div>
                         <div>
                             <div class="step-title">Tipo de Cuidado</div>
                             <div class="step-subtitle">Qual o nível de cuidado necessário?</div>
@@ -1864,9 +1896,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="calc-step completed" id="step2">
+                <div class="calc-step" id="step2">
                     <div class="step-label">
-                        <div class="step-number completed">2</div>
+                        <div class="step-number">2</div>
                         <div>
                             <div class="step-title">Período de Cuidado</div>
                             <div class="step-subtitle">Quantas horas por dia?</div>
@@ -1896,9 +1928,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="calc-step completed" id="step3">
+                <div class="calc-step" id="step3">
                     <div class="step-label">
-                        <div class="step-number completed">3</div>
+                        <div class="step-number">3</div>
                         <div>
                             <div class="step-title">Frequência Semanal</div>
                             <div class="step-subtitle">Quantos dias por semana?</div>
@@ -2366,7 +2398,7 @@
                         <p>Os valores variam conforme o tipo de serviço, frequência e necessidades específicas. Oferecemos orçamentos personalizados após uma avaliação gratuita. Entre em contato conosco para receber uma proposta adequada à sua situação.</p>
                     </div>
                 </div>
-
+                
                 <div class="faq-item reveal delay-7">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7" id="faq-question-7">
                         <span>E se eu não ficar satisfeito com o cuidador?</span>
@@ -2413,7 +2445,7 @@
                     <label for="servicos-interesse">Serviços que tenho interesse</label>
                     <div class="services-tags">
                         <label class="service-tag">
-                            <input type="checkbox" name="servicos[]" value="Cuidadora" checked disabled>
+                            <input type="checkbox" name="servicos[]" value="Cuidadora" checked>
                             <span>Cuidadora</span>
                         </label>
                         <label class="service-tag">
@@ -2846,9 +2878,7 @@
                     
                     const checkboxes = document.querySelectorAll('input[name="servicos[]"]');
                     checkboxes.forEach(cb => {
-                        if (cb.value !== 'Cuidadora') {
-                            cb.checked = false;
-                        }
+                        cb.checked = false;
                     });
                     
                     const selectedCheckbox = document.querySelector(`input[name="servicos[]"][value="${serviceName}"]`);
@@ -2970,7 +3000,6 @@
             blogCards.forEach(card => {
                 const readMoreBtn = card.querySelector('.read-more-btn');
                 const readMoreText = readMoreBtn.querySelector('span');
-                const readMoreIcon = readMoreBtn.querySelector('svg');
                 const fullContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
 
@@ -2978,18 +3007,15 @@
                     e.preventDefault();
                     e.stopPropagation();
 
-                    if (fullContent.classList.contains('visible')) {
-                        fullContent.classList.remove('visible');
-                        readMoreText.textContent = 'Ler artigo';
-                        readMoreIcon.innerHTML = `<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
-                        readMoreBtn.classList.remove('expanded');
-                        shortText.classList.remove('hidden');
-                    } else {
-                        fullContent.classList.add('visible');
+                    const isVisible = fullContent.classList.toggle('visible');
+                    readMoreBtn.classList.toggle('expanded');
+                    
+                    if (isVisible) {
                         readMoreText.textContent = 'Diminuir';
-                        readMoreIcon.innerHTML = `<path d="m18 15-6-6-6 6"/></svg>`;
-                        readMoreBtn.classList.add('expanded');
                         shortText.classList.add('hidden');
+                    } else {
+                        readMoreText.textContent = 'Ler artigo';
+                        shortText.classList.remove('hidden');
                     }
                 };
                 
@@ -3049,7 +3075,7 @@
                         audioIcon.textContent = '...';
                         audioIcon.classList.add('loading-audio');
                         await playAudio(text, button);
-                        audioIcon.textContent = '📢';
+                        audioIcon.textContent = '�';
                         audioIcon.classList.remove('loading-audio');
                     }
                 });
@@ -3279,13 +3305,14 @@
             const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
             const chatbotModal = document.getElementById('chatbotModal');
             const closeChatBtn = document.getElementById('closeChatBtn');
-            const chatbox = document.getElementById('chatbox');
             const chatInput = document.getElementById('chatInput');
             const sendBtn = document.getElementById('sendBtn');
             const initialMessage = "Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?";
 
+            // Adiciona a mensagem inicial ao histórico do chat
             chatHistory.push({ role: "model", parts: [{ text: initialMessage }] });
 
+            // Eventos para abrir o chatbot
             headerContactBtn.addEventListener('click', () => {
                 chatbotModal.classList.add('visible');
             });
@@ -3293,10 +3320,12 @@
                 chatbotModal.classList.add('visible');
             });
 
+            // Evento para fechar o chatbot
             closeChatBtn.addEventListener('click', () => {
                 chatbotModal.classList.remove('visible');
             });
             
+            // Eventos de envio de mensagem
             sendBtn.addEventListener('click', handleUserMessage);
             chatInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
@@ -3304,16 +3333,22 @@
                 }
             });
             
+            // Renderiza a mensagem inicial
             appendMessage(initialMessage, 'ai');
         }
 
         async function handleUserMessage() {
             const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
             const message = chatInput.value.trim();
             if (message === '') return;
 
             chatInput.value = '';
             
+            // Desabilita a entrada para evitar mensagens duplicadas
+            chatInput.disabled = true;
+            sendBtn.disabled = true;
+
             appendMessage(message, 'user');
             chatHistory.push({ role: "user", parts: [{ text: message }] });
 
@@ -3328,6 +3363,11 @@
                 console.error('Erro ao obter a resposta do chatbot:', error);
                 typingIndicator.remove();
                 appendMessage('Desculpe, não consegui processar sua solicitação no momento. Tente novamente mais tarde.', 'ai');
+            } finally {
+                // Reabilita a entrada
+                chatInput.disabled = false;
+                sendBtn.disabled = false;
+                chatInput.focus();
             }
         }
         
@@ -3342,6 +3382,7 @@
         }
 
         async function getChatbotResponse(history) {
+            // O prompt é construído dinamicamente com base no histórico da conversa
             const prompt = `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em serviços de cuidado para idosos no Itaim, São Paulo.
             Seu objetivo é responder a perguntas de forma amigável e profissional, com base nas seguintes informações:
             - A empresa oferece cuidadores, manicure/cabeleireiro, apoio psicológico e motorista para idosos.
@@ -3376,24 +3417,24 @@
                     if (response.ok) {
                         break;
                     } else if (response.status === 429) {
-                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        console.warn(`Tentativa ${i + 1}: Rate limit exceeded. Retrying in ${retryDelay / 1000}s.`);
                         await new Promise(resolve => setTimeout(resolve, retryDelay));
                         retryDelay *= 2;
                     } else {
-                        throw new Error(`Erro na API: ${response.statusText}`);
+                        throw new Error(`API Error: ${response.statusText}`);
                     }
                 } catch (error) {
                     if (i === maxRetries - 1) {
                         throw error;
                     }
-                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    console.warn(`Attempt ${i + 1}: Network error. Retrying in ${retryDelay / 1000}s.`, error);
                     await new Promise(resolve => setTimeout(resolve, retryDelay));
                     retryDelay *= 2;
                 }
             }
             
             if (!response || !response.ok) {
-                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+                throw new Error("Could not get a response from the API after multiple attempts.");
             }
 
             const result = await response.json();
@@ -3451,9 +3492,9 @@
                     }
                 }
                 calcular() {
-                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
-                    document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR');
-                    document.getElementById('totalMensal').textContent = valorMensal.toLocaleString('pt-BR');
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * (52 / 12); // Utiliza 52/12 para uma média mensal mais precisa
+                    document.getElementById('valorFinal').textContent = valorMensal.toFixed(2).replace('.', ',');
+                    document.getElementById('totalMensal').textContent = valorMensal.toFixed(2).replace('.', ',');
                     document.getElementById('valorHora').textContent = this.dados.preco;
                     const tipos = {
                         'basico': 'Cuidado Básico',
@@ -3472,11 +3513,17 @@
                     }
                 }
                 updateStepIndicator() {
+                    const steps = document.querySelectorAll('.calc-step');
                     const dots = document.querySelectorAll('.calculadora-container .indicator-dot');
-                    dots.forEach((dot, index) => {
-                        if (index < 3) {
-                            dot.classList.add('completed');
-                            dot.classList.remove('active');
+
+                    steps.forEach((step, index) => {
+                        const hasSelectedOption = step.querySelector('.option-card.selected');
+                        if (hasSelectedOption) {
+                            step.classList.add('completed');
+                            if (dots[index]) dots[index].classList.add('active');
+                        } else {
+                            step.classList.remove('completed');
+                            if (dots[index]) dots[index].classList.remove('active');
                         }
                     });
                 }
@@ -3487,8 +3534,8 @@
                         'mobilidade': 'Mobilidade Reduzida',
                         'intensivo': 'Cuidado Intensivo'
                     };
-                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
-                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:🏥 Tipo: ${tipos[this.dados.tipo]}⏰ Período: ${this.dados.horas}h/dia📅 Frequência: ${this.dados.dias} dias/semana💰 Estimativa: R$ ${valorMensal.toLocaleString('pt-BR')}/mêsGostaria de agendar uma avaliação!`;
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * (52 / 12);
+                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:\n\n*Tipo:* ${tipos[this.dados.tipo]}\n*Período:* ${this.dados.horas}h/dia\n*Frequência:* ${this.dados.dias} dias/semana\n*Estimativa:* R$ ${valorMensal.toFixed(2).replace('.', ',')}/mês\n\nGostaria de agendar uma avaliação!`;
                     const telefone = '5511999999999';
                     const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
                     window.open(url, '_blank');
@@ -3500,4 +3547,4 @@
     </script>
 </body>
 </html>
-
+�

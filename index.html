@@ -1898,6 +1898,17 @@
                 </div>
                 
                 <div class="form-group">
+                    <label for="idade-idoso">Faixa etária do idoso</label>
+                    <select id="idade-idoso" name="idade-idoso">
+                        <option value="">Selecione a faixa etária</option>
+                        <option value="60-70">60 - 70 anos</option>
+                        <option value="71-80">71 - 80 anos</option>
+                        <option value="81-90">81 - 90 anos</option>
+                        <option value="90+">Acima de 90 anos</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
                     <label for="servicos-interesse">Serviços que tenho interesse</label>
                     <div class="services-tags">
                         <label class="service-tag">
@@ -1959,7 +1970,11 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 De Vó para Vó. Cuidando com amor e carinho.</p>
+            <p>
+                © 2025 De Vó para Vó. Cuidando com amor e carinho.
+                <br>
+                CNPJ: xxxx
+            </p>
         </div>
     </footer>
     
@@ -2123,8 +2138,9 @@
             message += `Nome: ${data.nome}\n`;
             message += `E-mail: ${data.email}\n`;
             message += `Telefone: ${data.telefone}\n`;
-            message += `Serviços de interesse: ${selectedServices || 'Nenhum'}\n`;
             message += `Para quem: ${data['para-quem']}\n`;
+            message += `Idade do Idoso: ${data['idade-idoso']}\n`;
+            message += `Serviços de interesse: ${selectedServices || 'Nenhum'}\n`;
             message += `Endereço: ${data.endereco} - ${data.bairro}, ${data.cidade}\n`;
             message += `CEP: ${data.cep}\n`;
             message += `CPF: ${data.cpf || 'Não informado'}`;
@@ -2405,7 +2421,7 @@
                         audioIcon.textContent = '...';
                         audioIcon.classList.add('loading-audio');
                         await playAudio(text, button);
-                        audioIcon.textContent = '📢';
+                        audioIcon.textContent = '�';
                         audioIcon.classList.remove('loading-audio');
                     }
                 });
@@ -2585,3 +2601,4 @@
     </script>
 </body>
 </html>
+�

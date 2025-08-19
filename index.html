@@ -634,19 +634,6 @@
             transition: opacity 0.4s ease;
         }
 
-        .service-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: all 0.6s ease;
-            transform: scale(0);
-        }
-
         .service-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: var(--shadow-xl);
@@ -1124,7 +1111,6 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            cursor: pointer;
         }
 
         .blog-card:hover {
@@ -1557,7 +1543,7 @@
             }
             100% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+                box-shadow: 0 0 0 0 rgba(37, 11, 102, 0);
             }
         }
 
@@ -1829,132 +1815,6 @@
         </div>
     </section>
     
-    <section class="blog" id="blog">
-        <div class="container">
-            <h2 class="section-title reveal">Blog</h2>
-            <div class="blog-grid">
-                <!-- Artigo 1 -->
-                <div class="blog-card reveal" style="animation-delay: 0.1s;">
-                    <div class="blog-card-content">
-                        <div class="article-header">
-                            <h3 class="expandable-title">Dicas essenciais para o dia a dia do idoso</h3>
-                        </div>
-                        <p class="short-text">Descubra como pequenas mudanças na rotina podem fazer uma grande diferença na qualidade de vida...</p>
-                        <div class="full-article-content" id="article-1">
-                            <div class="article-full-text">
-                                <h4>O que são cuidados diários?</h4>
-                                <p>Cuidar de um idoso vai muito além de garantir a sua saúde física. Envolve proporcionar um ambiente seguro, com carinho, atenção e respeito à sua história e individualidade.</p>
-                                <p>Para garantir que o idoso tenha um dia a dia mais confortável e feliz, é fundamental focar em pequenos detalhes. Uma rotina bem estruturada pode ajudar a manter a saúde física e mental, promovendo autonomia e bem-estar.</p>
-                                <h4>Dicas práticas para a rotina:</h4>
-                                <ul>
-                                    <li><strong>Hidratação e nutrição:</strong> Garanta que a pessoa se hidrate bem ao longo do dia e tenha uma dieta rica e balanceada, com alimentos que ajudem na manutenção da força e da imunidade.</li>
-                                    <li><strong>Atividades sociais:</strong> Incentive a interação com amigos e familiares, seja presencialmente ou por videochamadas. A socialização é crucial para prevenir a solidão e a depressão.</li>
-                                    <li><strong>Ambiente seguro:</strong> Revise a casa para evitar acidentes. Evite tapetes, fios soltos e garanta boa iluminação, principalmente em escadas e banheiros, para prevenir quedas.</li>
-                                    <li><strong>Exercícios leves:</strong> Caminhadas curtas ou alongamentos diários ajudam a manter a mobilidade e a circulação.</li>
-                                    <li><strong>Cuidados com a medicação:</strong> Organize os horários dos medicamentos para garantir a administração correta e evitar esquecimentos.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn">Ler artigo</a>
-                            <button class="generate-tip-btn" data-topic="dicas para o dia a dia de idosos">✨ Gerar nova dica</button>
-                            <button class="audio-btn" data-text-for-audio="" style="display: none;">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container" style="display: none;">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line skeleton-title"></div>
-                                <div class="skeleton-line skeleton-text"></div>
-                                <div class="skeleton-line skeleton-text-half"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Artigo 2 -->
-                <div class="blog-card reveal" style="animation-delay: 0.2s;">
-                    <div class="blog-card-content">
-                        <div class="article-header">
-                            <h3 class="expandable-title">A importância da estimulação cognitiva</h3>
-                        </div>
-                        <p class="short-text">Conheça atividades e jogos que ajudam a manter a mente ativa e previnem o declínio cognitivo...</p>
-                        <div class="full-article-content" id="article-2">
-                            <div class="article-full-text">
-                                <h4>O que é estimulação cognitiva?</h4>
-                                <p>A estimulação cognitiva são exercícios e atividades que visam manter e aprimorar as funções cerebrais, como memória, raciocínio, atenção e linguagem. É uma ferramenta fundamental para a saúde mental na terceira idade, ajudando a prevenir o declínio cognitivo e a manter a mente ativa.</p>
-                                <p>Para manter o cérebro em forma, é importante praticar atividades que exercitem diferentes áreas. Isso pode ser feito de forma divertida e interativa, com a participação de amigos e familiares.</p>
-                                <h4>Atividades que ajudam:</h4>
-                                <ul>
-                                    <li><strong>Leitura:</strong> Ler livros, jornais ou revistas diariamente é um excelente exercício para o cérebro, estimulando a memória e a capacidade de concentração.</li>
-                                    <li><strong>Passatempos e jogos:</strong> Palavras cruzadas, quebra-cabeças, jogos de memória e Sudoku são ótimos para manter o cérebro em forma.</li>
-                                    <li><strong>Música:</strong> Ouvir música, aprender a tocar um instrumento ou cantar pode ativar diferentes áreas do cérebro.</li>
-                                    <li><strong>Conversas e interação social:</strong> Participar de conversas e discussões estimula a capacidade de comunicação e o raciocínio.</li>
-                                    <li><strong>Aprender algo novo:</strong> Aprender uma nova habilidade, como um idioma ou um hobby, pode criar novas conexões neurais e fortalecer o cérebro.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn">Ler artigo</a>
-                            <button class="generate-tip-btn" data-topic="estimulação cognitiva para idosos">✨ Gerar nova dica</button>
-                            <button class="audio-btn" data-text-for-audio="" style="display: none;">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container" style="display: none;">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line skeleton-title"></div>
-                                <div class="skeleton-line skeleton-text"></div>
-                                <div class="skeleton-line skeleton-text-half"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Artigo 3 -->
-                <div class="blog-card reveal" style="animation-delay: 0.3s;">
-                    <div class="blog-card-content">
-                        <div class="article-header">
-                            <h3 class="expandable-title">Nutrição na terceira idade: um guia completo</h3>
-                        </div>
-                        <p class="short-text">Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
-                        <div class="full-article-content" id="article-3">
-                            <div class="article-full-text">
-                                <h4>A importância de uma dieta balanceada</h4>
-                                <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular, prevenir doenças crônicas e até mesmo melhorar o humor. O corpo de uma pessoa na terceira idade tem necessidades nutricionais diferentes, e a dieta deve ser adaptada para garantir que todas elas sejam atendidas.</p>
-                                <h4>Alimentos essenciais:</h4>
-                                <ul>
-                                    <li><strong>Cálcio:</strong> Essencial para a saúde dos ossos. Inclua laticínios, como iogurte e queijo, e vegetais de folhas escuras, como espinafre e couve, na dieta.</li>
-                                    <li><strong>Proteínas:</strong> Fundamental para a manutenção da massa muscular, que tende a diminuir com a idade. Carnes magras, ovos, peixes e leguminosas (feijão, lentilha) são ótimas fontes.</li>
-                                    <li><strong>Fibras:</strong> Ajudam no bom funcionamento intestinal e na prevenção de doenças. Frutas, verduras e grãos integrais são ricos em fibras.</li>
-                                    <li><strong>Vitamina D:</strong> Essencial para a absorção de cálcio. A exposição ao sol é a principal fonte, mas também pode ser encontrada em peixes gordurosos como salmão e sardinha.</li>
-                                    <li><strong>Ômega-3:</strong> Ajuda na saúde do cérebro e na redução de inflamações. Peixes como salmão, chia e nozes são ricos nesse nutriente.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <a href="#" class="read-more-btn">Ler artigo</a>
-                            <button class="generate-tip-btn" data-topic="nutrição para idosos">✨ Gerar nova dica</button>
-                            <button class="audio-btn" data-text-for-audio="" style="display: none;">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container" style="display: none;">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line skeleton-title"></div>
-                                <div class="skeleton-line skeleton-text"></div>
-                                <div class="skeleton-line skeleton-text-half"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="testimonials" id="depoimentos">
         <div class="container">
             <h2 class="section-title reveal">Depoimentos</h2>

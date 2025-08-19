@@ -1105,12 +1105,6 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .blog-card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
         .blog-card-content {
             padding: 2rem;
             display: flex;
@@ -1632,7 +1626,7 @@
                 <div class="blog-card reveal" style="animation-delay: 0.1s;">
                     <div class="blog-card-content">
                         <div class="article-header">
-                            <h3>Dicas essenciais para o dia a dia do idoso</h3>
+                            <h3 class="expandable-title">Dicas essenciais para o dia a dia do idoso</h3>
                         </div>
                         <p class="short-text">Descubra como pequenas mudanças na rotina podem fazer uma grande diferença na qualidade de vida...</p>
                         <div class="full-article-content" id="article-1">
@@ -1654,6 +1648,7 @@
                             </div>
                         </div>
                         <div class="blog-card-actions">
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="dicas para o dia a dia de idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -1670,7 +1665,7 @@
                 <div class="blog-card reveal" style="animation-delay: 0.2s;">
                     <div class="blog-card-content">
                         <div class="article-header">
-                            <h3>A importância da estimulação cognitiva</h3>
+                            <h3 class="expandable-title">A importância da estimulação cognitiva</h3>
                         </div>
                         <p class="short-text">Conheça atividades e jogos que ajudam a manter a mente ativa e previnem o declínio cognitivo...</p>
                         <div class="full-article-content" id="article-2">
@@ -1691,6 +1686,7 @@
                             </div>
                         </div>
                         <div class="blog-card-actions">
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="estimulação cognitiva para idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -1707,7 +1703,7 @@
                 <div class="blog-card reveal" style="animation-delay: 0.3s;">
                     <div class="blog-card-content">
                         <div class="article-header">
-                            <h3>Nutrição na terceira idade: um guia completo</h3>
+                            <h3 class="expandable-title">Nutrição na terceira idade: um guia completo</h3>
                         </div>
                         <p class="short-text">Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
                         <div class="full-article-content" id="article-3">
@@ -1728,6 +1724,7 @@
                             </div>
                         </div>
                         <div class="blog-card-actions">
+                            <a href="#" class="read-more-btn">Ler artigo</a>
                             <button class="generate-tip-btn" data-topic="nutrição para idosos">✨ Gerar nova dica</button>
                             <button class="audio-btn" data-text-for-audio="" style="display: none;">
                                 <span class="audio-icon">📢</span>
@@ -2290,14 +2287,19 @@
                 
                 const toggleContent = (e) => {
                     e.preventDefault();
+                    // Garante que o evento de clique não se propague para outros elementos
+                    e.stopPropagation();
+
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
                         readMoreBtn.textContent = 'Ler artigo';
                         shortText.classList.remove('hidden');
+                        readMoreBtn.classList.remove('decrease');
                     } else {
                         fullContent.classList.add('visible');
                         readMoreBtn.textContent = 'Diminuir';
                         shortText.classList.add('hidden');
+                        readMoreBtn.classList.add('decrease');
                     }
                 };
                 
@@ -2512,6 +2514,9 @@
                 
                 const toggleContent = (e) => {
                     e.preventDefault();
+                    // Garante que o evento de clique não se propague para outros elementos
+                    e.stopPropagation();
+
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
                         readMoreBtn.textContent = 'Ler artigo';

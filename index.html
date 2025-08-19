@@ -778,6 +778,47 @@
             margin-top: 0.5rem;
         }
         .service-tag {
+            position: relative;
+            user-select: none;
+        }
+        .service-tag input[type="checkbox"]:disabled + span {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .service-tag input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .service-tag span {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: rgba(245, 245, 245, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .service-tag:hover span {
+            border-color: var(--primary-color);
+            background: rgba(249, 247, 244, 0.9);
+            transform: translateY(-2px);
+        }
+        .service-tag input[type="checkbox"]:checked+span {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--text-on-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+        }
+
+        /* Novo estilo para os botões da área de cobertura */
+        #bairros-atuacao .service-tag {
             background: rgba(245, 245, 245, 0.8);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(0, 0, 0, 0.1);
@@ -791,18 +832,21 @@
             padding: 0.6rem 1.2rem;
             text-align: center;
         }
-        .service-tag.selected,
-        .service-tag:hover {
+
+        #bairros-atuacao .service-tag.selected,
+        #bairros-atuacao .service-tag:hover {
             border-color: var(--primary-color);
             background: rgba(249, 247, 244, 0.9);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
         }
-        .service-tag.selected {
+
+        #bairros-atuacao .service-tag.selected {
             background-color: var(--primary-color);
             color: var(--text-on-dark);
             box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
         }
+
         .submit-btn {
             width: 100%;
             background-color: var(--primary-color);
@@ -1716,8 +1760,6 @@
     <header class="header reveal">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-icon">
-                </div>
                 <div>
                     <a class="title" href="#">De Vó para Vó</a>
                 </div>
@@ -1739,10 +1781,6 @@
     </header>
 
     <section class="hero">
-        <div class="parallax-bg-1 parallax-element" data-speed="0.3"></div>
-        <div class="parallax-bg-2 parallax-element" data-speed="0.2"></div>
-        <div class="parallax-bg-3 parallax-element" data-speed="0.1"></div>
-        
         <div class="hero-container">
             <div class="hero-content reveal-left">
                 <h1>Cuidando de quem você ama</h1>
@@ -2325,84 +2363,6 @@
         </div>
     </section>
 
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2 class="section-title reveal">Perguntas Frequentes</h2>
-            <div class="faq-container">
-                
-                <div class="faq-item reveal delay-1">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
-                        <span>Como vocês selecionam os cuidadores?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-1" aria-labelledby="faq-question-1" role="region">
-                        <p>Nosso processo de seleção é rigoroso e único. Todos os cuidadores passam por verificação de antecedentes, entrevistas detalhadas, testes práticos e, principalmente, um período de treinamento em nossa própria casa com nossa avó de 94 anos. Isso garante que eles não apenas tenham as habilidades técnicas, mas também o carinho e a paciência necessários.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item reveal delay-2">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
-                        <span>Qual é o diferencial do "De Vó para Vó"?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-2" aria-labelledby="faq-question-2" role="region">
-                        <p>Nosso grande diferencial é que todos os profissionais trabalham primeiro em nossa própria casa, cuidando da nossa avó Dona Tereca. Isso significa que quando chegam à sua casa, já sabem exatamente como tratar um idoso com amor, respeito e profissionalismo. Não é apenas um trabalho para eles, é uma filosofia de cuidado.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item reveal delay-3">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">
-                        <span>Quais serviços vocês oferecem?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-3" aria-labelledby="faq-question-3" role="region">
-                        <p>Oferecemos cuidadores especializados, enfermagem domiciliar, fisioterapia, apoio psicológico, serviços de manicure e cabeleireiro, e motorista para consultas e passeios. Todos os serviços são personalizados conforme a necessidade de cada família.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item reveal delay-4">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
-                        <span>Vocês atendem em quais regiões?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-4" aria-labelledby="faq-question-4" role="region">
-                        <p>Atendemos principalmente na região do Itaim e bairros próximos em São Paulo. Para atendimentos em outras regiões, consulte-nos sobre disponibilidade e possíveis taxas de deslocamento.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item reveal delay-5">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">
-                        <span>Como é feito o acompanhamento dos cuidados?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-5" aria-labelledby="faq-question-5" role="region">
-                        <p>Mantemos contato regular com as famílias através de relatórios diários, chamadas de acompanhamento e visitas de supervisão. Nossos profissionais são treinados para documentar todas as atividades e comunicar qualquer mudança no estado de saúde ou humor do idoso.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item reveal delay-6">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6">
-                        <span>Qual o valor dos serviços?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-6" aria-labelledby="faq-question-6" role="region">
-                        <p>Os valores variam conforme o tipo de serviço, frequência e necessidades específicas. Oferecemos orçamentos personalizados após uma avaliação gratuita. Entre em contato conosco para receber uma proposta adequada à sua situação.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item reveal delay-7">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7" id="faq-question-7">
-                        <span>E se eu não ficar satisfeito com o cuidador?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-7" aria-labelledby="faq-question-7" role="region">
-                        <p>Sua satisfação é nossa prioridade. Se por qualquer motivo você não estiver satisfeito, substituímos o profissional imediatamente. Temos uma equipe diversificada para garantir que encontremos o cuidador ideal para sua família.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="contact" id="contato">
         <div class="container">
             <h2 class="section-title reveal">Entre em contato</h2>
@@ -2737,7 +2697,7 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             
-            const selectedServices = Array.from(document.querySelectorAll('button[name="servicos[]"]:checked'))
+            const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
                                                      .map(checkbox => checkbox.value)
                                                      .join(', ');
 
@@ -2821,7 +2781,6 @@
             const modal = document.getElementById('successModal');
             const bairroTags = document.querySelectorAll('#bairros-atuacao .service-tag');
 
-            // Lógica para as tags de bairro
             bairroTags.forEach(tag => {
                 tag.addEventListener('click', () => {
                     bairroTags.forEach(t => t.classList.remove('selected'));
@@ -2879,19 +2838,17 @@
 
             if (!statusElement || !enderecoField || !bairroField || !cidadeField) return;
 
-            // Lista de bairros atendidos e seus sub-bairros/equivalentes
             const bairrosAtendidos = {
                 'Itaim': ['Itaim Bibi'],
-                'Jardins': ['Jardim América', 'Jardim Paulista', 'Jardim Europa', 'Jardim Paulistano'],
+                'Jardins': ['Jardim América', 'Jardim Paulista', 'Jardim Europa', 'Jardim Paulistano', 'Jardins'],
                 'Panamby': ['Panamby', 'Paraíso do Morumbi', 'Vila Andrade'],
                 'Morumbi': ['Morumbi'],
-                'Moema': ['Moema'],
+                'Moema': ['Moema', 'Indianópolis'],
                 'Pinheiros': ['Pinheiros'],
                 'Vila Madalena': ['Vila Madalena'],
                 'Higienópolis': ['Higienópolis']
             };
 
-            // Limpa a seleção anterior das tags de bairro
             bairroTags.forEach(tag => tag.classList.remove('selected'));
 
             try {
@@ -2908,7 +2865,6 @@
                 bairroField.value = data.bairro;
                 cidadeField.value = `${data.localidade} - ${data.uf}`;
 
-                // Lógica de verificação do bairro
                 let isBairroAtendido = false;
                 let bairroPrincipal = '';
 
@@ -2924,7 +2880,7 @@
                     statusElement.textContent = `✅ Endereço encontrado. Atendemos no bairro ${bairroPrincipal}!`;
                     statusElement.style.color = 'var(--validation-success)';
                     enderecoField.removeAttribute('readonly');
-                    const tagCorreta = document.querySelector(`.service-tag[data-bairro-principal="${bairroPrincipal}"]`);
+                    const tagCorreta = document.querySelector(`#bairros-atuacao .service-tag[data-bairro-principal="${bairroPrincipal}"]`);
                     if (tagCorreta) tagCorreta.classList.add('selected');
                 } else {
                     statusElement.textContent = '❌ Infelizmente ainda não atendemos a sua região.';

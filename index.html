@@ -484,8 +484,8 @@
 
         .story-text h3 {
              font-size: var(--text-xl);
-             font-weight: bold;
-             color: var(--primary-color);
+            font-weight: bold;
+            color: var(--primary-color);
         }
 
         .story-text p {
@@ -821,6 +821,7 @@
         .testimonial-content:hover::after {
             opacity: 1;
             transform: scale(1);
+            animation: ripple 0.6s ease-out;
         }
 
         .testimonial-text {
@@ -1293,6 +1294,74 @@
             color: var(--text-on-dark);
         }
 
+        /* ==================== Estilos do Modal de Confirmação ==================== */
+        .modal {
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none; /* Oculto por padrão */
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.visible {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: var(--background-start);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-xl);
+            max-width: 90%;
+            width: 450px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .modal.visible .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content h3 {
+            color: var(--primary-dark);
+            font-size: var(--text-2xl);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .close-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-on-dark);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+        }
+
         /* ==================== Animações ==================== */
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0px); }
@@ -1371,6 +1440,18 @@
         .parallax-bg-3 { animation-delay: 4s; animation-duration: 12s; }
         .header.scrolled { padding: 0.5rem 0; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); }
         .testimonial-image:hover img { transform: scale(1.05); box-shadow: 25px rgba(0, 0, 0, 0.15); }
+
+        /* ==================== Respeito à preferência de movimento ==================== */
+        /* Usa uma media query para desativar animações se o usuário tiver essa preferência */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            .parallax-element {
+                will-change: auto;
+            }
+        }
 
         /* ==================== Responsividade (Media Queries) ==================== */
         @media (max-width: 768px) {
@@ -1648,6 +1729,7 @@
                             <div class="article-full-text">
                                 <h4>O que é estimulação cognitiva?</h4>
                                 <p>A estimulação cognitiva são exercícios e atividades que visam manter e aprimorar as funções cerebrais, como memória, raciocínio, atenção e linguagem. É uma ferramenta fundamental para a saúde mental na terceira idade, ajudando a prevenir o declínio cognitivo e a manter a mente ativa.</p>
+                                <p>Para manter o cérebro em forma, é importante praticar atividades que exercitem diferentes áreas. Isso pode ser feito de forma divertida e interativa, com a participação de amigos e familiares.</p>
                                 <h4>Atividades que ajudam:</h4>
                                 <ul>
                                     <li><strong>Leitura:</strong> Ler livros, jornais ou revistas diariamente é um excelente exercício para o cérebro, estimulando a memória e a capacidade de concentração.</li>
@@ -1899,6 +1981,12 @@
         // ==================== Scripts de Inicialização ====================
         
         document.addEventListener('DOMContentLoaded', function() {
+            // Verifica a preferência do usuário por movimento reduzido e aplica a classe no HTML
+            const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (mediaQuery.matches) {
+                document.documentElement.classList.add('prefers-reduced-motion');
+            }
+
             initScrollReveal();
             initParallax();
             initFormHandlers();
@@ -2039,8 +2127,8 @@
             const data = Object.fromEntries(formData.entries());
             
             const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
-                                                  .map(checkbox => checkbox.value)
-                                                  .join(', ');
+                                             .map(checkbox => checkbox.value)
+                                             .join(', ');
 
             let message = "Olá, gostaria de um orçamento!\n\n";
             message += `Nome: ${data.nome}\n`;
@@ -2467,13 +2555,13 @@
             if (audioDataPart) {
                 const base64Audio = audioDataPart.inlineData.data;
                 const pcmData = base64ToArrayBuffer(base64Audio);
-                const pcm16 = new Int16Array(pcmData);
                 
                 // MimeType is 'audio/L16; rate=24000'
                 const sampleRate = 24000;
                 
-                const audioBuffer = audioContext.createBuffer(1, pcm16.length, sampleRate);
+                const audioBuffer = audioContext.createBuffer(1, pcmData.byteLength / 2, sampleRate);
                 const nowBuffering = audioBuffer.getChannelData(0);
+                const pcm16 = new Int16Array(pcmData);
                 for (let i = 0; i < pcm16.length; i++) {
                     nowBuffering[i] = pcm16[i] / 32768;
                 }
@@ -2495,38 +2583,6 @@
             return bytes.buffer;
         }
 
-        function initBlogLinks() {
-            const blogCards = document.querySelectorAll('.blog-card');
-            
-            blogCards.forEach(card => {
-                const readMoreBtn = card.querySelector('.blog-card-actions .read-more-btn');
-                const fullContent = card.querySelector('.full-article-content');
-                const shortText = card.querySelector('.short-text');
-                const title = card.querySelector('.article-header h3');
-
-                const toggleContent = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    if (fullContent.classList.contains('visible')) {
-                        fullContent.classList.remove('visible');
-                        readMoreBtn.textContent = 'Ler artigo';
-                        shortText.classList.remove('hidden');
-                    } else {
-                        fullContent.classList.add('visible');
-                        readMoreBtn.textContent = 'Diminuir';
-                        shortText.classList.add('hidden');
-                    }
-                };
-                
-                if (readMoreBtn) {
-                    readMoreBtn.addEventListener('click', toggleContent);
-                }
-                if (title) {
-                    title.addEventListener('click', toggleContent);
-                }
-            });
-        }
     </script>
 </body>
 </html>

@@ -30,14 +30,12 @@
             --text-tertiary: #6B7280;
             --text-light: #9CA3AF;
             --text-on-dark: #F9FAFB;
-            /* Cores de Sistema */
-            --success-color: #10B981;
-            --error-color: #EF4444;
-            --warning-color: #F59E0B;
-            --whatsapp-green: #25D366;
             /* Cores de Fundo (Off-white com textura sutil) */
             --background-start: #F8F4EF;
             --background-end: #EFEBE4;
+            --chat-bg: #F0EADF; /* Fundo do chat */
+            --user-message-bg: #D4B996; /* Cor da bolha do usuário */
+            --ai-message-bg: #EAE3D4; /* Cor da bolha da IA */
             /* Sombras Suaves */
             --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 5px 10px rgba(0, 0, 0, 0.08);
@@ -123,7 +121,7 @@
         }
 
         .loading-logo::before {
-            content: '👵�';
+            content: '👵💛';
             font-size: 2.5rem;
             animation: logoSpin 5s linear infinite;
         }
@@ -307,7 +305,7 @@
             box-shadow: var(--shadow-md);
             background-color: var(--primary-dark);
         }
-
+        
         /* ==================== Seção Hero (Principal) ==================== */
         .hero {
             padding: 120px 0 60px;
@@ -353,7 +351,7 @@
         }
 
         .whatsapp-btn {
-            background-color: var(--whatsapp-green);
+            background-color: var(--primary-color);
             color: var(--text-on-dark);
             padding: 1rem 2.5rem;
             border: none;
@@ -370,10 +368,10 @@
         
         .whatsapp-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
-            background-color: #20B358;
+            box-shadow: 0 10px 20px rgba(93, 47, 9, 0.4);
+            background-color: var(--primary-dark);
         }
-
+        
         .hero-image {
             position: relative;
             border-radius: 25px;
@@ -432,7 +430,7 @@
         }
 
         .story-text h3 {
-             font-size: var(--text-xl);
+            font-size: var(--text-xl);
             font-weight: 700;
             color: var(--secondary-color);
         }
@@ -1182,7 +1180,7 @@
             border-radius: 5px;
         }
         
-.skeleton-title {
+        .skeleton-title {
             width: 60%;
         }
         
@@ -1308,6 +1306,142 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
             background-color: var(--primary-dark);
+        }
+        
+        /* ==================== Estilos do Chatbot ==================== */
+        .chatbot-content {
+            background-color: var(--background-start);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-xl);
+            max-width: 90%;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .modal.visible .chatbot-content {
+            transform: scale(1);
+        }
+
+        .chatbot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            color: var(--primary-dark);
+        }
+
+        .chatbot-header .close-btn-chat {
+            background: none;
+            border: none;
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .chatbot-header .close-btn-chat:hover {
+            color: var(--secondary-color);
+        }
+
+        .chatbox {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--chat-bg);
+            border-radius: 15px;
+            overflow-y: auto;
+            max-height: 400px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background-color: var(--user-message-bg);
+            color: var(--text-primary);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.ai {
+            background-color: var(--ai-message-bg);
+            color: var(--text-secondary);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.ai-typing {
+            font-style: italic;
+            color: var(--text-tertiary);
+        }
+
+        .chatbot-input {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            font-size: var(--text-base);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .chatbot-input button {
+            background-color: var(--primary-color);
+            color: var(--text-on-dark);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chatbot-input button:hover {
+            background-color: var(--primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: scale(1.05);
+        }
+        
+        .send-icon {
+            transform: translateX(2px);
+        }
+        
+        .loading-dots {
+            font-size: 2rem;
+            color: var(--primary-color);
+            animation: pulse-dots 1.5s infinite;
         }
 
         /* ==================== Estilos da FAQ ==================== */
@@ -1437,7 +1571,7 @@
             50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
-        
+
         @keyframes logoGlow {
             0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
             50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
@@ -1482,6 +1616,11 @@
                 transform: scale(1);
                 box-shadow: 0 0 0 0 rgba(37, 11, 102, 0);
             }
+        }
+        
+        @keyframes pulse-dots {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         @keyframes fadeIn {
@@ -2114,6 +2253,27 @@
         </div>
     </div>
 
+    <!-- Novo Modal do Chatbot -->
+    <div id="chatbotModal" class="modal">
+        <div class="chatbot-content">
+            <div class="chatbot-header">
+                <h3>Olá! Como posso te ajudar? 👋</h3>
+                <button class="close-btn-chat" id="closeChatBtn">✕</button>
+            </div>
+            <div class="chatbox" id="chatbox">
+                <div class="message ai">
+                    Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+                <button id="sendBtn" aria-label="Enviar mensagem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="send-icon"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ==================== Scripts de Inicialização ====================
         
@@ -2133,6 +2293,7 @@
             initNavToggle();
             initAITipGenerators();
             initFAQ();
+            initChatbot(); // Inicializa o chatbot
             
             // Oculta a tela de carregamento após um tempo
             setTimeout(function() {
@@ -2225,7 +2386,8 @@
         function initNavToggle() {
             const navToggleBtn = document.getElementById('navToggleBtn');
             const navMenu = document.getElementById('navMenu');
-            const ctaButton = document.getElementById('header-contact-btn');
+            
+            if (!navToggleBtn || !navMenu) return;
             
             navToggleBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
@@ -2242,12 +2404,6 @@
                     navToggleBtn.textContent = '☰';
                 });
             });
-            
-            if (ctaButton) {
-                ctaButton.addEventListener('click', () => {
-                    scrollToContact();
-                });
-            }
         }
 
         function openWhatsApp(message) {
@@ -2349,10 +2505,10 @@
                 if (bairroField) bairroField.value = data.bairro;
                 if (cidadeField) cidadeField.value = `${data.localidade} - ${data.uf}`;
                 statusElement.textContent = '✅ Endereço encontrado!';
-                statusElement.style.color = 'var(--whatsapp-green)';
+                statusElement.style.color = '#10B981'; /* Usando o valor diretamente para não depender de uma var CSS */
             } catch (error) {
                 statusElement.textContent = '❌ CEP não encontrado. Verifique o número.';
-                statusElement.style.color = '#dc3545';
+                statusElement.style.color = '#EF4444'; /* Usando o valor diretamente para não depender de uma var CSS */
                 const enderecoField = document.getElementById('endereco');
                 const bairroField = document.getElementById('bairro');
                 const cidadeField = document.getElementById('cidade');
@@ -2391,21 +2547,7 @@
                 });
             });
             
-            // Outros botões de contato
-            const ctaButton = document.getElementById('header-contact-btn');
-            if (ctaButton) {
-                ctaButton.addEventListener('click', () => {
-                    scrollToContact();
-                });
-            }
-
-            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
-            if (heroWhatsappBtn) {
-                heroWhatsappBtn.addEventListener('click', () => {
-                    const message = "Olá! Gostaria de saber mais sobre os serviços de cuidadores do De Vó para Vó.";
-                    openWhatsApp(message);
-                });
-            }
+            // Os botões "Fale Conosco" agora abrirão o chatbot, então a lógica aqui foi removida.
         }
         
         function initCarousel() {
@@ -2414,6 +2556,8 @@
             const prevBtn = document.querySelector('.carousel-btn.prev-btn');
             const nextBtn = document.querySelector('.carousel-btn.next-btn');
             const wrapper = document.querySelector('.testimonial-carousel-wrapper');
+            if (!carousel || !slides.length || !prevBtn || !nextBtn || !wrapper) return;
+            
             let currentIndex = 0;
             let autoSlideInterval;
             let isDragging = false;
@@ -2421,16 +2565,12 @@
             let currentTranslate = 0;
             let prevTranslate = 0;
 
-            // Define a altura do wrapper do carrossel para que ele não mude
             function setCarouselHeight() {
-                if(slides.length > 0) {
-                    const maxSlideHeight = Math.max(...Array.from(slides).map(s => s.offsetHeight));
-                    wrapper.style.height = `${maxSlideHeight}px`;
-                }
+                const maxSlideHeight = Math.max(...Array.from(slides).map(s => s.offsetHeight));
+                wrapper.style.height = `${maxSlideHeight}px`;
             }
 
             function updateCarousel() {
-                if (slides.length === 0) return;
                 currentTranslate = -currentIndex * slides[0].offsetWidth;
                 carousel.style.transform = `translateX(${currentTranslate}px)`;
             }
@@ -2446,23 +2586,19 @@
             window.addEventListener('resize', setCarouselHeight);
             setCarouselHeight();
             
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    clearInterval(autoSlideInterval);
-                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-                    updateCarousel();
-                    startAutoSlide();
-                });
-            }
+            prevBtn.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                updateCarousel();
+                startAutoSlide();
+            });
             
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    clearInterval(autoSlideInterval);
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    updateCarousel();
-                    startAutoSlide();
-                });
-            }
+            nextBtn.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+                startAutoSlide();
+            });
 
             // Touch events for swipe functionality
             wrapper.addEventListener('touchstart', (e) => {
@@ -2714,11 +2850,9 @@
             }
         }
 
-        // Helper functions for audio conversion
         function base64ToArrayBuffer(base64) {
             const binaryString = window.atob(base64);
             const len = binaryString.length;
-            // CORREÇÃO: Usa Uint8Array, que é o tipo de array correto para bytes de 8 bits.
             const bytes = new Uint8Array(len);
             for (let i = 0; i < len; i++) {
                 bytes[i] = binaryString.charCodeAt(i);
@@ -2727,18 +2861,15 @@
         }
 
         // Código do FAQ
-        // Inicialização do FAQ
         function initFAQ() {
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
                 
-                // Clique na pergunta
                 question.addEventListener('click', () => {
                     toggleFAQItem(item, faqItems);
                 });
                 
-                // Navegação por teclado
                 question.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
@@ -2753,12 +2884,10 @@
             });
         }
         
-        // Função para abrir/fechar FAQ
         function toggleFAQItem(currentItem, allItems) {
             const question = currentItem.querySelector('.faq-question');
             const isActive = currentItem.classList.contains('active');
             
-            // Fecha todos os outros itens (accordion behavior)
             allItems.forEach(item => {
                 if (item !== currentItem) {
                     item.classList.remove('active');
@@ -2767,7 +2896,6 @@
                 }
             });
             
-            // Toggle do item atual
             if (isActive) {
                 currentItem.classList.remove('active');
                 question.setAttribute('aria-expanded', 'false');
@@ -2775,7 +2903,6 @@
                 currentItem.classList.add('active');
                 question.setAttribute('aria-expanded', 'true');
                 
-                // Scroll suave para o item ativo
                 setTimeout(() => {
                     currentItem.scrollIntoView({
                         behavior: 'smooth',
@@ -2785,7 +2912,6 @@
             }
         }
         
-        // Navegação com teclado (setas)
         function navigateFAQ(direction, currentItem, allItems) {
             const currentIndex = Array.from(allItems).indexOf(currentItem);
             let nextIndex;
@@ -2800,7 +2926,6 @@
             nextQuestion.focus();
         }
 
-        // Função adicional: Fechar FAQ com ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const activeItems = document.querySelectorAll('.faq-item.active');
@@ -2811,8 +2936,162 @@
                 });
             }
         });
+        
+        // ==================== Lógica do Chatbot ====================
+
+        let chatHistory = [];
+        
+        // Função principal para inicializar o chatbot
+        function initChatbot() {
+            const headerContactBtn = document.getElementById('header-contact-btn');
+            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
+            const chatbotModal = document.getElementById('chatbotModal');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+            const chatbox = document.getElementById('chatbox');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const initialMessage = "Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?";
+
+            // Adiciona a mensagem inicial ao histórico do chat
+            chatHistory.push({ role: "model", parts: [{ text: initialMessage }] });
+
+            // Eventos para abrir o modal do chatbot
+            headerContactBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+            heroWhatsappBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+
+            // Evento para fechar o modal
+            closeChatBtn.addEventListener('click', () => {
+                chatbotModal.classList.remove('visible');
+            });
+            
+            // Eventos para enviar mensagem
+            sendBtn.addEventListener('click', handleUserMessage);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+            
+            // Adiciona a mensagem inicial ao chatbox
+            appendMessage(initialMessage, 'ai');
+        }
+
+        // Função para lidar com a mensagem do usuário
+        async function handleUserMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            // Limpa o input
+            chatInput.value = '';
+            
+            // Adiciona a mensagem do usuário ao chatbox e ao histórico
+            appendMessage(message, 'user');
+            chatHistory.push({ role: "user", parts: [{ text: message }] });
+
+            // Mostra o indicador de digitação da IA
+            const typingIndicator = appendMessage('...', 'ai-typing');
+            
+            try {
+                // Chama a API para obter a resposta do chatbot
+                const responseText = await getChatbotResponse(chatHistory);
+                
+                // Remove o indicador de digitação
+                typingIndicator.remove();
+                
+                // Adiciona a resposta da IA ao chatbox e ao histórico
+                appendMessage(responseText, 'ai');
+                chatHistory.push({ role: "model", parts: [{ text: responseText }] });
+            } catch (error) {
+                console.error('Erro ao obter a resposta do chatbot:', error);
+                typingIndicator.remove();
+                appendMessage('Desculpe, não consegui processar sua solicitação no momento. Tente novamente mais tarde.', 'ai');
+            }
+        }
+        
+        // Função para adicionar uma nova mensagem ao chatbox
+        function appendMessage(text, sender) {
+            const chatbox = document.getElementById('chatbox');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatbox.appendChild(messageElement);
+            // Rola para o final para mostrar a nova mensagem
+            chatbox.scrollTop = chatbox.scrollHeight;
+            return messageElement;
+        }
+
+        // Função para chamar a API do Gemini e obter a resposta
+        async function getChatbotResponse(history) {
+            const prompt = `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em serviços de cuidado para idosos no Itaim, São Paulo.
+            Seu objetivo é responder a perguntas de forma amigável e profissional, com base nas seguintes informações:
+            - A empresa oferece cuidadores, manicure/cabeleireiro, apoio psicológico e motorista para idosos.
+            - O diferencial é o treinamento dos profissionais na casa da fundadora, Dona Tereca, que tem 94 anos.
+            - Os serviços são personalizados.
+            - A área de atuação é o Itaim e bairros próximos em São Paulo.
+            - Para agendar um serviço ou obter um orçamento, o cliente deve preencher o formulário de contato. Não forneça preços diretamente.
+
+            Responda de forma concisa. Se a pergunta for sobre preços ou agendamentos, oriente o usuário a preencher o formulário na seção 'Contato'. Mantenha a conversa focada nos serviços e na filosofia da empresa.
+
+            Histórico da conversa: ${JSON.stringify(history)}
+            
+            Responda à última pergunta do usuário.`;
+
+            let chatHistoryWithPrompt = [];
+            chatHistoryWithPrompt.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = { contents: chatHistoryWithPrompt };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Desculpe, não consegui entender. Poderia reformular a pergunta?';
+            }
+        }
+
     </script>
 </body>
 </html>
-�
-

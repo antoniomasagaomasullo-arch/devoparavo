@@ -804,11 +804,12 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 25px;
-            font-size: var(--text-sm);
+            font-size: var(--text-sm); /* Unificando o tamanho da fonte */
             font-weight: 500;
             color: var(--text-secondary);
             transition: all 0.3s ease;
             cursor: pointer;
+            height: 100%;
             width: 100%;
         }
         .services-tags label.service-tag:hover span {
@@ -3168,7 +3169,7 @@
                     retryDelay *= 2;
                 }
             }
-
+            
             if (!response || !response.ok) {
                 throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
             }

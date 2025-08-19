@@ -999,8 +999,13 @@
 
         .service-tag {
             position: relative;
-            cursor: pointer;
             user-select: none;
+        }
+        
+        /* Adicionado para que o cursor de "not-allowed" apareça no label, não apenas no input */
+        .service-tag input[type="checkbox"]:disabled + span {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .service-tag input[type="checkbox"] {
@@ -1008,11 +1013,6 @@
             opacity: 0;
             width: 0;
             height: 0;
-        }
-        
-        .service-tag input[type="checkbox"]:disabled+span {
-            opacity: 0.6;
-            cursor: not-allowed;
         }
         
         .service-tag span {
@@ -1026,6 +1026,12 @@
             font-weight: 500;
             color: var(--text-secondary);
             transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        /* Altera o cursor do span quando o input está desabilitado */
+        .service-tag input[type="checkbox"]:disabled + span {
+            cursor: not-allowed;
         }
 
         .service-tag:hover span {
@@ -1033,7 +1039,7 @@
             background: rgba(249, 247, 244, 0.9);
             transform: translateY(-2px);
         }
-
+        
         .service-tag input[type="checkbox"]:checked+span {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             border-color: var(--primary-color);
@@ -1256,15 +1262,15 @@
             border-radius: 5px;
         }
         
-        .skeleton-title {
+.skeleton-title {
             width: 60%;
         }
         
-        .skeleton-text {
+.skeleton-text {
             width: 100%;
         }
         
-        .skeleton-text-half {
+.skeleton-text-half {
             width: 50%;
         }
         
@@ -2466,37 +2472,42 @@
 
         function initServiceButtonHandlers() {
             const serviceButtons = document.querySelectorAll('.open-whatsapp-service-btn');
-            const ctaButton = document.getElementById('header-contact-btn');
-            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
             
-            // Botões de serviço
             serviceButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     const serviceName = button.getAttribute('data-service');
-                    const checkboxes = document.querySelectorAll('input[name="servicos[]"]');
                     
+                    const contactSection = document.getElementById('contato');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    const checkboxes = document.querySelectorAll('input[name="servicos[]"]');
                     checkboxes.forEach(cb => {
-                        if (cb.value === serviceName) {
-                            cb.checked = true;
-                        } else {
+                        // Limpa todas as seleções, exceto a de "Cuidadora" que é obrigatória
+                        if (cb.value !== 'Cuidadora') {
                             cb.checked = false;
                         }
                     });
                     
-                    const message = encodeURIComponent(`Olá, gostaria de um orçamento para o serviço de *${serviceName}*. Poderiam me ajudar?`);
-                    openWhatsApp(message);
+                    // Encontra e marca o checkbox correspondente ao serviço clicado
+                    const selectedCheckbox = document.querySelector(`input[name="servicos[]"][value="${serviceName}"]`);
+                    if (selectedCheckbox) {
+                        selectedCheckbox.checked = true;
+                    }
                 });
             });
             
-            // Botão Fale Conosco do Header
+            // Outros botões de contato
+            const ctaButton = document.getElementById('header-contact-btn');
             if (ctaButton) {
                 ctaButton.addEventListener('click', () => {
                     scrollToContact();
                 });
             }
 
-            // Botão Fale Conosco da seção Hero
+            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
             if (heroWhatsappBtn) {
                 heroWhatsappBtn.addEventListener('click', () => {
                     const message = "Olá! Gostaria de saber mais sobre os serviços de cuidadores do De Vó para Vó.";

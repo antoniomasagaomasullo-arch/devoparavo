@@ -1439,7 +1439,7 @@
                 </div>
             </div>
             <div class="hero-image reveal-right parallax-element">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTQwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Tci4gQ2FybG9zPC90ZXh0Pgo8L3N2Zz4K" alt="Cuidador e idoso sorrindo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmMGU4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTgwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RtTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2NjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Tci4gQ2FybG9zPC90ZXh0Pgo8L3N2Zz4K" alt="Cuidador e idoso sorrindo">
             </div>
         </div>
     </section>
@@ -1529,6 +1529,7 @@
                             <h3>Dicas essenciais para o dia a dia do idoso</h3>
                             <a href="#" class="read-more-btn" data-article="article-1">Ler artigo</a>
                         </div>
+                        <p class="short-text">Descubra como pequenas mudanças na rotina podem fazer uma grande diferença na qualidade de vida...</p>
                         <div class="full-article-content" id="article-1">
                             <h4>O que são cuidados diários?</h4>
                             <p>Cuidar de um idoso vai muito além de garantir a sua saúde física. Envolve proporcionar um ambiente seguro, com carinho, atenção e respeito à sua história e individualidade.</p>
@@ -1556,6 +1557,7 @@
                             <h3>A importância da estimulação cognitiva</h3>
                             <a href="#" class="read-more-btn" data-article="article-2">Ler artigo</a>
                         </div>
+                        <p class="short-text">Conheça atividades e jogos que ajudam a manter a mente ativa e previnem o declínio cognitivo...</p>
                         <div class="full-article-content" id="article-2">
                             <h4>O que é estimulação cognitiva?</h4>
                             <p>A estimulação cognitiva são exercícios e atividades que visam manter e aprimorar as funções cerebrais, como memória, raciocínio, atenção e linguagem. É uma ferramenta fundamental para a saúde mental na terceira idade, ajudando a prevenir o declínio cognitivo e a manter a mente ativa.</p>
@@ -1582,6 +1584,7 @@
                             <h3>Nutrição na terceira idade: um guia completo</h3>
                             <a href="#" class="read-more-btn" data-article="article-3">Ler artigo</a>
                         </div>
+                        <p class="short-text">Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
                         <div class="full-article-content" id="article-3">
                             <h4>A importância de uma dieta balanceada</h4>
                             <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular, prevenir doenças crônicas e até mesmo melhorar o humor. O corpo de uma pessoa na terceira idade tem necessidades nutricionais diferentes, e a dieta deve ser adaptada para garantir que todas elas sejam atendidas.</p>
@@ -2021,7 +2024,7 @@
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     const cardContent = e.target.closest('.blog-card-content');
-                    const shortText = cardContent.querySelector('p');
+                    const shortText = cardContent.querySelector('.short-text');
                     const fullContent = cardContent.querySelector('.full-article-content');
                     const readMoreLink = e.target;
                     
@@ -2042,7 +2045,7 @@
                 header.addEventListener('click', (e) => {
                     e.preventDefault();
                     const cardContent = e.target.closest('.blog-card-content');
-                    const shortText = cardContent.querySelector('p');
+                    const shortText = cardContent.querySelector('.short-text');
                     const fullContent = cardContent.querySelector('.full-article-content');
                     const readMoreLink = cardContent.querySelector('.read-more-btn');
                     

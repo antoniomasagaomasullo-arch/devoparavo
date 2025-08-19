@@ -141,7 +141,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease; /* Adiciona transição para o efeito de "esmagar" */
+            transition: all 0.3s ease;
         }
         
         .header.compact {
@@ -166,9 +166,9 @@
         /* Nova fonte e tamanho para o logo */
         .logo .title {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem; /* Aumentado para 2rem */
+            font-size: 2rem;
             font-weight: 700;
-            color: #8B4513; /* Use a cor da marca */
+            color: #8B4513;
         }
         
         /* Remove a linha de subtítulo */
@@ -401,7 +401,7 @@
         }
 
         .hero-image:hover::before {
-            left: 100%;
+            transform: translateX(100%);
         }
 
         .hero-image img {
@@ -1140,6 +1140,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .blog-card:hover {
@@ -1579,15 +1582,22 @@
                         <div class="article-header">
                             <h3>Nutrição na terceira idade: um guia completo</h3>
                             <p class="short-text">Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
-                            <a href="#" class="read-more-btn">Ler artigo</a>
-                        </div>
-                        <div class="full-article-content" id="article-3">
-                            <div class="article-full-text">
-                                <h4>A importância de uma dieta balanceada</h4>
-                                <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular, prevenir doenças crônicas e até mesmo melhorar o humor. O corpo de uma pessoa na terceira idade tem necessidades nutricionais diferentes, e a dieta deve ser adaptada para garantir que todas elas sejam atendidas.</p>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="read-more-btn">Diminuir</a>
+                            <div class="full-article-content" id="article-3">
+                                <div class="article-full-text">
+                                    <h4>A importância de uma dieta balanceada</h4>
+                                    <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular, prevenir doenças crônicas e até mesmo melhorar o humor. O corpo de uma pessoa na terceira idade tem necessidades nutricionais diferentes, e a dieta deve ser adaptada para garantir que todas elas sejam atendidas.</p>
+                                    <h4>Alimentos essenciais:</h4>
+                                    <ul>
+                                        <li>**Cálcio:** Essencial para a saúde dos ossos. Inclua laticínios, como iogurte e queijo, e vegetais de folhas escuras, como espinafre e couve, na dieta.</li>
+                                        <li>**Proteínas:** Fundamental para a manutenção da massa muscular, que tende a diminuir com a idade. Carnes magras, ovos, peixes e leguminosas (feijão, lentilha) são ótimas fontes.</li>
+                                        <li>**Fibras:** Ajudam no bom funcionamento intestinal e na prevenção de doenças. Frutas, verduras e grãos integrais são ricos em fibras.</li>
+                                        <li>**Vitamina D:** Essencial para a absorção de cálcio. A exposição ao sol é a principal fonte, mas também pode ser encontrada em peixes gordurosos como salmão e sardinha.</li>
+                                        <li>**Ômega-3:** Ajuda na saúde do cérebro e na redução de inflamações. Peixes como salmão, chia e nozes são ricos nesse nutriente.</li>
+                                    </ul>
+                                </div>
+                                <div class="article-footer">
+                                    <a href="#" class="read-more-btn">Diminuir</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2014,44 +2024,31 @@
                 const readMoreBtn = card.querySelector('.read-more-btn');
                 const articleContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
+                const title = card.querySelector('.article-header h3');
                 
-                if (readMoreBtn) {
-                    readMoreBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        if (fullContent.classList.contains('visible')) {
-                            // Diminui o artigo
-                            fullContent.classList.remove('visible');
-                            readMoreBtn.textContent = 'Ler artigo';
-                            shortText.style.display = 'block';
-                        } else {
-                            // Expande o artigo
-                            fullContent.classList.add('visible');
-                            readMoreBtn.textContent = 'Diminuir';
-                            shortText.style.display = 'none';
-                        }
-                    });
-                }
-            });
-
-            const articleHeaders = document.querySelectorAll('.blog-card .article-header h3');
-            articleHeaders.forEach(header => {
-                header.addEventListener('click', (e) => {
+                // Toggle function
+                const toggleContent = (e) => {
                     e.preventDefault();
-                    const cardContent = e.target.closest('.blog-card-content');
-                    const shortText = cardContent.querySelector('.short-text');
-                    const fullContent = cardContent.querySelector('.full-article-content');
-                    const readMoreLink = cardContent.querySelector('.read-more-btn');
-                    
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
+                        readMoreBtn.textContent = 'Ler artigo';
+                        readMoreBtn.classList.remove('decrease');
                         shortText.style.display = 'block';
-                        readMoreLink.textContent = 'Ler artigo';
                     } else {
                         fullContent.classList.add('visible');
+                        readMoreBtn.textContent = 'Diminuir';
+                        readMoreBtn.classList.add('decrease');
                         shortText.style.display = 'none';
-                        readMoreLink.textContent = 'Diminuir';
                     }
-                });
+                };
+
+                // Attach event listeners
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', toggleContent);
+                }
+                if (title) {
+                    title.addEventListener('click', toggleContent);
+                }
             });
         }
     </script>

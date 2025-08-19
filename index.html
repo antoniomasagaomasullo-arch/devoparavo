@@ -1256,6 +1256,82 @@
             border-color: var(--light-text);
             color: white;
         }
+        
+        /* Corrigido: Modal agora é um overlay de tela cheia */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: zoomIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .modal-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Corrigido o estilo para o botão "Diminuir" */
+        .blog-card .read-more-btn.decrease {
+             text-decoration: none;
+             font-weight: bold;
+        }
+        
+        .blog-card .read-more-btn.decrease:hover {
+            text-decoration: underline;
+        }
+
+        /* Remove a seta que estava sendo adicionada */
+        .blog-card-actions .read-more-btn::after {
+            display: none;
+        }
 
         /* ==================== Animações ==================== */
         @keyframes logoFloat {

@@ -728,22 +728,13 @@
             flex-shrink: 0;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 300px;
+            grid-template-columns: 1fr;
             gap: 3rem;
             align-items: center;
         }
 
-        .testimonial-slide-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0 1rem;
-        }
-
         .testimonial-content {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 3rem;
             border-radius: 25px;
@@ -794,7 +785,7 @@
         }
 
         .testimonial-text {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
             color: #555;
@@ -821,22 +812,7 @@
         }
 
         .testimonial-image {
-            border-radius: 20px;
-            overflow: hidden;
-            background: rgba(139, 69, 19, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(139, 69, 19, 0.2);
-            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonial-image img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
+            display: none;
         }
 
         .focus-title {
@@ -2299,12 +2275,10 @@
                         fullContent.classList.remove('visible');
                         readMoreBtn.textContent = 'Ler artigo';
                         shortText.classList.remove('hidden');
-                        readMoreBtn.classList.remove('decrease');
                     } else {
                         fullContent.classList.add('visible');
                         readMoreBtn.textContent = 'Diminuir';
                         shortText.classList.add('hidden');
-                        readMoreBtn.classList.add('decrease');
                     }
                 };
                 

@@ -1805,6 +1805,14 @@
                     <p>1 a 2 vezes por semana</p>
                     <button class="open-whatsapp-service-btn" data-service="Motorista">Solicitar Orçamento</button>
                 </div>
+                <div class="service-card reveal" style="animation-delay: 0.5s;">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-heart"><path d="M11 14H7a2 2 0 0 1-2-2V5.5L6.5 3 11 7V14Z"/><path d="M18 10h-1a2 2 0 0 0-2 2v2"/><path d="m14 17-5.15-5.15a1.6 1.6 0 0 1 0-2.26L14 4"/><path d="m20 12-3.26 3.26a1.6 1.6 0 0 0 0 2.27L20 20"/></svg>
+                    </div>
+                    <h3>Terapia Ocupacional</h3>
+                    <p>Atividades para a autonomia</p>
+                    <button class="open-whatsapp-service-btn" data-service="Terapia Ocupacional">Solicitar Orçamento</button>
+                </div>
             </div>
         </div>
     </section>
@@ -1873,6 +1881,13 @@
                         </div>
                     </div>
                     <div class="options-grid">
+                        <div class="option-card" data-horas="6">
+                            <div class="option-content">
+                                <div class="option-icon">☕</div>
+                                <div class="option-title">6 horas/dia</div>
+                                <div class="option-description">Cuidado parcial</div>
+                            </div>
+                        </div>
                         <div class="option-card" data-horas="8">
                             <div class="option-content">
                                 <div class="option-icon">🌅</div>
@@ -2436,6 +2451,10 @@
                             <input type="checkbox" name="servicos[]" value="Geriatra">
                             <span>Geriatra</span>
                         </label>
+                        <label class="service-tag">
+                            <input type="checkbox" name="servicos[]" value="Terapia Ocupacional">
+                            <span>Terapia Ocupacional</span>
+                        </label>
                     </div>
                 </div>
                 
@@ -2681,8 +2700,8 @@
             const data = Object.fromEntries(formData.entries());
             
             const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
-                                             .map(checkbox => checkbox.value)
-                                             .join(', ');
+                                                     .map(checkbox => checkbox.value)
+                                                     .join(', ');
 
             let message = "Olá, gostaria de um orçamento!\n\n";
             message += `Nome: ${data.nome}\n`;
@@ -2712,8 +2731,15 @@
         }
 
         function validateTelefoneFormat(value) {
-            const telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
-            return telefoneRegex.test(value);
+            let sanitized = value.replace(/\D/g, '');
+            if (sanitized.length === 11) {
+                const telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+                return telefoneRegex.test(value);
+            } else if (sanitized.length === 10) {
+                const telefoneRegex = /^\(\d{2}\)\s\d{4}-\d{4}$/;
+                return telefoneRegex.test(value);
+            }
+            return false;
         }
 
         function maskCEP(value) {
@@ -3488,7 +3514,12 @@
                         'intensivo': 'Cuidado Intensivo'
                     };
                     const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
-                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:🏥 Tipo: ${tipos[this.dados.tipo]}⏰ Período: ${this.dados.horas}h/dia📅 Frequência: ${this.dados.dias} dias/semana💰 Estimativa: R$ ${valorMensal.toLocaleString('pt-BR')}/mêsGostaria de agendar uma avaliação!`;
+                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:
+                    🏥 Tipo: ${tipos[this.dados.tipo]}
+                    ⏰ Período: ${this.dados.horas}h/dia
+                    📅 Frequência: ${this.dados.dias} dias/semana
+                    💰 Estimativa: R$ ${valorMensal.toLocaleString('pt-BR')}/mês
+                    Gostaria de agendar uma avaliação!`;
                     const telefone = '5511999999999';
                     const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
                     window.open(url, '_blank');
@@ -3500,4 +3531,3 @@
     </script>
 </body>
 </html>
-

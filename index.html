@@ -994,14 +994,12 @@
             margin: 0.5rem 0;
         }
 
-        /* ==================== Seção de Blog - NOVO ESTILO CARROSSEL ==================== */
+        /* ==================== Seção de Blog - NOVO ESTILO (GRADE FIXA) ==================== */
         .blog {
             padding: 80px 0;
             position: relative;
-            overflow: hidden;
         }
-        
-        /* Nova section para os botões de filtro */
+
         .blog-filters {
             display: flex;
             justify-content: center;
@@ -1034,74 +1032,16 @@
             box-shadow: var(--shadow-md);
         }
 
-        .blog-carousel-wrapper {
-            position: relative;
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
-
-        .blog-carousel {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 1.5rem;
-        }
         
-        /* Estiliza a barra de rolagem para um design mais elegante */
-        .blog-carousel::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .blog-carousel::-webkit-scrollbar-thumb {
-            background-color: var(--primary-light);
-            border-radius: 4px;
-        }
-
-        .blog-carousel::-webkit-scrollbar-track {
-            background-color: rgba(0,0,0,0.05);
-            border-radius: 4px;
-        }
-
-        .blog-carousel-wrapper .carousel-btn {
-            display: none;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            background-color: rgba(255,255,255,0.7);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-        
-        .blog-carousel-wrapper:hover .carousel-btn {
-            display: block;
-        }
-
-        .blog-carousel-wrapper .carousel-btn.prev-btn {
-            left: 0;
-        }
-        
-        .blog-carousel-wrapper .carousel-btn.next-btn {
-            right: 0;
-        }
-
-        .blog-carousel-wrapper .carousel-btn:hover {
-            background-color: var(--primary-light);
-            color: white;
-        }
-
         .blog-card {
-            min-width: 300px;
-            flex-shrink: 0;
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -1116,17 +1056,17 @@
             transform: translateY(20px);
             transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
+
         .blog-card.revealed {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .blog-card:hover {
             transform: translateY(-8px) scale(1.01);
             box-shadow: var(--shadow-lg);
         }
-
+        
         .blog-card-image {
             width: 100%;
             height: 200px;
@@ -1169,26 +1109,6 @@
             color: var(--primary-dark);
             cursor: pointer;
         }
-        
-        .blog-card-content .read-more-btn {
-            color: var(--primary-color);
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            align-self: flex-end;
-            margin-top: 1rem;
-            margin-bottom: 0;
-            font-size: var(--text-sm);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .blog-card-content .read-more-btn:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
 
         .blog-card-content p {
             font-size: var(--text-base);
@@ -1203,6 +1123,25 @@
             margin-top: 1.5rem;
         }
         
+        .blog-card-actions .read-more-btn {
+            background-color: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--text-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            padding: 0;
+        }
+
+        .blog-card-actions .read-more-btn:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
         .blog-card-actions button {
             background-color: transparent;
             border: 1px solid var(--primary-color);
@@ -1214,16 +1153,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .blog-card-actions button:hover {
             background-color: var(--primary-color);
             color: var(--text-on-dark);
-        }
-
-        .blog-card-actions .audio-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .full-article-content {
@@ -1234,8 +1166,9 @@
         }
 
         .full-article-content.visible {
-            max-height: 2000px; /* Aumentado para garantir que o conteúdo caiba */
+            max-height: 2000px;
             opacity: 1;
+            margin-top: 1rem;
         }
 
         .blog-card-content .short-text.hidden {
@@ -1282,11 +1215,6 @@
             font-weight: bold;
         }
 
-        .article-footer {
-            margin-top: 2rem;
-            text-align: right;
-        }
-        
         .ai-tip-container {
             margin-top: 1rem;
             padding: 1rem;
@@ -1298,10 +1226,9 @@
             min-height: 50px;
         }
         
-        /* Estilos para o esqueleto de carregamento */
         .loading-skeleton {
             width: 100%;
-            display: none; /* Oculto por padrão */
+            display: none;
             flex-direction: column;
             gap: 0.75rem;
             animation: pulse-skeleton 1.5s infinite ease-in-out;
@@ -1325,7 +1252,6 @@
             width: 50%;
         }
         
-        /* Esconder o skeleton quando o conteúdo estiver visível */
         .ai-tip-container.loaded .loading-skeleton {
             display: none;
         }
@@ -1346,24 +1272,7 @@
             font-size: var(--text-sm);
             color: var(--text-primary);
         }
-        /* Corrigido para o botão Ler Artigo/Diminuir na área de ações, mantendo o estilo de link */
-        .blog-card-actions .read-more-btn {
-            text-decoration: none; /* remove a underline padrão */
-            font-weight: bold;
-            color: var(--primary-color);
-            transition: all 0.3s ease;
-        }
 
-        .blog-card-actions .read-more-btn:hover {
-            text-decoration: underline; /* Adiciona underline no hover */
-            color: var(--secondary-color);
-        }
-
-        /* Oculta o botão de expandir do rodapé, deixando apenas o da área de ações */
-        .article-footer .read-more-btn {
-            display: none !important;
-        }
-        
         .generate-tip-btn.loading {
             cursor: not-allowed;
             opacity: 0.7;
@@ -1371,6 +1280,19 @@
             border-color: var(--text-tertiary);
             color: var(--text-on-dark);
         }
+        .blog-card .read-more-btn {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .blog-card .read-more-btn svg {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        .blog-card .read-more-btn.expanded svg {
+            transform: rotate(-90deg);
+        }
+
 
         /* ==================== Estilos do Modal de Confirmação ==================== */
         .modal {
@@ -2555,202 +2477,198 @@
                 <button class="blog-filter-btn" data-filter="alimentacao">Alimentação</button>
                 <button class="blog-filter-btn" data-filter="saude-mental">Saúde Mental</button>
             </div>
-            <div class="blog-carousel-wrapper">
-                <button class="carousel-btn prev-btn" id="blogPrevBtn" aria-label="Artigo anterior">&lt;</button>
-                <div class="blog-carousel" id="blogCarousel">
-                    <div class="blog-card reveal delay-1" data-tag="hidratacao">
-                        <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso bebendo água" class="blog-card-image" loading="lazy">
-                        <div class="blog-card-content">
-                            <div class="blog-card-header">
-                                <span class="blog-card-tag">Hidratação</span>
-                                <div class="blog-card-info">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                    <span>5 min leitura</span>
-                                </div>
-                            </div>
-                            <h3>A importância da hidratação para idosos</h3>
-                            <p class="short-text">Manter-se hidratado é crucial na terceira idade. A sensação de sede diminui, o que pode levar à desidratação sem que a pessoa perceba. Entenda a importância da hidratação e como incentivá-la no dia a dia.</p>
-                            <a href="#" class="read-more-btn">
-                                Ler artigo
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </a>
-                            <div class="full-article-content">
-                                <div class="article-content">
-                                    <h4>Por que é tão importante?</h4>
-                                    <p>A hidratação adequada previne problemas renais, melhora a função cognitiva, ajuda na digestão e mantém a pele saudável. Com o avanço da idade, a composição corporal muda e a capacidade dos rins de reter água diminui. Portanto, a ingestão regular de líquidos se torna ainda mais vital.</p>
-                                    <h4>Tabela de Hidratação Diária</h4>
-                                    <div class="table-container">
-                                        <table class="hydration-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Idade</th>
-                                                    <th>Peso Corporal</th>
-                                                    <th>Recomendação Mínima de Água</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>60-70 anos</td>
-                                                    <td>70 kg</td>
-                                                    <td>2,1 L (aproximadamente 10 copos)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>70-80 anos</td>
-                                                    <td>65 kg</td>
-                                                    <td>1,95 L (aproximadamente 9 copos)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>80+ anos</td>
-                                                    <td>60 kg</td>
-                                                    <td>1,8 L (aproximadamente 8 copos)</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <h4>Como incentivar?</h4>
-                                    <p>Ofereça água em copos pequenos e em horários fixos. Inclua alimentos ricos em água na dieta, como frutas (melancia, laranja) e sopas. Tenha sempre uma garrafa de fácil acesso e explore opções como chás, sucos naturais e água saborizada com frutas.</p>
-                                </div>
-                            </div>
-                            <div class="blog-card-actions">
-                                <button class="generate-tip-btn" data-topic="hidratação">Gerar dica de IA</button>
-                                <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                    <span class="audio-icon">📢</span>
-                                </button>
-                            </div>
-                            <div class="ai-tip-container" style="display:none;">
-                                <div class="loading-skeleton">
-                                    <div class="skeleton-line skeleton-title"></div>
-                                    <div class="skeleton-line skeleton-text"></div>
-                                </div>
-                                <p class="ai-tip-text"></p>
+            <div class="blog-grid">
+                <div class="blog-card reveal delay-1" data-tag="hidratacao">
+                    <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso bebendo água" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Hidratação</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="blog-card reveal delay-2" data-tag="exercicios">
-                        <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
-                        <div class="blog-card-content">
-                            <div class="blog-card-header">
-                                <span class="blog-card-tag">Exercícios</span>
-                                <div class="blog-card-info">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                    <span>5 min leitura</span>
+                        <h3>A importância da hidratação para idosos</h3>
+                        <p class="short-text">Manter-se hidratado é crucial na terceira idade. A sensação de sede diminui, o que pode levar à desidratação sem que a pessoa perceba. Entenda a importância da hidratação e como incentivá-la no dia a dia.</p>
+                        <a href="#" class="read-more-btn">
+                            Ler artigo
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Por que é tão importante?</h4>
+                                <p>A hidratação adequada previne problemas renais, melhora a função cognitiva, ajuda na digestão e mantém a pele saudável. Com o avanço da idade, a composição corporal muda e a capacidade dos rins de reter água diminui. Portanto, a ingestão regular de líquidos se torna ainda mais vital.</p>
+                                <h4>Tabela de Hidratação Diária</h4>
+                                <div class="table-container">
+                                    <table class="hydration-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Idade</th>
+                                                <th>Peso Corporal</th>
+                                                <th>Recomendação Mínima de Água</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>60-70 anos</td>
+                                                <td>70 kg</td>
+                                                <td>2,1 L (aproximadamente 10 copos)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>70-80 anos</td>
+                                                <td>65 kg</td>
+                                                <td>1,95 L (aproximadamente 9 copos)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>80+ anos</td>
+                                                <td>60 kg</td>
+                                                <td>1,8 L (aproximadamente 8 copos)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </div>
-                            <h3>Exercícios leves para a mobilidade</h3>
-                            <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
-                            <a href="#" class="read-more-btn">
-                                Ler artigo
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </a>
-                            <div class="full-article-content">
-                                <div class="article-content">
-                                    <h4>Benefícios da atividade física</h4>
-                                    <p>Além de prevenir quedas, os exercícios melhoram a circulação sanguínea, fortalecem os ossos e promovem o bem-estar mental, combatendo o estresse e a ansiedade. Eles também contribuem para a autonomia e a independência do idoso no dia a dia.</p>
-                                    <h4>Ideias de exercícios</h4>
-                                    <p>É importante começar devagar e sempre consultar um médico ou fisioterapeuta antes de iniciar qualquer nova rotina de exercícios. Algumas atividades recomendadas incluem:</p>
-                                    <ul>
-                                        <li><strong>Caminhada:</strong> Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
-                                        <li><strong>Natação e Hidroginástica:</strong> A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
-                                        <li><strong>Yoga ou Pilates:</strong> Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
-                                        <li><strong>Exercícios com faixas elásticas:</strong> Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="blog-card-actions">
-                                <button class="generate-tip-btn" data-topic="exercícios para mobilidade">Gerar dica de IA</button>
-                                <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                    <span class="audio-icon">📢</span>
-                                </button>
-                            </div>
-                            <div class="ai-tip-container" style="display:none;">
-                                <div class="loading-skeleton">
-                                    <div class="skeleton-line skeleton-title"></div>
-                                    <div class="skeleton-line skeleton-text"></div>
-                                </div>
-                                <p class="ai-tip-text"></p>
+                                <h4>Como incentivar?</h4>
+                                <p>Ofereça água em copos pequenos e em horários fixos. Inclua alimentos ricos em água na dieta, como frutas (melancia, laranja) e sopas. Tenha sempre uma garrafa de fácil acesso e explore opções como chás, sucos naturais e água saborizada com frutas.</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="blog-card reveal delay-3" data-tag="sono">
-                        <img src="https://images.unsplash.com/photo-1599427303058-2996f022316e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8c29ubyUyMGlkb3NvfHwxfHx8fHwxNzE3NTM2NzI1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso dormindo tranquilamente" class="blog-card-image" loading="lazy">
-                        <div class="blog-card-content">
-                            <div class="blog-card-header">
-                                <span class="blog-card-tag">Sono</span>
-                                <div class="blog-card-info">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                    <span>5 min leitura</span>
-                                </div>
-                            </div>
-                            <h3>Estratégias para uma boa noite de sono</h3>
-                            <p class="short-text">O sono de qualidade é essencial para a saúde e o bem-estar em todas as idades, mas pode se tornar um desafio para os idosos. Saiba como criar uma rotina noturna que promova um descanso mais tranquilo e reparador.</p>
-                            <a href="#" class="read-more-btn">
-                                Ler artigo
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </a>
-                            <div class="full-article-content">
-                                <div class="article-content">
-                                    <h4>Por que o sono muda?</h4>
-                                    <p>Com a idade, a produção de melatonina (o hormônio do sono) diminui, e o padrão de sono tende a ser mais leve e fragmentado. Além disso, condições médicas e o uso de certos medicamentos podem afetar a qualidade do sono.</p>
-                                    <h4>Dicas para melhorar o sono</h4>
-                                    <p>Estabeleça horários regulares para dormir e acordar, mesmo nos fins de semana. Evite cafeína e refeições pesadas à noite. Crie um ambiente relaxante no quarto, com pouca luz e temperatura agradável. A leitura de um livro ou ouvir música calma antes de dormir pode ajudar a relaxar a mente.</p>
-                                </div>
-                            </div>
-                            <div class="blog-card-actions">
-                                <button class="generate-tip-btn" data-topic="rotina de sono para idosos">Gerar dica de IA</button>
-                                <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                    <span class="audio-icon">📢</span>
-                                </button>
-                            </div>
-                            <div class="ai-tip-container" style="display:none;">
-                                <div class="loading-skeleton">
-                                    <div class="skeleton-line skeleton-title"></div>
-                                    <div class="skeleton-line skeleton-text"></div>
-                                </div>
-                                <p class="ai-tip-text"></p>
-                            </div>
+                        <div class="blog-card-actions">
+                            <button class="generate-tip-btn" data-topic="hidratação">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="blog-card reveal delay-4" data-tag="alimentacao">
-                        <img src="https://images.unsplash.com/photo-1571772922119-913a826435c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxMHx8ZGlldGElMjBhdm98ZW58MHx8fHwxNzE3NTM2Nzk1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um avó preparando uma refeição" class="blog-card-image" loading="lazy">
-                        <div class="blog-card-content">
-                            <div class="blog-card-header">
-                                <span class="blog-card-tag">Alimentação</span>
-                                <div class="blog-card-info">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                    <span>5 min leitura</span>
-                                </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
                             </div>
-                            <h3>Alimentação saudável na terceira idade</h3>
-                            <p class="short-text">Uma dieta equilibrada é fundamental para manter a saúde e a vitalidade. Descubra quais são os nutrientes essenciais e como preparar refeições saborosas e nutritivas para os idosos.</p>
-                            <a href="#" class="read-more-btn">
-                                Ler artigo
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </a>
-                            <div class="full-article-content">
-                                <div class="article-content">
-                                    <h4>Nutrientes essenciais</h4>
-                                    <p>Com a idade, a absorção de certos nutrientes diminui. É importante incluir na dieta alimentos ricos em cálcio para a saúde dos ossos, vitamina D, fibras para a digestão, e proteínas para a manutenção da massa muscular.</p>
-                                    <h4>Dicas de refeições</h4>
-                                    <p>Priorize frutas, verduras, grãos integrais e proteínas magras. Ofereça refeições pequenas e frequentes ao longo do dia. Experimente receitas com texturas mais macias para facilitar a mastigação e a digestão. Adicione temperos naturais e ervas aromáticas para realçar o sabor sem excesso de sal.</p>
-                                </div>
-                            </div>
-                            <div class="blog-card-actions">
-                                <button class="generate-tip-btn" data-topic="alimentação para idosos">Gerar dica de IA</button>
-                                <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                    <span class="audio-icon">📢</span>
-                                </button>
-                            </div>
-                            <div class="ai-tip-container" style="display:none;">
-                                <div class="loading-skeleton">
-                                    <div class="skeleton-line skeleton-title"></div>
-                                    <div class="skeleton-line skeleton-text"></div>
-                                </div>
-                                <p class="ai-tip-text"></p>
-                            </div>
+                            <p class="ai-tip-text"></p>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-btn next-btn" id="blogNextBtn" aria-label="Próximo artigo">&gt;</button>
+                <div class="blog-card reveal delay-2" data-tag="exercicios">
+                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Exercícios</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Exercícios leves para a mobilidade</h3>
+                        <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
+                        <a href="#" class="read-more-btn">
+                            Ler artigo
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Benefícios da atividade física</h4>
+                                <p>Além de prevenir quedas, os exercícios melhoram a circulação sanguínea, fortalecem os ossos e promovem o bem-estar mental, combatendo o estresse e a ansiedade. Eles também contribuem para a autonomia e a independência do idoso no dia a dia.</p>
+                                <h4>Ideias de exercícios</h4>
+                                <p>É importante começar devagar e sempre consultar um médico ou fisioterapeuta antes de iniciar qualquer nova rotina de exercícios. Algumas atividades recomendadas incluem:</p>
+                                <ul>
+                                    <li><strong>Caminhada:</strong> Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
+                                    <li><strong>Natação e Hidroginástica:</strong> A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
+                                    <li><strong>Yoga ou Pilates:</strong> Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
+                                    <li><strong>Exercícios com faixas elásticas:</strong> Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blog-card-actions">
+                            <button class="generate-tip-btn" data-topic="exercícios para mobilidade">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-3" data-tag="sono">
+                    <img src="https://images.unsplash.com/photo-1599427303058-2996f022316e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8c29ubyUyMGlkb3NvfHwxfHx8fHwxNzE3NTM2NzI1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso dormindo tranquilamente" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Sono</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Estratégias para uma boa noite de sono</h3>
+                        <p class="short-text">O sono de qualidade é essencial para a saúde e o bem-estar em todas as idades, mas pode se tornar um desafio para os idosos. Saiba como criar uma rotina noturna que promova um descanso mais tranquilo e reparador.</p>
+                        <a href="#" class="read-more-btn">
+                            Ler artigo
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Por que o sono muda?</h4>
+                                <p>Com a idade, a produção de melatonina (o hormônio do sono) diminui, e o padrão de sono tende a ser mais leve e fragmentado. Além disso, condições médicas e o uso de certos medicamentos podem afetar a qualidade do sono.</p>
+                                <h4>Dicas para melhorar o sono</h4>
+                                <p>Estabeleça horários regulares para dormir e acordar, mesmo nos fins de semana. Evite cafeína e refeições pesadas à noite. Crie um ambiente relaxante no quarto, com pouca luz e temperatura agradável. A leitura de um livro ou ouvir música calma antes de dormir pode ajudar a relaxar a mente.</p>
+                            </div>
+                        </div>
+                        <div class="blog-card-actions">
+                            <button class="generate-tip-btn" data-topic="rotina de sono para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-4" data-tag="alimentacao">
+                    <img src="https://images.unsplash.com/photo-1571772922119-913a826435c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxMHx8ZGlldGElMjBhdm98ZW58MHx8fHwxNzE3NTM2Nzk1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um avó preparando uma refeição" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Alimentação</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Alimentação saudável na terceira idade</h3>
+                        <p class="short-text">Uma dieta equilibrada é fundamental para manter a saúde e a vitalidade. Descubra quais são os nutrientes essenciais e como preparar refeições saborosas e nutritivas para os idosos.</p>
+                        <a href="#" class="read-more-btn">
+                            Ler artigo
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Nutrientes essenciais</h4>
+                                <p>Com a idade, a absorção de certos nutrientes diminui. É importante incluir na dieta alimentos ricos em cálcio para a saúde dos ossos, vitamina D, fibras para a digestão, e proteínas para a manutenção da massa muscular.</p>
+                                <h4>Dicas de refeições</h4>
+                                <p>Priorize frutas, verduras, grãos integrais e proteínas magras. Ofereça refeições pequenas e frequentes ao longo do dia. Experimente receitas com texturas mais macias para facilitar a mastigação e a digestão. Adicione temperos naturais e ervas aromáticas para realçar o sabor sem excesso de sal.</p>
+                            </div>
+                        </div>
+                        <div class="blog-card-actions">
+                            <button class="generate-tip-btn" data-topic="alimentação para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -2978,8 +2896,6 @@
             initAITipGenerators();
             initFAQ();
             initChatbot(); // Inicializa o chatbot
-            initBlogCarousel(); // Novo: Inicializa o carrossel do blog
-            initCalculadora(); // Inicializa a calculadora
             initBlogFilters(); // Novo: Inicializa os filtros do blog
 
             // Oculta a tela de carregamento após um tempo
@@ -3406,40 +3322,6 @@
             });
 
             startAutoSlide();
-        }
-
-        // Nova função para o carrossel de blog
-        function initBlogCarousel() {
-            const blogCarousel = document.getElementById('blogCarousel');
-            const blogCards = document.querySelectorAll('#blogCarousel .blog-card');
-            const prevBtn = document.getElementById('blogPrevBtn');
-            const nextBtn = document.getElementById('blogNextBtn');
-            
-            if (!blogCarousel || !blogCards.length || !prevBtn || !nextBtn) return;
-            
-            let currentIndex = 0;
-            const scrollAmount = blogCards[0].offsetWidth + 32; // Largura do card + gap (2rem = 32px)
-            
-            // Adiciona a classe 'revealed' nos cards do blog para a animação
-            const blogObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, {
-                threshold: 0.5
-            });
-
-            blogCards.forEach(card => blogObserver.observe(card));
-
-            prevBtn.addEventListener('click', () => {
-                blogCarousel.scrollLeft -= scrollAmount;
-            });
-
-            nextBtn.addEventListener('click', () => {
-                blogCarousel.scrollLeft += scrollAmount;
-            });
         }
 
         // Nova função para filtrar os artigos do blog

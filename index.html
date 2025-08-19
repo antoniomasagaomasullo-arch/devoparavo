@@ -841,23 +841,6 @@
             box-shadow: var(--shadow-lg);
             background-color: var(--primary-dark);
         }
-        
-        /* Adicionado para o mapa de cobertura */
-        .map-container {
-            width: 100%;
-            height: 300px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        .map-label {
-            margin-bottom: 1rem;
-            font-size: var(--text-lg);
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
 
         /* ==================== Footer ==================== */
         .footer {
@@ -2476,11 +2459,6 @@
                 </div>
                 
                 <div class="form-group">
-                    <div class="map-label">Nossa área de cobertura:</div>
-                    <div class="map-container" id="map"></div>
-                </div>
-
-                <div class="form-group">
                     <label for="cep">CEP</label>
                     <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9">
                     <small id="cep-status" class="validation-message"></small>
@@ -2565,9 +2543,8 @@
             initAITipGenerators();
             initFAQ();
             initChatbot();
-            initCalculadora(); // Inicializa a calculadora
-            initGoogleMaps(); // Inicializa o Google Maps
             initBlogFilters();
+            initCalculadora(); // Inicializa a calculadora
 
             setTimeout(function() {
                 const loadingScreen = document.getElementById('loadingScreen');
@@ -3551,84 +3528,7 @@
             new CalculadoraOrcamento();
         }
 
-        function initGoogleMaps() {
-            const mapElement = document.getElementById('map');
-            if (!mapElement) return;
-
-            const mapCenter = { lat: -23.585, lng: -46.685 };
-            const map = new google.maps.Map(mapElement, {
-                zoom: 13,
-                center: mapCenter,
-                mapId: 'YOUR_MAP_ID' // Substitua pelo seu Map ID, se tiver um
-            });
-
-            const areas = [
-                { name: 'Itaim', center: { lat: -23.588, lng: -46.684 }, polygonCoords: [
-                    { lat: -23.593, lng: -46.687 }, { lat: -23.591, lng: -46.691 }, { lat: -23.585, lng: -46.692 },
-                    { lat: -23.582, lng: -46.686 }, { lat: -23.583, lng: -46.682 }, { lat: -23.589, lng: -46.678 }
-                ]},
-                { name: 'Jardins', center: { lat: -23.567, lng: -46.669 }, polygonCoords: [
-                    { lat: -23.562, lng: -46.677 }, { lat: -23.57, lng: -46.676 }, { lat: -23.578, lng: -46.665 },
-                    { lat: -23.572, lng: -46.66 }, { lat: -23.564, lng: -46.661 }
-                ]},
-                { name: 'Panamby', center: { lat: -23.606, lng: -46.721 }, polygonCoords: [
-                    { lat: -23.602, lng: -46.725 }, { lat: -23.612, lng: -46.728 }, { lat: -23.616, lng: -46.717 },
-                    { lat: -23.605, lng: -46.71 }
-                ]},
-                { name: 'Morumbi', center: { lat: -23.597, lng: -46.722 }, polygonCoords: [
-                    { lat: -23.587, lng: -46.732 }, { lat: -23.6, lng: -46.735 }, { lat: -23.613, lng: -46.726 },
-                    { lat: -23.608, lng: -46.711 }, { lat: -23.595, lng: -46.718 }
-                ]},
-                { name: 'Moema', center: { lat: -23.601, lng: -46.666 }, polygonCoords: [
-                    { lat: -23.594, lng: -46.671 }, { lat: -23.605, lng: -46.675 }, { lat: -23.609, lng: -46.666 },
-                    { lat: -23.602, lng: -46.658 }
-                ]},
-                { name: 'Pinheiros', center: { lat: -23.567, lng: -46.697 }, polygonCoords: [
-                    { lat: -23.559, lng: -46.702 }, { lat: -23.571, lng: -46.706 }, { lat: -23.578, lng: -46.693 },
-                    { lat: -23.569, lng: -46.685 }
-                ]},
-                { name: 'Vila Madalena', center: { lat: -23.551, lng: -46.689 }, polygonCoords: [
-                    { lat: -23.545, lng: -46.695 }, { lat: -23.556, lng: -46.702 }, { lat: -23.56, lng: -46.687 },
-                    { lat: -23.553, lng: -46.681 }
-                ]},
-                { name: 'Higienópolis', center: { lat: -23.548, lng: -46.657 }, polygonCoords: [
-                    { lat: -23.541, lng: -46.663 }, { lat: -23.552, lng: -46.662 }, { lat: -23.555, lng: -46.652 },
-                    { lat: -23.545, lng: -46.649 }
-                ]}
-            ];
-
-            const colorPalette = ['#B56557', '#A0522D', '#5D2F09', '#8F9983'];
-            let colorIndex = 0;
-
-            areas.forEach(area => {
-                const polygon = new google.maps.Polygon({
-                    paths: area.polygonCoords,
-                    strokeColor: colorPalette[colorIndex % colorPalette.length],
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: colorPalette[colorIndex % colorPalette.length],
-                    fillOpacity: 0.35,
-                });
-                polygon.setMap(map);
-
-                const infoWindow = new google.maps.InfoWindow({
-                    content: `<div><strong>${area.name}</strong></div>`
-                });
-
-                polygon.addListener('mouseover', function(e) {
-                    polygon.setOptions({ fillOpacity: 0.5 });
-                    infoWindow.setPosition(e.latLng);
-                    infoWindow.open(map);
-                });
-                polygon.addListener('mouseout', function() {
-                    polygon.setOptions({ fillOpacity: 0.35 });
-                    infoWindow.close();
-                });
-                
-                colorIndex++;
-            });
-        }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry&callback=initGoogleMaps"></script>
 </body>
 </html>
+

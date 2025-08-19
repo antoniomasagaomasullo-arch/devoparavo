@@ -778,22 +778,6 @@
             margin-top: 0.5rem;
         }
         .service-tag {
-            position: relative;
-            user-select: none;
-        }
-        .service-tag input[type="checkbox"]:disabled + span {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        .service-tag input[type="checkbox"] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .service-tag span {
-            display: inline-block;
-            padding: 0.6rem 1.2rem;
             background: rgba(245, 245, 245, 0.8);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(0, 0, 0, 0.1);
@@ -803,20 +787,20 @@
             color: var(--text-secondary);
             transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            padding: 0.6rem 1.2rem;
+            text-align: center;
         }
-        .service-tag input[type="checkbox"]:disabled + span {
-            cursor: not-allowed;
-        }
-        .service-tag:hover span {
+        .service-tag.selected,
+        .service-tag:hover {
             border-color: var(--primary-color);
             background: rgba(249, 247, 244, 0.9);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
         }
-        .service-tag input[type="checkbox"]:checked+span {
+        .service-tag.selected {
             background-color: var(--primary-color);
-            border-color: var(--primary-color);
             color: var(--text-on-dark);
-            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
         }
         .submit-btn {
@@ -1762,7 +1746,7 @@
         <div class="hero-container">
             <div class="hero-content reveal-left">
                 <h1>Cuidando de quem você ama</h1>
-                <p class="hero-subtitle">Serviços de cuidadores para idosos em São Paulo</p>
+                <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
                 <div class="hero-cta">
                     <button class="whatsapp-btn" id="hero-whatsapp-btn">
                         Fale conosco
@@ -2482,35 +2466,35 @@
                     </div>
                 </div>
                 
-             <div class="form-group">
-    <label for="bairros-atuacao">Nossa área de cobertura:</label>
-    <div class="services-tags" id="bairros-atuacao">
-        <button type="button" class="service-tag" data-bairro-principal="Itaim">
-            <span>Itaim</span>
-        </button>
-        <button type="button" class="service-tag" data-bairro-principal="Jardins">
-            <span>Jardins</span>
-        </button>
-        <button type="button" class="service-tag" data-bairro-principal="Panamby">
-            <span>Panamby</span>
-        </button>
-        <button type="button" class="service-tag" data-bairro-principal="Morumbi">
-            <span>Morumbi</span>
-        </button>
-        <button type="button" class="service-tag" data-bairro-principal="Moema">
-            <span>Moema</span>
-        </button>
-        <button type="button" class="service-tag" data-bairro-principal="Pinheiros">
-            <span>Pinheiros</span>
-        </button>
-        <button type="button" class="service-tag" data-bairro-principal="Vila Madalena">
-            <span>Vila Madalena</span>
-        </button>
-        <button type="button" class="service-tag" data-bairro-principal="Higienópolis">
-            <span>Higienópolis</span>
-        </button>
-    </div>
-</div>
+                <div class="form-group">
+                    <label for="bairros-atuacao">Nossa área de cobertura:</label>
+                    <div class="services-tags" id="bairros-atuacao">
+                        <button type="button" class="service-tag" data-bairro-principal="Itaim">
+                            <span>Itaim</span>
+                        </button>
+                        <button type="button" class="service-tag" data-bairro-principal="Jardins">
+                            <span>Jardins</span>
+                        </button>
+                        <button type="button" class="service-tag" data-bairro-principal="Panamby">
+                            <span>Panamby</span>
+                        </button>
+                        <button type="button" class="service-tag" data-bairro-principal="Morumbi">
+                            <span>Morumbi</span>
+                        </button>
+                        <button type="button" class="service-tag" data-bairro-principal="Moema">
+                            <span>Moema</span>
+                        </button>
+                        <button type="button" class="service-tag" data-bairro-principal="Pinheiros">
+                            <span>Pinheiros</span>
+                        </button>
+                        <button type="button" class="service-tag" data-bairro-principal="Vila Madalena">
+                            <span>Vila Madalena</span>
+                        </button>
+                        <button type="button" class="service-tag" data-bairro-principal="Higienópolis">
+                            <span>Higienópolis</span>
+                        </button>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="cep">CEP</label>
@@ -2753,7 +2737,7 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             
-            const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
+            const selectedServices = Array.from(document.querySelectorAll('button[name="servicos[]"]:checked'))
                                                      .map(checkbox => checkbox.value)
                                                      .join(', ');
 
@@ -2835,6 +2819,15 @@
             const cepStatus = document.getElementById('cep-status');
             const closeModalBtn = document.getElementById('closeModalBtn');
             const modal = document.getElementById('successModal');
+            const bairroTags = document.querySelectorAll('#bairros-atuacao .service-tag');
+
+            // Lógica para as tags de bairro
+            bairroTags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    bairroTags.forEach(t => t.classList.remove('selected'));
+                    tag.classList.add('selected');
+                });
+            });
 
             if (cepInput) {
                 cepInput.addEventListener('input', function(e) {
@@ -2877,73 +2870,77 @@
             }
         }
         
-   async function searchCEP(cep) {
-    const statusElement = document.getElementById('cep-status');
-    const enderecoField = document.getElementById('endereco');
-    const bairroField = document.getElementById('bairro');
-    const cidadeField = document.getElementById('cidade');
+        async function searchCEP(cep) {
+            const statusElement = document.getElementById('cep-status');
+            const enderecoField = document.getElementById('endereco');
+            const bairroField = document.getElementById('bairro');
+            const cidadeField = document.getElementById('cidade');
+            const bairroTags = document.querySelectorAll('#bairros-atuacao .service-tag');
 
-    if (!statusElement || !enderecoField || !bairroField || !cidadeField) return;
+            if (!statusElement || !enderecoField || !bairroField || !cidadeField) return;
 
-    // Lista de bairros atendidos e seus sub-bairros/equivalentes
-    const bairrosAtendidos = {
-        'Itaim Bibi': ['Itaim Bibi'],
-        'Jardim Paulista': ['Jardim Paulista'],
-        'Jardins': ['Jardins'],
-        'Panamby': ['Panamby', 'Paraíso do Morumbi', 'Vila Andrade'],
-        'Morumbi': ['Morumbi'],
-        'Moema': ['Moema'],
-        'Pinheiros': ['Pinheiros'],
-        'Vila Madalena': ['Vila Madalena'],
-        'Higienópolis': ['Higienópolis']
-    };
+            // Lista de bairros atendidos e seus sub-bairros/equivalentes
+            const bairrosAtendidos = {
+                'Itaim': ['Itaim Bibi'],
+                'Jardins': ['Jardim América', 'Jardim Paulista', 'Jardim Europa', 'Jardim Paulistano'],
+                'Panamby': ['Panamby', 'Paraíso do Morumbi', 'Vila Andrade'],
+                'Morumbi': ['Morumbi'],
+                'Moema': ['Moema'],
+                'Pinheiros': ['Pinheiros'],
+                'Vila Madalena': ['Vila Madalena'],
+                'Higienópolis': ['Higienópolis']
+            };
 
-    try {
-        statusElement.textContent = '🔍 Buscando endereço...';
-        statusElement.style.color = 'var(--primary-color)';
-        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-        const data = await response.json();
+            // Limpa a seleção anterior das tags de bairro
+            bairroTags.forEach(tag => tag.classList.remove('selected'));
 
-        if (data.erro) {
-            throw new Error('CEP não encontrado.');
-        }
+            try {
+                statusElement.textContent = '🔍 Buscando endereço...';
+                statusElement.style.color = 'var(--primary-color)';
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
 
-        enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
-        bairroField.value = data.bairro;
-        cidadeField.value = `${data.localidade} - ${data.uf}`;
+                if (data.erro) {
+                    throw new Error('CEP não encontrado.');
+                }
+                
+                enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
+                bairroField.value = data.bairro;
+                cidadeField.value = `${data.localidade} - ${data.uf}`;
 
-        // Lógica de verificação do bairro
-        let isBairroAtendido = false;
-        let bairroPrincipal = '';
+                // Lógica de verificação do bairro
+                let isBairroAtendido = false;
+                let bairroPrincipal = '';
 
-        for (const [key, value] of Object.entries(bairrosAtendidos)) {
-            if (value.includes(data.bairro)) {
-                isBairroAtendido = true;
-                bairroPrincipal = key;
-                break;
+                for (const [key, value] of Object.entries(bairrosAtendidos)) {
+                    if (value.includes(data.bairro)) {
+                        isBairroAtendido = true;
+                        bairroPrincipal = key;
+                        break;
+                    }
+                }
+
+                if (isBairroAtendido) {
+                    statusElement.textContent = `✅ Endereço encontrado. Atendemos no bairro ${bairroPrincipal}!`;
+                    statusElement.style.color = 'var(--validation-success)';
+                    enderecoField.removeAttribute('readonly');
+                    const tagCorreta = document.querySelector(`.service-tag[data-bairro-principal="${bairroPrincipal}"]`);
+                    if (tagCorreta) tagCorreta.classList.add('selected');
+                } else {
+                    statusElement.textContent = '❌ Infelizmente ainda não atendemos a sua região.';
+                    statusElement.style.color = 'var(--validation-error)';
+                    enderecoField.setAttribute('readonly', true);
+                }
+
+            } catch (error) {
+                statusElement.textContent = `❌ ${error.message}`;
+                statusElement.style.color = 'var(--validation-error)';
+                enderecoField.value = '';
+                bairroField.value = '';
+                cidadeField.value = '';
+                enderecoField.setAttribute('readonly', true);
             }
         }
-
-        if (isBairroAtendido) {
-            statusElement.textContent = `✅ Endereço encontrado. Atendemos no bairro ${bairroPrincipal}!`;
-            statusElement.style.color = 'var(--validation-success)';
-            enderecoField.removeAttribute('readonly');
-        } else {
-            statusElement.textContent = '❌ Infelizmente ainda não atendemos a sua região.';
-            statusElement.style.color = 'var(--validation-error)';
-            enderecoField.setAttribute('readonly', true);
-        }
-
-    } catch (error) {
-        statusElement.textContent = `❌ ${error.message}`;
-        statusElement.style.color = 'var(--validation-error)';
-        enderecoField.value = '';
-        bairroField.value = '';
-        cidadeField.value = '';
-        enderecoField.setAttribute('readonly', true);
-    }
-}
-
 
         function initServiceButtonHandlers() {
             const serviceButtons = document.querySelectorAll('.open-whatsapp-service-btn');

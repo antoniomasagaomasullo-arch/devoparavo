@@ -1009,7 +1009,12 @@
             width: 0;
             height: 0;
         }
-
+        
+        .service-tag input[type="checkbox"]:disabled+span {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
         .service-tag span {
             display: inline-block;
             padding: 0.6rem 1.2rem;
@@ -2044,7 +2049,7 @@
                     <label for="servicos-interesse">Serviços que tenho interesse</label>
                     <div class="services-tags">
                         <label class="service-tag">
-                            <input type="checkbox" name="servicos[]" value="Cuidadora">
+                            <input type="checkbox" name="servicos[]" value="Cuidadora" checked disabled>
                             <span>Cuidadora</span>
                         </label>
                         <label class="service-tag">
@@ -2717,7 +2722,7 @@
         function base64ToArrayBuffer(base64) {
             const binaryString = window.atob(base64);
             const len = binaryString.length;
-            const bytes = new Uint8Array(len);
+            const bytes = new Uint84Array(len);
             for (let i = 0; i < len; i++) {
                 bytes[i] = binaryString.charCodeAt(i);
             }

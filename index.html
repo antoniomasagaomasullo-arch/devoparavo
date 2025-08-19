@@ -2963,7 +2963,7 @@
                     statusElement.style.color = 'var(--validation-success)';
                     enderecoField.removeAttribute('readonly');
                     const tagCorreta = document.querySelector(`#bairros-atuacao .service-tag[data-bairro-principal="${bairroPrincipal}"]`);
-                    if (tagCorreta) tag.classList.add('selected');
+                    if (tagCorreta) tagCorreta.classList.add('selected');
                 } else {
                     statusElement.textContent = '❌ Infelizmente ainda não atendemos a sua região.';
                     statusElement.style.color = 'var(--validation-error)';

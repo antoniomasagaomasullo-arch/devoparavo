@@ -70,7 +70,7 @@
         }
 
         .loading-logo::before {
-            content: '👵🏼';
+            content: '👵�';
             font-size: 3rem;
             animation: logoSpin 4s linear infinite;
         }
@@ -1135,9 +1135,26 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .blog-card-content .article-header .read-more-btn:hover {
+        
+        .blog-card-content .read-more-btn {
+            background-color: transparent;
+            border: none;
+            color: var(--primary-color);
+            padding: 0;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-end;
+        }
+        
+        .blog-card-content .read-more-btn:hover {
             color: var(--secondary-color);
+        }
+
+        .blog-card-content .read-more-btn.decrease {
+             text-decoration: none;
+             
         }
 
         .blog-card-content p {
@@ -1189,6 +1206,10 @@
         }
 
         .blog-card-content .short-text.hidden {
+            display: none;
+        }
+        
+        .blog-card-content .read-more-btn.hidden {
             display: none;
         }
 
@@ -1315,15 +1336,30 @@
         }
         
         .blog-card .read-more-btn.decrease {
-             color: var(--primary-color);
              text-decoration: none;
              font-weight: bold;
-             transition: all 0.3s ease;
         }
+        
         .blog-card .read-more-btn.decrease:hover {
             text-decoration: underline;
-            color: var(--secondary-color);
         }
+        .blog-card .read-more-btn:not(.decrease)::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            vertical-align: middle;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .blog-card .read-more-btn.decrease:not(.decrease)::after {
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        
 
         /* ==================== Animações ==================== */
         @keyframes logoFloat {
@@ -1552,7 +1588,7 @@
                 <div class="story-text reveal-left">
                     <h3 style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">Uma história de família, cuidado e paixão</h3>
                     <p>O <strong>De Vó para Vó</strong> nasceu de uma necessidade real e de um amor incondicional. Aos 94 anos, nossa querida avó, Dona Tereca, foi nossa primeira inspiração. Percebemos o quão desafiador é encontrar cuidadores que realmente tratem os idosos como parte da família. Foi então que decidimos criar uma empresa com um modelo único, onde a empatia e o carinho são a base de tudo.</p>
-                    <p>Nosso grande diferencial é que **todos os nossos profissionais são treinados e trabalham em nossa própria casa** antes de atender nossos clientes. Eles aprendem na prática o que significa cuidar com dedicação, respeito e, acima de tudo, amor. Isso garante que cada um de nossos cuidadores não apenas tenha as habilidades técnicas, mas a filosofia de cuidado que nos move.</p>
+                    <p>Nosso grande diferencial é que <strong>todos os nossos profissionais são treinados e trabalham em nossa própria casa</strong> antes de atender nossos clientes. Eles aprendem na prática o que significa cuidar com dedicação, respeito e, acima de tudo, amor. Isso garante que cada um de nossos cuidadores não apenas tenha as habilidades técnicas, mas a filosofia de cuidado que nos move.</p>
                     <p class="highlight">O nosso lema é simples: "Porque quem cuidamos, cuidamos como família. 💛" Queremos levar essa mesma tranquilidade e carinho para a sua casa e para a pessoa que você ama.</p>
                 </div>
                 <div class="story-image reveal-right parallax-element">
@@ -1636,15 +1672,15 @@
                                 <p>Para garantir que o idoso tenha um dia a dia mais confortável e feliz, é fundamental focar em pequenos detalhes. Uma rotina bem estruturada pode ajudar a manter a saúde física e mental, promovendo autonomia e bem-estar.</p>
                                 <h4>Dicas práticas para a rotina:</h4>
                                 <ul>
-                                    <li>**Hidratação e nutrição:** Garanta que a pessoa se hidrate bem ao longo do dia e tenha uma dieta rica e balanceada, com alimentos que ajudem na manutenção da força e da imunidade.</li>
-                                    <li>**Atividades sociais:** Incentive a interação com amigos e familiares, seja presencialmente ou por videochamadas. A socialização é crucial para prevenir a solidão e a depressão.</li>
-                                    <li>**Ambiente seguro:** Revise a casa para evitar acidentes. Evite tapetes, fios soltos e garanta boa iluminação, principalmente em escadas e banheiros, para prevenir quedas.</li>
-                                    <li>**Exercícios leves:** Caminhadas curtas ou alongamentos diários ajudam a manter a mobilidade e a circulação.</li>
-                                    <li>**Cuidados com a medicação:** Organize os horários dos medicamentos para garantir a administração correta e evitar esquecimentos.</li>
+                                    <li><strong>Hidratação e nutrição:</strong> Garanta que a pessoa se hidrate bem ao longo do dia e tenha uma dieta rica e balanceada, com alimentos que ajudem na manutenção da força e da imunidade.</li>
+                                    <li><strong>Atividades sociais:</strong> Incentive a interação com amigos e familiares, seja presencialmente ou por videochamadas. A socialização é crucial para prevenir a solidão e a depressão.</li>
+                                    <li><strong>Ambiente seguro:</strong> Revise a casa para evitar acidentes. Evite tapetes, fios soltos e garanta boa iluminação, principalmente em escadas e banheiros, para prevenir quedas.</li>
+                                    <li><strong>Exercícios leves:</strong> Caminhadas curtas ou alongamentos diários ajudam a manter a mobilidade e a circulação.</li>
+                                    <li><strong>Cuidados com a medicação:</strong> Organize os horários dos medicamentos para garantir a administração correta e evitar esquecimentos.</li>
                                 </ul>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="read-more-btn">Diminuir</a>
+                                <a href="#" class="read-more-btn decrease">Diminuir</a>
                             </div>
                         </div>
                         <div class="blog-card-actions">
@@ -1674,15 +1710,15 @@
                                 <p>A estimulação cognitiva são exercícios e atividades que visam manter e aprimorar as funções cerebrais, como memória, raciocínio, atenção e linguagem. É uma ferramenta fundamental para a saúde mental na terceira idade, ajudando a prevenir o declínio cognitivo e a manter a mente ativa.</p>
                                 <h4>Atividades que ajudam:</h4>
                                 <ul>
-                                    <li>**Leitura:** Ler livros, jornais ou revistas diariamente é um excelente exercício para o cérebro, estimulando a memória e a capacidade de concentração.</li>
-                                    <li>**Passatempos e jogos:** Palavras cruzadas, quebra-cabeças, jogos de memória e Sudoku são ótimos para manter o cérebro em forma.</li>
-                                    <li>**Música:** Ouvir música, aprender a tocar um instrumento ou cantar pode ativar diferentes áreas do cérebro.</li>
-                                    <li>**Conversas e interação social:** Participar de conversas e discussões estimula a capacidade de comunicação e o raciocínio.</li>
-                                    <li>**Aprender algo novo:** Aprender uma nova habilidade, como um idioma ou um hobby, pode criar novas conexões neurais e fortalecer o cérebro.</li>
+                                    <li><strong>Leitura:</strong> Ler livros, jornais ou revistas diariamente é um excelente exercício para o cérebro, estimulando a memória e a capacidade de concentração.</li>
+                                    <li><strong>Passatempos e jogos:</strong> Palavras cruzadas, quebra-cabeças, jogos de memória e Sudoku são ótimos para manter o cérebro em forma.</li>
+                                    <li><strong>Música:</strong> Ouvir música, aprender a tocar um instrumento ou cantar pode ativar diferentes áreas do cérebro.</li>
+                                    <li><strong>Conversas e interação social:</strong> Participar de conversas e discussões estimula a capacidade de comunicação e o raciocínio.</li>
+                                    <li><strong>Aprender algo novo:</strong> Aprender uma nova habilidade, como um idioma ou um hobby, pode criar novas conexões neurais e fortalecer o cérebro.</li>
                                 </ul>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="read-more-btn">Diminuir</a>
+                                <a href="#" class="read-more-btn decrease">Diminuir</a>
                             </div>
                         </div>
                         <div class="blog-card-actions">
@@ -1712,15 +1748,15 @@
                                 <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular, prevenir doenças crônicas e até mesmo melhorar o humor. O corpo de uma pessoa na terceira idade tem necessidades nutricionais diferentes, e a dieta deve ser adaptada para garantir que todas elas sejam atendidas.</p>
                                 <h4>Alimentos essenciais:</h4>
                                 <ul>
-                                    <li>**Cálcio:** Essencial para a saúde dos ossos. Inclua laticínios, como iogurte e queijo, e vegetais de folhas escuras, como espinafre e couve, na dieta.</li>
-                                    <li>**Proteínas:** Fundamental para a manutenção da massa muscular, que tende a diminuir com a idade. Carnes magras, ovos, peixes e leguminosas (feijão, lentilha) são ótimas fontes.</li>
-                                    <li>**Fibras:** Ajudam no bom funcionamento intestinal e na prevenção de doenças. Frutas, verduras e grãos integrais são ricos em fibras.</li>
-                                    <li>**Vitamina D:** Essencial para a absorção de cálcio. A exposição ao sol é a principal fonte, mas também pode ser encontrada em peixes gordurosos como salmão e sardinha.</li>
-                                    <li>**Ômega-3:** Ajuda na saúde do cérebro e na redução de inflamações. Peixes como salmão, chia e nozes são ricos nesse nutriente.</li>
+                                    <li><strong>Cálcio:</strong> Essencial para a saúde dos ossos. Inclua laticínios, como iogurte e queijo, e vegetais de folhas escuras, como espinafre e couve, na dieta.</li>
+                                    <li><strong>Proteínas:</strong> Fundamental para a manutenção da massa muscular, que tende a diminuir com a idade. Carnes magras, ovos, peixes e leguminosas (feijão, lentilha) são ótimas fontes.</li>
+                                    <li><strong>Fibras:</strong> Ajudam no bom funcionamento intestinal e na prevenção de doenças. Frutas, verduras e grãos integrais são ricos em fibras.</li>
+                                    <li><strong>Vitamina D:</strong> Essencial para a absorção de cálcio. A exposição ao sol é a principal fonte, mas também pode ser encontrada em peixes gordurosos como salmão e sardinha.</li>
+                                    <li><strong>Ômega-3:</strong> Ajuda na saúde do cérebro e na redução de inflamações. Peixes como salmão, chia e nozes são ricos nesse nutriente.</li>
                                 </ul>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="read-more-btn">Diminuir</a>
+                                <a href="#" class="read-more-btn decrease">Diminuir</a>
                             </div>
                         </div>
                         <div class="blog-card-actions">
@@ -2284,10 +2320,19 @@
                 const fullContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
                 const title = card.querySelector('.article-header h3');
+
+                // Garante que o botão 'Ler artigo' existe
+                if (!readMoreBtn) {
+                    const actionsDiv = card.querySelector('.blog-card-actions');
+                    const readMoreLink = document.createElement('a');
+                    readMoreLink.href = '#';
+                    readMoreLink.className = 'read-more-btn';
+                    readMoreLink.textContent = 'Ler artigo';
+                    actionsDiv.prepend(readMoreLink);
+                }
                 
                 const toggleContent = (e) => {
                     e.preventDefault();
-                    // Garante que o evento de clique não se propague para outros elementos
                     e.stopPropagation();
 
                     if (fullContent.classList.contains('visible')) {
@@ -2295,11 +2340,17 @@
                         readMoreBtn.textContent = 'Ler artigo';
                         shortText.classList.remove('hidden');
                         readMoreBtn.classList.remove('decrease');
+                        readMoreBtn.style.display = 'block';
                     } else {
                         fullContent.classList.add('visible');
                         readMoreBtn.textContent = 'Diminuir';
                         shortText.classList.add('hidden');
                         readMoreBtn.classList.add('decrease');
+                        // Oculta o botão "Ler artigo" quando o conteúdo completo estiver visível
+                        const otherReadMoreBtn = card.querySelector('.blog-card-actions .read-more-btn');
+                        if(otherReadMoreBtn) {
+                           otherReadMoreBtn.style.display = 'none';
+                        }
                     }
                 };
                 
@@ -2507,31 +2558,37 @@
             const blogCards = document.querySelectorAll('.blog-card');
             
             blogCards.forEach(card => {
-                const readMoreBtn = card.querySelector('.read-more-btn');
+                const readMoreBtnInFooter = card.querySelector('.article-footer .read-more-btn');
+                const readMoreBtnInActions = card.querySelector('.blog-card-actions .read-more-btn');
                 const fullContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
                 const title = card.querySelector('.article-header h3');
-                
+
                 const toggleContent = (e) => {
                     e.preventDefault();
-                    // Garante que o evento de clique não se propague para outros elementos
                     e.stopPropagation();
 
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
-                        readMoreBtn.textContent = 'Ler artigo';
+                        if (readMoreBtnInFooter) readMoreBtnInFooter.textContent = 'Ler artigo';
                         shortText.classList.remove('hidden');
-                        readMoreBtn.classList.remove('decrease');
+                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.remove('decrease');
+                        if (readMoreBtnInActions) readMoreBtnInActions.classList.remove('hidden');
                     } else {
                         fullContent.classList.add('visible');
-                        readMoreBtn.textContent = 'Diminuir';
+                        if (readMoreBtnInFooter) readMoreBtnInFooter.textContent = 'Diminuir';
                         shortText.classList.add('hidden');
-                        readMoreBtn.classList.add('decrease');
+                        if (readMoreBtnInFooter) readMoreBtnInFooter.classList.add('decrease');
+                        if (readMoreBtnInActions) readMoreBtnInActions.classList.add('hidden');
                     }
                 };
                 
-                if (readMoreBtn) {
-                    readMoreBtn.addEventListener('click', toggleContent);
+                if (readMoreBtnInFooter) {
+                    readMoreBtnInFooter.addEventListener('click', toggleContent);
+                    readMoreBtnInFooter.classList.add('hidden');
+                }
+                if (readMoreBtnInActions) {
+                    readMoreBtnInActions.addEventListener('click', toggleContent);
                 }
                 if (title) {
                     title.addEventListener('click', toggleContent);
@@ -2541,3 +2598,4 @@
     </script>
 </body>
 </html>
+�

@@ -2021,7 +2021,7 @@
             // Exibe o modal de sucesso
             const modal = document.getElementById('successModal');
             if (modal) {
-                modal.style.display = 'flex';
+                modal.classList.add('visible');
             }
         }
         
@@ -2060,7 +2060,7 @@
             if (closeModalBtn) {
                 closeModalBtn.addEventListener('click', () => {
                     if (modal) {
-                        modal.style.display = 'none';
+                        modal.classList.remove('visible');
                         form.reset();
                     }
                 });

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Vó para Vó - Cuidando de quem você ama</title>
-    <!-- Fontes para a nova proposta de design: Playfair Display para títulos e Inter para o texto principal -->
+    <!-- Pré-carregamento de fontes para melhor performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==================== Estilos Globais e Reset ==================== */
@@ -72,7 +74,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23efebe4" fill-opacity="0.4"%3E%3Cpath d="M36 34.542V13.84L54.764 24.288l-5.32 3.07a2 2 0 0 1-1.92-1.28L44 20v24L24 34.542V13.84L5.236 24.288l5.32 3.07a2 2 0 0 1 1.92-1.28L16 20v24l20-10.458z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23efebe4" fill-opacity="0.4"%3E%3Cpath d="M36 34.542V13.84L54.764 24.288l-5.32 3.07a2 0 0 1-1.92-1.28L44 20v24L24 34.542V13.84L5.236 24.288l5.32 3.07a2 0 0 1 1.92-1.28L16 20v24l20-10.458z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
             opacity: 0.2;
             pointer-events: none;
             z-index: -1;
@@ -576,10 +578,18 @@
             box-shadow: var(--shadow-sm);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        
+        .service-icon svg {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
         .service-card:hover .service-icon {
             transform: scale(1.1) rotate(5deg);
             background-color: var(--secondary-color);
+        }
+
+        .service-card:hover .service-icon svg {
+            transform: scale(1.1);
         }
 
         .service-card h3 {
@@ -1169,7 +1179,7 @@
             border-radius: 5px;
         }
         
-        .skeleton-title {
+.skeleton-title {
             width: 60%;
         }
         
@@ -1690,7 +1700,7 @@
             <div class="services-grid">
                 <div class="service-card reveal" style="animation-delay: 0.1s;">
                     <div class="service-icon">
-                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
                     <h3>Cuidadoras</h3>
                     <p>Acompanhamento diário</p>
@@ -1698,7 +1708,7 @@
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.2s;">
                     <div class="service-icon">
-                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scissors"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg>
                     </div>
                     <h3>Manicure e cabeleireiro</h3>
                     <p>Atendimento em casa</p>
@@ -1706,7 +1716,7 @@
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.3s;">
                     <div class="service-icon">
-                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-pulse"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.2 11.2h4.5l2-7.2 3.5 10.7L16 6l3 7H22"/></svg>
                     </div>
                     <h3>Apoio psicológico</h3>
                     <p>Uma vez por semana</p>
@@ -1714,7 +1724,7 @@
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.4s;">
                     <div class="service-icon">
-                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car"><path d="M19 17h2c.5 0 1-.5 1-1v-3c0-.5-.5-1-1-1h-1V3c0-.5-.5-1-1-1H3c-.5 0-1 .5-1 1v14h2"/><path d="M14 17h-4"/><path d="M7 17v-4"/><path d="M17 5h-4"/><path d="M12 12v3"/><circle cx="17" cy="19" r="2"/><circle cx="7" cy="19" r="2"/></svg>
                     </div>
                     <h3>Motorista</h3>
                     <p>1 a 2 vezes por semana</p>
@@ -1852,10 +1862,10 @@
                                 <h4>Ideias de exercícios</h4>
                                 <p>É importante começar devagar e sempre consultar um médico ou fisioterapeuta antes de iniciar qualquer nova rotina de exercícios. Algumas atividades recomendadas incluem:</p>
                                 <ul>
-                                    <li>**Caminhada:** Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
-                                    <li>**Natação e Hidroginástica:** A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
-                                    <li>**Yoga ou Pilates:** Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
-                                    <li>**Exercícios com faixas elásticas:** Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
+                                    <li><strong>Caminhada:</strong> Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
+                                    <li><strong>Natação e Hidroginástica:</strong> A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
+                                    <li><strong>Yoga ou Pilates:</strong> Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
+                                    <li><strong>Exercícios com faixas elásticas:</strong> Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
                                 </ul>
                             </div>
                         </div>

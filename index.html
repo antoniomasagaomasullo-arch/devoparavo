@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Vó para Vó - Cuidando de quem você ama</title>
-    <!-- Pré-carregamento de fontes para melhor performance -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -436,6 +435,8 @@
             font-size: var(--text-xl);
             font-weight: 700;
             color: var(--secondary-color);
+            margin-top: -1rem;
+            margin-bottom: 1rem;
         }
 
         .story-text p {
@@ -1485,6 +1486,7 @@
             border-radius: 25px;
             font-size: var(--text-base);
             background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
         }
 
         .chatbot-input button {
@@ -1836,6 +1838,329 @@
                 padding: 0 1rem 1rem;
             }
         }
+        /* Novos estilos para a calculadora */
+        .calculadora-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--background-end) 0%, var(--background-start) 100%);
+        }
+        .calculadora-container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .calculadora-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(93, 47, 9, 0.02) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .calc-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .calc-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        .calc-header p {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+        .calc-steps {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .calc-step {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .calc-step:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .calc-step.completed {
+            border-color: var(--primary-color);
+            background: rgba(93, 47, 9, 0.05);
+        }
+        .step-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: var(--text-on-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .step-number.completed {
+            background: var(--secondary-color);
+        }
+        .step-title {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .step-subtitle {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .option-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+        .option-card.selected {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: var(--text-on-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .option-card.selected::before {
+            opacity: 1;
+        }
+        .option-content {
+            position: relative;
+            z-index: 1;
+        }
+        .option-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .option-title {
+            font-weight: 600;
+            font-size: var(--text-lg);
+            margin-bottom: 0.5rem;
+        }
+        .option-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .option-price {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+        .resultado-container {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+            color: var(--text-on-dark);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .resultado-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .resultado-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        .resultado-content {
+            position: relative;
+            z-index: 1;
+        }
+        .resultado-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .preco-display {
+            margin: 2rem 0;
+        }
+        .preco-valor {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .preco-periodo {
+            font-size: var(--text-lg);
+            opacity: 0.8;
+        }
+        .preco-detalhes {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        .detalhe-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: var(--text-base);
+        }
+        .detalhe-item:last-child {
+            margin-bottom: 0;
+            font-weight: 600;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .btn-primary {
+            background: var(--text-on-dark);
+            color: var(--primary-dark);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--text-base);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-on-dark);
+            border: 2px solid var(--text-on-dark);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--text-base);
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background: var(--text-on-dark);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(93, 47, 9, 0.2);
+            transition: all 0.3s ease;
+        }
+        .indicator-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+        .indicator-dot.completed {
+            background: var(--secondary-color);
+        }
+        @media (max-width: 768px) {
+            .calculadora-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            .calc-header h2 {
+                font-size: var(--text-2xl);
+            }
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1861,6 +2186,7 @@
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#about-us">Sobre Nós</a></li>
                     <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#calculadora">Orçamento</a></li>
                     <li><a href="#depoimentos">Depoimentos</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#faq">FAQ</a></li>
@@ -1882,7 +2208,7 @@
                 <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
                 <div class="hero-cta">
                     <button class="whatsapp-btn" id="hero-whatsapp-btn">
-                         Fale conosco
+                        Fale conosco
                     </button>
                 </div>
             </div>
@@ -1949,7 +2275,169 @@
             </div>
         </div>
     </section>
-    
+
+    <section class="calculadora-section" id="calculadora">
+        <div class="calculadora-container reveal-scale">
+            <div class="calc-header">
+                <h2>Calcule seu orçamento personalizado</h2>
+                <p>Em 3 passos simples, descubra o investimento para o cuidado ideal</p>
+            </div>
+            <div class="step-indicator">
+                <div class="indicator-dot active" data-step="1"></div>
+                <div class="indicator-dot" data-step="2"></div>
+                <div class="indicator-dot" data-step="3"></div>
+            </div>
+            <div class="calc-steps">
+                <div class="calc-step completed" id="step1">
+                    <div class="step-label">
+                        <div class="step-number completed">1</div>
+                        <div>
+                            <div class="step-title">Tipo de Cuidado</div>
+                            <div class="step-subtitle">Qual o nível de cuidado necessário?</div>
+                        </div>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-card selected" data-tipo="basico" data-preco="30">
+                            <div class="option-content">
+                                <div class="option-icon">👥</div>
+                                <div class="option-title">Cuidado Básico</div>
+                                <div class="option-description">Companhia, atividades e cuidados gerais</div>
+                                <div class="option-price">A partir de R$ 30/hora</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-tipo="medicacao" data-preco="40">
+                            <div class="option-content">
+                                <div class="option-icon">💊</div>
+                                <div class="option-title">Com Medicação</div>
+                                <div class="option-description">Administração de medicamentos e controle</div>
+                                <div class="option-price">A partir de R$ 40/hora</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-tipo="mobilidade" data-preco="45">
+                            <div class="option-content">
+                                <div class="option-icon">🦽</div>
+                                <div class="option-title">Mobilidade Reduzida</div>
+                                <div class="option-description">Auxílio para locomoção e transferências</div>
+                                <div class="option-price">A partir de R$ 45/hora</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-tipo="intensivo" data-preco="55">
+                            <div class="option-content">
+                                <div class="option-icon">🏥</div>
+                                <div class="option-title">Cuidado Intensivo</div>
+                                <div class="option-description">Acompanhamento especializado 24h</div>
+                                <div class="option-price">A partir de R$ 55/hora</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-step completed" id="step2">
+                    <div class="step-label">
+                        <div class="step-number completed">2</div>
+                        <div>
+                            <div class="step-title">Período de Cuidado</div>
+                            <div class="step-subtitle">Quantas horas por dia?</div>
+                        </div>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-card" data-horas="8">
+                            <div class="option-content">
+                                <div class="option-icon">🌅</div>
+                                <div class="option-title">8 horas/dia</div>
+                                <div class="option-description">Período diurno ou noturno</div>
+                            </div>
+                        </div>
+                        <div class="option-card selected" data-horas="12">
+                            <div class="option-content">
+                                <div class="option-icon">☀️</div>
+                                <div class="option-title">12 horas/dia</div>
+                                <div class="option-description">Cobertura estendida</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-horas="24">
+                            <div class="option-content">
+                                <div class="option-icon">🌙</div>
+                                <div class="option-title">24 horas/dia</div>
+                                <div class="option-description">Cuidado contínuo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-step completed" id="step3">
+                    <div class="step-label">
+                        <div class="step-number completed">3</div>
+                        <div>
+                            <div class="step-title">Frequência Semanal</div>
+                            <div class="step-subtitle">Quantos dias por semana?</div>
+                        </div>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-card" data-dias="5">
+                            <div class="option-content">
+                                <div class="option-icon">📅</div>
+                                <div class="option-title">Segunda a Sexta</div>
+                                <div class="option-description">5 dias por semana</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-dias="6">
+                            <div class="option-content">
+                                <div class="option-icon">📆</div>
+                                <div class="option-title">Segunda a Sábado</div>
+                                <div class="option-description">6 dias por semana</div>
+                            </div>
+                        </div>
+                        <div class="option-card selected" data-dias="7">
+                            <div class="option-content">
+                                <div class="option-icon">🗓️</div>
+                                <div class="option-title">Todos os Dias</div>
+                                <div class="option-description">7 dias por semana</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resultado-container visible" id="resultado">
+                <div class="resultado-content">
+                    <div class="resultado-title">Seu orçamento personalizado</div>
+                                    <div class="preco-display">
+                        <div class="preco-valor">R$ <span id="valorFinal">10.320</span></div>
+                        <div class="preco-periodo">por mês</div>
+                    </div>
+                    <div class="preco-detalhes">
+                        <div class="detalhe-item">
+                            <span>Tipo de cuidado:</span>
+                            <span id="tipoSelecionado">Cuidado Básico</span>
+                        </div>
+                        <div class="detalhe-item">
+                            <span>Período diário:</span>
+                            <span id="periodoSelecionado">12 horas</span>
+                        </div>
+                        <div class="detalhe-item">
+                            <span>Frequência:</span>
+                            <span id="frequenciaSelecionada">7 dias/semana</span>
+                        </div>
+                        <div class="detalhe-item">
+                            <span>Valor por hora:</span>
+                            <span>R$ <span id="valorHora">30</span></span>
+                        </div>
+                        <div class="detalhe-item">
+                            <span><strong>Total mensal:</strong></span>
+                            <span><strong>R$ <span id="totalMensal">10.320</span></strong></span>
+                        </div>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="#contato" class="btn-primary" id="btnWhatsApp">
+                            📱 Solicitar via WhatsApp
+                        </a>
+                        <a href="#contato" class="btn-secondary">
+                            📋 Formulário Completo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="testimonials" id="depoimentos">
         <div class="container">
             <h2 class="section-title reveal">Depoimentos</h2>
@@ -1957,7 +2445,6 @@
                 <button class="carousel-btn prev-btn" aria-label="Anterior">&lt;</button>
                 <div class="testimonial-carousel-wrapper">
                     <div class="testimonial-carousel">
-                        <!-- Depoimento 1 -->
                         <div class="testimonial-slide">
                             <div class="testimonial-content reveal-left">
                                 <div class="testimonial-text">
@@ -1969,7 +2456,6 @@
                                 <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Antônia sorrindo" loading="lazy">
                             </div>
                         </div>
-                        <!-- Depoimento 2 -->
                         <div class="testimonial-slide">
                             <div class="testimonial-content reveal-left">
                                 <div class="testimonial-text">
@@ -1981,7 +2467,6 @@
                                 <img src="https://images.unsplash.com/photo-1549725227-3a1372b73379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Sr. Carlos" loading="lazy">
                             </div>
                         </div>
-                        <!-- Depoimento 3 -->
                         <div class="testimonial-slide">
                             <div class="testimonial-content reveal-left">
                                 <div class="testimonial-text">
@@ -2006,7 +2491,6 @@
             <div class="blog-carousel-wrapper">
                 <button class="carousel-btn prev-btn" id="blogPrevBtn" aria-label="Artigo anterior">&lt;</button>
                 <div class="blog-carousel" id="blogCarousel">
-                    <!-- Blog Card 1 -->
                     <div class="blog-card reveal delay-1">
                         <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso bebendo água" class="blog-card-image" loading="lazy">
                         <div class="blog-card-content">
@@ -2067,9 +2551,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Blog Card 2 -->
                     <div class="blog-card reveal delay-2">
-                        <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3xlbnwwfHx8fDE3MTc1MzY2NDF8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
                         <div class="blog-card-content">
                             <div class="article-header">
                                 <h3>Exercícios leves para a mobilidade</h3>
@@ -2105,7 +2588,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Blog Card 3 -->
                     <div class="blog-card reveal delay-3">
                         <img src="https://images.unsplash.com/photo-1599427303058-2996f022316e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8c29ubyUyMGlkb3NvfHwxfHx8fHwxNzE3NTM2NzI1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso dormindo tranquilamente" class="blog-card-image" loading="lazy">
                         <div class="blog-card-content">
@@ -2137,7 +2619,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Novo Blog Card 4 -->
                     <div class="blog-card reveal delay-4">
                         <img src="https://images.unsplash.com/photo-1571772922119-913a826435c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxMHx8ZGlldGElMjBhdm98ZW58MHx8fHwxNzE3NTM2Nzk1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um avó preparando uma refeição" class="blog-card-image" loading="lazy">
                         <div class="blog-card-content">
@@ -2180,7 +2661,6 @@
             <h2 class="section-title reveal">Perguntas Frequentes</h2>
             <div class="faq-container">
                 
-                <!-- Pergunta 1 -->
                 <div class="faq-item reveal delay-1">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
                         <span>Como vocês selecionam os cuidadores?</span>
@@ -2191,7 +2671,6 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 2 -->
                 <div class="faq-item reveal delay-2">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
                         <span>Qual é o diferencial do "De Vó para Vó"?</span>
@@ -2202,7 +2681,6 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 3 -->
                 <div class="faq-item reveal delay-3">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">
                         <span>Quais serviços vocês oferecem?</span>
@@ -2213,7 +2691,6 @@
                     </div>
                 </div>
                 
-                <!-- Pergunta 4 -->
                 <div class="faq-item reveal delay-4">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
                         <span>Vocês atendem em quais regiões?</span>
@@ -2224,7 +2701,6 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 5 -->
                 <div class="faq-item reveal delay-5">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">
                         <span>Como é feito o acompanhamento dos cuidados?</span>
@@ -2235,7 +2711,6 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 6 -->
                 <div class="faq-item reveal delay-6">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6">
                         <span>Qual o valor dos serviços?</span>
@@ -2246,7 +2721,6 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 7 -->
                 <div class="faq-item reveal delay-7">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7" id="faq-question-7">
                         <span>E se eu não ficar satisfeito com o cuidador?</span>
@@ -2357,7 +2831,6 @@
         </div>
     </footer>
     
-    <!-- Modal de Confirmação -->
     <div id="successModal" class="modal">
         <div class="modal-content">
             <h3>Mensagem Enviada com Sucesso!</h3>
@@ -2366,7 +2839,6 @@
         </div>
     </div>
 
-    <!-- Novo Modal do Chatbot -->
     <div id="chatbotModal" class="modal">
         <div class="chatbot-content">
             <div class="chatbot-header">
@@ -2408,7 +2880,8 @@
             initFAQ();
             initChatbot(); // Inicializa o chatbot
             initBlogCarousel(); // Novo: Inicializa o carrossel do blog
-            
+            initCalculadora(); // Inicializa a calculadora
+
             // Oculta a tela de carregamento após um tempo
             setTimeout(function() {
                 const loadingScreen = document.getElementById('loadingScreen');
@@ -3059,7 +3532,7 @@
                     retryDelay *= 2;
                 }
             }
-
+            
             if (!response || !response.ok) {
                 console.error("Não foi possível obter uma resposta de áudio da API após várias tentativas.");
                 return;
@@ -3328,6 +3801,97 @@
             } else {
                 return 'Desculpe, não consegui entender. Poderia reformular a pergunta?';
             }
+        }
+        
+        // ==================== Lógica da Calculadora ====================
+        function initCalculadora() {
+            class CalculadoraOrcamento {
+                constructor() {
+                    this.dados = {
+                        tipo: 'basico',
+                        preco: 30,
+                        horas: 12,
+                        dias: 7
+                    };
+                    this.init();
+                }
+                init() {
+                    this.bindEvents();
+                    this.calcular();
+                }
+                bindEvents() {
+                    document.querySelectorAll('.calculadora-container .option-card').forEach(card => {
+                        card.addEventListener('click', (e) => {
+                            const step = card.closest('.calc-step');
+                            step.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                            card.classList.add('selected');
+                            this.updateData(card);
+                            this.calcular();
+                            this.updateStepIndicator();
+                        });
+                    });
+                    document.getElementById('btnWhatsApp').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.enviarWhatsApp();
+                    });
+                }
+                updateData(card) {
+                    if (card.dataset.tipo) {
+                        this.dados.tipo = card.dataset.tipo;
+                        this.dados.preco = parseInt(card.dataset.preco);
+                    }
+                    if (card.dataset.horas) {
+                        this.dados.horas = parseInt(card.dataset.horas);
+                    }
+                    if (card.dataset.dias) {
+                        this.dados.dias = parseInt(card.dataset.dias);
+                    }
+                }
+                calcular() {
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
+                    document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('totalMensal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('valorHora').textContent = this.dados.preco;
+                    const tipos = {
+                        'basico': 'Cuidado Básico',
+                        'medicacao': 'Com Medicação',
+                        'mobilidade': 'Mobilidade Reduzida',
+                        'intensivo': 'Cuidado Intensivo'
+                    };
+                    document.getElementById('tipoSelecionado').textContent = tipos[this.dados.tipo];
+                    document.getElementById('periodoSelecionado').textContent = `${this.dados.horas} horas`;
+                    document.getElementById('frequenciaSelecionada').textContent = `${this.dados.dias} dias/semana`;
+                    const resultado = document.getElementById('resultado');
+                    if (!resultado.classList.contains('visible')) {
+                        setTimeout(() => {
+                            resultado.classList.add('visible');
+                        }, 300);
+                    }
+                }
+                updateStepIndicator() {
+                    const dots = document.querySelectorAll('.calculadora-container .indicator-dot');
+                    dots.forEach((dot, index) => {
+                        if (index < 3) {
+                            dot.classList.add('completed');
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+                enviarWhatsApp() {
+                    const tipos = {
+                        'basico': 'Cuidado Básico',
+                        'medicacao': 'Com Medicação',
+                        'mobilidade': 'Mobilidade Reduzida',
+                        'intensivo': 'Cuidado Intensivo'
+                    };
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
+                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:🏥 Tipo: ${tipos[this.dados.tipo]}⏰ Período: ${this.dados.horas}h/dia📅 Frequência: ${this.dados.dias} dias/semana💰 Estimativa: R$ ${valorMensal.toLocaleString('pt-BR')}/mêsGostaria de agendar uma avaliação!`;
+                    const telefone = '5511999999999';
+                    const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+                    window.open(url, '_blank');
+                }
+            }
+            new CalculadoraOrcamento();
         }
 
     </script>

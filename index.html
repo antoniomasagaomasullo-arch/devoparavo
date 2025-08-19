@@ -13,11 +13,23 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #A0522D;
+            --accent-color: #CD853F;
+            --whatsapp-green: #25D366;
+            --background-start: #f0ebe4;
+            --background-end: #e8ddd1;
+            --text-color: #333;
+            --dark-text: #2c2c2c;
+            --light-text: #666;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: radial-gradient(circle at top, #f0ebe4 0%, #e8ddd1 100%);
+            color: var(--text-color);
+            background: radial-gradient(circle at top, var(--background-start) 0%, var(--background-end) 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -29,7 +41,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -69,6 +81,12 @@
             font-weight: bold;
             margin-bottom: 1rem;
             opacity: 0.9;
+        }
+
+        .loading-subtitle {
+            color: white;
+            font-size: 1rem;
+            opacity: 0.7;
         }
 
         .loading-progress {
@@ -143,7 +161,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
-        
+
         .header.compact {
             padding: 0.5rem 0;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -157,23 +175,21 @@
             align-items: center;
             padding: 0 2rem;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
         }
-        
-        /* Nova fonte e tamanho para o logo */
+
         .logo .title {
             font-family: 'Dancing Script', cursive;
             font-size: 2rem;
             font-weight: 700;
-            color: #8B4513;
+            color: var(--primary-color);
         }
-        
-        /* Remove a linha de subtítulo */
+
         .logo .subtitle {
-            display: none; 
+            display: none;
         }
 
         .nav-menu {
@@ -184,14 +200,14 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: #333;
+            color: var(--text-color);
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
         }
 
         .nav-menu a:hover {
-            color: #8B4513;
+            color: var(--primary-color);
         }
 
         .nav-menu a::after {
@@ -201,7 +217,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #8B4513, #D2691E);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             transition: width 0.3s ease;
         }
 
@@ -210,7 +226,7 @@
         }
 
         .cta-button {
-            background: radial-gradient(circle at center, #A0522D 0%, #8B4513 100%);
+            background: radial-gradient(circle at center, var(--secondary-color) 0%, var(--primary-color) 100%);
             color: white;
             padding: 0.8rem 1.5rem;
             border: none;
@@ -245,13 +261,13 @@
 
         /* ==================== Seção Hero (Principal) ==================== */
         .hero {
-            background: radial-gradient(circle at center, #f0ebe4 0%, #e8ddd1 100%);
-            padding: 40px 0; /* Espaçamento bem reduzido */
+            background: radial-gradient(circle at center, var(--background-start) 0%, var(--background-end) 100%);
+            padding: 40px 0;
             position: relative;
             overflow: hidden;
             min-height: 100vh;
             display: flex;
-            align-items: center; /* Centraliza o conteúdo verticalmente */
+            align-items: center;
         }
 
         .hero::before {
@@ -314,7 +330,7 @@
         .hero-content h1 {
             font-size: 3rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #2c2c2c 0%, #8B4513 50%, #2c2c2c 100%);
+            background: linear-gradient(135deg, var(--dark-text) 0%, var(--primary-color) 50%, var(--dark-text) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -324,7 +340,7 @@
 
         .hero-subtitle {
             font-size: 1.2rem;
-            color: #666;
+            color: var(--light-text);
             margin-bottom: 2rem;
         }
 
@@ -336,7 +352,7 @@
         }
 
         .whatsapp-btn {
-            background: radial-gradient(circle at center, #20B358 0%, #25D366 100%);
+            background: radial-gradient(circle at center, #20B358 0%, var(--whatsapp-green) 100%);
             color: white;
             padding: 1rem 2rem;
             border: none;
@@ -453,7 +469,7 @@
         .story-text h2 {
             font-size: 2.2rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #2c2c2c 0%, #8B4513 100%);
+            background: linear-gradient(135deg, var(--dark-text) 0%, var(--primary-color) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -471,7 +487,7 @@
         .story-text .highlight {
             font-size: 1.2rem;
             font-weight: 600;
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -524,7 +540,7 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
@@ -564,7 +580,7 @@
             font-weight: bold;
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #2c2c2c 0%, #8B4513 50%, #2c2c2c 100%);
+            background: linear-gradient(135deg, var(--dark-text) 0%, var(--primary-color) 50%, var(--dark-text) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -575,7 +591,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             align-items: stretch;
-            margin-top: -30px; /* Reduz o espaçamento com o título da seção */
+            margin-top: -30px;
         }
 
         .service-card {
@@ -641,7 +657,7 @@
         .service-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             display: flex;
@@ -678,18 +694,18 @@
         .service-card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: #2c2c2c;
+            color: var(--dark-text);
             font-weight: 600;
             transition: all 0.3s ease;
         }
 
         .service-card:hover h3 {
-            color: #8B4513;
+            color: var(--primary-color);
             transform: translateY(-2px);
         }
 
         .service-card p {
-            color: #666;
+            color: var(--light-text);
             font-size: 0.95rem;
             transition: all 0.3s ease;
         }
@@ -699,9 +715,8 @@
             transform: translateY(-2px);
         }
 
-        /* Botão para abrir o modal no card de serviço */
         .service-card .open-whatsapp-service-btn {
-            background: #8B4513;
+            background: var(--primary-color);
             color: white;
             padding: 0.8rem 1.5rem;
             border: none;
@@ -714,10 +729,10 @@
             overflow: hidden;
             margin-top: 1.5rem;
         }
-        
+
         .service-card .open-whatsapp-service-btn:hover {
-             background: #6D360B;
-             box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+            background: #6D360B;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
         }
 
         /* ==================== Seção Depoimentos (Testimonials) ==================== */
@@ -748,9 +763,9 @@
             position: relative;
             z-index: 1;
             overflow: hidden;
-            height: 450px; /* Altura fixa para o carrossel não se mover */
+            min-height: 450px;
         }
-        
+
         .testimonial-carousel-wrapper {
             width: 100%;
             height: 100%;
@@ -773,8 +788,7 @@
             gap: 3rem;
             align-items: center;
         }
-        
-        /* Centraliza os depoimentos no carrossel */
+
         .testimonial-slide-content {
             display: flex;
             justify-content: center;
@@ -794,13 +808,13 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
             overflow: hidden;
-            margin: 0 1rem; /* Ajuste para centralizar melhor no carrossel */
+            margin: 0 1rem;
         }
 
         .testimonial-content::before {
             content: '"';
             font-size: 4rem;
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -835,7 +849,6 @@
             background: rgba(255, 255, 255, 0.5);
         }
 
-
         .testimonial-content:hover::after {
             opacity: 1;
             transform: scale(1);
@@ -857,7 +870,7 @@
 
         .testimonial-author {
             font-weight: bold;
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -918,7 +931,7 @@
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.5);
             border: none;
-            color: #8B4513;
+            color: var(--primary-color);
             font-size: 2rem;
             cursor: pointer;
             padding: 0.5rem;
@@ -977,6 +990,16 @@
             transform: translateY(-5px);
         }
 
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -985,7 +1008,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            color: #333;
+            color: var(--dark-text);
         }
 
         .form-group input,
@@ -1003,7 +1026,7 @@
 
         .form-group input[readonly] {
             background: rgba(248, 248, 248, 0.8);
-            color: #666;
+            color: var(--light-text);
             cursor: not-allowed;
         }
 
@@ -1011,13 +1034,12 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #8B4513;
+            border-color: var(--primary-color);
             background: rgba(255, 255, 255, 0.9);
             box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
             transform: scale(1.02);
         }
 
-        /* Tags de Serviços (Serviços Tags) */
         .services-tags {
             display: flex;
             flex-wrap: wrap;
@@ -1047,19 +1069,19 @@
             border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 500;
-            color: #666;
+            color: var(--light-text);
             transition: all 0.3s ease;
         }
 
         .service-tag:hover span {
-            border-color: #8B4513;
+            border-color: var(--primary-color);
             background: rgba(249, 247, 244, 0.9);
             transform: translateY(-2px);
         }
 
         .service-tag input[type="checkbox"]:checked+span {
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
-            border-color: #8B4513;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-color: var(--primary-color);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
@@ -1067,7 +1089,7 @@
 
         .submit-btn {
             width: 100%;
-            background: radial-gradient(circle at center, #A0522D 0%, #8B4513 100%);
+            background: radial-gradient(circle at center, var(--secondary-color) 0%, var(--primary-color) 100%);
             color: white;
             padding: 1rem 2rem;
             border: none;
@@ -1114,14 +1136,14 @@
         .footer p {
             opacity: 0.8;
         }
-        
+
         /* ==================== Seção de Blog ==================== */
         .blog {
             padding: 80px 0;
             position: relative;
             overflow: hidden;
         }
-        
+
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1130,7 +1152,7 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
-        
+
         .blog-card {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(20px);
@@ -1144,18 +1166,18 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        
+
         .blog-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
-        
+
         .blog-card-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-        
+
         .blog-card-content {
             padding: 2rem;
             transition: all 0.5s ease-in-out;
@@ -1164,18 +1186,18 @@
         .blog-card-content .article-header h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            color: #2c2c2c;
+            color: var(--dark-text);
             cursor: pointer;
         }
 
         .blog-card-content .article-header a {
             display: inline-block;
-            color: #8B4513;
+            color: var(--primary-color);
             font-weight: bold;
             text-decoration: none;
             position: relative;
         }
-        
+
         .blog-card-content .article-header a::after {
             content: '';
             position: absolute;
@@ -1183,12 +1205,12 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #8B4513;
+            background: var(--primary-color);
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.3s ease;
         }
-        
+
         .blog-card-content .article-header a:hover::after {
             transform: scaleX(1);
             transform-origin: left;
@@ -1196,24 +1218,54 @@
 
         .blog-card-content p {
             font-size: 1rem;
-            color: #666;
+            color: var(--light-text);
             margin-bottom: 1.5rem;
         }
         
-        /* Estilos do conteúdo expandido do blog */
+        .blog-card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .blog-card-actions button {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card-actions button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .blog-card-actions .audio-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
         .full-article-content {
-            display: none;
-            margin-top: 1rem;
+            overflow: hidden;
             max-height: 0;
             opacity: 0;
-            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            overflow: hidden;
+            transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .full-article-content.visible {
-            display: block;
-            max-height: 1000px; /* Valor alto para transição suave */
+            max-height: 1000px;
             opacity: 1;
+        }
+
+        .blog-card-content .short-text.hidden {
+            display: none;
         }
 
         .article-content h4 {
@@ -1222,14 +1274,41 @@
             margin-bottom: 0.5rem;
             color: #555;
         }
-        
+
         .article-content p {
             margin-bottom: 1rem;
         }
-        
+
         .article-footer {
             margin-top: 2rem;
             text-align: right;
+        }
+        
+        .ai-tip-container {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+            text-align: left;
+            position: relative;
+        }
+        
+        .ai-tip-container .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin: 0 auto;
+        }
+        
+        .ai-tip-container p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--dark-text);
         }
 
         /* ==================== Botão Flutuante do WhatsApp ==================== */
@@ -1237,7 +1316,7 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: radial-gradient(circle at center, #20B358 0%, #25D366 100%);
+            background: radial-gradient(circle at center, #20B358 0%, var(--whatsapp-green) 100%);
             color: white;
             width: 60px;
             height: 60px;
@@ -1249,17 +1328,77 @@
             z-index: 999;
             transition: all 0.3s ease;
             animation: pulse 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
         }
 
         .whatsapp-float-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
         }
+        
+        /* ==================== Modal de Confirmação ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: zoomIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .modal-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background-color: var(--secondary-color);
+        }
 
         /* ==================== Animações ==================== */
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @keyframes logoGlow {
@@ -1308,55 +1447,72 @@
             }
         }
 
-        /* Efeitos de Parallax Avançados */
-        .parallax-bg-1,
-        .parallax-bg-2,
-        .parallax-bg-3 {
-            animation: float 6s ease-in-out infinite;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        .parallax-bg-1 {
-            animation-delay: 0s;
-            animation-duration: 8s;
+        @keyframes zoomIn {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
         }
 
-        .parallax-bg-2 {
-            animation-delay: 2s;
-            animation-duration: 10s;
-        }
-
-        .parallax-bg-3 {
-            animation-delay: 4s;
-            animation-duration: 12s;
-        }
-        
-        /* Efeitos no header ao rolar a página */
-        .header.scrolled {
-            padding: 0.5rem 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Efeito de escala na imagem do depoimento */
-        .testimonial-image:hover img {
-            transform: scale(1.05);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
+        .parallax-bg-1 { animation-delay: 0s; animation-duration: 8s; }
+        .parallax-bg-2 { animation-delay: 2s; animation-duration: 10s; }
+        .parallax-bg-3 { animation-delay: 4s; animation-duration: 12s; }
+        .header.scrolled { padding: 0.5rem 0; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); }
+        .testimonial-image:hover img { transform: scale(1.05); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); }
 
         /* ==================== Responsividade (Media Queries) ==================== */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 70%;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 4rem 2rem;
+                box-shadow: 0 0 30px rgba(0,0,0,0.2);
+                transform: translateX(-100%);
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                align-items: flex-start;
+                gap: 2rem;
             }
-
+            
+            .nav-menu.active {
+                display: flex;
+                transform: translateX(0);
+            }
+            
+            .nav-toggle-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 2rem;
+                color: var(--primary-color);
+                cursor: pointer;
+                z-index: 1001;
+                position: relative;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
             .hero {
-                padding: 120px 0 60px; /* Ajuste para telas menores */
+                padding: 120px 0 60px;
             }
 
             .hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 2rem;
             }
-
+            
             .hero-content h1 {
                 font-size: 2rem;
             }
@@ -1371,8 +1527,13 @@
                 font-size: 1.8rem;
             }
 
-            .testimonial-container {
+            .testimonial-slide {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .testimonial-image {
+                display: none;
             }
 
             .services-grid {
@@ -1382,6 +1543,15 @@
             .contact-form {
                 margin: 0 1rem;
                 padding: 2rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .carousel-btn {
+                display: none;
             }
         }
     </style>
@@ -1405,8 +1575,9 @@
                     <div class="title">De Vó para Vó</div>
                 </div>
             </div>
+            <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Toggle navigation menu">☰</button>
             <nav>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="navMenu">
                     <li><a href="#about-us">Sobre Nós</a></li>
                     <li><a href="#servicos">Serviços</a></li>
                     <li><a href="#depoimentos">Depoimentos</a></li>
@@ -1434,7 +1605,7 @@
                 </div>
             </div>
             <div class="hero-image reveal-right parallax-element">
-                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Cuidador e idoso sorrindo">
+                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Cuidador e idoso sorrindo" loading="lazy">
             </div>
         </div>
     </section>
@@ -1444,14 +1615,14 @@
             <h2 class="section-title reveal">Sobre Nós</h2>
             <div class="story-content">
                 <div class="story-text reveal-left">
-                    <h3 style="font-size: 1.5rem; font-weight: bold; color: #8B4513;">Uma história de família, cuidado e paixão</h3>
+                    <h3 style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">Uma história de família, cuidado e paixão</h3>
                     <p>O <strong>De Vó para Vó</strong> nasceu de uma necessidade real e de um amor incondicional. Aos 94 anos, nossa querida avó, Dona Tereca, foi nossa primeira inspiração. Percebemos o quão desafiador é encontrar cuidadores que realmente tratem os idosos como parte da família. Foi então que decidimos criar uma empresa com um modelo único, onde a empatia e o carinho são a base de tudo.</p>
                     <p>Nosso grande diferencial é que **todos os nossos profissionais são treinados e trabalham em nossa própria casa** antes de atender nossos clientes. Eles aprendem na prática o que significa cuidar com dedicação, respeito e, acima de tudo, amor. Isso garante que cada um de nossos cuidadores não apenas tenha as habilidades técnicas, mas a filosofia de cuidado que nos move.</p>
                     <p class="highlight">O nosso lema é simples: "Porque quem cuidamos, cuidamos como família. 💛" Queremos levar essa mesma tranquilidade e carinho para a sua casa e para a pessoa que você ama.</p>
                 </div>
                 <div class="story-image reveal-right parallax-element">
                     <div class="story-badge">94 anos</div>
-                    <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Tereca - Nossa primeira cliente">
+                    <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Tereca - Nossa primeira cliente" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1471,7 +1642,7 @@
                     </div>
                     <h3>Cuidadoras</h3>
                     <p>Acompanhamento diário</p>
-                    <button class="open-whatsapp-service-btn" data-service="Cuidadoras">Solicitar Orçamento</button>
+                    <button class="open-whatsapp-service-btn" data-service="Cuidadora">Solicitar Orçamento</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.2s;">
                     <div class="service-icon">
@@ -1518,7 +1689,7 @@
             <div class="blog-grid">
                 <!-- Artigo 1 -->
                 <div class="blog-card reveal" style="animation-delay: 0.1s;">
-                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Imagem de um idoso e seu cuidador">
+                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Imagem de um idoso e seu cuidador" loading="lazy">
                     <div class="blog-card-content">
                         <div class="article-header">
                             <h3>Dicas essenciais para o dia a dia do idoso</h3>
@@ -1543,18 +1714,28 @@
                                 <a href="#" class="read-more-btn">Diminuir</a>
                             </div>
                         </div>
+                        <div class="blog-card-actions">
+                            <button class="generate-tip-btn" data-topic="dicas para o dia a dia de idosos">✨ Gerar nova dica</button>
+                            <button class="audio-btn" data-text-for-audio="">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="ai-tip-container">
+                            <div class="loader"></div>
+                            <p class="ai-tip-text"></p>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Artigo 2 -->
                 <div class="blog-card reveal" style="animation-delay: 0.2s;">
-                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1579294191024-c102a3a5e8f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwzfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de uma avó e sua neta sorrindo">
+                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1579294191024-c102a3a5e8f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwzfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de uma avó e sua neta sorrindo" loading="lazy">
                     <div class="blog-card-content">
                         <div class="article-header">
                             <h3>A importância da estimulação cognitiva</h3>
-                            <p class="short-text">Conheça atividades e jogos que ajudam a manter a mente ativa e previnem o declínio cognitivo...</p>
                             <a href="#" class="read-more-btn">Ler artigo</a>
                         </div>
+                        <p class="short-text">Conheça atividades e jogos que ajudam a manter a mente ativa e previnem o declínio cognitivo...</p>
                         <div class="full-article-content" id="article-2">
                             <div class="article-full-text">
                                 <h4>O que é estimulação cognitiva?</h4>
@@ -1572,33 +1753,54 @@
                                 <a href="#" class="read-more-btn">Diminuir</a>
                             </div>
                         </div>
+                        <div class="blog-card-actions">
+                            <button class="generate-tip-btn" data-topic="estimulação cognitiva para idosos">✨ Gerar nova dica</button>
+                            <button class="audio-btn" data-text-for-audio="">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="ai-tip-container">
+                            <div class="loader"></div>
+                            <p class="ai-tip-text"></p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Artigo 3 -->
                 <div class="blog-card reveal" style="animation-delay: 0.3s;">
-                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1550920042-b05423f03b87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHw1fHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Imagem de alimentos saudáveis">
+                    <img class="blog-card-image" src="https://images.unsplash.com/photo-1550920042-b05423f03b87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHw1fHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Imagem de alimentos saudáveis" loading="lazy">
                     <div class="blog-card-content">
                         <div class="article-header">
                             <h3>Nutrição na terceira idade: um guia completo</h3>
-                            <p class="short-text">Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
-                            <div class="full-article-content" id="article-3">
-                                <div class="article-full-text">
-                                    <h4>A importância de uma dieta balanceada</h4>
-                                    <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular, prevenir doenças crônicas e até mesmo melhorar o humor. O corpo de uma pessoa na terceira idade tem necessidades nutricionais diferentes, e a dieta deve ser adaptada para garantir que todas elas sejam atendidas.</p>
-                                    <h4>Alimentos essenciais:</h4>
-                                    <ul>
-                                        <li>**Cálcio:** Essencial para a saúde dos ossos. Inclua laticínios, como iogurte e queijo, e vegetais de folhas escuras, como espinafre e couve, na dieta.</li>
-                                        <li>**Proteínas:** Fundamental para a manutenção da massa muscular, que tende a diminuir com a idade. Carnes magras, ovos, peixes e leguminosas (feijão, lentilha) são ótimas fontes.</li>
-                                        <li>**Fibras:** Ajudam no bom funcionamento intestinal e na prevenção de doenças. Frutas, verduras e grãos integrais são ricos em fibras.</li>
-                                        <li>**Vitamina D:** Essencial para a absorção de cálcio. A exposição ao sol é a principal fonte, mas também pode ser encontrada em peixes gordurosos como salmão e sardinha.</li>
-                                        <li>**Ômega-3:** Ajuda na saúde do cérebro e na redução de inflamações. Peixes como salmão, chia e nozes são ricos nesse nutriente.</li>
-                                    </ul>
-                                </div>
-                                <div class="article-footer">
-                                    <a href="#" class="read-more-btn">Diminuir</a>
-                                </div>
+                            <a href="#" class="read-more-btn">Ler artigo</a>
+                        </div>
+                        <p class="short-text">Saiba quais alimentos são essenciais para uma dieta balanceada e para manter a saúde do seu familiar...</p>
+                        <div class="full-article-content" id="article-3">
+                            <div class="article-full-text">
+                                <h4>A importância de uma dieta balanceada</h4>
+                                <p>Uma nutrição adequada é crucial para a saúde e o bem-estar dos idosos. Ela ajuda a fortalecer o sistema imunológico, manter a massa muscular, prevenir doenças crônicas e até mesmo melhorar o humor. O corpo de uma pessoa na terceira idade tem necessidades nutricionais diferentes, e a dieta deve ser adaptada para garantir que todas elas sejam atendidas.</p>
+                                <h4>Alimentos essenciais:</h4>
+                                <ul>
+                                    <li>**Cálcio:** Essencial para a saúde dos ossos. Inclua laticínios, como iogurte e queijo, e vegetais de folhas escuras, como espinafre e couve, na dieta.</li>
+                                    <li>**Proteínas:** Fundamental para a manutenção da massa muscular, que tende a diminuir com a idade. Carnes magras, ovos, peixes e leguminosas (feijão, lentilha) são ótimas fontes.</li>
+                                    <li>**Fibras:** Ajudam no bom funcionamento intestinal e na prevenção de doenças. Frutas, verduras e grãos integrais são ricos em fibras.</li>
+                                    <li>**Vitamina D:** Essencial para a absorção de cálcio. A exposição ao sol é a principal fonte, mas também pode ser encontrada em peixes gordurosos como salmão e sardinha.</li>
+                                    <li>**Ômega-3:** Ajuda na saúde do cérebro e na redução de inflamações. Peixes como salmão, chia e nozes são ricos nesse nutriente.</li>
+                                </ul>
                             </div>
+                            <div class="article-footer">
+                                <a href="#" class="read-more-btn">Diminuir</a>
+                            </div>
+                        </div>
+                        <div class="blog-card-actions">
+                            <button class="generate-tip-btn" data-topic="nutrição para idosos">✨ Gerar nova dica</button>
+                            <button class="audio-btn" data-text-for-audio="">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="ai-tip-container">
+                            <div class="loader"></div>
+                            <p class="ai-tip-text"></p>
                         </div>
                     </div>
                 </div>
@@ -1610,7 +1812,7 @@
         <div class="container">
             <h2 class="section-title reveal">Depoimentos</h2>
             <div class="testimonial-container">
-                <button class="carousel-btn prev-btn">&lt;</button>
+                <button class="carousel-btn prev-btn" aria-label="Anterior">&lt;</button>
                 <div class="testimonial-carousel-wrapper">
                     <div class="testimonial-carousel">
                         <!-- Depoimento 1 -->
@@ -1622,7 +1824,7 @@
                                 <div class="testimonial-author">- Maria Silva, filha de Dona Antônia</div>
                             </div>
                             <div class="testimonial-image reveal-right parallax-element">
-                                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Antônia sorrindo">
+                                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Antônia sorrindo" loading="lazy">
                             </div>
                         </div>
                         <!-- Depoimento 2 -->
@@ -1634,7 +1836,7 @@
                                 <div class="testimonial-author">- João Pereira, filho de Sr. Carlos</div>
                             </div>
                             <div class="testimonial-image reveal-right parallax-element">
-                                 <img src="https://images.unsplash.com/photo-1549725227-3a1372b73379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Sr. Carlos">
+                                <img src="https://images.unsplash.com/photo-1549725227-3a1372b73379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Sr. Carlos" loading="lazy">
                             </div>
                         </div>
                         <!-- Depoimento 3 -->
@@ -1646,12 +1848,12 @@
                                 <div class="testimonial-author">- Ana Clara, neta de D. Fátima</div>
                             </div>
                             <div class="testimonial-image reveal-right parallax-element">
-                                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyM3x8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="D. Fátima">
+                                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyM3x8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="D. Fátima" loading="lazy">
                             </div>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-btn next-btn">&gt;</button>
+                <button class="carousel-btn next-btn" aria-label="Próximo">&gt;</button>
             </div>
         </div>
     </section>
@@ -1703,15 +1905,11 @@
                             <span>Cuidadora</span>
                         </label>
                         <label class="service-tag">
-                            <input type="checkbox" name="servicos[]" value="Manicure">
-                            <span>Manicure</span>
+                            <input type="checkbox" name="servicos[]" value="Manicure e cabeleireiro">
+                            <span>Manicure e cabeleireiro</span>
                         </label>
                         <label class="service-tag">
-                            <input type="checkbox" name="servicos[]" value="Cabeleireira">
-                            <span>Cabeleireira</span>
-                        </label>
-                        <label class="service-tag">
-                            <input type="checkbox" name="servicos[]" value="Psicóloga">
+                            <input type="checkbox" name="servicos[]" value="Apoio psicológico">
                             <span>Psicóloga</span>
                         </label>
                         <label class="service-tag">
@@ -1727,7 +1925,6 @@
                             <span>Geriatra</span>
                         </label>
                     </div>
-                    <small>Selecione pelo menos um serviço (formulário principal)</small>
                 </div>
                 
                 <div class="form-group">
@@ -1750,7 +1947,7 @@
                 
                 <div class="form-group">
                     <label for="cidade">Cidade</label>
-                        <input type="text" id="cidade" name="cidade" placeholder="Será preenchido automaticamente" readonly required>
+                    <input type="text" id="cidade" name="cidade" placeholder="Será preenchido automaticamente" readonly required>
                 </div>
                 
                 <button type="submit" class="submit-btn">
@@ -1765,6 +1962,15 @@
             <p>&copy; 2025 De Vó para Vó. Cuidando com amor e carinho.</p>
         </div>
     </footer>
+    
+    <!-- Modal de Confirmação -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h3>Mensagem Enviada com Sucesso!</h3>
+            <p>Agradecemos o seu contato. Entraremos em contato via WhatsApp em breve para discutir as suas necessidades.</p>
+            <button class="close-btn" id="closeModalBtn">Fechar</button>
+        </div>
+    </div>
 
     <script>
         // ==================== Scripts de Inicialização ====================
@@ -1776,7 +1982,10 @@
             initServiceButtonHandlers();
             initCarousel();
             initBlogLinks();
+            initNavToggle();
+            initAITipGenerators();
             
+            // Oculta a tela de carregamento após um tempo
             setTimeout(function() {
                 const loadingScreen = document.getElementById('loadingScreen');
                 if (loadingScreen) {
@@ -1784,12 +1993,20 @@
                 }
             }, 2500);
             
+            // Adiciona a classe 'scrolled' ao header ao rolar a página
+            let isThrottled = false;
             window.addEventListener('scroll', function() {
-                const header = document.querySelector('.header');
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
+                if (!isThrottled) {
+                    window.requestAnimationFrame(() => {
+                        const header = document.querySelector('.header');
+                        if (window.scrollY > 50) {
+                            header.classList.add('scrolled');
+                        } else {
+                            header.classList.remove('scrolled');
+                        }
+                        isThrottled = false;
+                    });
+                    isThrottled = true;
                 }
             });
         });
@@ -1823,28 +2040,25 @@
             const parallaxElements = document.querySelectorAll('.parallax-element');
             if (parallaxElements.length === 0) return;
             
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const rate = scrolled * -0.5;
-                const rateTwo = scrolled * -0.25;
-                const rateThree = scrolled * -0.15;
+            let lastScrollY = window.pageYOffset;
+            let tick = false;
 
-                parallaxElements.forEach((element, index) => {
-                    if (!element) return;
-                    let speed;
-                    switch(index % 3) {
-                        case 0: speed = rate; break;
-                        case 1: speed = rateTwo; break;
-                        case 2: speed = rateThree; break;
-                    }
-                    if (element.classList.contains('parallax-bg-1') ||
-                        element.classList.contains('parallax-bg-2') ||
-                        element.classList.contains('parallax-bg-3')) {
-                        element.style.transform = `translate3d(0, ${speed * 0.3}px, 0)`;
-                    } else {
-                        element.style.transform = `translate3d(0, ${speed * 0.1}px, 0)`;
-                    }
+            function updateParallax() {
+                const scrolled = lastScrollY;
+                parallaxElements.forEach((element) => {
+                    const speed = parseFloat(element.dataset.speed || 0.1);
+                    const yPos = scrolled * speed;
+                    element.style.transform = `translate3d(0, ${yPos}px, 0)`;
                 });
+                tick = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                lastScrollY = window.pageYOffset;
+                if (!tick) {
+                    window.requestAnimationFrame(updateParallax);
+                    tick = true;
+                }
             });
         }
 
@@ -1858,83 +2072,82 @@
                 });
             }
         }
-
-        function openWhatsApp() {
-            const message = encodeURIComponent("Olá! Gostaria de saber mais sobre os serviços de cuidadores do De Vó para Vó.");
-            window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
-        }
         
+        function initNavToggle() {
+            const navToggleBtn = document.getElementById('navToggleBtn');
+            const navMenu = document.getElementById('navMenu');
+            const ctaButton = document.getElementById('header-contact-btn');
+            
+            navToggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    navToggleBtn.textContent = '✕';
+                } else {
+                    navToggleBtn.textContent = '☰';
+                }
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    navToggleBtn.textContent = '☰';
+                });
+            });
+            
+            if (ctaButton) {
+                ctaButton.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    navToggleBtn.textContent = '☰';
+                    scrollToContact();
+                });
+            }
+        }
+
+        function openWhatsApp(message) {
+            const phoneNumber = '5511999999999';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+
         function handleSubmit(event) {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
+            const data = Object.fromEntries(formData.entries());
             
-            if (!data.nome || !data.telefone || !data.email || !data['para-quem']) {
-                console.error("Por favor, preencha todos os campos obrigatórios.");
-                return;
-            }
-            
-            const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked')).map(checkbox => checkbox.value);
-            
+            const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
+                                          .map(checkbox => checkbox.value)
+                                          .join(', ');
+
             let message = "Olá, gostaria de um orçamento!\n\n";
             message += `Nome: ${data.nome}\n`;
             message += `E-mail: ${data.email}\n`;
             message += `Telefone: ${data.telefone}\n`;
-            message += `Serviços de interesse: ${selectedServices.join(', ')}\n`;
+            message += `Serviços de interesse: ${selectedServices || 'Nenhum'}\n`;
             message += `Para quem: ${data['para-quem']}\n`;
             message += `Endereço: ${data.endereco} - ${data.bairro}, ${data.cidade}\n`;
             message += `CEP: ${data.cep}\n`;
-            message += `CPF: ${data.cpf}`;
+            message += `CPF: ${data.cpf || 'Não informado'}`;
             
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, '_blank');
-            form.reset();
-        }
-
-        /* Funções do Formulário de Contato Principal */
-        
-        async function searchCEP(cep) {
-            const statusElement = document.getElementById('cep-status');
-            if (!statusElement) return;
-            try {
-                statusElement.textContent = '🔍 Buscando endereço...';
-                statusElement.style.color = '#8B4513';
-                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                const data = await response.json();
-                if (data.erro) {
-                    throw new Error('CEP não encontrado');
-                }
-                const enderecoField = document.getElementById('endereco');
-                const bairroField = document.getElementById('bairro');
-                const cidadeField = document.getElementById('cidade');
-                if (enderecoField) {
-                    enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
-                    enderecoField.removeAttribute('readonly');
-                }
-                if (bairroField) bairroField.value = data.bairro;
-                if (cidadeField) cidadeField.value = `${data.localidade} - ${data.uf}`;
-                statusElement.textContent = '✅ Endereço encontrado!';
-                statusElement.style.color = '#25D366';
-            } catch (error) {
-                statusElement.textContent = '❌ CEP não encontrado. Verifique o número.';
-                statusElement.style.color = '#dc3545';
-                const enderecoField = document.getElementById('endereco');
-                const bairroField = document.getElementById('bairro');
-                const cidadeField = document.getElementById('cidade');
-                if (enderecoField) enderecoField.value = '';
-                if (bairroField) bairroField.value = '';
-                if (cidadeField) cidadeField.value = '';
+            openWhatsApp(message);
+            
+            // Exibe o modal de sucesso
+            const modal = document.getElementById('successModal');
+            if (modal) {
+                modal.style.display = 'flex';
             }
         }
-
+        
         function initFormHandlers() {
             const cepField = document.getElementById('cep');
             const form = document.querySelector('.contact-form');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modal = document.getElementById('successModal');
+            
             if (cepField) {
                 cepField.addEventListener('input', function(e) {
                     let value = e.target.value.replace(/\D/g, '');
-                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                    value = value.replace(/^(\d{5})(\d{3})/, '$1-$2');
                     e.target.value = value;
                     if (value.length === 9) {
                         searchCEP(value.replace('-', ''));
@@ -1956,39 +2169,112 @@
             if (form) {
                 form.addEventListener('submit', handleSubmit);
             }
+            
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => {
+                    if (modal) {
+                        modal.style.display = 'none';
+                        form.reset();
+                    }
+                });
+            }
+        }
+        
+        async function searchCEP(cep) {
+            const statusElement = document.getElementById('cep-status');
+            if (!statusElement) return;
+            try {
+                statusElement.textContent = '🔍 Buscando endereço...';
+                statusElement.style.color = 'var(--primary-color)';
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+                if (data.erro) {
+                    throw new Error('CEP não encontrado');
+                }
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                if (enderecoField) {
+                    enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
+                    enderecoField.removeAttribute('readonly');
+                }
+                if (bairroField) bairroField.value = data.bairro;
+                if (cidadeField) cidadeField.value = `${data.localidade} - ${data.uf}`;
+                statusElement.textContent = '✅ Endereço encontrado!';
+                statusElement.style.color = 'var(--whatsapp-green)';
+            } catch (error) {
+                statusElement.textContent = '❌ CEP não encontrado. Verifique o número.';
+                statusElement.style.color = '#dc3545';
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                if (enderecoField) enderecoField.value = '';
+                if (bairroField) bairroField.value = '';
+                if (cidadeField) cidadeField.value = '';
+            }
         }
 
-        /* Funções de Botões de Serviço */
-        
         function initServiceButtonHandlers() {
             const serviceButtons = document.querySelectorAll('.open-whatsapp-service-btn');
+            const ctaButton = document.getElementById('header-contact-btn');
+            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
+            
+            // Botões de serviço
             serviceButtons.forEach(button => {
-                button.addEventListener('click', () => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const serviceName = button.getAttribute('data-service');
+                    const checkboxes = document.querySelectorAll('input[name="servicos[]"]');
+                    
+                    checkboxes.forEach(cb => {
+                        if (cb.value === serviceName) {
+                            cb.checked = true;
+                        } else {
+                            cb.checked = false;
+                        }
+                    });
+                    
                     const message = encodeURIComponent(`Olá, gostaria de um orçamento para o serviço de *${serviceName}*. Poderiam me ajudar?`);
-                    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+                    openWhatsApp(message);
                 });
             });
+            
+            // Botão Fale Conosco do Header
+            if (ctaButton) {
+                ctaButton.addEventListener('click', () => {
+                    scrollToContact();
+                });
+            }
+
+            // Botão Fale Conosco da seção Hero
+            if (heroWhatsappBtn) {
+                heroWhatsappBtn.addEventListener('click', () => {
+                    const message = "Olá! Gostaria de saber mais sobre os serviços de cuidadores do De Vó para Vó.";
+                    openWhatsApp(message);
+                });
+            }
         }
         
-        /* Funções do Slider de Depoimentos */
         function initCarousel() {
             const carousel = document.querySelector('.testimonial-carousel');
             const slides = document.querySelectorAll('.testimonial-slide');
             const prevBtn = document.querySelector('.prev-btn');
             const nextBtn = document.querySelector('.next-btn');
+            const wrapper = document.querySelector('.testimonial-carousel-wrapper');
             let currentIndex = 0;
             let autoSlideInterval;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
 
             function updateCarousel() {
-                const offset = -currentIndex * 100;
-                carousel.style.transform = `translateX(${offset}%)`;
+                currentTranslate = -currentIndex * slides[0].offsetWidth;
+                carousel.style.transform = `translateX(${currentTranslate}px)`;
             }
 
             function startAutoSlide() {
-                if (autoSlideInterval) {
-                    clearInterval(autoSlideInterval);
-                }
+                clearInterval(autoSlideInterval);
                 autoSlideInterval = setInterval(() => {
                     currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
                     updateCarousel();
@@ -2013,36 +2299,281 @@
                 });
             }
 
+            // Touch events for swipe functionality
+            wrapper.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startPos = e.touches[0].clientX;
+                prevTranslate = currentTranslate;
+                clearInterval(autoSlideInterval);
+            });
+
+            wrapper.addEventListener('touchend', () => {
+                isDragging = false;
+                const movedBy = currentTranslate - prevTranslate;
+                if (movedBy < -100) {
+                    currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+                }
+                if (movedBy > 100) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                }
+                updateCarousel();
+                startAutoSlide();
+            });
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const currentPosition = e.touches[0].clientX;
+                currentTranslate = prevTranslate + currentPosition - startPos;
+                carousel.style.transform = `translateX(${currentTranslate}px)`;
+            });
+
             startAutoSlide();
         }
 
-        /* Funções de Navegação do Blog */
         function initBlogLinks() {
             const blogCards = document.querySelectorAll('.blog-card');
-        
+            
             blogCards.forEach(card => {
                 const readMoreBtn = card.querySelector('.read-more-btn');
-                const articleContent = card.querySelector('.full-article-content');
+                const fullContent = card.querySelector('.full-article-content');
                 const shortText = card.querySelector('.short-text');
                 const title = card.querySelector('.article-header h3');
                 
-                // Toggle function
                 const toggleContent = (e) => {
                     e.preventDefault();
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
                         readMoreBtn.textContent = 'Ler artigo';
-                        readMoreBtn.classList.remove('decrease');
-                        shortText.style.display = 'block';
+                        shortText.classList.remove('hidden');
                     } else {
                         fullContent.classList.add('visible');
                         readMoreBtn.textContent = 'Diminuir';
-                        readMoreBtn.classList.add('decrease');
-                        shortText.style.display = 'none';
+                        shortText.classList.add('hidden');
                     }
                 };
+                
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', toggleContent);
+                }
+                if (title) {
+                    title.addEventListener('click', toggleContent);
+                }
+            });
+        }
+        
+        // ==================== Funções da API Gemini ====================
+        
+        function initAITipGenerators() {
+            const generateButtons = document.querySelectorAll('.generate-tip-btn');
+            
+            generateButtons.forEach(button => {
+                const card = button.closest('.blog-card-content');
+                const aiTipContainer = card.querySelector('.ai-tip-container');
+                const aiTipText = card.querySelector('.ai-tip-text');
+                const loader = card.querySelector('.loader');
+                const audioBtn = card.querySelector('.audio-btn');
 
-                // Attach event listeners
+                button.addEventListener('click', async () => {
+                    const topic = button.getAttribute('data-topic');
+                    aiTipText.textContent = '';
+                    aiTipContainer.style.display = 'block';
+                    loader.style.display = 'block';
+                    audioBtn.style.display = 'none';
+
+                    try {
+                        const tip = await generateNewTip(topic);
+                        aiTipText.textContent = tip;
+                        audioBtn.dataset.textForAudio = tip;
+                        audioBtn.style.display = 'block';
+                    } catch (error) {
+                        aiTipText.textContent = 'Ocorreu um erro ao gerar a dica. Tente novamente.';
+                        console.error('Erro ao gerar a dica:', error);
+                    } finally {
+                        loader.style.display = 'none';
+                    }
+                });
+            });
+
+            const audioButtons = document.querySelectorAll('.audio-btn');
+            audioButtons.forEach(button => {
+                const card = button.closest('.blog-card-content');
+                const aiTipTextElement = card.querySelector('.ai-tip-text');
+                button.addEventListener('click', async () => {
+                    const text = aiTipTextElement.textContent;
+                    if (text && text.length > 0) {
+                        const audioIcon = button.querySelector('.audio-icon');
+                        audioIcon.textContent = '...';
+                        audioIcon.classList.add('loading-audio');
+                        await playAudio(text, button);
+                        audioIcon.textContent = '📢';
+                        audioIcon.classList.remove('loading-audio');
+                    }
+                });
+            });
+        }
+        
+        async function generateNewTip(topic) {
+            const prompt = `Gere uma dica curta e útil (no máximo 50 palavras) para cuidadores de idosos, focada no tema de "${topic}". Formate a resposta como uma frase direta.`;
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Nenhuma dica gerada. Tente novamente.';
+            }
+        }
+        
+        async function playAudio(text) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const source = audioContext.createBufferSource();
+            const payload = {
+                contents: [{
+                    parts: [{ text: text }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Puck" }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+
+            if (!response || !response.ok) {
+                console.error("Não foi possível obter uma resposta de áudio da API após várias tentativas.");
+                return;
+            }
+
+            const result = await response.json();
+            const audioDataPart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+
+            if (audioDataPart) {
+                const base64Audio = audioDataPart.inlineData.data;
+                const pcmData = base64ToArrayBuffer(base64Audio);
+                const pcm16 = new Int16Array(pcmData);
+                
+                // MimeType is 'audio/L16; rate=24000'
+                const sampleRate = 24000;
+                
+                const audioBuffer = audioContext.createBuffer(1, pcm16.length, sampleRate);
+                const nowBuffering = audioBuffer.getChannelData(0);
+                for (let i = 0; i < pcm16.length; i++) {
+                    nowBuffering[i] = pcm16[i] / 32768;
+                }
+                
+                source.buffer = audioBuffer;
+                source.connect(audioContext.destination);
+                source.start();
+            }
+        }
+
+        // Helper functions for audio conversion
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function initBlogLinks() {
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            blogCards.forEach(card => {
+                const readMoreBtn = card.querySelector('.read-more-btn');
+                const fullContent = card.querySelector('.full-article-content');
+                const shortText = card.querySelector('.short-text');
+                const title = card.querySelector('.article-header h3');
+                
+                const toggleContent = (e) => {
+                    e.preventDefault();
+                    if (fullContent.classList.contains('visible')) {
+                        fullContent.classList.remove('visible');
+                        readMoreBtn.textContent = 'Ler artigo';
+                        shortText.classList.remove('hidden');
+                    } else {
+                        fullContent.classList.add('visible');
+                        readMoreBtn.textContent = 'Diminuir';
+                        shortText.classList.add('hidden');
+                    }
+                };
+                
                 if (readMoreBtn) {
                     readMoreBtn.addEventListener('click', toggleContent);
                 }

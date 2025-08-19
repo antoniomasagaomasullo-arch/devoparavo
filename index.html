@@ -1123,26 +1123,49 @@
             margin-top: 1.5rem;
         }
         
+        /* Novo estilo para o botão "Ler artigo" */
         .blog-card-actions .read-more-btn {
-            background-color: transparent;
-            border: none;
-            color: var(--primary-color);
+            background-color: var(--primary-color);
+            color: var(--text-on-dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
             font-size: var(--text-sm);
             display: flex;
             align-items: center;
             gap: 0.5rem;
             text-decoration: none;
-            padding: 0;
         }
 
         .blog-card-actions .read-more-btn:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background-color: var(--primary-dark);
+            text-decoration: none;
         }
-        .blog-card-actions button {
+
+        .blog-card-actions .read-more-btn svg {
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-card-actions .read-more-btn.expanded {
+            background: none;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            box-shadow: none;
+        }
+        .blog-card-actions .read-more-btn.expanded:hover {
+            background: rgba(255,255,255,0.8);
+            transform: none;
+        }
+        .blog-card-actions .read-more-btn.expanded svg {
+            transform: rotate(-90deg);
+        }
+
+        .blog-card-actions .generate-tip-btn {
             background-color: transparent;
             border: 1px solid var(--primary-color);
             color: var(--primary-color);
@@ -1153,7 +1176,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .blog-card-actions button:hover {
+        .blog-card-actions .generate-tip-btn:hover {
             background-color: var(--primary-color);
             color: var(--text-on-dark);
         }
@@ -1280,19 +1303,6 @@
             border-color: var(--text-tertiary);
             color: var(--text-on-dark);
         }
-        .blog-card .read-more-btn {
-            background: none;
-            border: none;
-            padding: 0;
-        }
-        .blog-card .read-more-btn svg {
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-        .blog-card .read-more-btn.expanded svg {
-            transform: rotate(-90deg);
-        }
-
 
         /* ==================== Estilos do Modal de Confirmação ==================== */
         .modal {
@@ -2468,7 +2478,6 @@
     <section class="blog" id="blog">
         <div class="container">
             <h2 class="section-title reveal">Blog - Dicas de Cuidado</h2>
-            <p class="section-subtitle">Artigos especializados para o cuidado ideal na terceira idade, escritos por nossos profissionais experientes</p>
             <div class="blog-filters">
                 <button class="blog-filter-btn active" data-filter="all">Todos os artigos</button>
                 <button class="blog-filter-btn" data-filter="hidratacao">Hidratação</button>
@@ -2490,10 +2499,10 @@
                         </div>
                         <h3>A importância da hidratação para idosos</h3>
                         <p class="short-text">Manter-se hidratado é crucial na terceira idade. A sensação de sede diminui, o que pode levar à desidratação sem que a pessoa perceba. Entenda a importância da hidratação e como incentivá-la no dia a dia.</p>
-                        <a href="#" class="read-more-btn">
+                        <button class="read-more-btn">
                             Ler artigo
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
+                        </button>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Por que é tão importante?</h4>
@@ -2558,10 +2567,10 @@
                         </div>
                         <h3>Exercícios leves para a mobilidade</h3>
                         <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
-                        <a href="#" class="read-more-btn">
+                        <button class="read-more-btn">
                             Ler artigo
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
+                        </button>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Benefícios da atividade física</h4>
@@ -2603,10 +2612,10 @@
                         </div>
                         <h3>Estratégias para uma boa noite de sono</h3>
                         <p class="short-text">O sono de qualidade é essencial para a saúde e o bem-estar em todas as idades, mas pode se tornar um desafio para os idosos. Saiba como criar uma rotina noturna que promova um descanso mais tranquilo e reparador.</p>
-                        <a href="#" class="read-more-btn">
+                        <button class="read-more-btn">
                             Ler artigo
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
+                        </button>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Por que o sono muda?</h4>
@@ -2642,10 +2651,10 @@
                         </div>
                         <h3>Alimentação saudável na terceira idade</h3>
                         <p class="short-text">Uma dieta equilibrada é fundamental para manter a saúde e a vitalidade. Descubra quais são os nutrientes essenciais e como preparar refeições saborosas e nutritivas para os idosos.</p>
-                        <a href="#" class="read-more-btn">
+                        <button class="read-more-btn">
                             Ler artigo
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
+                        </button>
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Nutrientes essenciais</h4>
@@ -3365,10 +3374,12 @@
                     if (fullContent.classList.contains('visible')) {
                         fullContent.classList.remove('visible');
                         readMoreBtn.innerHTML = `Ler artigo <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
+                        readMoreBtn.classList.remove('expanded');
                         shortText.classList.remove('hidden');
                     } else {
                         fullContent.classList.add('visible');
                         readMoreBtn.innerHTML = `Diminuir <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up"><path d="m18 15-6-6-6 6"/></svg>`;
+                        readMoreBtn.classList.add('expanded');
                         shortText.classList.add('hidden');
                     }
                 };

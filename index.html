@@ -14,30 +14,55 @@
         }
 
         :root {
-            --primary-color: #8B4513;
-            --secondary-color: #A0522D;
+            /* Cores Principais (escurecidas para melhor contraste) */
+            --primary-color: #7A3F0C;
+            --primary-light: #A0522D;
+            --primary-dark: #5D2F09;
+            --secondary-color: #8B4513;
             --accent-color: #CD853F;
+            --accent-light: #DEB887;
+            /* Cores de Texto (contraste AAA) */
+            --text-primary: #1F2937;
+            --text-secondary: #4B5563;
+            --text-tertiary: #6B7280;
+            --text-light: #9CA3AF;
+            --text-on-dark: #F9FAFB;
+            /* Cores de Sistema */
+            --success-color: #10B981;
+            --error-color: #EF4444;
+            --warning-color: #F59E0B;
             --whatsapp-green: #25D366;
+            /* Cores de Fundo */
             --background-start: #f0ebe4;
             --background-end: #e8ddd1;
-            --text-color: #333;
-            --dark-text: #2c2c2c;
-            --light-text: #666;
+            /* Sombras */
             --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
             --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.1);
             --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.1);
+            /* Cores do Skeleton Loading */
             --skeleton-bg-color: rgba(230, 230, 230, 0.5);
             --skeleton-highlight-color: rgba(255, 255, 255, 0.5);
+            /* Escala de Tamanhos de Fonte (Inter) */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
+            color: var(--text-primary);
             background: radial-gradient(circle at top, var(--background-start) 0%, var(--background-end) 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            font-size: var(--text-base); /* Texto padrão */
         }
 
         /* ==================== Tela de Carregamento (Loading Screen) ==================== */
@@ -82,16 +107,16 @@
         }
 
         .loading-text {
-            color: white;
-            font-size: 1.5rem;
+            color: var(--text-on-dark);
+            font-size: var(--text-2xl);
             font-weight: bold;
             margin-bottom: 1rem;
             opacity: 0.9;
         }
 
         .loading-subtitle {
-            color: white;
-            font-size: 1rem;
+            color: var(--text-on-dark);
+            font-size: var(--text-base);
             opacity: 0.7;
         }
 
@@ -168,7 +193,7 @@
             transition: all 0.3s ease;
         }
 
-        .header.compact {
+        .header.scrolled {
             padding: 0.5rem 0;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
@@ -189,7 +214,7 @@
 
         .logo .title {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
+            font-size: var(--text-3xl);
             font-weight: 700;
             color: var(--primary-color);
         }
@@ -206,14 +231,15 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--text-primary);
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            font-size: var(--text-lg);
         }
 
         .nav-menu a:hover {
-            color: var(--primary-color);
+            color: var(--primary-dark);
         }
 
         .nav-menu a::after {
@@ -223,7 +249,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(90deg, var(--primary-dark), var(--secondary-color));
             transition: width 0.3s ease;
         }
 
@@ -233,7 +259,7 @@
 
         .cta-button {
             background: radial-gradient(circle at center, var(--secondary-color) 0%, var(--primary-color) 100%);
-            color: white;
+            color: var(--text-on-dark);
             padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 25px;
@@ -243,6 +269,7 @@
             box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
             position: relative;
             overflow: hidden;
+            font-size: var(--text-sm);
         }
 
         .cta-button::before {
@@ -331,9 +358,9 @@
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: var(--text-5xl); /* Título principal */
             font-weight: bold;
-            background: linear-gradient(135deg, var(--dark-text) 0%, var(--primary-color) 50%, var(--dark-text) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-dark) 50%, var(--text-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -342,8 +369,8 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--light-text);
+            font-size: var(--text-xl); /* Subtítulo */
+            color: var(--text-secondary);
             margin-bottom: 2rem;
         }
 
@@ -356,7 +383,7 @@
 
         .whatsapp-btn {
             background: radial-gradient(circle at center, #20B358 0%, var(--whatsapp-green) 100%);
-            color: white;
+            color: var(--text-on-dark);
             padding: 1rem 2rem;
             border: none;
             border-radius: 30px;
@@ -369,6 +396,7 @@
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
             position: relative;
             overflow: hidden;
+            font-size: var(--text-lg); /* Botão de ação */
         }
 
         .whatsapp-btn:hover {
@@ -384,7 +412,7 @@
             position: relative;
             border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-xl);
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -440,13 +468,13 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
             padding: 2.5rem;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
         }
 
         .story-text h2 {
-            font-size: 2.2rem;
+            font-size: var(--text-4xl); /* Títulos de seção */
             font-weight: bold;
-            background: linear-gradient(135deg, var(--dark-text) 0%, var(--primary-color) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-dark) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -454,15 +482,21 @@
             line-height: 1.3;
         }
 
+        .story-text h3 {
+             font-size: var(--text-xl);
+             font-weight: bold;
+             color: var(--primary-color);
+        }
+
         .story-text p {
-            font-size: 1.1rem;
+            font-size: var(--text-lg);
             line-height: 1.7;
-            color: #555;
+            color: var(--text-secondary);
             margin-bottom: 1rem;
         }
 
         .story-text .highlight {
-            font-size: 1.2rem;
+            font-size: var(--text-lg);
             font-weight: 600;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             -webkit-background-clip: text;
@@ -502,11 +536,11 @@
             top: 15px;
             right: 15px;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
+            color: var(--text-on-dark);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: var(--text-xs);
             box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
             backdrop-filter: blur(10px);
         }
@@ -537,11 +571,11 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: var(--text-4xl); /* Títulos de seção */
             font-weight: bold;
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, var(--dark-text) 0%, var(--primary-color) 50%, var(--dark-text) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 50%, var(--text-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -624,8 +658,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.5rem;
+            color: var(--text-on-dark);
+            font-size: var(--text-xl);
             box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
@@ -642,32 +676,32 @@
         }
 
         .service-card h3 {
-            font-size: 1.3rem;
+            font-size: var(--text-lg);
             margin-bottom: 0.5rem;
-            color: var(--dark-text);
+            color: var(--text-primary);
             font-weight: 600;
             transition: all 0.3s ease;
         }
 
         .service-card:hover h3 {
-            color: var(--primary-color);
+            color: var(--primary-dark);
             transform: translateY(-2px);
         }
 
         .service-card p {
-            color: var(--light-text);
-            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
             transition: all 0.3s ease;
         }
 
         .service-card:hover p {
-            color: #555;
+            color: var(--text-primary);
             transform: translateY(-2px);
         }
 
         .service-card .open-whatsapp-service-btn {
             background: var(--primary-color);
-            color: white;
+            color: var(--text-on-dark);
             padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 25px;
@@ -678,10 +712,11 @@
             position: relative;
             overflow: hidden;
             margin-top: 1.5rem;
+            font-size: var(--text-sm); /* Botão de ação */
         }
 
         .service-card .open-whatsapp-service-btn:hover {
-            background: #6D360B;
+            background: var(--primary-dark);
             box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
         }
 
@@ -753,7 +788,7 @@
         
         .testimonial-content::before {
             content: '"';
-            font-size: 4rem;
+            font-size: var(--text-5xl);
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -789,16 +824,16 @@
         }
 
         .testimonial-text {
-            font-size: 1.6rem;
+            font-size: var(--text-2xl);
             line-height: 1.8;
             margin-bottom: 1.5rem;
-            color: #555;
+            color: var(--text-secondary);
             font-style: italic;
             transition: all 0.3s ease;
         }
 
         .testimonial-content:hover .testimonial-text {
-            color: #444;
+            color: var(--text-primary);
             transform: translateY(-2px);
         }
 
@@ -830,7 +865,7 @@
             background: rgba(255, 255, 255, 0.5);
             border: none;
             color: var(--primary-color);
-            font-size: 2rem;
+            font-size: var(--text-3xl);
             cursor: pointer;
             padding: 0.5rem;
             border-radius: 50%;
@@ -906,7 +941,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            color: var(--dark-text);
+            color: var(--text-primary);
         }
 
         .form-group input,
@@ -916,7 +951,7 @@
             padding: 1rem;
             border: 2px solid rgba(224, 224, 224, 0.5);
             border-radius: 15px;
-            font-size: 1rem;
+            font-size: var(--text-base);
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
@@ -924,7 +959,7 @@
 
         .form-group input[readonly] {
             background: rgba(248, 248, 248, 0.8);
-            color: var(--light-text);
+            color: var(--text-tertiary);
             cursor: not-allowed;
         }
 
@@ -965,9 +1000,9 @@
             backdrop-filter: blur(10px);
             border: 2px solid rgba(224, 224, 224, 0.5);
             border-radius: 25px;
-            font-size: 0.9rem;
+            font-size: var(--text-sm);
             font-weight: 500;
-            color: var(--light-text);
+            color: var(--text-secondary);
             transition: all 0.3s ease;
         }
 
@@ -980,7 +1015,7 @@
         .service-tag input[type="checkbox"]:checked+span {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             border-color: var(--primary-color);
-            color: white;
+            color: var(--text-on-dark);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
         }
@@ -988,11 +1023,11 @@
         .submit-btn {
             width: 100%;
             background: radial-gradient(circle at center, var(--secondary-color) 0%, var(--primary-color) 100%);
-            color: white;
+            color: var(--text-on-dark);
             padding: 1rem 2rem;
             border: none;
             border-radius: 15px;
-            font-size: 1.1rem;
+            font-size: var(--text-lg);
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1025,7 +1060,7 @@
         .footer {
             background: rgba(44, 44, 44, 0.95);
             backdrop-filter: blur(20px);
-            color: white;
+            color: var(--text-on-dark);
             padding: 2rem 0;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -1078,9 +1113,9 @@
         }
 
         .blog-card-content .article-header h3 {
-            font-size: 1.5rem;
+            font-size: var(--text-2xl);
             margin-bottom: 0.5rem;
-            color: var(--dark-text);
+            color: var(--text-primary);
             cursor: pointer;
         }
         
@@ -1093,6 +1128,7 @@
             align-self: flex-end;
             margin-top: 1rem;
             margin-bottom: 0;
+            font-size: var(--text-sm);
         }
         
         .blog-card-content .read-more-btn:hover {
@@ -1101,8 +1137,8 @@
         }
 
         .blog-card-content p {
-            font-size: 1rem;
-            color: var(--light-text);
+            font-size: var(--text-base);
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
         
@@ -1119,7 +1155,7 @@
             color: var(--primary-color);
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: var(--text-xs);
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1127,7 +1163,7 @@
 
         .blog-card-actions button:hover {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--text-on-dark);
         }
 
         .blog-card-actions .audio-btn {
@@ -1157,10 +1193,10 @@
         }
 
         .article-content h4 {
-            font-size: 1.2rem;
+            font-size: var(--text-lg);
             margin-top: 1rem;
             margin-bottom: 0.5rem;
-            color: #555;
+            color: var(--text-secondary);
         }
 
         .article-content p {
@@ -1186,7 +1222,7 @@
         /* Estilos para o esqueleto de carregamento */
         .loading-skeleton {
             width: 100%;
-            display: flex;
+            display: none; /* Oculto por padrão */
             flex-direction: column;
             gap: 0.75rem;
             animation: pulse-skeleton 1.5s infinite ease-in-out;
@@ -1228,8 +1264,8 @@
         
         .ai-tip-container p {
             margin: 0;
-            font-size: 0.95rem;
-            color: var(--dark-text);
+            font-size: var(--text-sm);
+            color: var(--text-primary);
         }
         /* Corrigido para o botão Ler Artigo/Diminuir na área de ações, mantendo o estilo de link */
         .blog-card-actions .read-more-btn {
@@ -1252,85 +1288,9 @@
         .generate-tip-btn.loading {
             cursor: not-allowed;
             opacity: 0.7;
-            background: var(--light-text);
-            border-color: var(--light-text);
-            color: white;
-        }
-        
-        /* Corrigido: Modal agora é um overlay de tela cheia */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1001;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        
-        .modal.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 400px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: zoomIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .modal-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .modal-content p {
-            color: var(--text-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .close-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .close-btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        /* Corrigido o estilo para o botão "Diminuir" */
-        .blog-card .read-more-btn.decrease {
-             text-decoration: none;
-             font-weight: bold;
-        }
-        
-        .blog-card .read-more-btn.decrease:hover {
-            text-decoration: underline;
-        }
-
-        /* Remove a seta que estava sendo adicionada */
-        .blog-card-actions .read-more-btn::after {
-            display: none;
+            background: var(--text-tertiary);
+            border-color: var(--text-tertiary);
+            color: var(--text-on-dark);
         }
 
         /* ==================== Animações ==================== */
@@ -1424,6 +1384,7 @@
                 height: 100vh;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
                 padding: 4rem 2rem;
                 box-shadow: 0 0 30px rgba(0,0,0,0.2);
                 transform: translateX(-100%);
@@ -1441,7 +1402,7 @@
                 display: block;
                 background: none;
                 border: none;
-                font-size: 2rem;
+                font-size: var(--text-4xl);
                 color: var(--primary-color);
                 cursor: pointer;
                 z-index: 1001;
@@ -1463,7 +1424,7 @@
             }
             
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: var(--text-4xl);
             }
 
             .story-content {
@@ -1473,7 +1434,7 @@
             }
 
             .story-text h2 {
-                font-size: 1.8rem;
+                font-size: var(--text-3xl);
             }
 
             .testimonial-slide {
@@ -1564,7 +1525,7 @@
             <h2 class="section-title reveal">Sobre Nós</h2>
             <div class="story-content">
                 <div class="story-text reveal-left">
-                    <h3 style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">Uma história de família, cuidado e paixão</h3>
+                    <h3>Uma história de família, cuidado e paixão</h3>
                     <p>O <strong>De Vó para Vó</strong> nasceu de uma necessidade real e de um amor incondicional. Aos 94 anos, nossa querida avó, Dona Tereca, foi nossa primeira inspiração. Percebemos o quão desafiador é encontrar cuidadores que realmente tratem os idosos como parte da família. Foi então que decidimos criar uma empresa com um modelo único, onde a empatia e o carinho são a base de tudo.</p>
                     <p>Nosso grande diferencial é que <strong>todos os nossos profissionais são treinados e trabalham em nossa própria casa</strong> antes de atender nossos clientes. Eles aprendem na prática o que significa cuidar com dedicação, respeito e, acima de tudo, amor. Isso garante que cada um de nossos cuidadores não apenas tenha as habilidades técnicas, mas a filosofia de cuidado que nos move.</p>
                     <p class="highlight">O nosso lema é simples: "Porque quem cuidamos, cuidamos como família. 💛" Queremos levar essa mesma tranquilidade e carinho para a sua casa e para a pessoa que você ama.</p>

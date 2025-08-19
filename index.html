@@ -19,7 +19,7 @@
             --primary-light: #A0522D;
             --primary-dark: #3A1F05;
             --secondary-color: #B56557;
-            --accent-color: #C6A470; /* Novo tom de dourado */
+            --accent-color: #C6A470;
             --text-primary: var(--primary-dark);
             --text-secondary: #4B5563;
             --text-tertiary: #6B7280;
@@ -76,7 +76,7 @@
             line-height: 1.2;
             color: var(--text-primary);
         }
-
+        
         p, .blog-card-content, .article-content, .nav-menu a, .cta-button, .whatsapp-btn, .blog-filter-btn {
             font-family: 'Lora', serif;
         }
@@ -278,7 +278,7 @@
             color: var(--text-on-dark);
             padding: 0.8rem 1.5rem;
             border: none;
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -359,7 +359,7 @@
         .nav-menu a:hover::after {
             width: 100%;
         }
-        /* Nova animação para o botão de contato do header */
+
         #header-contact-btn:hover {
             animation: subtlePulse 1.5s infinite;
         }
@@ -385,7 +385,7 @@
         }
         .hero-content h1 {
             font-size: var(--text-5xl);
-            font-weight: 700; /* Melhoria: negrito */
+            font-weight: 700;
             color: var(--primary-dark);
             margin-bottom: 1.5rem;
             line-height: 1.1;
@@ -466,7 +466,7 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             padding: 3rem;
             box-shadow: var(--shadow-md);
         }
@@ -496,7 +496,7 @@
         }
         .story-image {
             position: relative;
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             overflow: hidden;
             box-shadow: var(--shadow-xl);
             transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -539,7 +539,7 @@
         .service-card {
             text-align: center;
             padding: 2.5rem 2rem;
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -575,7 +575,7 @@
         .service-card:hover .service-icon {
             transform: scale(1.1) rotate(5deg);
             background-color: var(--secondary-color);
-            animation: subtleWiggle 1s infinite alternate; /* Melhoria: animação no ícone */
+            animation: subtleWiggle 1s infinite alternate;
         }
         .service-card:hover .service-icon svg {
             transform: scale(1.1);
@@ -605,7 +605,7 @@
             color: var(--text-on-dark);
             padding: 0.8rem 1.5rem;
             border: none;
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -750,7 +750,7 @@
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 0, 0, 0.05);
             padding: 3rem;
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             box-shadow: var(--shadow-xl);
             position: relative;
             z-index: 1;
@@ -783,7 +783,7 @@
             width: 100%;
             padding: 1rem;
             border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 20px; /* Melhoria: maior border-radius */
+            border-radius: 20px;
             font-size: var(--text-base);
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.7);
@@ -922,7 +922,7 @@
             color: var(--text-on-dark);
             padding: 1rem 2rem;
             border: none;
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             font-size: var(--text-lg);
             font-weight: bold;
             cursor: pointer;
@@ -1025,7 +1025,7 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
             display: flex;
@@ -1096,13 +1096,12 @@
             gap: 1rem;
         }
         
-        /* Novo estilo para os botões do blog */
         .blog-action-btn {
             background-color: transparent;
             border: 1px solid var(--primary-color);
             color: var(--primary-color);
             padding: 0.6rem 1.2rem;
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             font-weight: 500;
             font-size: var(--text-sm);
             cursor: pointer;
@@ -1121,7 +1120,6 @@
             box-shadow: var(--shadow-sm);
         }
         
-        /* Estilos do botão "Ler Artigo" e "Diminuir" */
         .blog-action-btn svg {
             transition: transform 0.3s ease;
             stroke: var(--primary-color);
@@ -1136,7 +1134,6 @@
             display: none;
         }
 
-        /* Conteúdo do artigo completo */
         .full-article-content {
             overflow: hidden;
             max-height: 0;
@@ -1186,7 +1183,6 @@
             font-weight: bold;
         }
         
-        /* Botões de compartilhamento */
         .social-share-buttons {
             display: flex;
             gap: 0.5rem;
@@ -1213,7 +1209,6 @@
             height: 20px;
         }
         
-        /* Container da dica de IA */
         .ai-tip-container {
             margin-top: 1rem;
             padding: 1rem;
@@ -1373,7 +1368,7 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             padding: 3rem;
             box-shadow: var(--shadow-xl);
             position: relative;
@@ -1411,7 +1406,7 @@
             border-radius: 20px;
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
-            overflow: hidden; /* Acordeão */
+            overflow: hidden;
         }
         .calc-step:hover {
             transform: translateY(-2px);
@@ -1426,7 +1421,7 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: 1.5rem;
-            cursor: pointer; /* Acordeão */
+            cursor: pointer;
         }
         .step-number {
             width: 32px;
@@ -1530,7 +1525,7 @@
         .resultado-container {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             padding: 3rem;
-            border-radius: 40px; /* Melhoria: maior border-radius */
+            border-radius: 40px;
             text-align: center;
             color: var(--text-on-dark);
             position: relative;
@@ -1748,7 +1743,7 @@
             box-shadow: var(--shadow-sm);
             line-height: 1.5;
             word-wrap: break-word;
-            animation: fadeIn 0.5s ease-out; /* Melhoria: animação nas mensagens */
+            animation: fadeIn 0.5s ease-out;
         }
         .message.user {
             background-color: var(--user-message-bg);
@@ -1827,7 +1822,7 @@
             pointer-events: none;
         }
         .calc-step.active .options-grid {
-            max-height: 1000px; /* Valor grande o suficiente para a transição */
+            max-height: 1000px;
             opacity: 1;
             transition: max-height 0.7s ease-in, opacity 0.5s ease-in;
         }
@@ -2008,6 +2003,144 @@
                 justify-content: center;
             }
         }
+
+        /* --- Estilos Adicionados --- */
+        /* Back-to-top button e overlay para mobile */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease;
+        }
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--text-on-dark);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Adicionando ícones de validação no formulário */
+        .form-group .validation-feedback {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--text-sm);
+            margin-top: 0.25rem;
+            height: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .form-group input:invalid:not([readonly]):not(:placeholder-shown) ~ .validation-feedback.error,
+        .form-group input:valid:not([readonly]):not(:placeholder-shown) ~ .validation-feedback.success {
+            opacity: 1;
+        }
+        .form-group input:invalid:not([readonly]):not(:placeholder-shown) ~ .validation-feedback.error {
+            color: var(--validation-error);
+        }
+        .form-group input:valid:not([readonly]):not(:placeholder-shown) ~ .validation-feedback.success {
+            color: var(--validation-success);
+        }
+        .form-group .validation-feedback svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2.5;
+        }
+        
+        /* Novo estilo do modal de agendamento de ligação */
+        .modal-ligacao {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .modal-ligacao .input-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .modal-ligacao .input-group input {
+            flex: 1;
+        }
+
+        /* Animação do logo do chatbot */
+        .chatbot-logo-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Animação dos depoimentos */
+        .testimonial-carousel-wrapper:hover .carousel-btn {
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+        }
+
+        .carousel-btn {
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(-50%) scale(0.9);
+        }
+        
+        /* Efeito de hover no blog cards */
+        .blog-card:hover .blog-card-image {
+            transform: scale(1.05);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .blog-card-image {
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Estilo para a barra de navegação ativa */
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .ai-tip-container .ai-tip-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: var(--text-lg);
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
     </style>
 </head>
 <body>
@@ -2018,11 +2151,16 @@
             <div class="loading-bar"></div>
         </div>
     </div>
+    
+    <div class="nav-overlay" id="navOverlay"></div>
+    <button class="back-to-top" id="backToTopBtn" aria-label="Voltar ao topo">↑</button>
 
     <header class="header reveal">
         <div class="nav-container">
             <div class="logo">
-                <a class="title" href="#">De Vó para Vó</a>
+                <div>
+                    <a class="title" href="#">De Vó para Vó</a>
+                </div>
             </div>
             <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Toggle navigation menu">☰</button>
             <nav>
@@ -2291,7 +2429,9 @@
         <div class="container">
             <h2 class="section-title reveal">Depoimentos</h2>
             <div class="testimonial-container">
-                <button class="carousel-btn prev-btn" aria-label="Anterior">&lt;</button>
+                <button class="carousel-btn prev-btn" aria-label="Anterior">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
                 <div class="testimonial-carousel-wrapper">
                     <div class="testimonial-carousel">
                         <div class="testimonial-slide">
@@ -2329,7 +2469,9 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-btn next-btn" aria-label="Próximo">&gt;</button>
+                <button class="carousel-btn next-btn" aria-label="Próximo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
             </div>
         </div>
     </section>
@@ -2410,60 +2552,6 @@
                                 <span>Ler artigo</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                             </button>
-                            <button class="blog-action-btn generate-tip-btn" data-topic="hidratação">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line"></div>
-                                <div class="skeleton-line"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-card reveal delay-2" data-tag="exercicios">
-                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
-                    <div class="blog-card-content">
-                        <div class="blog-card-header">
-                            <span class="blog-card-tag">Exercícios</span>
-                            <div class="blog-card-info">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>5 min leitura</span>
-                            </div>
-                        </div>
-                        <h3>Exercícios leves para a mobilidade</h3>
-                        <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
-                        <div class="full-article-content">
-                            <div class="article-content">
-                                <h4>Benefícios da atividade física</h4>
-                                <p>Além de prevenir quedas, os exercícios melhoram a circulação sanguínea, fortalecem os ossos e promovem o bem-estar mental, combatendo o estresse e a ansiedade. Eles também contribuem para a autonomia e a independência do idoso no dia a dia.</p>
-                                <h4>Ideias de exercícios</h4>
-                                <p>É importante começar devagar e sempre consultar um médico ou fisioterapeuta antes de iniciar qualquer nova rotina de exercícios. Algumas atividades recomendadas incluem:</p>
-                                <ul>
-                                    <li><strong>Caminhada:</strong> Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
-                                    <li><strong>Natação e Hidroginástica:</strong> A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
-                                    <li><strong>Yoga ou Pilates:</strong> Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
-                                    <li><strong>Exercícios com faixas elásticas:</strong> Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
-                                </ul>
-                                <p>Compartilhe este artigo:</p>
-                                <div class="social-share-buttons">
-                                    <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12.04 2.162c-5.46 0-9.914 4.453-9.914 9.913 0 1.947.575 3.82 1.63 5.432l-1.127 4.12 4.218-1.096a9.927 9.927 0 0 0 4.2 1.025c5.46 0 9.914-4.452 9.914-9.913 0-5.46-4.454-9.913-9.914-9.913zM17.433 14.5c.243-.09.528-.184.62-.218.09-.033.2-.04.28-.04.09 0 .185.014.237.04.14.077.34.29.39.46.04.167.04.308.024.46a2.82 2.82 0 0 1-.5 1.14c-.31.32-.69.45-1.06.49-.37.042-.78.026-1.18-.088-.4-.112-2.38-.99-2.75-.958-3.31-1.378-4.43-5.32-4.44-5.35-.013-.03-.1-.137-.1-.318s.07-.46.1-.59.2-.19.3-.23.1-.06.2-.062c.1-.002.2-.002.28.006.18.017.37.037.49.12.12.08.19.2.27.31.08.11.16.2.22.3.06.1.15.2.25.33.1.13.16.2.2.23.05.03.11-.003.22-.058.11-.055.38-.14.65-.25.26-.11.43-.19.5-.23.06-.04.15-.09.2-.125.047-.035.1-.09.18-.21.08-.12.16-.32.22-.44.06-.12.12-.2.17-.22.05-.02.13-.02.2-.02.06 0 .15.016.22.03.07.015.15.023.2.06.05.038.16.14.3.36.14.22.3.4.4.47.1.066.2.066.3.048.1-.02.32-.08.47-.14s.24-.11.33-.17.15-.1.2-.15.11-.09.2-.14c.09-.05.2-.1.3-.13.1-.03.2-.06.28-.07.09-.01.2-.02.27-.02.08 0 .17.006.2.01.034.004.1.01.24.03.14.022.32.04.53.056.2.02.34.03.45.05.11.02.24.04.37.07.125.03.26.06.39.09.13.03.22.05.28.06.07.01.12.01.19-.007.06-.017.16-.07.3-.24.13-.17.3-.43.34-.51.05-.08.09-.13.13-.16.035-.03.07-.06.07-.06s.02-.03.02-.03c0-.02-.01-.06-.03-.1-.02-.04-.04-.07-.07-.1z"/></svg>
-                                    </a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no Facebook">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12 2.163c-5.32 0-9.682 4.363-9.682 9.682 0 4.846 3.524 8.878 8.145 9.539V15.54h-2.17V12h2.17V9.752c0-2.147 1.312-3.35 3.102-3.35 0.887 0 1.65.066 1.874.095V8.9l-1.285 0.006c-1.267 0-1.512 0.603-1.512 1.488V12h2.82l-0.46 3.54h-2.36V21.385c4.62-0.66 8.145-4.693 8.145-9.539C21.682 6.526 17.32 2.163 12 2.163z"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
-                                <span>Ler artigo</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </button>
                             <button class="blog-action-btn generate-tip-btn" data-topic="exercícios para mobilidade">Gerar dica de IA</button>
                             <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
                                 <span class="audio-icon">📢</span>
@@ -2496,52 +2584,6 @@
                                 <p>Com a idade, a produção de melatonina (o hormônio do sono) diminui, e o padrão de sono tende a ser mais leve e fragmentado. Além disso, condições médicas e o uso de certos medicamentos podem afetar a qualidade do sono.</p>
                                 <h4>Dicas para melhorar o sono</h4>
                                 <p>Estabeleça horários regulares para dormir e acordar, mesmo nos fins de semana. Evite cafeína e refeições pesadas à noite. Crie um ambiente relaxante no quarto, com pouca luz e temperatura agradável. A leitura de um livro ou ouvir música calma antes de dormir pode ajudar a relaxar a mente.</p>
-                                <p>Compartilhe este artigo:</p>
-                                <div class="social-share-buttons">
-                                    <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12.04 2.162c-5.46 0-9.914 4.453-9.914 9.913 0 1.947.575 3.82 1.63 5.432l-1.127 4.12 4.218-1.096a9.927 9.927 0 0 0 4.2 1.025c5.46 0 9.914-4.452 9.914-9.913 0-5.46-4.454-9.913-9.914-9.913zM17.433 14.5c.243-.09.528-.184.62-.218.09-.033.2-.04.28-.04.09 0 .185.014.237.04.14.077.34.29.39.46.04.167.04.308.024.46a2.82 2.82 0 0 1-.5 1.14c-.31.32-.69.45-1.06.49-.37.042-.78.026-1.18-.088-.4-.112-2.38-.99-2.75-.958-3.31-1.378-4.43-5.32-4.44-5.35-.013-.03-.1-.137-.1-.318s.07-.46.1-.59.2-.19.3-.23.1-.06.2-.062c.1-.002.2-.002.28.006.18.017.37.037.49.12.12.08.19.2.27.31.08.11.16.2.22.3.06.1.15.2.25.33.1.13.16.2.2.23.05.03.11-.003.22-.058.11-.055.38-.14.65-.25.26-.11.43-.19.5-.23.06-.04.15-.09.2-.125.047-.035.1-.09.18-.21.08-.12.16-.32.22-.44.06-.12.12-.2.17-.22.05-.02.13-.02.2-.02.06 0 .15.016.22.03.07.015.15.023.2.06.05.038.16.14.3.36.14.22.3.4.4.47.1.066.2.066.3.048.1-.02.32-.08.47-.14s.24-.11.33-.17.15-.1.2-.15.11-.09.2-.14c.09-.05.2-.1.3-.13.1-.03.2-.06.28-.07.09-.01.2-.02.27-.02.08 0 .17.006.2.01.034.004.1.01.24.03.14.022.32.04.53.056.2.02.34.03.45.05.11.02.24.04.37.07.125.03.26.06.39.09.13.03.22.05.28.06.07.01.12.01.19-.007.06-.017.16-.07.3-.24.13-.17.3-.43.34-.51.05-.08.09-.13.13-.16.035-.03.07-.06.07-.06s.02-.03.02-.03c0-.02-.01-.06-.03-.1-.02-.04-.04-.07-.07-.1z"/></svg>
-                                    </a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no Facebook">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12 2.163c-5.32 0-9.682 4.363-9.682 9.682 0 4.846 3.524 8.878 8.145 9.539V15.54h-2.17V12h2.17V9.752c0-2.147 1.312-3.35 3.102-3.35 0.887 0 1.65.066 1.874.095V8.9l-1.285 0.006c-1.267 0-1.512 0.603-1.512 1.488V12h2.82l-0.46 3.54h-2.36V21.385c4.62-0.66 8.145-4.693 8.145-9.539C21.682 6.526 17.32 2.163 12 2.163z"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
-                                <span>Ler artigo</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </button>
-                            <button class="blog-action-btn generate-tip-btn" data-topic="rotina de sono para idosos">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line"></div>
-                                <div class="skeleton-line"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-card reveal delay-4" data-tag="alimentacao">
-                    <img src="https://images.unsplash.com/photo-1571772922119-913a26435c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxMHx8ZGlldGElMjBhdm98ZW58MHx8fHwxNzE3NTM2Nzk1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um avó preparando uma refeição" class="blog-card-image" loading="lazy">
-                    <div class="blog-card-content">
-                        <div class="blog-card-header">
-                            <span class="blog-card-tag">Alimentação</span>
-                            <div class="blog-card-info">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>5 min leitura</span>
-                            </div>
-                        </div>
-                        <h3>Alimentação saudável na terceira idade</h3>
-                        <p class="short-text">Uma dieta equilibrada é fundamental para manter a saúde e a vitalidade. Descubra quais são os nutrientes essenciais e como preparar refeições saborosas e nutritivas para os idosos.</p>
-                        <div class="full-article-content">
-                            <div class="article-content">
-                                <h4>Nutrientes essenciais</h4>
-                                <p>Com a idade, a absorção de certos nutrientes diminui. É importante incluir na dieta alimentos ricos em cálcio para a saúde dos ossos, vitamina D, fibras para a digestão, e proteínas para a manutenção da massa muscular.</p>
                                 <p>Compartilhe este artigo:</p>
                                 <div class="social-share-buttons">
                                     <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
@@ -2840,7 +2882,7 @@
                 <div class="form-group">
                     <label for="cep">CEP</label>
                     <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9">
-                    <small id="cep-status" class="validation-message"></small>
+                    <span id="cep-status" class="validation-feedback"></span>
                 </div>
                 
                 <div class="form-row">
@@ -2902,16 +2944,35 @@
             </div>
         </div>
     </div>
+    
+    <div id="agendamentoLigacaoModal" class="modal">
+        <div class="modal-content">
+            <h3>Agendar Ligação</h3>
+            <p>Preencha seus dados e entraremos em contato no horário de sua preferência.</p>
+            <form id="formAgendamentoLigacao" class="modal-ligacao">
+                <div class="form-group">
+                    <label for="nomeLigacao">Nome</label>
+                    <input type="text" id="nomeLigacao" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefoneLigacao">Telefone</label>
+                    <input type="tel" id="telefoneLigacao" name="telefone" placeholder="(11) 99999-9999" required>
+                </div>
+                <div class="form-group">
+                    <label for="horarioLigacao">Melhor horário</label>
+                    <input type="datetime-local" id="horarioLigacao" name="horario" required>
+                </div>
+                <button type="submit" class="cta-button">Agendar Agora</button>
+            </form>
+            <button class="close-btn" id="closeLigacaoModalBtn">Fechar</button>
+        </div>
+    </div>
 
     <script>
-        // ==================== Scripts de Inicialização ====================
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-            if (mediaQuery.matches) {
-                document.documentElement.classList.add('prefers-reduced-motion');
-            }
+        const API_KEY = "SUA_API_KEY_AQUI"; // Substitua pela sua chave API do Google Generative AI
 
+        document.addEventListener('DOMContentLoaded', function() {
+            initLoadingScreen();
             initScrollReveal();
             initParallax();
             initFormHandlers();
@@ -2925,33 +2986,21 @@
             initCalculadora();
             initBlogFilters();
             initFooter();
+            initBackToTopButton();
+            initAgendamentoLigacao();
+        });
 
+        // ==================== Scripts de Inicialização ====================
+
+        function initLoadingScreen() {
             setTimeout(function() {
                 const loadingScreen = document.getElementById('loadingScreen');
                 if (loadingScreen) {
                     loadingScreen.classList.add('hidden');
                 }
             }, 2500);
-            
-            let isThrottled = false;
-            window.addEventListener('scroll', function() {
-                if (!isThrottled) {
-                    window.requestAnimationFrame(() => {
-                        const header = document.querySelector('.header');
-                        if (window.scrollY > 50) {
-                            header.classList.add('scrolled');
-                        } else {
-                            header.classList.remove('scrolled');
-                        }
-                        isThrottled = false;
-                    });
-                    isThrottled = true;
-                }
-            });
-        });
+        }
 
-        // ==================== Funções de Efeitos Visuais ====================
-        
         function initScrollReveal() {
             const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
             if (revealElements.length === 0) return;
@@ -3001,25 +3050,36 @@
             });
         }
 
-        // ==================== Funções de Navegação e Interatividade ====================
-        
-        function scrollToContact() {
-            const contactElement = document.getElementById('contato');
-            if (contactElement) {
-                contactElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
+        function initBackToTopButton() {
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            if (!backToTopBtn) return;
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 200) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         }
-        
+
+        // ==================== Funções de Navegação e Interatividade ====================
+
         function initNavToggle() {
             const navToggleBtn = document.getElementById('navToggleBtn');
             const navMenu = document.getElementById('navMenu');
+            const navOverlay = document.getElementById('navOverlay');
             
-            if (!navToggleBtn || !navMenu) return;
+            if (!navToggleBtn || !navMenu || !navOverlay) return;
             
             navToggleBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
                 if (navMenu.classList.contains('active')) {
                     navToggleBtn.textContent = '✕';
                 } else {
@@ -3030,7 +3090,29 @@
             navMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     navMenu.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
                     navToggleBtn.textContent = '☰';
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-menu a');
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
                 });
             });
         }
@@ -3049,29 +3131,7 @@
             const cpfInput = form.querySelector('#cpf');
             const telefoneInput = form.querySelector('#telefone');
 
-            let isValid = true;
-            if (!validateCepFormat(cepInput.value)) {
-                cepInput.setCustomValidity('CEP inválido.');
-                isValid = false;
-            } else {
-                cepInput.setCustomValidity('');
-            }
-
-            if (!validateCpfFormat(cpfInput.value)) {
-                cpfInput.setCustomValidity('CPF inválido.');
-                isValid = false;
-            } else {
-                cpfInput.setCustomValidity('');
-            }
-
-            if (!validateTelefoneFormat(telefoneInput.value)) {
-                telefoneInput.setCustomValidity('Telefone inválido.');
-                isValid = false;
-            } else {
-                telefoneInput.setCustomValidity('');
-            }
-            
-            if (!isValid) {
+            if (!form.checkValidity()) {
                 form.reportValidity();
                 return;
             }
@@ -3111,7 +3171,7 @@
         }
 
         function validateTelefoneFormat(value) {
-            let sanitized = value.replace(/\D/g, '');
+            const sanitized = value.replace(/\D/g, '');
             if (sanitized.length === 11) {
                 const telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
                 return telefoneRegex.test(value);
@@ -3177,7 +3237,10 @@
                     if (value.length === 8) {
                         searchCEP(value);
                     } else {
-                        if (cepStatus) cepStatus.textContent = '';
+                        if (cepStatus) {
+                            cepStatus.textContent = '';
+                            cepStatus.classList.remove('success', 'error');
+                        }
                         document.getElementById('endereco').value = '';
                         document.getElementById('bairro').value = '';
                         document.getElementById('cidade').value = '';
@@ -3219,7 +3282,7 @@
             const bairroTags = document.querySelectorAll('#bairros-atuacao .service-tag');
 
             if (!statusElement || !enderecoField || !bairroField || !cidadeField) return;
-
+            
             const bairrosAtendidos = {
                 'Itaim': ['Itaim Bibi'],
                 'Jardins': ['Jardim América', 'Jardim Paulista', 'Jardim Europa', 'Jardim Paulistano', 'Jardins'],
@@ -3234,8 +3297,9 @@
             bairroTags.forEach(tag => tag.classList.remove('selected'));
 
             try {
-                statusElement.textContent = '🔍 Buscando endereço...';
-                statusElement.style.color = 'var(--primary-color)';
+                statusElement.innerHTML = `🔍 Buscando endereço...`;
+                statusElement.classList.add('success');
+                statusElement.classList.remove('error');
                 const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
                 const data = await response.json();
 
@@ -3259,20 +3323,26 @@
                 }
 
                 if (isBairroAtendido) {
-                    statusElement.textContent = `✅ Endereço encontrado. Atendemos no bairro ${bairroPrincipal}!`;
-                    statusElement.style.color = 'var(--validation-success)';
+                    statusElement.innerHTML = `✅ Endereço encontrado. Atendemos no bairro ${bairroPrincipal}!`;
+                    statusElement.classList.remove('error');
+                    statusElement.classList.add('success');
                     enderecoField.removeAttribute('readonly');
                     const tagCorreta = document.querySelector(`#bairros-atuacao .service-tag[data-bairro-principal="${bairroPrincipal}"]`);
                     if (tagCorreta) tagCorreta.classList.add('selected');
                 } else {
-                    statusElement.textContent = '❌ Infelizmente ainda não atendemos a sua região.';
-                    statusElement.style.color = 'var(--validation-error)';
+                    statusElement.innerHTML = `❌ Infelizmente ainda não atendemos a sua região.`;
+                    statusElement.classList.remove('success');
+                    statusElement.classList.add('error');
+                    enderecoField.value = '';
+                    bairroField.value = '';
+                    cidadeField.value = '';
                     enderecoField.setAttribute('readonly', true);
                 }
 
             } catch (error) {
-                statusElement.textContent = `❌ ${error.message}`;
-                statusElement.style.color = 'var(--validation-error)';
+                statusElement.innerHTML = `❌ ${error.message}`;
+                statusElement.classList.remove('success');
+                statusElement.classList.add('error');
                 enderecoField.value = '';
                 bairroField.value = '';
                 cidadeField.value = '';
@@ -3475,18 +3545,9 @@
 
                     try {
                         const tip = await generateNewTip(topic);
-                        const words = tip.split(' ');
-                        let currentWordIndex = 0;
-                        const interval = setInterval(() => {
-                            if (currentWordIndex < words.length) {
-                                aiTipText.textContent += words[currentWordIndex] + ' ';
-                                currentWordIndex++;
-                            } else {
-                                clearInterval(interval);
-                                audioBtn.dataset.textForAudio = tip;
-                                audioBtn.style.display = 'block';
-                            }
-                        }, 50); // Velocidade de digitação
+                        aiTipText.textContent = tip;
+                        audioBtn.dataset.textForAudio = tip;
+                        audioBtn.style.display = 'block';
                     } catch (error) {
                         aiTipText.textContent = 'Ocorreu um erro ao gerar a dica. Tente novamente.';
                         console.error('Erro ao gerar a dica:', error);
@@ -3522,8 +3583,7 @@
             let chatHistory = [];
             chatHistory.push({ role: "user", parts: [{ text: prompt }] });
             const payload = { contents: chatHistory };
-            const apiKey = "SUA_API_KEY_AQUI"; // Substitua pela sua chave
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
 
             let response = null;
             let retryDelay = 1000;
@@ -3586,8 +3646,7 @@
                 },
                 model: "gemini-2.5-flash-preview-tts"
             };
-            const apiKey = "SUA_API_KEY_AQUI"; // Substitua pela sua chave
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${API_KEY}`;
 
             let response = null;
             let retryDelay = 1000;
@@ -3833,8 +3892,7 @@
             chatHistoryWithPrompt.push({ role: "user", parts: [{ text: prompt }] });
 
             const payload = { contents: chatHistoryWithPrompt };
-            const apiKey = "SUA_API_KEY_AQUI"; // Substitua pela sua chave
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
             
             let response = null;
             let retryDelay = 1000;
@@ -3887,7 +3945,10 @@
                         tipo: 'basico',
                         preco: 30,
                         horas: 12,
-                        dias: 7
+                        dias: 7,
+                        tipoLabel: 'Cuidado Básico',
+                        horasLabel: '12 horas/dia',
+                        diasLabel: '7 dias/semana'
                     };
                     this.init();
                 }
@@ -3946,8 +4007,8 @@
                 }
                 calcular() {
                     const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
-                    document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR');
-                    document.getElementById('totalMensal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+                    document.getElementById('totalMensal').textContent = valorMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
                     document.getElementById('valorHora').textContent = this.dados.preco;
                     document.getElementById('tipoSelecionado').textContent = this.dados.tipoLabel;
                     document.getElementById('periodoSelecionado').textContent = this.dados.horasLabel;
@@ -3989,6 +4050,42 @@
             const footerYear = document.querySelector('.footer p:last-child');
             if (footerYear) {
                 footerYear.textContent = `© ${currentYear} - De Vó para Vó`;
+            }
+        }
+        
+        function initAgendamentoLigacao() {
+            const agendamentoLigacaoBtn = document.getElementById('agendamentoLigacaoBtn');
+            const agendamentoLigacaoModal = document.getElementById('agendamentoLigacaoModal');
+            const closeLigacaoModalBtn = document.getElementById('closeLigacaoModalBtn');
+            const formAgendamentoLigacao = document.getElementById('formAgendamentoLigacao');
+
+            if (agendamentoLigacaoBtn) {
+                agendamentoLigacaoBtn.addEventListener('click', () => {
+                    agendamentoLigacaoModal.classList.add('visible');
+                });
+            }
+            
+            if (closeLigacaoModalBtn) {
+                closeLigacaoModalBtn.addEventListener('click', () => {
+                    agendamentoLigacaoModal.classList.remove('visible');
+                    formAgendamentoLigacao.reset();
+                });
+            }
+
+            if (formAgendamentoLigacao) {
+                formAgendamentoLigacao.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(formAgendamentoLigacao);
+                    const nome = formData.get('nome');
+                    const telefone = formData.get('telefone');
+                    const horario = new Date(formData.get('horario')).toLocaleString('pt-BR');
+
+                    const message = `Olá, gostaria de agendar uma ligação!\n\nNome: ${nome}\nTelefone: ${telefone}\nHorário de preferência: ${horario}`;
+                    openWhatsApp(message);
+                    
+                    agendamentoLigacaoModal.classList.remove('visible');
+                    formAgendamentoLigacao.reset();
+                });
             }
         }
     </script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>De Vó para Vó - Cuidando de quem você ama</title>
+    <title>De Vó para Vó - Cuidados Premium para quem você ama</title>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1278,22 +1278,21 @@
             position: relative;
             z-index: 1;
         }
+        /* Corrigido: Usando a abordagem de altura máxima com transição para evitar o quadrante grande */
         .calc-step {
+            overflow: hidden;
+            max-height: 0;
             opacity: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            pointer-events: none;
-            transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            padding: 0;
-            margin: 0;
+            margin-bottom: 0; /* Remove a margem para evitar espaço extra */
+            transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease-in-out;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0; /* Remove o padding quando inativo */
         }
-
         .calc-step.active {
+            max-height: 500px; /* Valor grande o suficiente para acomodar o conteúdo */
             opacity: 1;
-            position: relative;
-            pointer-events: auto;
             padding: 2rem;
             margin-bottom: 1rem;
         }
@@ -1822,7 +1821,7 @@
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#about-us">Sobre Nós</a></li>
                     <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#calculadora">Orçamento</a></li>
+                    <li><a href="#calculadora">Avaliação Gratuita</a></li>
                     <li><a href="#depoimentos">Depoimentos</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#faq">FAQ</a></li>
@@ -1840,8 +1839,8 @@
         
         <div class="hero-container">
             <div class="hero-content reveal-left">
-                <h1>Cuidando de quem você ama</h1>
-                <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
+                <h1>Cuidados Premium para quem você ama</h1>
+                <p class="hero-subtitle">Serviços de Personal Care Specialist no Itaim, para famílias selecionadas</p>
                 <div class="hero-cta">
                     <a class="whatsapp-btn" href="#" id="hero-whatsapp-btn">
                         Fale conosco
@@ -1849,7 +1848,7 @@
                 </div>
             </div>
             <div class="hero-image reveal-right parallax-element">
-                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Cuidador e idoso sorrindo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Personal Care Specialist e idoso sorrindo" loading="lazy">
             </div>
         </div>
     </section>
@@ -1860,8 +1859,8 @@
             <div class="story-content">
                 <div class="story-text reveal-left">
                     <h3>Uma história de família, cuidado e paixão</h3>
-                    <p>O <strong>De Vó para Vó</strong> nasceu de uma necessidade real e de um amor incondicional. Aos 94 anos, nossa querida avó, Dona Tereca, foi nossa primeira inspiração. Percebemos o quão desafiador é encontrar cuidadores que realmente tratem os idosos como parte da família. Foi então que decidimos criar uma empresa com um modelo único, onde a empatia e o carinho são a base de tudo.</p>
-                    <p>Nosso grande diferencial é que <strong>todos os nossos profissionais são treinados e trabalham em nossa própria casa</strong> antes de atender nossos clientes. Eles aprendem na prática o que significa cuidar com dedicação, respeito e, acima de tudo, amor. Isso garante que cada um de nossos cuidadores não apenas tenha as habilidades técnicas, mas a filosofia de cuidado que nos move.</p>
+                    <p>O <strong>De Vó para Vó</strong> nasceu de uma necessidade real e de um amor incondicional. Aos 94 anos, nossa querida avó, Dona Tereca, foi nossa primeira inspiração. Percebemos o quão desafiador é encontrar um Personal Care Specialist que realmente trate os idosos como parte da família. Foi então que decidimos criar uma empresa com um modelo único, onde a empatia e o carinho são a base de tudo.</p>
+                    <p>Nosso grande diferencial é que <strong>todos os nossos profissionais são treinados e trabalham em nossa própria casa</strong> antes de atender nossos clientes. Eles aprendem na prática o que significa cuidar com dedicação, respeito e, acima de tudo, amor. Isso garante que cada um de nossos Personal Care Specialists não apenas tenha as habilidades técnicas, mas a filosofia de cuidado que nos move.</p>
                     <p class="highlight">O nosso lema é simples: "Porque quem cuidamos, cuidamos como família. 💛"</p>
                 </div>
                 <div class="story-image reveal-right parallax-element">
@@ -1880,9 +1879,9 @@
                     <div class="service-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
-                    <h3>Cuidadoras</h3>
+                    <h3>Personal Care Specialist</h3>
                     <p>Acompanhamento diário</p>
-                    <button class="open-whatsapp-service-btn" data-service="Cuidadora">Solicitar Orçamento</button>
+                    <button class="open-whatsapp-service-btn" data-service="Personal Care Specialist">Solicitar Avaliação Gratuita</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.2s;">
                     <div class="service-icon">
@@ -1890,7 +1889,7 @@
                     </div>
                     <h3>Manicure e cabeleireiro</h3>
                     <p>Atendimento em casa</p>
-                    <button class="open-whatsapp-service-btn" data-service="Manicure e cabeleireiro">Solicitar Orçamento</button>
+                    <button class="open-whatsapp-service-btn" data-service="Manicure e cabeleireiro">Solicitar Avaliação Gratuita</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.3s;">
                     <div class="service-icon">
@@ -1898,7 +1897,7 @@
                     </div>
                     <h3>Apoio psicológico</h3>
                     <p>Uma vez por semana</p>
-                    <button class="open-whatsapp-service-btn" data-service="Apoio psicológico">Solicitar Orçamento</button>
+                    <button class="open-whatsapp-service-btn" data-service="Apoio psicológico">Solicitar Avaliação Gratuita</button>
                 </div>
                 <div class="service-card reveal" style="animation-delay: 0.4s;">
                     <div class="service-icon">
@@ -1906,7 +1905,7 @@
                     </div>
                     <h3>Motorista</h3>
                     <p>1 a 2 vezes por semana</p>
-                    <button class="open-whatsapp-service-btn" data-service="Motorista">Solicitar Orçamento</button>
+                    <button class="open-whatsapp-service-btn" data-service="Motorista">Solicitar Avaliação Gratuita</button>
                 </div>
             </div>
         </div>
@@ -1915,8 +1914,8 @@
     <section class="calculadora-section" id="calculadora">
         <div class="calculadora-container reveal-scale">
             <div class="calc-header">
-                <h2>Calcule seu orçamento personalizado</h2>
-                <p>Em 3 passos simples, descubra o investimento para o cuidado ideal</p>
+                <h2>Calcule seu investimento personalizado</h2>
+                <p>Para famílias selecionadas, descubra o investimento para o cuidado ideal</p>
             </div>
             <div class="step-indicator">
                 <button class="indicator-dot active" data-step="1"></button>
@@ -2034,7 +2033,7 @@
             </div>
             <div class="resultado-container" id="resultado">
                 <div class="resultado-content">
-                    <div class="resultado-title">Seu orçamento personalizado</div>
+                    <div class="resultado-title">Seu investimento personalizado</div>
                     <div class="preco-display">
                         <div class="preco-valor">R$ <span id="valorFinal">0</span></div>
                         <div class="preco-periodo">por mês</div>
@@ -2053,7 +2052,7 @@
                             <span id="frequenciaSelecionada"></span>
                         </div>
                         <div class="detalhe-item">
-                            <span>Valor por hora:</span>
+                            <span>Investimento por hora:</span>
                             <span>R$ <span id="valorHora"></span></span>
                         </div>
                         <div class="detalhe-item">
@@ -2063,7 +2062,7 @@
                     </div>
                     <div class="cta-buttons">
                         <a href="#contato" class="btn-primary" id="btnWhatsApp">
-                            📱 Solicitar via WhatsApp
+                            📱 Solicitar Avaliação Gratuita
                         </a>
                         <a href="#contato" class="btn-secondary">
                             📋 Formulário Completo
@@ -2195,7 +2194,7 @@
                     </div>
                 </div>
                 <div class="blog-card reveal delay-2" data-tag="exercicios">
-                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhhZmljZXN8c2VhcmNofDE1fHxjdWlkYWRvcixlbGRlcmx5fGVufDB8fHx8MTcxNzU0NDEzMHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <div class="blog-card-header">
                             <span class="blog-card-tag">Exercícios</span>
@@ -2340,7 +2339,7 @@
                         <div class="full-article-content">
                             <div class="article-content">
                                 <h4>Combatendo o isolamento</h4>
-                                <p>Incentive a participação em atividades de grupo, como aulas de dança ou jogos de tabuleiro. O contato com a família e amigos, mesmo que por videochamada, é fundamental. Nossos cuidadores são treinados para serem companheiros atenciosos, estimulando a conversa e o convívio social.</p>
+                                <p>Incentive a participação em atividades de grupo, como aulas de dança ou jogos de tabuleiro. O contato com a família e amigos, mesmo que por videochamada, é fundamental. Nossos Personal Care Specialists são treinados para serem companheiros atenciosos, estimulando a conversa e o convívio social.</p>
                                 <h4>Atividades para a mente</h4>
                                 <p>Manter o cérebro em atividade é crucial. Sugira a leitura de livros, a resolução de palavras cruzadas, quebra-cabeças ou aprender uma nova habilidade. A música, em particular, pode evocar memórias e melhorar o humor.</p>
                             </div>
@@ -2382,7 +2381,7 @@
                                 <h4>Adaptando a casa</h4>
                                 <p>Remova tapetes soltos e obstáculos. Instale barras de apoio no banheiro e corrimãos em escadas. Garanta uma iluminação adequada, especialmente em corredores e escadas. Use pisos antiderrapantes para aumentar a segurança.</p>
                                 <h4>Equipamentos de auxílio</h4>
-                                <p>Andadores, bengalas e cadeiras de rodas podem ser grandes aliados para a mobilidade. A escolha do equipamento certo deve ser feita com orientação profissional. Nossos cuidadores podem auxiliar na utilização correta desses dispositivos.</p>
+                                <p>Andadores, bengalas e cadeiras de rodas podem ser grandes aliados para a mobilidade. A escolha do equipamento certo deve ser feita com orientação profissional. Nossos Personal Care Specialists podem auxiliar na utilização correta desses dispositivos.</p>
                             </div>
                         </div>
                         <div class="ai-tip-container" style="display:none;">
@@ -2409,11 +2408,11 @@
                 
                 <div class="faq-item reveal delay-1">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
-                        <span>Como vocês selecionam os cuidadores?</span>
+                        <span>Como vocês selecionam os Personal Care Specialists?</span>
                         <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
                     <div class="faq-answer" id="faq-answer-1" aria-labelledby="faq-question-1" role="region">
-                        <p>Nosso processo de seleção é rigoroso e único. Todos os cuidadores passam por verificação de antecedentes, entrevistas detalhadas, testes práticos e, principalmente, um período de treinamento em nossa própria casa com nossa avó de 94 anos. Isso garante que eles não apenas tenham as habilidades técnicas, mas também o carinho e a paciência necessários.</p>
+                        <p>Nosso processo de seleção é rigoroso e único. Todos os Personal Care Specialists passam por verificação de antecedentes, entrevistas detalhadas, testes práticos e, principalmente, um período de treinamento em nossa própria casa com nossa avó de 94 anos. Isso garante que eles não apenas tenham as habilidades técnicas, mas também o carinho e a paciência necessários.</p>
                     </div>
                 </div>
 
@@ -2433,7 +2432,7 @@
                         <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
                     <div class="faq-answer" id="faq-answer-3" aria-labelledby="faq-question-3" role="region">
-                        <p>Oferecemos cuidadores especializados, enfermagem domiciliar, fisioterapia, apoio psicológico, serviços de manicure e cabeleireiro, e motorista para consultas e passeios. Todos os serviços são personalizados conforme a necessidade de cada família.</p>
+                        <p>Oferecemos Personal Care Specialists, enfermagem domiciliar, fisioterapia, apoio psicológico, serviços de manicure e cabeleireiro, e motorista para consultas e passeios. Todos os serviços são personalizados conforme a necessidade de cada família.</p>
                     </div>
                 </div>
                 
@@ -2459,21 +2458,21 @@
 
                 <div class="faq-item reveal delay-6">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6">
-                        <span>Qual o valor dos serviços?</span>
+                        <span>Qual o investimento dos serviços?</span>
                         <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
                     <div class="faq-answer" id="faq-answer-6" aria-labelledby="faq-question-6" role="region">
-                        <p>Os valores variam conforme o tipo de serviço, frequência e necessidades específicas. Oferecemos orçamentos personalizados após uma avaliação gratuita. Entre em contato conosco para receber uma proposta adequada à sua situação.</p>
+                        <p>Os investimentos variam conforme o tipo de serviço, frequência e necessidades específicas. Oferecemos uma avaliação gratuita após uma avaliação. Entre em contato conosco para receber uma proposta adequada à sua situação.</p>
                     </div>
                 </div>
 
                 <div class="faq-item reveal delay-7">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7" id="faq-question-7">
-                        <span>E se eu não ficar satisfeito com o cuidador?</span>
+                        <span>E se eu não ficar satisfeito com o Personal Care Specialist?</span>
                         <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
                     <div class="faq-answer" id="faq-answer-7" aria-labelledby="faq-question-7" role="region">
-                        <p>Sua satisfação é nossa prioridade. Se por qualquer motivo você não estiver satisfeito, substituímos o profissional imediatamente. Temos uma equipe diversificada para garantir que encontremos o cuidador ideal para sua família.</p>
+                        <p>Sua satisfação é nossa prioridade. Se por qualquer motivo você não estiver satisfeito, substituímos o profissional imediatamente. Temos uma equipe diversificada para garantir que encontremos o Personal Care Specialist ideal para sua família.</p>
                     </div>
                 </div>
             </div>
@@ -2514,8 +2513,8 @@
                         <label for="servicos-interesse">Serviços que tenho interesse</label>
                         <div class="services-tags">
                             <label class="service-tag">
-                                <input type="checkbox" name="servicos[]" value="Cuidadora" checked disabled>
-                                <span>Cuidadora</span>
+                                <input type="checkbox" name="servicos[]" value="Personal Care Specialist" checked disabled>
+                                <span>Personal Care Specialist</span>
                             </label>
                             <label class="service-tag">
                                 <input type="checkbox" name="servicos[]" value="Manicure e cabeleireiro">
@@ -2568,7 +2567,7 @@
                     </div>
                     
                     <button type="submit" class="submit-btn">
-                        ✨ Solicitar contato
+                        ✨ Solicitar Avaliação Gratuita
                     </button>
                 </form>
             </div>
@@ -2577,7 +2576,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>Cuidando com amor e carinho.</p>
+            <p>Cuidados Premium para as famílias mais exigentes.</p>
             <p>CNPJ: xxxx</p>
             <p>© 2025 - De Vó para Vó</p>
         </div>
@@ -2615,19 +2614,19 @@
         const CONFIG = {
             phoneNumber: '5511999999999',
             cepApiUrl: 'https://viacep.com.br/ws/',
-            initialChatbotMessage: "Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?",
-            chatbotPrompt: `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em serviços de cuidado para idosos no Itaim, São Paulo.
+            initialChatbotMessage: "Olá! Sou o assistente virtual do De Vó para Vó. Nosso serviço é exclusivo para famílias selecionadas. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?",
+            chatbotPrompt: `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em Cuidados Premium para idosos no Itaim, São Paulo.
             Seu objetivo é responder a perguntas de forma amigável e profissional, com base nas seguintes informações:
-            - A empresa oferece cuidadores, manicure/cabeleireiro, apoio psicológico e motorista para idosos.
-            - O diferencial é o treinamento dos profissionais na casa da fundadora, Dona Tereca, que tem 94 anos.
-            - Os serviços são personalizados.
+            - A empresa oferece Personal Care Specialists, manicure/cabeleireiro, apoio psicológico e motorista para idosos.
+            - O diferencial é o treinamento dos profissionais na casa da fundadora, Dona Tereca, que tem 94 anos, garantindo um serviço de alta qualidade e com carinho.
+            - O posicionamento é de "Cuidados Premium" para "Apenas famílias selecionadas".
             - A área de atuação é o Itaim e bairros próximos em São Paulo.
-            - Para agendar um serviço ou obter um orçamento, o cliente deve preencher o formulário de contato. Não forneça preços diretamente.
+            - Para agendar um serviço ou solicitar uma avaliação gratuita, o cliente deve preencher o formulário de contato. Não forneça valores de investimento diretamente.
 
-            Responda de forma concisa. Se a pergunta for sobre preços ou agendamentos, oriente o usuário a preencher o formulário na seção 'Contato'. Mantenha a conversa focada nos serviços e na filosofia da empresa.
+            Responda de forma concisa. Se a pergunta for sobre investimentos ou agendamentos, oriente o usuário a preencher o formulário na seção 'Contato' para agendar uma avaliação gratuita. Mantenha a conversa focada nos serviços e na filosofia da empresa.
 
             Histórico da conversa: `,
-            aiTipPrompt: `Gere uma dica curta e útil (no máximo 50 palavras) para cuidadores de idosos, focada no tema de "%TOPIC%". Formate a resposta como uma frase direta.`,
+            aiTipPrompt: `Gere uma dica curta e útil (no máximo 50 palavras) para Personal Care Specialists, focada no tema de "%TOPIC%". Formate a resposta como uma frase direta.`,
             geminiTextApiUrl: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=',
             geminiTtsApiUrl: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=',
         };
@@ -3002,7 +3001,7 @@
             const data = Object.fromEntries(formData.entries());
             const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked')).map(cb => cb.value).join(', ');
 
-            let message = "Olá, gostaria de um orçamento!\n\n";
+            let message = "Olá, gostaria de uma avaliação gratuita!\n\n";
             message += `Nome: ${data.nome}\n`;
             message += `E-mail: ${data.email}\n`;
             message += `Telefone: ${data.telefone}\n`;
@@ -3113,7 +3112,7 @@
                     
                     const checkboxes = document.querySelectorAll('input[name="servicos[]"]');
                     checkboxes.forEach(cb => {
-                        if (cb.value !== 'Cuidadora') {
+                        if (cb.value !== 'Personal Care Specialist') {
                             cb.checked = false;
                         }
                     });
@@ -3238,7 +3237,7 @@
                         'intensivo': 'Cuidado Intensivo'
                     };
                     const valorMensal = this.calcular().toLocaleString('pt-BR');
-                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento para: Tipo: ${tipos[this.dados.tipo]}, Período: ${this.dados.horas}h/dia, Frequência: ${this.dados.dias} dias/semana. O valor estimado é de R$ ${valorMensal}/mês. Gostaria de agendar uma avaliação!`;
+                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento para: Tipo: ${tipos[this.dados.tipo]}, Período: ${this.dados.horas}h/dia, Frequência: ${this.dados.dias} dias/semana. O investimento estimado é de R$ ${valorMensal}/mês. Gostaria de agendar uma avaliação gratuita!`;
                     openWhatsApp(mensagem);
                 }
             }

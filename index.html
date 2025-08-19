@@ -8,7 +8,13 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* ... (CSS existente, sem alterações significativas aqui) ... */
+        /* ==================== Estilos Globais e Reset ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             /* Paleta de Cores (Quiet Luxury) */
             --primary-color: #5D2F09;
@@ -838,59 +844,23 @@
         
         /* Adicionado para o mapa de cobertura */
         .map-container {
-            display: none; /* Oculta a imagem do mapa */
-        }
-        .area-tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-            margin-bottom: 2rem;
-        }
-        .area-tag {
-            padding: 0.6rem 1.2rem;
-            background: #f0e3d2;
-            border: 1px solid #c4b6a5;
-            border-radius: 25px;
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-        }
-        .area-tag.covered {
-            background-color: var(--primary-light);
-            color: var(--text-on-dark);
-            border-color: var(--primary-light);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Estilos para o feedback do CEP */
-        .form-group .cep-feedback {
-            margin-top: 0.5rem;
-            font-size: var(--text-sm);
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            transition: all 0.3s ease-in-out;
-            opacity: 0;
-            max-height: 0;
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .form-group .cep-feedback.show {
-            opacity: 1;
-            max-height: 50px;
-            padding: 0.5rem 1rem;
+        .map-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
-        .form-group .cep-feedback.success {
-            background-color: #d4edda; /* Cor de fundo suave para sucesso */
-            color: #155724; /* Cor do texto para sucesso */
-            border: 1px solid #c3e6cb;
-        }
-        .form-group .cep-feedback.error {
-            background-color: #f8d7da; /* Cor de fundo suave para erro */
-            color: #721c24; /* Cor do texto para erro */
-            border: 1px solid #f5c6cb;
-        }
-        
         .map-label {
             margin-bottom: 1rem;
             font-size: var(--text-lg);
@@ -911,7 +881,734 @@
             margin: 0.5rem 0;
         }
 
-        /* ... (O restante do CSS é o mesmo) ... */
+        /* ==================== Blog Section ==================== */
+        .blog {
+            padding: 80px 0;
+            position: relative;
+        }
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .blog-filter-btn {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            padding: 0.75rem 1.5rem;
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .blog-filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            border-color: var(--primary-light);
+        }
+        .blog-filter-btn.active {
+            background: var(--primary-color);
+            color: var(--text-on-dark);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .blog-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .blog-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .blog-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--shadow-lg);
+        }
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .blog-card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .blog-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .blog-card-tag {
+            background-color: var(--secondary-color);
+            color: var(--text-on-dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+        .blog-card-info {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: var(--text-sm);
+            gap: 0.5rem;
+        }
+        .blog-card-content h3 {
+            font-size: var(--text-2xl);
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+        .blog-card-content p {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        .blog-card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        /* Novo estilo para os botões do blog */
+        .blog-action-btn {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: var(--text-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .blog-action-btn:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--text-on-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* Estilos do botão "Ler Artigo" e "Diminuir" */
+        .blog-action-btn svg {
+            transition: transform 0.3s ease;
+            stroke: var(--primary-color);
+        }
+        .blog-action-btn:hover svg {
+            stroke: var(--text-on-dark);
+        }
+        .blog-action-btn.expanded svg {
+            transform: rotate(180deg);
+        }
+        .blog-action-btn::after {
+            display: none;
+        }
+
+        /* Conteúdo do artigo completo */
+        .full-article-content {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .full-article-content.visible {
+            max-height: 2000px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        .blog-card-content .short-text.hidden {
+            display: none;
+        }
+        .blog-card-content .read-more-btn.hidden {
+            display: none;
+        }
+        .article-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-lg);
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-dark);
+        }
+        .article-content p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        .article-content ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        .article-content ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 0.75rem;
+        }
+        .article-content ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Container da dica de IA */
+        .ai-tip-container {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: left;
+            position: relative;
+            min-height: 50px;
+        }
+        .loading-skeleton {
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            gap: 0.75rem;
+            animation: pulse-skeleton 1.5s infinite ease-in-out;
+        }
+        .skeleton-line {
+            height: 15px;
+            background-color: var(--skeleton-bg-color);
+            border-radius: 5px;
+        }
+        .ai-tip-container.loaded .loading-skeleton {
+            display: none;
+        }
+        .ai-tip-container p {
+            margin: 0;
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+        }
+        .blog-action-btn.loading {
+            cursor: not-allowed;
+            opacity: 0.7;
+            background: var(--text-tertiary);
+            border-color: var(--text-tertiary);
+            color: var(--text-on-dark);
+        }
+
+        /* ==================== FAQ ==================== */
+        .faq {
+            padding: 80px 0;
+            position: relative;
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .faq-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+        .faq-item.active {
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+        .faq-item:focus-within {
+            box-shadow: 0 0 0 3px var(--accent-color), var(--shadow-lg);
+        }
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--primary-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .faq-question:hover {
+            background: rgba(245, 245, 245, 0.8);
+            color: var(--primary-color);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.4s ease;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 400px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        .faq-answer p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: var(--text-base);
+            margin: 0;
+            padding-top: 0.5rem;
+        }
+
+        /* ==================== Calculadora de Orçamento ==================== */
+        .calculadora-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--background-end) 0%, var(--background-start) 100%);
+        }
+        .calculadora-container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .calc-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .calc-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        .calc-header p {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+        .calc-steps {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .calc-step {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .calc-step:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .calc-step.completed {
+            border-color: var(--primary-color);
+            background: rgba(93, 47, 9, 0.05);
+        }
+        .step-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: var(--text-on-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .step-number.completed {
+            background: var(--secondary-color);
+        }
+        .step-title {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .step-subtitle {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .option-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+        .option-card.selected {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: var(--text-on-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .option-content {
+            position: relative;
+            z-index: 1;
+        }
+        .option-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .option-title {
+            font-weight: 600;
+            font-size: var(--text-lg);
+            margin-bottom: 0.5rem;
+        }
+        .option-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .option-price {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+        .resultado-container {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+            color: var(--text-on-dark);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .resultado-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .resultado-content {
+            position: relative;
+            z-index: 1;
+        }
+        .resultado-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .preco-display {
+            margin: 2rem 0;
+        }
+        .preco-valor {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .preco-periodo {
+            font-size: var(--text-lg);
+            opacity: 0.8;
+        }
+        .preco-detalhes {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        .detalhe-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: var(--text-base);
+        }
+        .detalhe-item:last-child {
+            margin-bottom: 0;
+            font-weight: 600;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .btn-primary {
+            background: var(--text-on-dark);
+            color: var(--primary-dark);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--text-base);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-on-dark);
+            border: 2px solid var(--text-on-dark);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--text-base);
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background: var(--text-on-dark);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== Modal e Chatbot ==================== */
+        .modal {
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.visible {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background-color: var(--background-start);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-xl);
+            max-width: 90%;
+            width: 450px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .modal.visible .modal-content {
+            transform: scale(1);
+        }
+        .modal-content h3 {
+            color: var(--primary-dark);
+            font-size: var(--text-2xl);
+            margin-bottom: 1rem;
+        }
+        .modal-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        .close-btn {
+            background-color: var(--primary-color);
+            color: var(--text-on-dark);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background-color: var(--primary-dark);
+        }
+        .chatbot-content {
+            background-color: var(--background-start);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-xl);
+            max-width: 90%;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .chatbot-header h3 {
+            margin: 0;
+            color: var(--primary-dark);
+        }
+        .chatbot-header .close-btn-chat {
+            background: none;
+            border: none;
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .chatbot-header .close-btn-chat:hover {
+            color: var(--secondary-color);
+        }
+        .chatbox {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--chat-bg);
+            border-radius: 15px;
+            overflow-y: auto;
+            max-height: 400px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            -webkit-overflow-scrolling: touch;
+        }
+        .message {
+            max-width: 80%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        .message.user {
+            background-color: var(--user-message-bg);
+            color: var(--text-primary);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        .message.ai {
+            background-color: var(--ai-message-bg);
+            color: var(--text-secondary);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        .message.ai-typing {
+            font-style: italic;
+            color: var(--text-tertiary);
+        }
+        .chatbot-input {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            font-size: var(--text-base);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        .chatbot-input button {
+            background-color: var(--primary-color);
+            color: var(--text-on-dark);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .chatbot-input button:hover {
+            background-color: var(--primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: scale(1.05);
+        }
+        
         /* ==================== Responsividade (Media Queries) ==================== */
         @media (min-width: 769px) {
             .nav-toggle-btn {
@@ -1026,6 +1723,704 @@
     </style>
 </head>
 <body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo"></div>
+        <div class="loading-text">De Vó para Vó</div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <header class="header reveal">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                </div>
+                <div>
+                    <a class="title" href="#">De Vó para Vó</a>
+                </div>
+            </div>
+            <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Toggle navigation menu">☰</button>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#about-us">Sobre Nós</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#calculadora">Orçamento</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="cta-button" id="header-contact-btn">Falar conosco</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="parallax-bg-1 parallax-element" data-speed="0.3"></div>
+        <div class="parallax-bg-2 parallax-element" data-speed="0.2"></div>
+        <div class="parallax-bg-3 parallax-element" data-speed="0.1"></div>
+        
+        <div class="hero-container">
+            <div class="hero-content reveal-left">
+                <h1>Cuidando de quem você ama</h1>
+                <p class="hero-subtitle">Serviços de cuidadores para idosos no Itaim</p>
+                <div class="hero-cta">
+                    <button class="whatsapp-btn" id="hero-whatsapp-btn">
+                        Fale conosco
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image reveal-right parallax-element">
+                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Cuidador e idoso sorrindo" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="our-story" id="about-us">
+        <div class="container">
+            <h2 class="section-title reveal">Sobre Nós</h2>
+            <div class="story-content">
+                <div class="story-text reveal-left">
+                    <h3>Uma história de família, cuidado e paixão</h3>
+                    <p>O <strong>De Vó para Vó</strong> nasceu de uma necessidade real e de um amor incondicional. Aos 94 anos, nossa querida avó, Dona Tereca, foi nossa primeira inspiração. Percebemos o quão desafiador é encontrar cuidadores que realmente tratem os idosos como parte da família. Foi então que decidimos criar uma empresa com um modelo único, onde a empatia e o carinho são a base de tudo.</p>
+                    <p>Nosso grande diferencial é que <strong>todos os nossos profissionais são treinados e trabalham em nossa própria casa</strong> antes de atender nossos clientes. Eles aprendem na prática o que significa cuidar com dedicação, respeito e, acima de tudo, amor. Isso garante que cada um de nossos cuidadores não apenas tenha as habilidades técnicas, mas a filosofia de cuidado que nos move.</p>
+                    <p class="highlight">O nosso lema é simples: "Porque quem cuidamos, cuidamos como família. 💛"</p>
+                </div>
+                <div class="story-image reveal-right parallax-element">
+                    <div class="story-badge">94 anos</div>
+                    <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Tereca - Nossa primeira cliente" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="servicos">
+        <div class="container">
+            <h2 class="section-title reveal">Nossos serviços</h2>
+            <div class="services-grid">
+                <div class="service-card reveal" style="animation-delay: 0.1s;">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Cuidadoras</h3>
+                    <p>Acompanhamento diário</p>
+                    <button class="open-whatsapp-service-btn" data-service="Cuidadora">Solicitar Orçamento</button>
+                </div>
+                <div class="service-card reveal" style="animation-delay: 0.2s;">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scissors"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg>
+                    </div>
+                    <h3>Manicure e cabeleireiro</h3>
+                    <p>Atendimento em casa</p>
+                    <button class="open-whatsapp-service-btn" data-service="Manicure e cabeleireiro">Solicitar Orçamento</button>
+                </div>
+                <div class="service-card reveal" style="animation-delay: 0.3s;">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-pulse"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.2 11.2h4.5l2-7.2 3.5 10.7L16 6l3 7H22"/></svg>
+                    </div>
+                    <h3>Apoio psicológico</h3>
+                    <p>Uma vez por semana</p>
+                    <button class="open-whatsapp-service-btn" data-service="Apoio psicológico">Solicitar Orçamento</button>
+                </div>
+                <div class="service-card reveal" style="animation-delay: 0.4s;">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car"><path d="M19 17h2c.5 0 1-.5 1-1v-3c0-.5-.5-1-1-1h-1V3c0-.5-.5-1-1-1H3c-.5 0-1 .5-1 1v14h2"/><path d="M14 17h-4"/><path d="M7 17v-4"/><path d="M17 5h-4"/><path d="M12 12v3"/><circle cx="17" cy="19" r="2"/><circle cx="7" cy="19" r="2"/></svg>
+                    </div>
+                    <h3>Motorista</h3>
+                    <p>1 a 2 vezes por semana</p>
+                    <button class="open-whatsapp-service-btn" data-service="Motorista">Solicitar Orçamento</button>
+                </div>
+                <div class="service-card reveal" style="animation-delay: 0.5s;">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-heart"><path d="M11 14H7a2 2 0 0 1-2-2V5.5L6.5 3 11 7V14Z"/><path d="M18 10h-1a2 2 0 0 0-2 2v2"/><path d="m14 17-5.15-5.15a1.6 1.6 0 0 1 0-2.26L14 4"/><path d="m20 12-3.26 3.26a1.6 1.6 0 0 0 0 2.27L20 20"/></svg>
+                    </div>
+                    <h3>Terapia Ocupacional</h3>
+                    <p>Atividades para a autonomia</p>
+                    <button class="open-whatsapp-service-btn" data-service="Terapia Ocupacional">Solicitar Orçamento</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculadora-section" id="calculadora">
+        <div class="calculadora-container reveal-scale">
+            <div class="calc-header">
+                <h2>Calcule seu orçamento personalizado</h2>
+                <p>Em 3 passos simples, descubra o investimento para o cuidado ideal</p>
+            </div>
+            <div class="step-indicator">
+                <div class="indicator-dot active" data-step="1"></div>
+                <div class="indicator-dot" data-step="2"></div>
+                <div class="indicator-dot" data-step="3"></div>
+            </div>
+            <div class="calc-steps">
+                <div class="calc-step completed" id="step1">
+                    <div class="step-label">
+                        <div class="step-number completed">1</div>
+                        <div>
+                            <div class="step-title">Tipo de Cuidado</div>
+                            <div class="step-subtitle">Qual o nível de cuidado necessário?</div>
+                        </div>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-card selected" data-tipo="basico" data-preco="30">
+                            <div class="option-content">
+                                <div class="option-icon">👥</div>
+                                <div class="option-title">Cuidado Básico</div>
+                                <div class="option-description">Companhia, atividades e cuidados gerais</div>
+                                <div class="option-price">A partir de R$ 30/hora</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-tipo="medicacao" data-preco="40">
+                            <div class="option-content">
+                                <div class="option-icon">💊</div>
+                                <div class="option-title">Com Medicação</div>
+                                <div class="option-description">Administração de medicamentos e controle</div>
+                                <div class="option-price">A partir de R$ 40/hora</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-tipo="mobilidade" data-preco="45">
+                            <div class="option-content">
+                                <div class="option-icon">🦽</div>
+                                <div class="option-title">Mobilidade Reduzida</div>
+                                <div class="option-description">Auxílio para locomoção e transferências</div>
+                                <div class="option-price">A partir de R$ 45/hora</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-tipo="intensivo" data-preco="55">
+                            <div class="option-content">
+                                <div class="option-icon">🏥</div>
+                                <div class="option-title">Cuidado Intensivo</div>
+                                <div class="option-description">Acompanhamento especializado 24h</div>
+                                <div class="option-price">A partir de R$ 55/hora</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-step completed" id="step2">
+                    <div class="step-label">
+                        <div class="step-number completed">2</div>
+                        <div>
+                            <div class="step-title">Período de Cuidado</div>
+                            <div class="step-subtitle">Quantas horas por dia?</div>
+                        </div>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-card" data-horas="6">
+                            <div class="option-content">
+                                <div class="option-icon">☕</div>
+                                <div class="option-title">6 horas/dia</div>
+                                <div class="option-description">Cuidado parcial</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-horas="8">
+                            <div class="option-content">
+                                <div class="option-icon">🌅</div>
+                                <div class="option-title">8 horas/dia</div>
+                                <div class="option-description">Período diurno ou noturno</div>
+                            </div>
+                        </div>
+                        <div class="option-card selected" data-horas="12">
+                            <div class="option-content">
+                                <div class="option-icon">☀️</div>
+                                <div class="option-title">12 horas/dia</div>
+                                <div class="option-description">Cobertura estendida</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-horas="24">
+                            <div class="option-content">
+                                <div class="option-icon">🌙</div>
+                                <div class="option-title">24 horas/dia</div>
+                                <div class="option-description">Cuidado contínuo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-step completed" id="step3">
+                    <div class="step-label">
+                        <div class="step-number completed">3</div>
+                        <div>
+                            <div class="step-title">Frequência Semanal</div>
+                            <div class="step-subtitle">Quantos dias por semana?</div>
+                        </div>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-card" data-dias="5">
+                            <div class="option-content">
+                                <div class="option-icon">📅</div>
+                                <div class="option-title">Segunda a Sexta</div>
+                                <div class="option-description">5 dias por semana</div>
+                            </div>
+                        </div>
+                        <div class="option-card" data-dias="6">
+                            <div class="option-content">
+                                <div class="option-icon">📆</div>
+                                <div class="option-title">Segunda a Sábado</div>
+                                <div class="option-description">6 dias por semana</div>
+                            </div>
+                        </div>
+                        <div class="option-card selected" data-dias="7">
+                            <div class="option-content">
+                                <div class="option-icon">🗓️</div>
+                                <div class="option-title">Todos os Dias</div>
+                                <div class="option-description">7 dias por semana</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resultado-container visible" id="resultado">
+                <div class="resultado-content">
+                    <div class="resultado-title">Seu orçamento personalizado</div>
+                    <div class="preco-display">
+                        <div class="preco-valor">R$ <span id="valorFinal">10.320</span></div>
+                        <div class="preco-periodo">por mês</div>
+                    </div>
+                    <div class="preco-detalhes">
+                        <div class="detalhe-item">
+                            <span>Tipo de cuidado:</span>
+                            <span id="tipoSelecionado">Cuidado Básico</span>
+                        </div>
+                        <div class="detalhe-item">
+                            <span>Período diário:</span>
+                            <span id="periodoSelecionado">12 horas</span>
+                        </div>
+                        <div class="detalhe-item">
+                            <span>Frequência:</span>
+                            <span id="frequenciaSelecionada">7 dias/semana</span>
+                        </div>
+                        <div class="detalhe-item">
+                            <span>Valor por hora:</span>
+                            <span>R$ <span id="valorHora">30</span></span>
+                        </div>
+                        <div class="detalhe-item">
+                            <span><strong>Total mensal:</strong></span>
+                            <span><strong>R$ <span id="totalMensal">10.320</span></strong></span>
+                        </div>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="#contato" class="btn-primary" id="btnWhatsApp">
+                            📱 Solicitar via WhatsApp
+                        </a>
+                        <a href="#contato" class="btn-secondary">
+                            📋 Formulário Completo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <h2 class="section-title reveal">Depoimentos</h2>
+            <div class="testimonial-container">
+                <button class="carousel-btn prev-btn" aria-label="Anterior">&lt;</button>
+                <div class="testimonial-carousel-wrapper">
+                    <div class="testimonial-carousel">
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content reveal-left">
+                                <div class="testimonial-text">
+                                    Desde que minha mãe passou no programa, ela ficou muito mais animada e segura. Estou muito satisfeita com os cuidados que ela recebe.
+                                </div>
+                                <div class="testimonial-author">- Maria Silva, filha de Dona Antônia</div>
+                            </div>
+                            <div class="testimonial-image reveal-right parallax-element">
+                                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dona Antônia sorrindo" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content reveal-left">
+                                <div class="testimonial-text">
+                                    A equipe é extremamente atenciosa e profissional. Meu pai se sente muito bem cuidado e nós ficamos tranquilos sabendo que ele está em boas mãos. Recomendo muito!
+                                </div>
+                                <div class="testimonial-author">- João Pereira, filho de Sr. Carlos</div>
+                            </div>
+                            <div class="testimonial-image reveal-right parallax-element">
+                                <img src="https://images.unsplash.com/photo-1549725227-3a1372b73379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Sr. Carlos" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content reveal-left">
+                                <div class="testimonial-text">
+                                    Ter um motorista para as consultas médicas e passeios fez uma diferença enorme na vida da minha avó. Ela se sente mais independente e feliz. O serviço é impecável.
+                                </div>
+                                <div class="testimonial-author">- Ana Clara, neta de D. Fátima</div>
+                            </div>
+                            <div class="testimonial-image reveal-right parallax-element">
+                                <img src="https://images.unsplash.com/photo-1594738466657-3f3c834a36e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyM3x8Y3VpZGFkb3IlMjBlJTIwaWRvc298ZW58MHx8fHwxNzE3NTM2NjM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="D. Fátima" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next-btn" aria-label="Próximo">&gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog" id="blog">
+        <div class="container">
+            <h2 class="section-title reveal">Blog - Dicas de Cuidado</h2>
+            <div class="blog-filters">
+                <button class="blog-filter-btn active" data-filter="all">Todos os artigos</button>
+                <button class="blog-filter-btn" data-filter="hidratacao">Hidratação</button>
+                <button class="blog-filter-btn" data-filter="exercicios">Exercícios</button>
+                <button class="blog-filter-btn" data-filter="sono">Sono</button>
+                <button class="blog-filter-btn" data-filter="alimentacao">Alimentação</button>
+                <button class="blog-filter-btn" data-filter="saude-mental">Saúde Mental</button>
+                <button class="blog-filter-btn" data-filter="apoio-ortopedico">Apoio Ortopédico</button>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card reveal delay-1" data-tag="hidratacao">
+                    <img src="https://images.unsplash.com/photo-1542810634-71277d95ae51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxjdWlkYWRvJTIwZGUlMjBpZG9zb3xlbnwwfHx8fDE2ODk2MzUyNDZ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso bebendo água" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Hidratação</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>A importância da hidratação para idosos</h3>
+                        <p class="short-text">Manter-se hidratado é crucial na terceira idade. A sensação de sede diminui, o que pode levar à desidratação sem que a pessoa perceba. Entenda a importância da hidratação e como incentivá-la no dia a dia.</p>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="hidratação">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Por que é tão importante?</h4>
+                                <p>A hidratação adequada previne problemas renais, melhora a função cognitiva, ajuda na digestão e mantém a pele saudável. Com o avanço da idade, a composição corporal muda e a capacidade dos rins de reter água diminui. Portanto, a ingestão regular de líquidos se torna ainda mais vital.</p>
+                                <h4>Tabela de Hidratação Diária</h4>
+                                <div class="table-container">
+                                    <table class="hydration-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Idade</th>
+                                                <th>Peso Corporal</th>
+                                                <th>Recomendação Mínima de Água</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>60-70 anos</td>
+                                                <td>70 kg</td>
+                                                <td>2,1 L (aproximadamente 10 copos)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>70-80 anos</td>
+                                                <td>65 kg</td>
+                                                <td>1,95 L (aproximadamente 9 copos)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>80+ anos</td>
+                                                <td>60 kg</td>
+                                                <td>1,8 L (aproximadamente 8 copos)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h4>Como incentivar?</h4>
+                                <p>Ofereça água em copos pequenos e em horários fixos. Inclua alimentos ricos em água na dieta, como frutas (melancia, laranja) e sopas. Tenha sempre uma garrafa de fácil acesso e explore opções como chás, sucos naturais e água saborizada com frutas.</p>
+                            </div>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-2" data-tag="exercicios">
+                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Exercícios</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Exercícios leves para a mobilidade</h3>
+                        <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="exercícios para mobilidade">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Benefícios da atividade física</h4>
+                                <p>Além de prevenir quedas, os exercícios melhoram a circulação sanguínea, fortalecem os ossos e promovem o bem-estar mental, combatendo o estresse e a ansiedade. Eles também contribuem para a autonomia e a independência do idoso no dia a dia.</p>
+                                <h4>Ideias de exercícios</h4>
+                                <p>É importante começar devagar e sempre consultar um médico ou fisioterapeuta antes de iniciar qualquer nova rotina de exercícios. Algumas atividades recomendadas incluem:</p>
+                                <ul>
+                                    <li><strong>Caminhada:</strong> Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
+                                    <li><strong>Natação e Hidroginástica:</strong> A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
+                                    <li><strong>Yoga ou Pilates:</strong> Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
+                                    <li><strong>Exercícios com faixas elásticas:</strong> Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-3" data-tag="sono">
+                    <img src="https://images.unsplash.com/photo-1599427303058-2996f022316e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8c29ubyUyMGlkb3NvfHwxfHx8fHwxNzE3NTM2NzI1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso dormindo tranquilamente" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Sono</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Estratégias para uma boa noite de sono</h3>
+                        <p class="short-text">O sono de qualidade é essencial para a saúde e o bem-estar em todas as idades, mas pode se tornar um desafio para os idosos. Saiba como criar uma rotina noturna que promova um descanso mais tranquilo e reparador.</p>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="rotina de sono para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Por que o sono muda?</h4>
+                                <p>Com a idade, a produção de melatonina (o hormônio do sono) diminui, e o padrão de sono tende a ser mais leve e fragmentado. Além disso, condições médicas e o uso de certos medicamentos podem afetar a qualidade do sono.</p>
+                                <h4>Dicas para melhorar o sono</h4>
+                                <p>Estabeleça horários regulares para dormir e acordar, mesmo nos fins de semana. Evite cafeína e refeições pesadas à noite. Crie um ambiente relaxante no quarto, com pouca luz e temperatura agradável. A leitura de um livro ou ouvir música calma antes de dormir pode ajudar a relaxar a mente.</p>
+                            </div>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-4" data-tag="alimentacao">
+                    <img src="https://images.unsplash.com/photo-1571772922119-913a826435c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxMHx8ZGlldGElMjBhdm98ZW58MHx8fHwxNzE3NTM2Nzk1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um avó preparando uma refeição" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Alimentação</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Alimentação saudável na terceira idade</h3>
+                        <p class="short-text">Uma dieta equilibrada é fundamental para manter a saúde e a vitalidade. Descubra quais são os nutrientes essenciais e como preparar refeições saborosas e nutritivas para os idosos.</p>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="alimentação para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Nutrientes essenciais</h4>
+                                <p>Com a idade, a absorção de certos nutrientes diminui. É importante incluir na dieta alimentos ricos em cálcio para a saúde dos ossos, vitamina D, fibras para a digestão, e proteínas para a manutenção da massa muscular.</p>
+                            </div>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-5" data-tag="saude-mental">
+                    <img src="https://images.unsplash.com/photo-1516246415277-3310069b76c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHw3fHxlbGRlcmx5JTIwaWRvc28lMjBpbmRvb3JzfGVufDB8fHx8MTY5MDc3NDU1M3ww&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso e cuidador conversando" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Saúde Mental</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Mantendo a mente ativa e o bem-estar</h3>
+                        <p class="short-text">O bem-estar mental é tão importante quanto o físico. O isolamento social e a solidão podem afetar gravemente a saúde dos idosos. Conheça estratégias simples para promover a felicidade e a saúde emocional.</p>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="saúde mental para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Combatendo o isolamento</h4>
+                                <p>Incentive a participação em atividades de grupo, como aulas de dança ou jogos de tabuleiro. O contato com a família e amigos, mesmo que por videochamada, é fundamental. Nossos cuidadores são treinados para serem companheiros atenciosos, estimulando a conversa e o convívio social.</p>
+                                <h4>Atividades para a mente</h4>
+                                <p>Manter o cérebro em atividade é crucial. Sugira a leitura de livros, a resolução de palavras cruzadas, quebra-cabeças ou aprender uma nova habilidade. A música, em particular, pode evocar memórias e melhorar o humor.</p>
+                            </div>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card reveal delay-6" data-tag="apoio-ortopedico">
+                    <img src="https://images.unsplash.com/photo-1621216668749-3e0e7a25a40b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHw3fHxlbGRlcmx5JTIwaWRvc28lMjBpbmRvb3JzfGVufDB8fHx8MTY5MDc3NDU1M3ww&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso em uma cadeira de rodas" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div class="blog-card-header">
+                            <span class="blog-card-tag">Apoio Ortopédico</span>
+                            <div class="blog-card-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <span>5 min leitura</span>
+                            </div>
+                        </div>
+                        <h3>Dicas para um ambiente seguro e confortável</h3>
+                        <p class="short-text">A prevenção de quedas é uma das maiores preocupações no cuidado de idosos. Um ambiente adaptado e seguro faz toda a diferença. Veja como simples mudanças podem transformar a casa em um local mais acolhedor.</p>
+                        <div class="blog-card-actions">
+                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
+                                <span>Ler artigo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                            <button class="blog-action-btn generate-tip-btn" data-topic="prevenção de quedas para idosos">Gerar dica de IA</button>
+                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
+                                <span class="audio-icon">📢</span>
+                            </button>
+                        </div>
+                        <div class="full-article-content">
+                            <div class="article-content">
+                                <h4>Adaptando a casa</h4>
+                                <p>Remova tapetes soltos e obstáculos. Instale barras de apoio no banheiro e corrimãos em escadas. Garanta uma iluminação adequada, especialmente em corredores e escadas. Use pisos antiderrapantes para aumentar a segurança.</p>
+                                <h4>Equipamentos de auxílio</h4>
+                                <p>Andadores, bengalas e cadeiras de rodas podem ser grandes aliados para a mobilidade. A escolha do equipamento certo deve ser feita com orientação profissional. Nossos cuidadores podem auxiliar na utilização correta desses dispositivos.</p>
+                            </div>
+                        </div>
+                        <div class="ai-tip-container" style="display:none;">
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                            <p class="ai-tip-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title reveal">Perguntas Frequentes</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item reveal delay-1">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
+                        <span>Como vocês selecionam os cuidadores?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-1" aria-labelledby="faq-question-1" role="region">
+                        <p>Nosso processo de seleção é rigoroso e único. Todos os cuidadores passam por verificação de antecedentes, entrevistas detalhadas, testes práticos e, principalmente, um período de treinamento em nossa própria casa com nossa avó de 94 anos. Isso garante que eles não apenas tenham as habilidades técnicas, mas também o carinho e a paciência necessários.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-2">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
+                        <span>Qual é o diferencial do "De Vó para Vó"?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-2" aria-labelledby="faq-question-2" role="region">
+                        <p>Nosso grande diferencial é que todos os profissionais trabalham primeiro em nossa própria casa, cuidando da nossa avó Dona Tereca. Isso significa que quando chegam à sua casa, já sabem exatamente como tratar um idoso com amor, respeito e profissionalismo. Não é apenas um trabalho para eles, é uma filosofia de cuidado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-3">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">
+                        <span>Quais serviços vocês oferecem?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-3" aria-labelledby="faq-question-3" role="region">
+                        <p>Oferecemos cuidadores especializados, enfermagem domiciliar, fisioterapia, apoio psicológico, serviços de manicure e cabeleireiro, e motorista para consultas e passeios. Todos os serviços são personalizados conforme a necessidade de cada família.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal delay-4">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
+                        <span>Vocês atendem em quais regiões?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-4" aria-labelledby="faq-question-4" role="region">
+                        <p>Atendemos principalmente na região do Itaim e bairros próximos em São Paulo. Para atendimentos em outras regiões, consulte-nos sobre disponibilidade e possíveis taxas de deslocamento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-5">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">
+                        <span>Como é feito o acompanhamento dos cuidados?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-5" aria-labelledby="faq-question-5" role="region">
+                        <p>Mantemos contato regular com as famílias através de relatórios diários, chamadas de acompanhamento e visitas de supervisão. Nossos profissionais são treinados para documentar todas as atividades e comunicar qualquer mudança no estado de saúde ou humor do idoso.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-6">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6">
+                        <span>Qual o valor dos serviços?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-6" aria-labelledby="faq-question-6" role="region">
+                        <p>Os valores variam conforme o tipo de serviço, frequência e necessidades específicas. Oferecemos orçamentos personalizados após uma avaliação gratuita. Entre em contato conosco para receber uma proposta adequada à sua situação.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-7">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7" id="faq-question-7">
+                        <span>E se eu não ficar satisfeito com o cuidador?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-7" aria-labelledby="faq-question-7" role="region">
+                        <p>Sua satisfação é nossa prioridade. Se por qualquer motivo você não estiver satisfeito, substituímos o profissional imediatamente. Temos uma equipe diversificada para garantir que encontremos o cuidador ideal para sua família.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="contact" id="contato">
         <div class="container">
             <h2 class="section-title reveal">Entre em contato</h2>
@@ -1091,22 +2486,15 @@
                 
                 <div class="form-group">
                     <div class="map-label">Nossa área de cobertura:</div>
-                    <div class="area-tags-container" id="area-tags-container">
-                        <span class="area-tag">Itaim</span>
-                        <span class="area-tag">Pinheiros</span>
-                        <span class="area-tag">Moema</span>
-                        <span class="area-tag">Jardins</span>
-                        <span class="area-tag">Panamby</span>
-                        <span class="area-tag">Morumbi</span>
-                        <span class="area-tag">Vila Madalena</span>
-                        <span class="area-tag">Higienópolis</span>
+                    <div class="map-container">
+                        <img src="https://i.imgur.com/vHq0bL5.png" alt="Mapa de cobertura indicando os bairros de Itaim, Jardins, Panamby, Morumbi, Moema, Pinheiros, Vila Madalena e Higienópolis em São Paulo." loading="lazy">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="cep">CEP</label>
                     <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9">
-                    <div id="cep-feedback" class="cep-feedback"></div>
+                    <small id="cep-status" class="validation-message"></small>
                 </div>
                 
                 <div class="form-row">
@@ -1122,8 +2510,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="cidade">Cidade</label>
-                    <input type="text" id="cidade" name="cidade" placeholder="Será preenchido automaticamente" readonly required>
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Será preenchido automaticamente" readonly required>
                 </div>
                 
                 <button type="submit" class="submit-btn">
@@ -1133,135 +2521,243 @@
         </div>
     </section>
 
+    <footer class="footer">
+        <div class="container">
+            <p>Cuidando com amor e carinho.</p>
+            <p>CNPJ: xxxx</p>
+            <p>© 2025 - De Vó para Vó</p>
+        </div>
+    </footer>
+    
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h3>Mensagem Enviada com Sucesso!</h3>
+            <p>Agradecemos o seu contato. Entraremos em contato via WhatsApp em breve para discutir as suas necessidades.</p>
+            <button class="close-btn" id="closeModalBtn">Fechar</button>
+        </div>
+    </div>
+
+    <div id="chatbotModal" class="modal">
+        <div class="chatbot-content">
+            <div class="chatbot-header">
+                <h3>Olá! Como posso te ajudar? 👋</h3>
+                <button class="close-btn-chat" id="closeChatBtn">✕</button>
+            </div>
+            <div class="chatbox" id="chatbox">
+                <div class="message ai">
+                    Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+                <button id="sendBtn" aria-label="Enviar mensagem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="send-icon"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // ... (resto do script, sem alterações antes da função initFormHandlers) ...
+        // ==================== Scripts de Inicialização ====================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (mediaQuery.matches) {
+                document.documentElement.classList.add('prefers-reduced-motion');
+            }
 
-        function initFormHandlers() {
-            const form = document.querySelector('.contact-form');
-            const cepInput = document.getElementById('cep');
-            const cpfInput = document.getElementById('cpf');
-            const telefoneInput = document.getElementById('telefone');
-            const cepFeedback = document.getElementById('cep-feedback');
-            const areaTags = document.querySelectorAll('.area-tag');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const modal = document.getElementById('successModal');
-            const bairrosAtendidos = ['Itaim Bibi', 'Pinheiros', 'Moema', 'Jardim Paulista', 'Jardim América', 'Jardim Europa', 'Jardim Paulistano', 'Panamby', 'Morumbi', 'Vila Madalena', 'Higienópolis'];
+            initScrollReveal();
+            initParallax();
+            initFormHandlers();
+            initServiceButtonHandlers();
+            initCarousel();
+            initBlogLinks();
+            initNavToggle();
+            initAITipGenerators();
+            initFAQ();
+            initChatbot();
+            initCalculadora(); // Inicializa a calculadora
+            initBlogFilters();
 
-            // Função para limpar o feedback do CEP e os campos de endereço
-            function resetCepFields() {
-                if (cepFeedback) {
-                    cepFeedback.classList.remove('show', 'success', 'error');
-                    cepFeedback.textContent = '';
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hidden');
                 }
-                document.getElementById('endereco').value = '';
-                document.getElementById('bairro').value = '';
-                document.getElementById('cidade').value = '';
-                document.getElementById('endereco').setAttribute('readonly', 'readonly');
-                document.getElementById('bairro').setAttribute('readonly', 'readonly');
-                document.getElementById('cidade').setAttribute('readonly', 'readonly');
-                areaTags.forEach(tag => tag.classList.remove('covered'));
-            }
+            }, 2500);
+            
+            let isThrottled = false;
+            window.addEventListener('scroll', function() {
+                if (!isThrottled) {
+                    window.requestAnimationFrame(() => {
+                        const header = document.querySelector('.header');
+                        if (window.scrollY > 50) {
+                            header.classList.add('scrolled');
+                        } else {
+                            header.classList.remove('scrolled');
+                        }
+                        isThrottled = false;
+                    });
+                    isThrottled = true;
+                }
+            });
+        });
 
-            if (cepInput) {
-                cepInput.addEventListener('input', function(e) {
-                    const value = e.target.value.replace(/\D/g, '');
-                    e.target.value = maskCEP(value);
-                    if (value.length === 8) {
-                        searchCEP(value, cepFeedback, bairrosAtendidos, areaTags);
-                    } else {
-                        resetCepFields();
+        // ==================== Funções de Efeitos Visuais ====================
+        
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+            if (revealElements.length === 0) return;
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target) {
+                        entry.target.classList.add('revealed');
+                        revealObserver.unobserve(entry.target);
                     }
                 });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(element => {
+                if (element) {
+                    revealObserver.observe(element);
+                }
+            });
+        }
+
+        function initParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            if (parallaxElements.length === 0) return;
+            
+            let lastScrollY = window.pageYOffset;
+            let tick = false;
+
+            function updateParallax() {
+                const scrolled = lastScrollY;
+                parallaxElements.forEach((element) => {
+                    const speed = parseFloat(element.dataset.speed || 0.1);
+                    const yPos = scrolled * speed;
+                    element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                });
+                tick = false;
             }
 
-            if (cpfInput) {
-                cpfInput.addEventListener('input', function(e) {
-                    e.target.value = maskCPF(e.target.value);
-                });
-            }
+            window.addEventListener('scroll', () => {
+                lastScrollY = window.pageYOffset;
+                if (!tick) {
+                    window.requestAnimationFrame(updateParallax);
+                    tick = true;
+                }
+            });
+        }
 
-            if (telefoneInput) {
-                telefoneInput.addEventListener('input', function(e) {
-                    e.target.value = maskTelefone(e.target.value);
-                });
-            }
-            
-            if (form) {
-                form.addEventListener('submit', handleSubmit);
-            }
-            
-            if (closeModalBtn) {
-                closeModalBtn.addEventListener('click', () => {
-                    if (modal) {
-                        modal.classList.remove('visible');
-                        form.reset();
-                        resetCepFields();
-                    }
+        // ==================== Funções de Navegação e Interatividade ====================
+        
+        function scrollToContact() {
+            const contactElement = document.getElementById('contato');
+            if (contactElement) {
+                contactElement.scrollIntoView({
+                    behavior: 'smooth'
                 });
             }
         }
         
-        async function searchCEP(cep, statusElement, bairrosAtendidos, areaTags) {
-            try {
-                statusElement.textContent = '🔍 Buscando endereço...';
-                statusElement.classList.remove('success', 'error');
-                statusElement.classList.add('show');
-                
-                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                const data = await response.json();
-                
-                if (data.erro || data.uf !== 'SP' || data.localidade !== 'São Paulo') {
-                    throw new Error('CEP não encontrado ou fora da área de cobertura.');
-                }
-
-                const bairroEncontrado = data.bairro;
-                const isBairroAtendido = bairrosAtendidos.some(bairro => bairro.toLowerCase() === bairroEncontrado.toLowerCase());
-
-                if (isBairroAtendido) {
-                    document.getElementById('endereco').value = `${data.logradouro}, ${data.complemento || ''}`.trim();
-                    document.getElementById('bairro').value = bairroEncontrado;
-                    document.getElementById('cidade').value = `${data.localidade} - ${data.uf}`;
-                    document.getElementById('endereco').removeAttribute('readonly');
-                    document.getElementById('bairro').setAttribute('readonly', 'readonly');
-                    document.getElementById('cidade').setAttribute('readonly', 'readonly');
-
-                    statusElement.textContent = `✅ Ótimo! Atendemos no bairro ${bairroEncontrado}.`;
-                    statusElement.classList.remove('error');
-                    statusElement.classList.add('success');
-                    
-                    areaTags.forEach(tag => {
-                        if (tag.textContent.toLowerCase() === bairroEncontrado.toLowerCase()) {
-                            tag.classList.add('covered');
-                        } else {
-                            tag.classList.remove('covered');
-                        }
-                    });
-
+        function initNavToggle() {
+            const navToggleBtn = document.getElementById('navToggleBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (!navToggleBtn || !navMenu) return;
+            
+            navToggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    navToggleBtn.textContent = '✕';
                 } else {
-                    throw new Error('Infelizmente, ainda não atendemos neste bairro.');
+                    navToggleBtn.textContent = '☰';
                 }
+            });
 
-            } catch (error) {
-                statusElement.textContent = `❌ ${error.message}`;
-                statusElement.classList.remove('success');
-                statusElement.classList.add('show', 'error');
-                
-                document.getElementById('endereco').value = '';
-                document.getElementById('bairro').value = '';
-                document.getElementById('cidade').value = '';
-                document.getElementById('endereco').setAttribute('readonly', 'readonly');
-                document.getElementById('bairro').setAttribute('readonly', 'readonly');
-                document.getElementById('cidade').setAttribute('readonly', 'readonly');
-                areaTags.forEach(tag => tag.classList.remove('covered'));
-            }
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    navToggleBtn.textContent = '☰';
+                });
+            });
         }
 
+        function openWhatsApp(message) {
+            const phoneNumber = '5511999999999';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const cepInput = form.querySelector('#cep');
+            const cpfInput = form.querySelector('#cpf');
+            const telefoneInput = form.querySelector('#telefone');
+
+            let isValid = true;
+            if (!validateCepFormat(cepInput.value)) {
+                cepInput.setCustomValidity('CEP inválido.');
+                isValid = false;
+            } else {
+                cepInput.setCustomValidity('');
+            }
+
+            if (!validateCpfFormat(cpfInput.value)) {
+                cpfInput.setCustomValidity('CPF inválido.');
+                isValid = false;
+            } else {
+                cpfInput.setCustomValidity('');
+            }
+
+            if (!validateTelefoneFormat(telefoneInput.value)) {
+                telefoneInput.setCustomValidity('Telefone inválido.');
+                isValid = false;
+            } else {
+                telefoneInput.setCustomValidity('');
+            }
+            
+            if (!isValid) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
+                                                     .map(checkbox => checkbox.value)
+                                                     .join(', ');
+
+            let message = "Olá, gostaria de um orçamento!\n\n";
+            message += `Nome: ${data.nome}\n`;
+            message += `E-mail: ${data.email}\n`;
+            message += `Telefone: ${data.telefone}\n`;
+            message += `CPF: ${data.cpf}\n`;
+            message += `Serviços de interesse: ${selectedServices || 'Nenhum'}\n`;
+            message += `Endereço: ${data.endereco} - ${data.bairro}, ${data.cidade}\n`;
+            message += `CEP: ${data.cep}\n`;
+            
+            openWhatsApp(message);
+            
+            const modal = document.getElementById('successModal');
+            if (modal) {
+                modal.classList.add('visible');
+            }
+        }
+        
         function validateCepFormat(value) {
             const cepRegex = /^\d{5}-\d{3}$/;
             return cepRegex.test(value);
         }
 
-        // ... (o restante das funções de validação e mascaramento do seu script) ...
         function validateCpfFormat(value) {
             const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
             return cpfRegex.test(value);
@@ -1309,14 +2805,990 @@
             }
             return masked;
         }
+        
+        function initFormHandlers() {
+            const form = document.querySelector('.contact-form');
+            const cepInput = document.getElementById('cep');
+            const cpfInput = document.getElementById('cpf');
+            const telefoneInput = document.getElementById('telefone');
+            const cepStatus = document.getElementById('cep-status');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modal = document.getElementById('successModal');
+
+            if (cepInput) {
+                cepInput.addEventListener('input', function(e) {
+                    const value = e.target.value.replace(/\D/g, '');
+                    e.target.value = maskCEP(value);
+                    if (value.length === 8) {
+                        searchCEP(value);
+                    } else {
+                        if (cepStatus) cepStatus.textContent = '';
+                        document.getElementById('endereco').value = '';
+                        document.getElementById('bairro').value = '';
+                        document.getElementById('cidade').value = '';
+                    }
+                });
+            }
+
+            if (cpfInput) {
+                cpfInput.addEventListener('input', function(e) {
+                    e.target.value = maskCPF(e.target.value);
+                });
+            }
+
+            if (telefoneInput) {
+                telefoneInput.addEventListener('input', function(e) {
+                    e.target.value = maskTelefone(e.target.value);
+                });
+            }
+            
+            if (form) {
+                form.addEventListener('submit', handleSubmit);
+            }
+            
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => {
+                    if (modal) {
+                        modal.classList.remove('visible');
+                        form.reset();
+                    }
+                });
+            }
+        }
+        
+        async function searchCEP(cep) {
+            const statusElement = document.getElementById('cep-status');
+            if (!statusElement) return;
+            try {
+                statusElement.textContent = '🔍 Buscando endereço...';
+                statusElement.style.color = 'var(--primary-color)';
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+                if (data.erro) {
+                    throw new Error('CEP não encontrado');
+                }
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                if (enderecoField) {
+                    enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
+                    enderecoField.removeAttribute('readonly');
+                }
+                if (bairroField) bairroField.value = data.bairro;
+                if (cidadeField) cidadeField.value = `${data.localidade} - ${data.uf}`;
+                statusElement.textContent = '✅ Endereço encontrado!';
+                statusElement.style.color = '#10B981';
+            } catch (error) {
+                statusElement.textContent = '❌ CEP não encontrado. Verifique o número.';
+                statusElement.style.color = '#EF4444';
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                if (enderecoField) enderecoField.value = '';
+                if (bairroField) bairroField.value = '';
+                if (cidadeField) cidadeField.value = '';
+            }
+        }
+
+        function initServiceButtonHandlers() {
+            const serviceButtons = document.querySelectorAll('.open-whatsapp-service-btn');
+            
+            serviceButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const serviceName = button.getAttribute('data-service');
+                    
+                    const contactSection = document.getElementById('contato');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    const checkboxes = document.querySelectorAll('input[name="servicos[]"]');
+                    checkboxes.forEach(cb => {
+                        if (cb.value !== 'Cuidadora') {
+                            cb.checked = false;
+                        }
+                    });
+                    
+                    const selectedCheckbox = document.querySelector(`input[name="servicos[]"][value="${serviceName}"]`);
+                    if (selectedCheckbox) {
+                        selectedCheckbox.checked = true;
+                    }
+                });
+            });
+        }
+        
+        function initCarousel() {
+            const carousel = document.querySelector('.testimonial-carousel');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const prevBtn = document.querySelector('.carousel-btn.prev-btn');
+            const nextBtn = document.querySelector('.carousel-btn.next-btn');
+            const wrapper = document.querySelector('.testimonial-carousel-wrapper');
+            if (!carousel || !slides.length || !prevBtn || !nextBtn || !wrapper) return;
+            
+            let currentIndex = 0;
+            let autoSlideInterval;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+
+            function setCarouselHeight() {
+                const maxSlideHeight = Math.max(...Array.from(slides).map(s => s.offsetHeight));
+                wrapper.style.height = `${maxSlideHeight}px`;
+            }
+
+            function updateCarousel() {
+                currentTranslate = -currentIndex * slides[0].offsetWidth;
+                carousel.style.transform = `translateX(${currentTranslate}px)`;
+            }
+
+            function startAutoSlide() {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateCarousel();
+                }, 5000);
+            }
+            
+            window.addEventListener('resize', setCarouselHeight);
+            setCarouselHeight();
+            
+            prevBtn.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                updateCarousel();
+                startAutoSlide();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+                startAutoSlide();
+            });
+
+            wrapper.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startPos = e.touches[0].clientX;
+                prevTranslate = currentTranslate;
+                clearInterval(autoSlideInterval);
+            });
+
+            wrapper.addEventListener('touchend', () => {
+                isDragging = false;
+                const movedBy = currentTranslate - prevTranslate;
+                if (movedBy < -100) {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                }
+                if (movedBy > 100) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                }
+                updateCarousel();
+                startAutoSlide();
+            });
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const currentPosition = e.touches[0].clientX;
+                currentTranslate = prevTranslate + currentPosition - startPos;
+                carousel.style.transform = `translateX(${currentTranslate}px)`;
+            });
+
+            startAutoSlide();
+        }
+
+        function initBlogFilters() {
+            const filterButtons = document.querySelectorAll('.blog-filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            if (!filterButtons.length || !blogCards.length) return;
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    blogCards.forEach(card => {
+                        const cardTag = card.getAttribute('data-tag');
+                        if (filter === 'all' || filter === cardTag) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+        
+        function initBlogLinks() {
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            blogCards.forEach(card => {
+                const readMoreBtn = card.querySelector('.read-more-btn');
+                const readMoreText = readMoreBtn.querySelector('span');
+                const readMoreIcon = readMoreBtn.querySelector('svg');
+                const fullContent = card.querySelector('.full-article-content');
+                const shortText = card.querySelector('.short-text');
+
+                const toggleContent = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (fullContent.classList.contains('visible')) {
+                        fullContent.classList.remove('visible');
+                        readMoreText.textContent = 'Ler artigo';
+                        readMoreIcon.innerHTML = `<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
+                        readMoreBtn.classList.remove('expanded');
+                        shortText.classList.remove('hidden');
+                    } else {
+                        fullContent.classList.add('visible');
+                        readMoreText.textContent = 'Diminuir';
+                        readMoreIcon.innerHTML = `<path d="m18 15-6-6-6 6"/></svg>`;
+                        readMoreBtn.classList.add('expanded');
+                        shortText.classList.add('hidden');
+                    }
+                };
+                
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', toggleContent);
+                }
+            });
+        }
+        
+        // ==================== Funções da API Gemini ====================
+        
+        function initAITipGenerators() {
+            const generateButtons = document.querySelectorAll('.generate-tip-btn');
+            
+            generateButtons.forEach(button => {
+                const card = button.closest('.blog-card-content');
+                const aiTipContainer = card.querySelector('.ai-tip-container');
+                const aiTipText = card.querySelector('.ai-tip-text');
+                const loadingSkeleton = card.querySelector('.loading-skeleton');
+                const audioBtn = card.querySelector('.audio-btn');
+
+                button.addEventListener('click', async () => {
+                    const topic = button.getAttribute('data-topic');
+                    aiTipText.textContent = '';
+                    aiTipContainer.style.display = 'block';
+                    loadingSkeleton.style.display = 'flex';
+                    aiTipContainer.classList.remove('loaded');
+                    button.classList.add('loading');
+                    button.disabled = true;
+                    audioBtn.style.display = 'none';
+
+                    try {
+                        const tip = await generateNewTip(topic);
+                        aiTipText.textContent = tip;
+                        audioBtn.dataset.textForAudio = tip;
+                        audioBtn.style.display = 'block';
+                    } catch (error) {
+                        aiTipText.textContent = 'Ocorreu um erro ao gerar a dica. Tente novamente.';
+                        console.error('Erro ao gerar a dica:', error);
+                    } finally {
+                        loadingSkeleton.style.display = 'none';
+                        aiTipContainer.classList.add('loaded');
+                        button.classList.remove('loading');
+                        button.disabled = false;
+                    }
+                });
+            });
+
+            const audioButtons = document.querySelectorAll('.audio-btn');
+            audioButtons.forEach(button => {
+                const card = button.closest('.blog-card-content');
+                const aiTipTextElement = card.querySelector('.ai-tip-text');
+                button.addEventListener('click', async () => {
+                    const text = aiTipTextElement.textContent;
+                    if (text && text.length > 0) {
+                        const audioIcon = button.querySelector('.audio-icon');
+                        audioIcon.textContent = '...';
+                        audioIcon.classList.add('loading-audio');
+                        await playAudio(text, button);
+                        audioIcon.textContent = '📢';
+                        audioIcon.classList.remove('loading-audio');
+                    }
+                });
+            });
+        }
+        
+        async function generateNewTip(topic) {
+            const prompt = `Gere uma dica curta e útil (no máximo 50 palavras) para cuidadores de idosos, focada no tema de "${topic}". Formate a resposta como uma frase direta.`;
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Nenhuma dica gerada. Tente novamente.';
+            }
+        }
+        
+        async function playAudio(text) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const source = audioContext.createBufferSource();
+            const payload = {
+                contents: [{
+                    parts: [{ text: text }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Puck" }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                console.error("Não foi possível obter uma resposta de áudio da API após várias tentativas.");
+                return;
+            }
+
+            const result = await response.json();
+            const audioDataPart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+
+            if (audioDataPart) {
+                const base64Audio = audioDataPart.inlineData.data;
+                const pcmData = base64ToArrayBuffer(base64Audio);
+                
+                const sampleRate = 24000;
+                
+                const audioBuffer = audioContext.createBuffer(1, pcmData.byteLength / 2, sampleRate);
+                const nowBuffering = audioBuffer.getChannelData(0);
+                const pcm16 = new Int16Array(pcmData);
+                for (let i = 0; i < pcm16.length; i++) {
+                    nowBuffering[i] = pcm16[i] / 32768;
+                }
+                
+                source.buffer = audioBuffer;
+                source.connect(audioContext.destination);
+                source.start();
+            }
+        }
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    toggleFAQItem(item, faqItems);
+                });
+                
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQItem(item, faqItems);
+                    }
+                    
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        navigateFAQ(e.key, item, faqItems);
+                    }
+                });
+            });
+        }
+        
+        function toggleFAQItem(currentItem, allItems) {
+            const question = currentItem.querySelector('.faq-question');
+            const isActive = currentItem.classList.contains('active');
+            
+            allItems.forEach(item => {
+                if (item !== currentItem) {
+                    item.classList.remove('active');
+                    const otherQuestion = item.querySelector('.faq-question');
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            if (isActive) {
+                currentItem.classList.remove('active');
+                question.setAttribute('aria-expanded', 'false');
+            } else {
+                currentItem.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+                
+                setTimeout(() => {
+                    currentItem.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }, 100);
+            }
+        }
+        
+        function navigateFAQ(direction, currentItem, allItems) {
+            const currentIndex = Array.from(allItems).indexOf(currentItem);
+            let nextIndex;
+            
+            if (direction === 'ArrowDown') {
+                nextIndex = (currentIndex + 1) % allItems.length;
+            } else {
+                nextIndex = currentIndex === 0 ? allItems.length - 1 : currentIndex - 1;
+            }
+            
+            const nextQuestion = allItems[nextIndex].querySelector('.faq-question');
+            nextQuestion.focus();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeItems = document.querySelectorAll('.faq-item.active');
+                activeItems.forEach(item => {
+                    item.classList.remove('active');
+                    const question = item.querySelector('.faq-question');
+                    question.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+        
+        // ==================== Lógica do Chatbot ====================
+
+        let chatHistory = [];
+        
+        function initChatbot() {
+            const headerContactBtn = document.getElementById('header-contact-btn');
+            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
+            const chatbotModal = document.getElementById('chatbotModal');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+            const chatbox = document.getElementById('chatbox');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const initialMessage = "Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?";
+
+            chatHistory.push({ role: "model", parts: [{ text: initialMessage }] });
+
+            headerContactBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+            heroWhatsappBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+
+            closeChatBtn.addEventListener('click', () => {
+                chatbotModal.classList.remove('visible');
+            });
+            
+            sendBtn.addEventListener('click', handleUserMessage);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+            
+            appendMessage(initialMessage, 'ai');
+        }
+
+        async function handleUserMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            chatInput.value = '';
+            
+            appendMessage(message, 'user');
+            chatHistory.push({ role: "user", parts: [{ text: message }] });
+
+            const typingIndicator = appendMessage('...', 'ai-typing');
+            
+            try {
+                const responseText = await getChatbotResponse(chatHistory);
+                typingIndicator.remove();
+                appendMessage(responseText, 'ai');
+                chatHistory.push({ role: "model", parts: [{ text: responseText }] });
+            } catch (error) {
+                console.error('Erro ao obter a resposta do chatbot:', error);
+                typingIndicator.remove();
+                appendMessage('Desculpe, não consegui processar sua solicitação no momento. Tente novamente mais tarde.', 'ai');
+            }
+        }
+        
+        function appendMessage(text, sender) {
+            const chatbox = document.getElementById('chatbox');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+            return messageElement;
+        }
+
+        async function getChatbotResponse(history) {
+            const prompt = `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em serviços de cuidado para idosos no Itaim, São Paulo.
+            Seu objetivo é responder a perguntas de forma amigável e profissional, com base nas seguintes informações:
+            - A empresa oferece cuidadores, manicure/cabeleireiro, apoio psicológico e motorista para idosos.
+            - O diferencial é o treinamento dos profissionais na casa da fundadora, Dona Tereca, que tem 94 anos.
+            - Os serviços são personalizados.
+            - A área de atuação é o Itaim e bairros próximos em São Paulo.
+            - Para agendar um serviço ou obter um orçamento, o cliente deve preencher o formulário de contato. Não forneça preços diretamente.
+
+            Responda de forma concisa. Se a pergunta for sobre preços ou agendamentos, oriente o usuário a preencher o formulário na seção 'Contato'. Mantenha a conversa focada nos serviços e na filosofia da empresa.
+
+            Histórico da conversa: ${JSON.stringify(history)}
+            
+            Responda à última pergunta do usuário.`;
+
+            let chatHistoryWithPrompt = [];
+            chatHistoryWithPrompt.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = { contents: chatHistoryWithPrompt };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Desculpe, não consegui entender. Poderia reformular a pergunta?';
+            }
+        }
+        
+        function initCalculadora() {
+            class CalculadoraOrcamento {
+                constructor() {
+                    this.dados = {
+                        tipo: 'basico',
+                        preco: 30,
+                        horas: 12,
+                        dias: 7
+                    };
+                    this.init();
+                }
+                init() {
+                    this.bindEvents();
+                    this.calcular();
+                }
+                bindEvents() {
+                    document.querySelectorAll('.calculadora-container .option-card').forEach(card => {
+                        card.addEventListener('click', (e) => {
+                            const step = card.closest('.calc-step');
+                            step.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                            card.classList.add('selected');
+                            this.updateData(card);
+                            this.calcular();
+                            this.updateStepIndicator();
+                        });
+                    });
+                    document.getElementById('btnWhatsApp').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.enviarWhatsApp();
+                    });
+                }
+                updateData(card) {
+                    if (card.dataset.tipo) {
+                        this.dados.tipo = card.dataset.tipo;
+                        this.dados.preco = parseInt(card.dataset.preco);
+                    }
+                    if (card.dataset.horas) {
+                        this.dados.horas = parseInt(card.dataset.horas);
+                    }
+                    if (card.dataset.dias) {
+                        this.dados.dias = parseInt(card.dataset.dias);
+                    }
+                }
+                calcular() {
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
+                    document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('totalMensal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('valorHora').textContent = this.dados.preco;
+                    const tipos = {
+                        'basico': 'Cuidado Básico',
+                        'medicacao': 'Com Medicação',
+                        'mobilidade': 'Mobilidade Reduzida',
+                        'intensivo': 'Cuidado Intensivo'
+                    };
+                    document.getElementById('tipoSelecionado').textContent = tipos[this.dados.tipo];
+                    document.getElementById('periodoSelecionado').textContent = `${this.dados.horas} horas`;
+                    document.getElementById('frequenciaSelecionada').textContent = `${this.dados.dias} dias/semana`;
+                    const resultado = document.getElementById('resultado');
+                    if (!resultado.classList.contains('visible')) {
+                        setTimeout(() => {
+                            resultado.classList.add('visible');
+                        }, 300);
+                    }
+                }
+                updateStepIndicator() {
+                    const dots = document.querySelectorAll('.calculadora-container .indicator-dot');
+                    dots.forEach((dot, index) => {
+                        if (index < 3) {
+                            dot.classList.add('completed');
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+                enviarWhatsApp() {
+                    const tipos = {
+                        'basico': 'Cuidado Básico',
+                        'medicacao': 'Com Medicação',
+                        'mobilidade': 'Mobilidade Reduzida',
+                        'intensivo': 'Cuidado Intensivo'
+                    };
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
+                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:
+                    🏥 Tipo: ${tipos[this.dados.tipo]}
+                    ⏰ Período: ${this.dados.horas}h/dia
+                    📅 Frequência: ${this.dados.dias} dias/semana
+                    💰 Estimativa: R$ ${valorMensal.toLocaleString('pt-BR')}/mês
+                    Gostaria de agendar uma avaliação!`;
+                    const telefone = '5511999999999';
+                    const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+                    window.open(url, '_blank');
+                }
+            }
+            new CalculadoraOrcamento();
+        }
+
+        // Esta função foi removida para usar uma imagem estática
+        /*
+        function initGoogleMaps() {
+            const mapElement = document.getElementById('map');
+            if (!mapElement) return;
+
+            const mapCenter = { lat: -23.585, lng: -46.685 };
+            const map = new google.maps.Map(mapElement, {
+                zoom: 13,
+                center: mapCenter,
+                mapId: 'YOUR_MAP_ID' 
+            });
+
+            const areas = [
+                { name: 'Itaim', center: { lat: -23.588, lng: -46.684 }, polygonCoords: [
+                    { lat: -23.593, lng: -46.687 }, { lat: -23.591, lng: -46.691 }, { lat: -23.585, lng: -46.692 },
+                    { lat: -23.582, lng: -46.686 }, { lat: -23.583, lng: -46.682 }, { lat: -23.589, lng: -46.678 }
+                ]},
+                { name: 'Jardins', center: { lat: -23.567, lng: -46.669 }, polygonCoords: [
+                    { lat: -23.562, lng: -46.677 }, { lat: -23.57, lng: -46.676 }, { lat: -23.578, lng: -46.665 },
+                    { lat: -23.572, lng: -46.66 }, { lat: -23.564, lng: -46.661 }
+                ]},
+                { name: 'Panamby', center: { lat: -23.606, lng: -46.721 }, polygonCoords: [
+                    { lat: -23.602, lng: -46.725 }, { lat: -23.612, lng: -46.728 }, { lat: -23.616, lng: -46.717 },
+                    { lat: -23.605, lng: -46.71 }
+                ]},
+                { name: 'Morumbi', center: { lat: -23.597, lng: -46.722 }, polygonCoords: [
+                    { lat: -23.587, lng: -46.732 }, { lat: -23.6, lng: -46.735 }, { lat: -23.613, lng: -46.726 },
+                    { lat: -23.608, lng: -46.711 }, { lat: -23.595, lng: -46.718 }
+                ]},
+                { name: 'Moema', center: { lat: -23.601, lng: -46.666 }, polygonCoords: [
+                    { lat: -23.594, lng: -46.671 }, { lat: -23.605, lng: -46.675 }, { lat: -23.609, lng: -46.666 },
+                    { lat: -23.602, lng: -46.658 }
+                ]},
+                { name: 'Pinheiros', center: { lat: -23.567, lng: -46.697 }, polygonCoords: [
+                    { lat: -23.559, lng: -46.702 }, { lat: -23.571, lng: -46.706 }, { lat: -23.578, lng: -46.693 },
+                    { lat: -23.569, lng: -46.685 }
+                ]},
+                { name: 'Vila Madalena', center: { lat: -23.551, lng: -46.689 }, polygonCoords: [
+                    { lat: -23.545, lng: -46.695 }, { lat: -23.556, lng: -46.702 }, { lat: -23.56, lng: -46.687 },
+                    { lat: -23.553, lng: -46.681 }
+                ]},
+                { name: 'Higienópolis', center: { lat: -23.548, lng: -46.657 }, polygonCoords: [
+                    { lat: -23.541, lng: -46.663 }, { lat: -23.552, lng: -46.662 }, { lat: -23.555, lng: -46.652 },
+                    { lat: -23.545, lng: -46.649 }
+                ]}
+            ];
+
+            const colorPalette = ['#B56557', '#A0522D', '#5D2F09', '#8F9983'];
+            let colorIndex = 0;
+
+            areas.forEach(area => {
+                const polygon = new google.maps.Polygon({
+                    paths: area.polygonCoords,
+                    strokeColor: colorPalette[colorIndex % colorPalette.length],
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: colorPalette[colorIndex % colorPalette.length],
+                    fillOpacity: 0.35,
+                });
+                polygon.setMap(map);
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<div><strong>${area.name}</strong></div>`
+                });
+
+                polygon.addListener('mouseover', function(e) {
+                    polygon.setOptions({ fillOpacity: 0.5 });
+                    infoWindow.setPosition(e.latLng);
+                    infoWindow.open(map);
+                });
+                polygon.addListener('mouseout', function() {
+                    polygon.setOptions({ fillOpacity: 0.35 });
+                    infoWindow.close();
+                });
+                
+                colorIndex++;
+            });
+        }
+        */
+    </script>
+    <script>
+        // Resto do seu script, que foi mantido intacto.
+        
+        // ==================== Scripts de Inicialização ====================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (mediaQuery.matches) {
+                document.documentElement.classList.add('prefers-reduced-motion');
+            }
+
+            initScrollReveal();
+            initParallax();
+            initFormHandlers();
+            initServiceButtonHandlers();
+            initCarousel();
+            initBlogLinks();
+            initNavToggle();
+            initAITipGenerators();
+            initFAQ();
+            initChatbot();
+            initCalculadora(); // Inicializa a calculadora
+            // initGoogleMaps(); // Comentado para evitar o erro
+            initBlogFilters();
+
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hidden');
+                }
+            }, 2500);
+            
+            let isThrottled = false;
+            window.addEventListener('scroll', function() {
+                if (!isThrottled) {
+                    window.requestAnimationFrame(() => {
+                        const header = document.querySelector('.header');
+                        if (window.scrollY > 50) {
+                            header.classList.add('scrolled');
+                        } else {
+                            header.classList.remove('scrolled');
+                        }
+                        isThrottled = false;
+                    });
+                    isThrottled = true;
+                }
+            });
+        });
+
+        // ==================== Funções de Efeitos Visuais ====================
+        
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+            if (revealElements.length === 0) return;
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target) {
+                        entry.target.classList.add('revealed');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(element => {
+                if (element) {
+                    revealObserver.observe(element);
+                }
+            });
+        }
+
+        function initParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            if (parallaxElements.length === 0) return;
+            
+            let lastScrollY = window.pageYOffset;
+            let tick = false;
+
+            function updateParallax() {
+                const scrolled = lastScrollY;
+                parallaxElements.forEach((element) => {
+                    const speed = parseFloat(element.dataset.speed || 0.1);
+                    const yPos = scrolled * speed;
+                    element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                });
+                tick = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                lastScrollY = window.pageYOffset;
+                if (!tick) {
+                    window.requestAnimationFrame(updateParallax);
+                    tick = true;
+                }
+            });
+        }
+
+        // ==================== Funções de Navegação e Interatividade ====================
+        
+        function scrollToContact() {
+            const contactElement = document.getElementById('contato');
+            if (contactElement) {
+                contactElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        function initNavToggle() {
+            const navToggleBtn = document.getElementById('navToggleBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (!navToggleBtn || !navMenu) return;
+            
+            navToggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    navToggleBtn.textContent = '✕';
+                } else {
+                    navToggleBtn.textContent = '☰';
+                }
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    navToggleBtn.textContent = '☰';
+                });
+            });
+        }
+
+        function openWhatsApp(message) {
+            const phoneNumber = '5511999999999';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
 
         function handleSubmit(event) {
             event.preventDefault();
+
             const form = event.target;
             const cepInput = form.querySelector('#cep');
             const cpfInput = form.querySelector('#cpf');
             const telefoneInput = form.querySelector('#telefone');
-            const cepFeedback = document.getElementById('cep-feedback');
 
             let isValid = true;
             if (!validateCepFormat(cepInput.value)) {
@@ -1325,24 +3797,19 @@
             } else {
                 cepInput.setCustomValidity('');
             }
+
             if (!validateCpfFormat(cpfInput.value)) {
                 cpfInput.setCustomValidity('CPF inválido.');
                 isValid = false;
             } else {
                 cpfInput.setCustomValidity('');
             }
+
             if (!validateTelefoneFormat(telefoneInput.value)) {
                 telefoneInput.setCustomValidity('Telefone inválido.');
                 isValid = false;
             } else {
                 telefoneInput.setCustomValidity('');
-            }
-            
-            // Verifica se o CEP já foi validado com sucesso.
-            if (!cepFeedback.classList.contains('success')) {
-                alert('Por favor, insira um CEP válido e de nossa área de cobertura para continuar.');
-                cepInput.focus();
-                return;
             }
             
             if (!isValid) {
@@ -1354,8 +3821,8 @@
             const data = Object.fromEntries(formData.entries());
             
             const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
-                .map(checkbox => checkbox.value)
-                .join(', ');
+                                                     .map(checkbox => checkbox.value)
+                                                     .join(', ');
 
             let message = "Olá, gostaria de um orçamento!\n\n";
             message += `Nome: ${data.nome}\n`;
@@ -1373,6 +3840,1039 @@
                 modal.classList.add('visible');
             }
         }
+        
+        function validateCepFormat(value) {
+            const cepRegex = /^\d{5}-\d{3}$/;
+            return cepRegex.test(value);
+        }
+
+        function validateCpfFormat(value) {
+            const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+            return cpfRegex.test(value);
+        }
+
+        function validateTelefoneFormat(value) {
+            let sanitized = value.replace(/\D/g, '');
+            if (sanitized.length === 11) {
+                const telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+                return telefoneRegex.test(value);
+            } else if (sanitized.length === 10) {
+                const telefoneRegex = /^\(\d{2}\)\s\d{4}-\d{4}$/;
+                return telefoneRegex.test(value);
+            }
+            return false;
+        }
+
+        function maskCEP(value) {
+            let sanitized = value.replace(/\D/g, '');
+            if (sanitized.length > 5) {
+                sanitized = sanitized.substring(0, 5) + '-' + sanitized.substring(5, 8);
+            }
+            return sanitized;
+        }
+
+        function maskCPF(value) {
+            let sanitized = value.replace(/\D/g, '');
+            sanitized = sanitized.replace(/^(\d{3})(\d)/, '$1.$2');
+            sanitized = sanitized.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+            sanitized = sanitized.replace(/\.(\d{3})(\d)/, '.$1-$2');
+            return sanitized.substring(0, 14);
+        }
+
+        function maskTelefone(value) {
+            let sanitized = value.replace(/\D/g, '');
+            let masked = '';
+            if (sanitized.length > 0) {
+                masked = '(' + sanitized.substring(0, 2);
+            }
+            if (sanitized.length > 2) {
+                masked += ') ' + sanitized.substring(2, 7);
+            }
+            if (sanitized.length > 7) {
+                masked += '-' + sanitized.substring(7, 11);
+            }
+            return masked;
+        }
+        
+        function initFormHandlers() {
+            const form = document.querySelector('.contact-form');
+            const cepInput = document.getElementById('cep');
+            const cpfInput = document.getElementById('cpf');
+            const telefoneInput = document.getElementById('telefone');
+            const cepStatus = document.getElementById('cep-status');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modal = document.getElementById('successModal');
+
+            if (cepInput) {
+                cepInput.addEventListener('input', function(e) {
+                    const value = e.target.value.replace(/\D/g, '');
+                    e.target.value = maskCEP(value);
+                    if (value.length === 8) {
+                        searchCEP(value);
+                    } else {
+                        if (cepStatus) cepStatus.textContent = '';
+                        document.getElementById('endereco').value = '';
+                        document.getElementById('bairro').value = '';
+                        document.getElementById('cidade').value = '';
+                    }
+                });
+            }
+
+            if (cpfInput) {
+                cpfInput.addEventListener('input', function(e) {
+                    e.target.value = maskCPF(e.target.value);
+                });
+            }
+
+            if (telefoneInput) {
+                telefoneInput.addEventListener('input', function(e) {
+                    e.target.value = maskTelefone(e.target.value);
+                });
+            }
+            
+            if (form) {
+                form.addEventListener('submit', handleSubmit);
+            }
+            
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => {
+                    if (modal) {
+                        modal.classList.remove('visible');
+                        form.reset();
+                    }
+                });
+            }
+        }
+        
+        async function searchCEP(cep) {
+            const statusElement = document.getElementById('cep-status');
+            if (!statusElement) return;
+            try {
+                statusElement.textContent = '🔍 Buscando endereço...';
+                statusElement.style.color = 'var(--primary-color)';
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+                if (data.erro) {
+                    throw new Error('CEP não encontrado');
+                }
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                if (enderecoField) {
+                    enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
+                    enderecoField.removeAttribute('readonly');
+                }
+                if (bairroField) bairroField.value = data.bairro;
+                if (cidadeField) cidadeField.value = `${data.localidade} - ${data.uf}`;
+                statusElement.textContent = '✅ Endereço encontrado!';
+                statusElement.style.color = '#10B981';
+            } catch (error) {
+                statusElement.textContent = '❌ CEP não encontrado. Verifique o número.';
+                statusElement.style.color = '#EF4444';
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                if (enderecoField) enderecoField.value = '';
+                if (bairroField) bairroField.value = '';
+                if (cidadeField) cidadeField.value = '';
+            }
+        }
+
+        function initServiceButtonHandlers() {
+            const serviceButtons = document.querySelectorAll('.open-whatsapp-service-btn');
+            
+            serviceButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const serviceName = button.getAttribute('data-service');
+                    
+                    const contactSection = document.getElementById('contato');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    const checkboxes = document.querySelectorAll('input[name="servicos[]"]');
+                    checkboxes.forEach(cb => {
+                        if (cb.value !== 'Cuidadora') {
+                            cb.checked = false;
+                        }
+                    });
+                    
+                    const selectedCheckbox = document.querySelector(`input[name="servicos[]"][value="${serviceName}"]`);
+                    if (selectedCheckbox) {
+                        selectedCheckbox.checked = true;
+                    }
+                });
+            });
+        }
+        
+        function initCarousel() {
+            const carousel = document.querySelector('.testimonial-carousel');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const prevBtn = document.querySelector('.carousel-btn.prev-btn');
+            const nextBtn = document.querySelector('.carousel-btn.next-btn');
+            const wrapper = document.querySelector('.testimonial-carousel-wrapper');
+            if (!carousel || !slides.length || !prevBtn || !nextBtn || !wrapper) return;
+            
+            let currentIndex = 0;
+            let autoSlideInterval;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+
+            function setCarouselHeight() {
+                const maxSlideHeight = Math.max(...Array.from(slides).map(s => s.offsetHeight));
+                wrapper.style.height = `${maxSlideHeight}px`;
+            }
+
+            function updateCarousel() {
+                currentTranslate = -currentIndex * slides[0].offsetWidth;
+                carousel.style.transform = `translateX(${currentTranslate}px)`;
+            }
+
+            function startAutoSlide() {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateCarousel();
+                }, 5000);
+            }
+            
+            window.addEventListener('resize', setCarouselHeight);
+            setCarouselHeight();
+            
+            prevBtn.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                updateCarousel();
+                startAutoSlide();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+                startAutoSlide();
+            });
+
+            wrapper.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startPos = e.touches[0].clientX;
+                prevTranslate = currentTranslate;
+                clearInterval(autoSlideInterval);
+            });
+
+            wrapper.addEventListener('touchend', () => {
+                isDragging = false;
+                const movedBy = currentTranslate - prevTranslate;
+                if (movedBy < -100) {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                }
+                if (movedBy > 100) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                }
+                updateCarousel();
+                startAutoSlide();
+            });
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const currentPosition = e.touches[0].clientX;
+                currentTranslate = prevTranslate + currentPosition - startPos;
+                carousel.style.transform = `translateX(${currentTranslate}px)`;
+            });
+
+            startAutoSlide();
+        }
+
+        function initBlogFilters() {
+            const filterButtons = document.querySelectorAll('.blog-filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            if (!filterButtons.length || !blogCards.length) return;
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    blogCards.forEach(card => {
+                        const cardTag = card.getAttribute('data-tag');
+                        if (filter === 'all' || filter === cardTag) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+        
+        function initBlogLinks() {
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            blogCards.forEach(card => {
+                const readMoreBtn = card.querySelector('.read-more-btn');
+                const readMoreText = readMoreBtn.querySelector('span');
+                const readMoreIcon = readMoreBtn.querySelector('svg');
+                const fullContent = card.querySelector('.full-article-content');
+                const shortText = card.querySelector('.short-text');
+
+                const toggleContent = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (fullContent.classList.contains('visible')) {
+                        fullContent.classList.remove('visible');
+                        readMoreText.textContent = 'Ler artigo';
+                        readMoreIcon.innerHTML = `<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
+                        readMoreBtn.classList.remove('expanded');
+                        shortText.classList.remove('hidden');
+                    } else {
+                        fullContent.classList.add('visible');
+                        readMoreText.textContent = 'Diminuir';
+                        readMoreIcon.innerHTML = `<path d="m18 15-6-6-6 6"/></svg>`;
+                        readMoreBtn.classList.add('expanded');
+                        shortText.classList.add('hidden');
+                    }
+                };
+                
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', toggleContent);
+                }
+            });
+        }
+        
+        // ==================== Funções da API Gemini ====================
+        
+        function initAITipGenerators() {
+            const generateButtons = document.querySelectorAll('.generate-tip-btn');
+            
+            generateButtons.forEach(button => {
+                const card = button.closest('.blog-card-content');
+                const aiTipContainer = card.querySelector('.ai-tip-container');
+                const aiTipText = card.querySelector('.ai-tip-text');
+                const loadingSkeleton = card.querySelector('.loading-skeleton');
+                const audioBtn = card.querySelector('.audio-btn');
+
+                button.addEventListener('click', async () => {
+                    const topic = button.getAttribute('data-topic');
+                    aiTipText.textContent = '';
+                    aiTipContainer.style.display = 'block';
+                    loadingSkeleton.style.display = 'flex';
+                    aiTipContainer.classList.remove('loaded');
+                    button.classList.add('loading');
+                    button.disabled = true;
+                    audioBtn.style.display = 'none';
+
+                    try {
+                        const tip = await generateNewTip(topic);
+                        aiTipText.textContent = tip;
+                        audioBtn.dataset.textForAudio = tip;
+                        audioBtn.style.display = 'block';
+                    } catch (error) {
+                        aiTipText.textContent = 'Ocorreu um erro ao gerar a dica. Tente novamente.';
+                        console.error('Erro ao gerar a dica:', error);
+                    } finally {
+                        loadingSkeleton.style.display = 'none';
+                        aiTipContainer.classList.add('loaded');
+                        button.classList.remove('loading');
+                        button.disabled = false;
+                    }
+                });
+            });
+
+            const audioButtons = document.querySelectorAll('.audio-btn');
+            audioButtons.forEach(button => {
+                const card = button.closest('.blog-card-content');
+                const aiTipTextElement = card.querySelector('.ai-tip-text');
+                button.addEventListener('click', async () => {
+                    const text = aiTipTextElement.textContent;
+                    if (text && text.length > 0) {
+                        const audioIcon = button.querySelector('.audio-icon');
+                        audioIcon.textContent = '...';
+                        audioIcon.classList.add('loading-audio');
+                        await playAudio(text, button);
+                        audioIcon.textContent = '📢';
+                        audioIcon.classList.remove('loading-audio');
+                    }
+                });
+            });
+        }
+        
+        async function generateNewTip(topic) {
+            const prompt = `Gere uma dica curta e útil (no máximo 50 palavras) para cuidadores de idosos, focada no tema de "${topic}". Formate a resposta como uma frase direta.`;
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Nenhuma dica gerada. Tente novamente.';
+            }
+        }
+        
+        async function playAudio(text) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const source = audioContext.createBufferSource();
+            const payload = {
+                contents: [{
+                    parts: [{ text: text }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Puck" }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                console.error("Não foi possível obter uma resposta de áudio da API após várias tentativas.");
+                return;
+            }
+
+            const result = await response.json();
+            const audioDataPart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+
+            if (audioDataPart) {
+                const base64Audio = audioDataPart.inlineData.data;
+                const pcmData = base64ToArrayBuffer(base64Audio);
+                
+                const sampleRate = 24000;
+                
+                const audioBuffer = audioContext.createBuffer(1, pcmData.byteLength / 2, sampleRate);
+                const nowBuffering = audioBuffer.getChannelData(0);
+                const pcm16 = new Int16Array(pcmData);
+                for (let i = 0; i < pcm16.length; i++) {
+                    nowBuffering[i] = pcm16[i] / 32768;
+                }
+                
+                source.buffer = audioBuffer;
+                source.connect(audioContext.destination);
+                source.start();
+            }
+        }
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    toggleFAQItem(item, faqItems);
+                });
+                
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQItem(item, faqItems);
+                    }
+                    
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        navigateFAQ(e.key, item, faqItems);
+                    }
+                });
+            });
+        }
+        
+        function toggleFAQItem(currentItem, allItems) {
+            const question = currentItem.querySelector('.faq-question');
+            const isActive = currentItem.classList.contains('active');
+            
+            allItems.forEach(item => {
+                if (item !== currentItem) {
+                    item.classList.remove('active');
+                    const otherQuestion = item.querySelector('.faq-question');
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            if (isActive) {
+                currentItem.classList.remove('active');
+                question.setAttribute('aria-expanded', 'false');
+            } else {
+                currentItem.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+                
+                setTimeout(() => {
+                    currentItem.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }, 100);
+            }
+        }
+        
+        function navigateFAQ(direction, currentItem, allItems) {
+            const currentIndex = Array.from(allItems).indexOf(currentItem);
+            let nextIndex;
+            
+            if (direction === 'ArrowDown') {
+                nextIndex = (currentIndex + 1) % allItems.length;
+            } else {
+                nextIndex = currentIndex === 0 ? allItems.length - 1 : currentIndex - 1;
+            }
+            
+            const nextQuestion = allItems[nextIndex].querySelector('.faq-question');
+            nextQuestion.focus();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeItems = document.querySelectorAll('.faq-item.active');
+                activeItems.forEach(item => {
+                    item.classList.remove('active');
+                    const question = item.querySelector('.faq-question');
+                    question.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+        
+        // ==================== Lógica do Chatbot ====================
+
+        let chatHistory = [];
+        
+        function initChatbot() {
+            const headerContactBtn = document.getElementById('header-contact-btn');
+            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
+            const chatbotModal = document.getElementById('chatbotModal');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+            const chatbox = document.getElementById('chatbox');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const initialMessage = "Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?";
+
+            chatHistory.push({ role: "model", parts: [{ text: initialMessage }] });
+
+            headerContactBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+            heroWhatsappBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+
+            closeChatBtn.addEventListener('click', () => {
+                chatbotModal.classList.remove('visible');
+            });
+            
+            sendBtn.addEventListener('click', handleUserMessage);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+            
+            appendMessage(initialMessage, 'ai');
+        }
+
+        async function handleUserMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            chatInput.value = '';
+            
+            appendMessage(message, 'user');
+            chatHistory.push({ role: "user", parts: [{ text: message }] });
+
+            const typingIndicator = appendMessage('...', 'ai-typing');
+            
+            try {
+                const responseText = await getChatbotResponse(chatHistory);
+                typingIndicator.remove();
+                appendMessage(responseText, 'ai');
+                chatHistory.push({ role: "model", parts: [{ text: responseText }] });
+            } catch (error) {
+                console.error('Erro ao obter a resposta do chatbot:', error);
+                typingIndicator.remove();
+                appendMessage('Desculpe, não consegui processar sua solicitação no momento. Tente novamente mais tarde.', 'ai');
+            }
+        }
+        
+        function appendMessage(text, sender) {
+            const chatbox = document.getElementById('chatbox');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+            return messageElement;
+        }
+
+        async function getChatbotResponse(history) {
+            const prompt = `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em serviços de cuidado para idosos no Itaim, São Paulo.
+            Seu objetivo é responder a perguntas de forma amigável e profissional, com base nas seguintes informações:
+            - A empresa oferece cuidadores, manicure/cabeleireiro, apoio psicológico e motorista para idosos.
+            - O diferencial é o treinamento dos profissionais na casa da fundadora, Dona Tereca, que tem 94 anos.
+            - Os serviços são personalizados.
+            - A área de atuação é o Itaim e bairros próximos em São Paulo.
+            - Para agendar um serviço ou obter um orçamento, o cliente deve preencher o formulário de contato. Não forneça preços diretamente.
+
+            Responda de forma concisa. Se a pergunta for sobre preços ou agendamentos, oriente o usuário a preencher o formulário na seção 'Contato'. Mantenha a conversa focada nos serviços e na filosofia da empresa.
+
+            Histórico da conversa: ${JSON.stringify(history)}
+            
+            Responda à última pergunta do usuário.`;
+
+            let chatHistoryWithPrompt = [];
+            chatHistoryWithPrompt.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = { contents: chatHistoryWithPrompt };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Desculpe, não consegui entender. Poderia reformular a pergunta?';
+            }
+        }
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8-array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    toggleFAQItem(item, faqItems);
+                });
+                
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQItem(item, faqItems);
+                    }
+                    
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        navigateFAQ(e.key, item, faqItems);
+                    }
+                });
+            });
+        }
+        
+        function toggleFAQItem(currentItem, allItems) {
+            const question = currentItem.querySelector('.faq-question');
+            const isActive = currentItem.classList.contains('active');
+            
+            allItems.forEach(item => {
+                if (item !== currentItem) {
+                    item.classList.remove('active');
+                    const otherQuestion = item.querySelector('.faq-question');
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            if (isActive) {
+                currentItem.classList.remove('active');
+                question.setAttribute('aria-expanded', 'false');
+            } else {
+                currentItem.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+                
+                setTimeout(() => {
+                    currentItem.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }, 100);
+            }
+        }
+        
+        function navigateFAQ(direction, currentItem, allItems) {
+            const currentIndex = Array.from(allItems).indexOf(currentItem);
+            let nextIndex;
+            
+            if (direction === 'ArrowDown') {
+                nextIndex = (currentIndex + 1) % allItems.length;
+            } else {
+                nextIndex = currentIndex === 0 ? allItems.length - 1 : currentIndex - 1;
+            }
+            
+            const nextQuestion = allItems[nextIndex].querySelector('.faq-question');
+            nextQuestion.focus();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeItems = document.querySelectorAll('.faq-item.active');
+                activeItems.forEach(item => {
+                    item.classList.remove('active');
+                    const question = item.querySelector('.faq-question');
+                    question.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+        
+        // ==================== Lógica do Chatbot ====================
+
+        let chatHistory = [];
+        
+        function initChatbot() {
+            const headerContactBtn = document.getElementById('header-contact-btn');
+            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
+            const chatbotModal = document.getElementById('chatbotModal');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+            const chatbox = document.getElementById('chatbox');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const initialMessage = "Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?";
+
+            chatHistory.push({ role: "model", parts: [{ text: initialMessage }] });
+
+            headerContactBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+            heroWhatsappBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+
+            closeChatBtn.addEventListener('click', () => {
+                chatbotModal.classList.remove('visible');
+            });
+            
+            sendBtn.addEventListener('click', handleUserMessage);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+            
+            appendMessage(initialMessage, 'ai');
+        }
+
+        async function handleUserMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            chatInput.value = '';
+            
+            appendMessage(message, 'user');
+            chatHistory.push({ role: "user", parts: [{ text: message }] });
+
+            const typingIndicator = appendMessage('...', 'ai-typing');
+            
+            try {
+                const responseText = await getChatbotResponse(chatHistory);
+                typingIndicator.remove();
+                appendMessage(responseText, 'ai');
+                chatHistory.push({ role: "model", parts: [{ text: responseText }] });
+            } catch (error) {
+                console.error('Erro ao obter a resposta do chatbot:', error);
+                typingIndicator.remove();
+                appendMessage('Desculpe, não consegui processar sua solicitação no momento. Tente novamente mais tarde.', 'ai');
+            }
+        }
+        
+        function appendMessage(text, sender) {
+            const chatbox = document.getElementById('chatbox');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+            return messageElement;
+        }
+
+        async function getChatbotResponse(history) {
+            const prompt = `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em serviços de cuidado para idosos no Itaim, São Paulo.
+            Seu objetivo é responder a perguntas de forma amigável e profissional, com base nas seguintes informações:
+            - A empresa oferece cuidadores, manicure/cabeleireiro, apoio psicológico e motorista para idosos.
+            - O diferencial é o treinamento dos profissionais na casa da fundadora, Dona Tereca, que tem 94 anos.
+            - Os serviços são personalizados.
+            - A área de atuação é o Itaim e bairros próximos em São Paulo.
+            - Para agendar um serviço ou obter um orçamento, o cliente deve preencher o formulário de contato. Não forneça preços diretamente.
+
+            Responda de forma concisa. Se a pergunta for sobre preços ou agendamentos, oriente o usuário a preencher o formulário na seção 'Contato'. Mantenha a conversa focada nos serviços e na filosofia da empresa.
+
+            Histórico da conversa: ${JSON.stringify(history)}
+            
+            Responda à última pergunta do usuário.`;
+
+            let chatHistoryWithPrompt = [];
+            chatHistoryWithPrompt.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = { contents: chatHistoryWithPrompt };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Desculpe, não consegui entender. Poderia reformular a pergunta?';
+            }
+        }
+        
+        function initCalculadora() {
+            class CalculadoraOrcamento {
+                constructor() {
+                    this.dados = {
+                        tipo: 'basico',
+                        preco: 30,
+                        horas: 12,
+                        dias: 7
+                    };
+                    this.init();
+                }
+                init() {
+                    this.bindEvents();
+                    this.calcular();
+                }
+                bindEvents() {
+                    document.querySelectorAll('.calculadora-container .option-card').forEach(card => {
+                        card.addEventListener('click', (e) => {
+                            const step = card.closest('.calc-step');
+                            step.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                            card.classList.add('selected');
+                            this.updateData(card);
+                            this.calcular();
+                            this.updateStepIndicator();
+                        });
+                    });
+                    document.getElementById('btnWhatsApp').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.enviarWhatsApp();
+                    });
+                }
+                updateData(card) {
+                    if (card.dataset.tipo) {
+                        this.dados.tipo = card.dataset.tipo;
+                        this.dados.preco = parseInt(card.dataset.preco);
+                    }
+                    if (card.dataset.horas) {
+                        this.dados.horas = parseInt(card.dataset.horas);
+                    }
+                    if (card.dataset.dias) {
+                        this.dados.dias = parseInt(card.dataset.dias);
+                    }
+                }
+                calcular() {
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
+                    document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('totalMensal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('valorHora').textContent = this.dados.preco;
+                    const tipos = {
+                        'basico': 'Cuidado Básico',
+                        'medicacao': 'Com Medicação',
+                        'mobilidade': 'Mobilidade Reduzida',
+                        'intensivo': 'Cuidado Intensivo'
+                    };
+                    document.getElementById('tipoSelecionado').textContent = tipos[this.dados.tipo];
+                    document.getElementById('periodoSelecionado').textContent = `${this.dados.horas} horas`;
+                    document.getElementById('frequenciaSelecionada').textContent = `${this.dados.dias} dias/semana`;
+                    const resultado = document.getElementById('resultado');
+                    if (!resultado.classList.contains('visible')) {
+                        setTimeout(() => {
+                            resultado.classList.add('visible');
+                        }, 300);
+                    }
+                }
+                updateStepIndicator() {
+                    const dots = document.querySelectorAll('.calculadora-container .indicator-dot');
+                    dots.forEach((dot, index) => {
+                        if (index < 3) {
+                            dot.classList.add('completed');
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+                enviarWhatsApp() {
+                    const tipos = {
+                        'basico': 'Cuidado Básico',
+                        'medicacao': 'Com Medicação',
+                        'mobilidade': 'Mobilidade Reduzida',
+                        'intensivo': 'Cuidado Intensivo'
+                    };
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
+                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:
+                    🏥 Tipo: ${tipos[this.dados.tipo]}
+                    ⏰ Período: ${this.dados.horas}h/dia
+                    📅 Frequência: ${this.dados.dias} dias/semana
+                    💰 Estimativa: R$ ${valorMensal.toLocaleString('pt-BR')}/mês
+                    Gostaria de agendar uma avaliação!`;
+                    const telefone = '5511999999999';
+                    const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+                    window.open(url, '_blank');
+                }
+            }
+            new CalculadoraOrcamento();
+        }
+
     </script>
 </body>
 </html>
+

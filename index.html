@@ -51,7 +51,7 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: var(--text-secondary); /* Reforçando o uso de cores mais suaves para o corpo do texto */
+            color: var(--text-primary);
             background: var(--background-start);
             min-height: 100vh;
             overflow-x: hidden;
@@ -76,12 +76,11 @@
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             line-height: 1.2;
-            color: var(--primary-dark); /* Usando primary-dark de forma seletiva para títulos */
+            color: var(--text-primary);
         }
 
         p, .blog-card-content, .article-content {
             font-family: 'Lora', serif;
-            color: var(--text-secondary); /* Usando text-secondary para o corpo do texto */
         }
 
         /* ==================== Animações ==================== */
@@ -234,21 +233,18 @@
         }
         .section-title {
             font-size: var(--text-4xl);
-            font-weight: 700;
+            font-weight: bold;
             text-align: center;
             margin-bottom: 3rem;
             color: var(--primary-dark);
         }
-        
-        /* [SUGESTÃO] - Unificação dos estilos de botões */
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--text-on-dark);
             padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 30px;
-            font-weight: 600;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-sm);
@@ -257,74 +253,12 @@
             font-size: var(--text-sm);
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-decoration: none;
         }
-
-        .button-primary {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-        }
-
-        .button-primary:hover {
+        .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
             background-color: var(--primary-dark);
         }
-
-        .button-secondary {
-            background: transparent;
-            color: var(--primary-dark);
-            border: 2px solid var(--primary-dark);
-        }
-        
-        .button-secondary:hover {
-            background-color: var(--primary-dark);
-            color: var(--text-on-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Classes anteriores agora usam a classe base */
-        .cta-button {
-            @extend .button;
-            @extend .button-primary;
-        }
-        .whatsapp-btn {
-            @extend .button;
-            @extend .button-primary;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-size: var(--text-base);
-            gap: 0.75rem;
-        }
-        .open-whatsapp-service-btn {
-            @extend .button;
-            @extend .button-primary;
-            margin-top: 1.5rem;
-        }
-        .submit-btn {
-            @extend .button;
-            @extend .button-primary;
-            width: 100%;
-            font-size: var(--text-lg);
-            border-radius: 15px;
-            margin-top: 1rem;
-        }
-        .btn-primary {
-            @extend .button;
-            @extend .button-primary;
-            font-size: var(--text-base);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-        }
-        .btn-secondary {
-            @extend .button;
-            @extend .button-secondary;
-            font-size: var(--text-base);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-        }
-        /* Fim da unificação */
 
         /* ==================== Header ==================== */
         .header {
@@ -406,7 +340,7 @@
         }
         .hero-content h1 {
             font-size: var(--text-5xl);
-            font-weight: 700; /* Mantendo peso da fonte para consistência */
+            font-weight: bold;
             color: var(--primary-dark);
             margin-bottom: 1.5rem;
             line-height: 1.1;
@@ -418,7 +352,26 @@
             font-weight: 400;
             max-width: 80%;
         }
-        
+        .whatsapp-btn {
+            background-color: var(--primary-color);
+            color: var(--text-on-dark);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            font-size: var(--text-base);
+        }
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(93, 47, 9, 0.4);
+            background-color: var(--primary-dark);
+        }
         .hero-image {
             position: relative;
             border-radius: 25px;
@@ -570,13 +523,12 @@
             background-color: var(--secondary-color);
         }
         .service-card:hover .service-icon svg {
-            /* [SUGESTÃO] - Adiciona animação de escala suave ao SVG dentro do ícone */
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
         .service-card h3 {
             font-size: var(--text-lg);
             margin-bottom: 0.5rem;
-            color: var(--primary-dark);
+            color: var(--text-primary);
             font-weight: 600;
             transition: all 0.3s ease;
         }
@@ -593,7 +545,7 @@
             color: var(--text-primary);
             transform: translateY(-2px);
         }
-        .open-whatsapp-service-btn {
+        .service-card .open-whatsapp-service-btn {
             background-color: var(--primary-color);
             color: var(--text-on-dark);
             padding: 0.8rem 1.5rem;
@@ -608,7 +560,7 @@
             margin-top: 1.5rem;
             font-size: var(--text-sm);
         }
-        .open-whatsapp-service-btn:hover {
+        .service-card .open-whatsapp-service-btn:hover {
             background-color: var(--primary-dark);
             box-shadow: var(--shadow-md);
         }
@@ -695,7 +647,7 @@
             transform: translateY(-2px);
         }
         .testimonial-author {
-            font-weight: 700; /* Ajustando peso para consistência com os títulos */
+            font-weight: bold;
             color: var(--secondary-color);
             transition: all 0.3s ease;
         }
@@ -869,7 +821,6 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
         }
-        
         .submit-btn {
             width: 100%;
             background-color: var(--primary-color);
@@ -2563,223 +2514,254 @@
                 document.documentElement.classList.add('prefers-reduced-motion');
             }
 
-            App.init(); // [SUGESTÃO] - Inicialização centralizada em um objeto App
+            initScrollReveal();
+            initParallax();
+            initFormHandlers();
+            initServiceButtonHandlers();
+            initCarousel();
+            initBlogLinks();
+            initNavToggle();
+            initAITipGenerators();
+            initFAQ();
+            initChatbot();
+            initBlogFilters();
+            initCalculadora(); // Inicializa a calculadora
+
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hidden');
+                }
+            }, 2500);
+            
+            let isThrottled = false;
+            window.addEventListener('scroll', function() {
+                if (!isThrottled) {
+                    window.requestAnimationFrame(() => {
+                        const header = document.querySelector('.header');
+                        if (window.scrollY > 50) {
+                            header.classList.add('scrolled');
+                        } else {
+                            header.classList.remove('scrolled');
+                        }
+                        isThrottled = false;
+                    });
+                    isThrottled = true;
+                }
+            });
         });
 
-        // ==================== [SUGESTÃO] - Objeto centralizado para o JavaScript ====================
-        const App = {
-            init: function() {
-                this.initScrollReveal();
-                this.initParallax();
-                this.initFormHandlers();
-                this.initServiceButtonHandlers();
-                this.initCarousel();
-                this.initBlogLinks();
-                this.initNavToggle();
-                this.initAITipGenerators();
-                this.initFAQ();
-                this.initChatbot();
-                this.initBlogFilters();
-                this.initCalculadora();
-
-                setTimeout(() => {
-                    document.getElementById('loadingScreen')?.classList.add('hidden');
-                }, 2500);
-                
-                let isThrottled = false;
-                window.addEventListener('scroll', () => {
-                    if (!isThrottled) {
-                        window.requestAnimationFrame(() => {
-                            document.querySelector('.header')?.classList.toggle('scrolled', window.scrollY > 50);
-                            isThrottled = false;
-                        });
-                        isThrottled = true;
-                    }
-                });
-            },
-
-            // ==================== Funções de Efeitos Visuais ====================
-            initScrollReveal: function() {
-                const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-                if (revealElements.length === 0) return;
-                
-                const revealObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && entry.target) {
-                            entry.target.classList.add('revealed');
-                            revealObserver.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    threshold: 0.15,
-                    rootMargin: '0px 0px -50px 0px'
-                });
-
-                revealElements.forEach(element => {
-                    if (element) {
-                        revealObserver.observe(element);
-                    }
-                });
-            },
-
-            initParallax: function() {
-                const parallaxElements = document.querySelectorAll('.parallax-element');
-                if (parallaxElements.length === 0) return;
-                
-                let lastScrollY = window.pageYOffset;
-                let tick = false;
-
-                function updateParallax() {
-                    const scrolled = lastScrollY;
-                    parallaxElements.forEach((element) => {
-                        const speed = parseFloat(element.dataset.speed || 0.1);
-                        const yPos = scrolled * speed;
-                        element.style.transform = `translate3d(0, ${yPos}px, 0)`;
-                    });
-                    tick = false;
-                }
-
-                window.addEventListener('scroll', () => {
-                    lastScrollY = window.pageYOffset;
-                    if (!tick) {
-                        window.requestAnimationFrame(updateParallax);
-                        tick = true;
-                    }
-                });
-            },
-
-            // ==================== Funções de Navegação e Interatividade ====================
-            initNavToggle: function() {
-                const navToggleBtn = document.getElementById('navToggleBtn');
-                const navMenu = document.getElementById('navMenu');
-                
-                if (!navToggleBtn || !navMenu) return;
-                
-                navToggleBtn.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
-                    navToggleBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-                });
-
-                navMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navMenu.classList.remove('active');
-                        navToggleBtn.textContent = '☰';
-                    });
-                });
-            },
-
-            openWhatsApp: function(message) {
-                const phoneNumber = '5511999999999';
-                const encodedMessage = encodeURIComponent(message);
-                window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-            },
-
-            handleSubmit: function(event) {
-                event.preventDefault();
-
-                const form = event.target;
-                const cepInput = form.querySelector('#cep');
-                const cpfInput = form.querySelector('#cpf');
-                const telefoneInput = form.querySelector('#telefone');
-
-                let isValid = true;
-                if (!this.validateCepFormat(cepInput.value)) {
-                    cepInput.setCustomValidity('CEP inválido.');
-                    isValid = false;
-                } else {
-                    cepInput.setCustomValidity('');
-                }
-
-                if (!this.validateCpfFormat(cpfInput.value)) {
-                    cpfInput.setCustomValidity('CPF inválido.');
-                    isValid = false;
-                } else {
-                    cpfInput.setCustomValidity('');
-                }
-
-                if (!this.validateTelefoneFormat(telefoneInput.value)) {
-                    telefoneInput.setCustomValidity('Telefone inválido.');
-                    isValid = false;
-                } else {
-                    telefoneInput.setCustomValidity('');
-                }
-                
-                if (!isValid) {
-                    form.reportValidity();
-                    return;
-                }
-
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData.entries());
-                
-                const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
-                                                 .map(checkbox => checkbox.value)
-                                                 .join(', ');
-
-                let message = "Olá, gostaria de um orçamento!\n\n";
-                message += `Nome: ${data.nome}\n`;
-                message += `E-mail: ${data.email}\n`;
-                message += `Telefone: ${data.telefone}\n`;
-                message += `CPF: ${data.cpf}\n`;
-                message += `Serviços de interesse: ${selectedServices || 'Nenhum'}\n`;
-                message += `Endereço: ${data.endereco} - ${data.bairro}, ${data.cidade}\n`;
-                message += `CEP: ${data.cep}\n`;
-                
-                this.openWhatsApp(message);
-                
-                const modal = document.getElementById('successModal');
-                modal?.classList.add('visible');
-            },
-
-            validateCepFormat: (value) => /^\d{5}-\d{3}$/.test(value),
-            validateCpfFormat: (value) => /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(value),
-            validateTelefoneFormat: (value) => /^\(\d{2}\)\s\d{5}-\d{4}$/.test(value),
-
-            maskCEP: function(value) {
-                let sanitized = value.replace(/\D/g, '');
-                if (sanitized.length > 5) {
-                    sanitized = sanitized.substring(0, 5) + '-' + sanitized.substring(5, 8);
-                }
-                return sanitized;
-            },
-
-            maskCPF: function(value) {
-                let sanitized = value.replace(/\D/g, '');
-                sanitized = sanitized.replace(/^(\d{3})(\d)/, '$1.$2');
-                sanitized = sanitized.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
-                sanitized = sanitized.replace(/\.(\d{3})(\d)/, '.$1-$2');
-                return sanitized.substring(0, 14);
-            },
-
-            maskTelefone: function(value) {
-                let sanitized = value.replace(/\D/g, '');
-                let masked = '';
-                if (sanitized.length > 0) {
-                    masked = '(' + sanitized.substring(0, 2);
-                }
-                if (sanitized.length > 2) {
-                    masked += ') ' + sanitized.substring(2, 7);
-                }
-                if (sanitized.length > 7) {
-                    masked += '-' + sanitized.substring(7, 11);
-                }
-                return masked;
-            },
+        // ==================== Funções de Efeitos Visuais ====================
+        
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+            if (revealElements.length === 0) return;
             
-            initFormHandlers: function() {
-                const form = document.querySelector('.contact-form');
-                const cepInput = document.getElementById('cep');
-                const cpfInput = document.getElementById('cpf');
-                const telefoneInput = document.getElementById('telefone');
-                const cepStatus = document.getElementById('cep-status');
-                const closeModalBtn = document.getElementById('closeModalBtn');
-                const modal = document.getElementById('successModal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target) {
+                        entry.target.classList.add('revealed');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
 
-                cepInput?.addEventListener('input', (e) => {
+            revealElements.forEach(element => {
+                if (element) {
+                    revealObserver.observe(element);
+                }
+            });
+        }
+
+        function initParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            if (parallaxElements.length === 0) return;
+            
+            let lastScrollY = window.pageYOffset;
+            let tick = false;
+
+            function updateParallax() {
+                const scrolled = lastScrollY;
+                parallaxElements.forEach((element) => {
+                    const speed = parseFloat(element.dataset.speed || 0.1);
+                    const yPos = scrolled * speed;
+                    element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                });
+                tick = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                lastScrollY = window.pageYOffset;
+                if (!tick) {
+                    window.requestAnimationFrame(updateParallax);
+                    tick = true;
+                }
+            });
+        }
+
+        // ==================== Funções de Navegação e Interatividade ====================
+        
+        function scrollToContact() {
+            const contactElement = document.getElementById('contato');
+            if (contactElement) {
+                contactElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        function initNavToggle() {
+            const navToggleBtn = document.getElementById('navToggleBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (!navToggleBtn || !navMenu) return;
+            
+            navToggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    navToggleBtn.textContent = '✕';
+                } else {
+                    navToggleBtn.textContent = '☰';
+                }
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    navToggleBtn.textContent = '☰';
+                });
+            });
+        }
+
+        function openWhatsApp(message) {
+            const phoneNumber = '5511999999999';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const cepInput = form.querySelector('#cep');
+            const cpfInput = form.querySelector('#cpf');
+            const telefoneInput = form.querySelector('#telefone');
+
+            let isValid = true;
+            if (!validateCepFormat(cepInput.value)) {
+                cepInput.setCustomValidity('CEP inválido.');
+                isValid = false;
+            } else {
+                cepInput.setCustomValidity('');
+            }
+
+            if (!validateCpfFormat(cpfInput.value)) {
+                cpfInput.setCustomValidity('CPF inválido.');
+                isValid = false;
+            } else {
+                cpfInput.setCustomValidity('');
+            }
+
+            if (!validateTelefoneFormat(telefoneInput.value)) {
+                telefoneInput.setCustomValidity('Telefone inválido.');
+                isValid = false;
+            } else {
+                telefoneInput.setCustomValidity('');
+            }
+            
+            if (!isValid) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            const selectedServices = Array.from(document.querySelectorAll('input[name="servicos[]"]:checked'))
+                                             .map(checkbox => checkbox.value)
+                                             .join(', ');
+
+            let message = "Olá, gostaria de um orçamento!\n\n";
+            message += `Nome: ${data.nome}\n`;
+            message += `E-mail: ${data.email}\n`;
+            message += `Telefone: ${data.telefone}\n`;
+            message += `CPF: ${data.cpf}\n`;
+            message += `Serviços de interesse: ${selectedServices || 'Nenhum'}\n`;
+            message += `Endereço: ${data.endereco} - ${data.bairro}, ${data.cidade}\n`;
+            message += `CEP: ${data.cep}\n`;
+            
+            openWhatsApp(message);
+            
+            const modal = document.getElementById('successModal');
+            if (modal) {
+                modal.classList.add('visible');
+            }
+        }
+        
+        function validateCepFormat(value) {
+            const cepRegex = /^\d{5}-\d{3}$/;
+            return cepRegex.test(value);
+        }
+
+        function validateCpfFormat(value) {
+            const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+            return cpfRegex.test(value);
+        }
+
+        function validateTelefoneFormat(value) {
+            const telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+            return telefoneRegex.test(value);
+        }
+
+        function maskCEP(value) {
+            let sanitized = value.replace(/\D/g, '');
+            if (sanitized.length > 5) {
+                sanitized = sanitized.substring(0, 5) + '-' + sanitized.substring(5, 8);
+            }
+            return sanitized;
+        }
+
+        function maskCPF(value) {
+            let sanitized = value.replace(/\D/g, '');
+            sanitized = sanitized.replace(/^(\d{3})(\d)/, '$1.$2');
+            sanitized = sanitized.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+            sanitized = sanitized.replace(/\.(\d{3})(\d)/, '.$1-$2');
+            return sanitized.substring(0, 14);
+        }
+
+        function maskTelefone(value) {
+            let sanitized = value.replace(/\D/g, '');
+            let masked = '';
+            if (sanitized.length > 0) {
+                masked = '(' + sanitized.substring(0, 2);
+            }
+            if (sanitized.length > 2) {
+                masked += ') ' + sanitized.substring(2, 7);
+            }
+            if (sanitized.length > 7) {
+                masked += '-' + sanitized.substring(7, 11);
+            }
+            return masked;
+        }
+        
+        function initFormHandlers() {
+            const form = document.querySelector('.contact-form');
+            const cepInput = document.getElementById('cep');
+            const cpfInput = document.getElementById('cpf');
+            const telefoneInput = document.getElementById('telefone');
+            const cepStatus = document.getElementById('cep-status');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modal = document.getElementById('successModal');
+
+            if (cepInput) {
+                cepInput.addEventListener('input', function(e) {
                     const value = e.target.value.replace(/\D/g, '');
-                    e.target.value = this.maskCEP(value);
+                    e.target.value = maskCEP(value);
                     if (value.length === 8) {
-                        this.searchCEP(value);
+                        searchCEP(value);
                     } else {
                         if (cepStatus) cepStatus.textContent = '';
                         document.getElementById('endereco').value = '';
@@ -2787,355 +2769,342 @@
                         document.getElementById('cidade').value = '';
                     }
                 });
+            }
 
-                cpfInput?.addEventListener('input', (e) => {
-                    e.target.value = this.maskCPF(e.target.value);
+            if (cpfInput) {
+                cpfInput.addEventListener('input', function(e) {
+                    e.target.value = maskCPF(e.target.value);
                 });
+            }
 
-                telefoneInput?.addEventListener('input', (e) => {
-                    e.target.value = this.maskTelefone(e.target.value);
+            if (telefoneInput) {
+                telefoneInput.addEventListener('input', function(e) {
+                    e.target.value = maskTelefone(e.target.value);
                 });
-                
-                form?.addEventListener('submit', this.handleSubmit.bind(this));
-                
-                closeModalBtn?.addEventListener('click', () => {
-                    modal?.classList.remove('visible');
-                    form?.reset();
-                });
-            },
+            }
             
-            searchCEP: async function(cep) {
-                const statusElement = document.getElementById('cep-status');
-                if (!statusElement) return;
-                try {
-                    statusElement.textContent = '🔍 Buscando endereço...';
-                    statusElement.style.color = 'var(--primary-color)';
-                    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                    const data = await response.json();
-                    if (data.erro) {
-                        throw new Error('CEP não encontrado');
+            if (form) {
+                form.addEventListener('submit', handleSubmit);
+            }
+            
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => {
+                    if (modal) {
+                        modal.classList.remove('visible');
+                        form.reset();
                     }
-                    const enderecoField = document.getElementById('endereco');
-                    const bairroField = document.getElementById('bairro');
-                    const cidadeField = document.getElementById('cidade');
-                    if (enderecoField) {
-                        enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
-                        enderecoField.removeAttribute('readonly');
-                    }
-                    if (bairroField) bairroField.value = data.bairro;
-                    if (cidadeField) cidadeField.value = `${data.localidade} - ${data.uf}`;
-                    statusElement.textContent = '✅ Endereço encontrado!';
-                    statusElement.style.color = '#10B981';
-                } catch (error) {
-                    statusElement.textContent = '❌ CEP não encontrado. Verifique o número.';
-                    statusElement.style.color = '#EF4444';
-                    document.getElementById('endereco').value = '';
-                    document.getElementById('bairro').value = '';
-                    document.getElementById('cidade').value = '';
+                });
+            }
+        }
+        
+        async function searchCEP(cep) {
+            const statusElement = document.getElementById('cep-status');
+            if (!statusElement) return;
+            try {
+                statusElement.textContent = '🔍 Buscando endereço...';
+                statusElement.style.color = 'var(--primary-color)';
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+                if (data.erro) {
+                    throw new Error('CEP não encontrado');
                 }
-            },
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                if (enderecoField) {
+                    enderecoField.value = `${data.logradouro}, ${data.complemento || ''}`.trim();
+                    enderecoField.removeAttribute('readonly');
+                }
+                if (bairroField) bairroField.value = data.bairro;
+                if (cidadeField) cidadeField.value = `${data.localidade} - ${data.uf}`;
+                statusElement.textContent = '✅ Endereço encontrado!';
+                statusElement.style.color = '#10B981';
+            } catch (error) {
+                statusElement.textContent = '❌ CEP não encontrado. Verifique o número.';
+                statusElement.style.color = '#EF4444';
+                const enderecoField = document.getElementById('endereco');
+                const bairroField = document.getElementById('bairro');
+                const cidadeField = document.getElementById('cidade');
+                if (enderecoField) enderecoField.value = '';
+                if (bairroField) bairroField.value = '';
+                if (cidadeField) cidadeField.value = '';
+            }
+        }
 
-            initServiceButtonHandlers: function() {
-                document.querySelectorAll('.open-whatsapp-service-btn').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const serviceName = button.getAttribute('data-service');
-                        
-                        document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
-                        
-                        document.querySelectorAll('input[name="servicos[]"]').forEach(cb => {
-                            if (cb.value !== 'Cuidadora') {
-                                cb.checked = false;
-                            }
-                        });
-                        
-                        const selectedCheckbox = document.querySelector(`input[name="servicos[]"][value="${serviceName}"]`);
-                        selectedCheckbox && (selectedCheckbox.checked = true);
-                    });
-                });
-            },
+        function initServiceButtonHandlers() {
+            const serviceButtons = document.querySelectorAll('.open-whatsapp-service-btn');
             
-            initCarousel: function() {
-                const carousel = document.querySelector('.testimonial-carousel');
-                const slides = document.querySelectorAll('.testimonial-slide');
-                const prevBtn = document.querySelector('.carousel-btn.prev-btn');
-                const nextBtn = document.querySelector('.carousel-btn.next-btn');
-                const wrapper = document.querySelector('.testimonial-carousel-wrapper');
-                if (!carousel || !slides.length || !prevBtn || !nextBtn || !wrapper) return;
-                
-                let currentIndex = 0;
-                let autoSlideInterval;
-                let isDragging = false;
-                let startPos = 0;
-                let currentTranslate = 0;
-                let prevTranslate = 0;
-
-                const setCarouselHeight = () => {
-                    const maxSlideHeight = Math.max(...Array.from(slides).map(s => s.offsetHeight));
-                    wrapper.style.height = `${maxSlideHeight}px`;
-                };
-
-                const updateCarousel = () => {
-                    currentTranslate = -currentIndex * slides[0].offsetWidth;
-                    carousel.style.transform = `translateX(${currentTranslate}px)`;
-                };
-
-                const startAutoSlide = () => {
-                    clearInterval(autoSlideInterval);
-                    autoSlideInterval = setInterval(() => {
-                        currentIndex = (currentIndex + 1) % slides.length;
-                        updateCarousel();
-                    }, 5000);
-                };
-                
-                window.addEventListener('resize', setCarouselHeight);
-                setCarouselHeight();
-                
-                prevBtn.addEventListener('click', () => {
-                    clearInterval(autoSlideInterval);
-                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-                    updateCarousel();
-                    startAutoSlide();
+            serviceButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const serviceName = button.getAttribute('data-service');
+                    
+                    const contactSection = document.getElementById('contato');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    const checkboxes = document.querySelectorAll('input[name="servicos[]"]');
+                    checkboxes.forEach(cb => {
+                        if (cb.value !== 'Cuidadora') {
+                            cb.checked = false;
+                        }
+                    });
+                    
+                    const selectedCheckbox = document.querySelector(`input[name="servicos[]"][value="${serviceName}"]`);
+                    if (selectedCheckbox) {
+                        selectedCheckbox.checked = true;
+                    }
                 });
-                
-                nextBtn.addEventListener('click', () => {
-                    clearInterval(autoSlideInterval);
+            });
+        }
+        
+        function initCarousel() {
+            const carousel = document.querySelector('.testimonial-carousel');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const prevBtn = document.querySelector('.carousel-btn.prev-btn');
+            const nextBtn = document.querySelector('.carousel-btn.next-btn');
+            const wrapper = document.querySelector('.testimonial-carousel-wrapper');
+            if (!carousel || !slides.length || !prevBtn || !nextBtn || !wrapper) return;
+            
+            let currentIndex = 0;
+            let autoSlideInterval;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+
+            function setCarouselHeight() {
+                const maxSlideHeight = Math.max(...Array.from(slides).map(s => s.offsetHeight));
+                wrapper.style.height = `${maxSlideHeight}px`;
+            }
+
+            function updateCarousel() {
+                currentTranslate = -currentIndex * slides[0].offsetWidth;
+                carousel.style.transform = `translateX(${currentTranslate}px)`;
+            }
+
+            function startAutoSlide() {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(() => {
                     currentIndex = (currentIndex + 1) % slides.length;
                     updateCarousel();
-                    startAutoSlide();
-                });
-
-                wrapper.addEventListener('touchstart', (e) => {
-                    isDragging = true;
-                    startPos = e.touches[0].clientX;
-                    prevTranslate = currentTranslate;
-                    clearInterval(autoSlideInterval);
-                });
-
-                wrapper.addEventListener('touchend', () => {
-                    isDragging = false;
-                    const movedBy = currentTranslate - prevTranslate;
-                    if (movedBy < -100) {
-                        currentIndex = (currentIndex + 1) % slides.length;
-                    }
-                    if (movedBy > 100) {
-                        currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-                    }
-                    updateCarousel();
-                    startAutoSlide();
-                });
-
-                wrapper.addEventListener('touchmove', (e) => {
-                    if (!isDragging) return;
-                    const currentPosition = e.touches[0].clientX;
-                    currentTranslate = prevTranslate + currentPosition - startPos;
-                    carousel.style.transform = `translateX(${currentTranslate}px)`;
-                });
-
-                startAutoSlide();
-            },
-
-            initBlogFilters: function() {
-                const filterButtons = document.querySelectorAll('.blog-filter-btn');
-                const blogCards = document.querySelectorAll('.blog-card');
-                
-                if (!filterButtons.length || !blogCards.length) return;
-
-                filterButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        const filter = button.getAttribute('data-filter');
-                        
-                        filterButtons.forEach(btn => btn.classList.remove('active'));
-                        button.classList.add('active');
-
-                        blogCards.forEach(card => {
-                            const cardTag = card.getAttribute('data-tag');
-                            card.style.display = (filter === 'all' || filter === cardTag) ? 'flex' : 'none';
-                        });
-                    });
-                });
-            },
-            
-            initBlogLinks: function() {
-                document.querySelectorAll('.blog-card').forEach(card => {
-                    const readMoreBtn = card.querySelector('.read-more-btn');
-                    const readMoreText = readMoreBtn?.querySelector('span');
-                    const readMoreIcon = readMoreBtn?.querySelector('svg');
-                    const fullContent = card.querySelector('.full-article-content');
-                    const shortText = card.querySelector('.short-text');
-
-                    const toggleContent = (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        if (fullContent?.classList.contains('visible')) {
-                            fullContent.classList.remove('visible');
-                            readMoreText.textContent = 'Ler artigo';
-                            readMoreIcon.innerHTML = `<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
-                            readMoreBtn.classList.remove('expanded');
-                            shortText?.classList.remove('hidden');
-                        } else {
-                            fullContent?.classList.add('visible');
-                            readMoreText.textContent = 'Diminuir';
-                            readMoreIcon.innerHTML = `<path d="m18 15-6-6-6 6"/></svg>`;
-                            readMoreBtn?.classList.add('expanded');
-                            shortText?.classList.add('hidden');
-                        }
-                    };
-                    
-                    readMoreBtn?.addEventListener('click', toggleContent);
-                });
-            },
-            
-            // ==================== Funções da API Gemini ====================
-            initAITipGenerators: function() {
-                // Implementação para gerar dicas de IA (código mantido, mas as chaves de API devem ser gerenciadas de forma segura)
-            },
-            
-            initFAQ: function() {
-                const faqItems = document.querySelectorAll('.faq-item');
-                faqItems.forEach(item => {
-                    const question = item.querySelector('.faq-question');
-                    
-                    question.addEventListener('click', () => this.toggleFAQItem(item, faqItems));
-                    
-                    question.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            this.toggleFAQItem(item, faqItems);
-                        }
-                        
-                        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                            e.preventDefault();
-                            this.navigateFAQ(e.key, item, faqItems);
-                        }
-                    });
-                });
-            },
-            
-            toggleFAQItem: function(currentItem, allItems) {
-                const question = currentItem.querySelector('.faq-question');
-                const isActive = currentItem.classList.contains('active');
-                
-                allItems.forEach(item => {
-                    if (item !== currentItem) {
-                        item.classList.remove('active');
-                        item.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
-                    }
-                });
-                
-                if (isActive) {
-                    currentItem.classList.remove('active');
-                    question.setAttribute('aria-expanded', 'false');
-                } else {
-                    currentItem.classList.add('active');
-                    question.setAttribute('aria-expanded', 'true');
-                    
-                    setTimeout(() => currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-                }
-            },
-            
-            navigateFAQ: function(direction, currentItem, allItems) {
-                const currentIndex = Array.from(allItems).indexOf(currentItem);
-                let nextIndex = (direction === 'ArrowDown')
-                    ? (currentIndex + 1) % allItems.length
-                    : (currentIndex === 0 ? allItems.length - 1 : currentIndex - 1);
-                
-                allItems[nextIndex].querySelector('.faq-question')?.focus();
-            },
-
-            initChatbot: function() {
-                // Implementação do chatbot (código mantido)
-            },
-
-            initCalculadora: function() {
-                class CalculadoraOrcamento {
-                    constructor() {
-                        this.dados = { tipo: 'basico', preco: 30, horas: 12, dias: 7 };
-                        this.init();
-                    }
-                    init() {
-                        this.bindEvents();
-                        this.calcular();
-                    }
-                    bindEvents() {
-                        document.querySelectorAll('.calculadora-container .option-card').forEach(card => {
-                            card.addEventListener('click', () => {
-                                const step = card.closest('.calc-step');
-                                step.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-                                card.classList.add('selected');
-                                this.updateData(card);
-                                this.calcular();
-                                this.updateStepIndicator();
-                            });
-                        });
-                        document.getElementById('btnWhatsApp')?.addEventListener('click', e => {
-                            e.preventDefault();
-                            this.enviarWhatsApp();
-                        });
-                    }
-                    updateData(card) {
-                        card.dataset.tipo && (this.dados.tipo = card.dataset.tipo);
-                        card.dataset.preco && (this.dados.preco = parseInt(card.dataset.preco));
-                        card.dataset.horas && (this.dados.horas = parseInt(card.dataset.horas));
-                        card.dataset.dias && (this.dados.dias = parseInt(card.dataset.dias));
-                    }
-                    calcular() {
-                        const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
-                        document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR');
-                        document.getElementById('totalMensal').textContent = valorMensal.toLocaleString('pt-BR');
-                        document.getElementById('valorHora').textContent = this.dados.preco;
-                        const tipos = {
-                            'basico': 'Cuidado Básico',
-                            'medicacao': 'Com Medicação',
-                            'mobilidade': 'Mobilidade Reduzida',
-                            'intensivo': 'Cuidado Intensivo'
-                        };
-                        document.getElementById('tipoSelecionado').textContent = tipos[this.dados.tipo];
-                        document.getElementById('periodoSelecionado').textContent = `${this.dados.horas} horas`;
-                        document.getElementById('frequenciaSelecionada').textContent = `${this.dados.dias} dias/semana`;
-                        const resultado = document.getElementById('resultado');
-                        if (!resultado.classList.contains('visible')) {
-                            setTimeout(() => resultado.classList.add('visible'), 300);
-                        }
-                    }
-                    updateStepIndicator() {
-                        document.querySelectorAll('.calculadora-container .indicator-dot').forEach((dot, index) => {
-                            dot.classList.toggle('completed', index < 3);
-                            dot.classList.toggle('active', index === 2);
-                        });
-                    }
-                    enviarWhatsApp() {
-                        const tipos = {
-                            'basico': 'Cuidado Básico',
-                            'medicacao': 'Com Medicação',
-                            'mobilidade': 'Mobilidade Reduzida',
-                            'intensivo': 'Cuidado Intensivo'
-                        };
-                        const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
-                        const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:🏥 Tipo: ${tipos[this.dados.tipo]}⏰ Período: ${this.dados.horas}h/dia📅 Frequência: ${this.dados.dias} dias/semana💰 Estimativa: R$ ${valorMensal.toLocaleString('pt-BR')}/mêsGostaria de agendar uma avaliação!`;
-                        const telefone = '5511999999999';
-                        window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`, '_blank');
-                    }
-                }
-                new CalculadoraOrcamento();
+                }, 5000);
             }
-        };
+            
+            window.addEventListener('resize', setCarouselHeight);
+            setCarouselHeight();
+            
+            prevBtn.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                updateCarousel();
+                startAutoSlide();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+                startAutoSlide();
+            });
 
-        // Funções para API Gemini (mantidas como no original, idealmente deveriam ser extraídas para um arquivo ou serviço separado)
+            wrapper.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startPos = e.touches[0].clientX;
+                prevTranslate = currentTranslate;
+                clearInterval(autoSlideInterval);
+            });
+
+            wrapper.addEventListener('touchend', () => {
+                isDragging = false;
+                const movedBy = currentTranslate - prevTranslate;
+                if (movedBy < -100) {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                }
+                if (movedBy > 100) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                }
+                updateCarousel();
+                startAutoSlide();
+            });
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const currentPosition = e.touches[0].clientX;
+                currentTranslate = prevTranslate + currentPosition - startPos;
+                carousel.style.transform = `translateX(${currentTranslate}px)`;
+            });
+
+            startAutoSlide();
+        }
+
+        function initBlogFilters() {
+            const filterButtons = document.querySelectorAll('.blog-filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            if (!filterButtons.length || !blogCards.length) return;
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    blogCards.forEach(card => {
+                        const cardTag = card.getAttribute('data-tag');
+                        if (filter === 'all' || filter === cardTag) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+        
+        function initBlogLinks() {
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            blogCards.forEach(card => {
+                const readMoreBtn = card.querySelector('.read-more-btn');
+                const readMoreText = readMoreBtn.querySelector('span');
+                const readMoreIcon = readMoreBtn.querySelector('svg');
+                const fullContent = card.querySelector('.full-article-content');
+                const shortText = card.querySelector('.short-text');
+
+                const toggleContent = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (fullContent.classList.contains('visible')) {
+                        fullContent.classList.remove('visible');
+                        readMoreText.textContent = 'Ler artigo';
+                        readMoreIcon.innerHTML = `<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
+                        readMoreBtn.classList.remove('expanded');
+                        shortText.classList.remove('hidden');
+                    } else {
+                        fullContent.classList.add('visible');
+                        readMoreText.textContent = 'Diminuir';
+                        readMoreIcon.innerHTML = `<path d="m18 15-6-6-6 6"/></svg>`;
+                        readMoreBtn.classList.add('expanded');
+                        shortText.classList.add('hidden');
+                    }
+                };
+                
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', toggleContent);
+                }
+            });
+        }
+        
+        // ==================== Funções da API Gemini ====================
+        
+        function initAITipGenerators() {
+            const generateButtons = document.querySelectorAll('.generate-tip-btn');
+            
+            generateButtons.forEach(button => {
+                const card = button.closest('.blog-card-content');
+                const aiTipContainer = card.querySelector('.ai-tip-container');
+                const aiTipText = card.querySelector('.ai-tip-text');
+                const loadingSkeleton = card.querySelector('.loading-skeleton');
+                const audioBtn = card.querySelector('.audio-btn');
+
+                button.addEventListener('click', async () => {
+                    const topic = button.getAttribute('data-topic');
+                    aiTipText.textContent = '';
+                    aiTipContainer.style.display = 'block';
+                    loadingSkeleton.style.display = 'flex';
+                    aiTipContainer.classList.remove('loaded');
+                    button.classList.add('loading');
+                    button.disabled = true;
+                    audioBtn.style.display = 'none';
+
+                    try {
+                        const tip = await generateNewTip(topic);
+                        aiTipText.textContent = tip;
+                        audioBtn.dataset.textForAudio = tip;
+                        audioBtn.style.display = 'block';
+                    } catch (error) {
+                        aiTipText.textContent = 'Ocorreu um erro ao gerar a dica. Tente novamente.';
+                        console.error('Erro ao gerar a dica:', error);
+                    } finally {
+                        loadingSkeleton.style.display = 'none';
+                        aiTipContainer.classList.add('loaded');
+                        button.classList.remove('loading');
+                        button.disabled = false;
+                    }
+                });
+            });
+
+            const audioButtons = document.querySelectorAll('.audio-btn');
+            audioButtons.forEach(button => {
+                const card = button.closest('.blog-card-content');
+                const aiTipTextElement = card.querySelector('.ai-tip-text');
+                button.addEventListener('click', async () => {
+                    const text = aiTipTextElement.textContent;
+                    if (text && text.length > 0) {
+                        const audioIcon = button.querySelector('.audio-icon');
+                        audioIcon.textContent = '...';
+                        audioIcon.classList.add('loading-audio');
+                        await playAudio(text, button);
+                        audioIcon.textContent = '📢';
+                        audioIcon.classList.remove('loading-audio');
+                    }
+                });
+            });
+        }
+        
         async function generateNewTip(topic) {
             const prompt = `Gere uma dica curta e útil (no máximo 50 palavras) para cuidadores de idosos, focada no tema de "${topic}". Formate a resposta como uma frase direta.`;
-            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
             const payload = { contents: chatHistory };
             const apiKey = "";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-            try {
-                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                const result = await response.json();
-                return result.candidates?.[0]?.content?.parts?.[0]?.text || 'Nenhuma dica gerada. Tente novamente.';
-            } catch (error) {
-                console.error('Erro na API:', error);
-                return 'Ocorreu um erro ao gerar a dica. Tente novamente.';
+
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Nenhuma dica gerada. Tente novamente.';
             }
         }
         
@@ -3143,22 +3112,66 @@
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const source = audioContext.createBufferSource();
             const payload = {
-                contents: [{ parts: [{ text: text }] }],
-                generationConfig: { responseModalities: ["AUDIO"], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Puck" } } } },
+                contents: [{
+                    parts: [{ text: text }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Puck" }
+                        }
+                    }
+                },
                 model: "gemini-2.5-flash-preview-tts"
             };
             const apiKey = "";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
 
-            try {
-                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                if (!response.ok) throw new Error(`Erro na API: ${response.statusText}`);
-                const result = await response.json();
-                const audioDataPart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
-                if (!audioDataPart) throw new Error('Dados de áudio não encontrados.');
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                console.error("Não foi possível obter uma resposta de áudio da API após várias tentativas.");
+                return;
+            }
 
-                const pcmData = base64ToArrayBuffer(audioDataPart.inlineData.data);
-                const audioBuffer = audioContext.createBuffer(1, pcmData.byteLength / 2, 24000);
+            const result = await response.json();
+            const audioDataPart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+
+            if (audioDataPart) {
+                const base64Audio = audioDataPart.inlineData.data;
+                const pcmData = base64ToArrayBuffer(base64Audio);
+                
+                const sampleRate = 24000;
+                
+                const audioBuffer = audioContext.createBuffer(1, pcmData.byteLength / 2, sampleRate);
                 const nowBuffering = audioBuffer.getChannelData(0);
                 const pcm16 = new Int16Array(pcmData);
                 for (let i = 0; i < pcm16.length; i++) {
@@ -3168,8 +3181,6 @@
                 source.buffer = audioBuffer;
                 source.connect(audioContext.destination);
                 source.start();
-            } catch (error) {
-                console.error("Não foi possível obter uma resposta de áudio da API:", error);
             }
         }
 
@@ -3183,6 +3194,310 @@
             return bytes.buffer;
         }
 
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    toggleFAQItem(item, faqItems);
+                });
+                
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQItem(item, faqItems);
+                    }
+                    
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        navigateFAQ(e.key, item, faqItems);
+                    }
+                });
+            });
+        }
+        
+        function toggleFAQItem(currentItem, allItems) {
+            const question = currentItem.querySelector('.faq-question');
+            const isActive = currentItem.classList.contains('active');
+            
+            allItems.forEach(item => {
+                if (item !== currentItem) {
+                    item.classList.remove('active');
+                    const otherQuestion = item.querySelector('.faq-question');
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            if (isActive) {
+                currentItem.classList.remove('active');
+                question.setAttribute('aria-expanded', 'false');
+            } else {
+                currentItem.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+                
+                setTimeout(() => {
+                    currentItem.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }, 100);
+            }
+        }
+        
+        function navigateFAQ(direction, currentItem, allItems) {
+            const currentIndex = Array.from(allItems).indexOf(currentItem);
+            let nextIndex;
+            
+            if (direction === 'ArrowDown') {
+                nextIndex = (currentIndex + 1) % allItems.length;
+            } else {
+                nextIndex = currentIndex === 0 ? allItems.length - 1 : currentIndex - 1;
+            }
+            
+            const nextQuestion = allItems[nextIndex].querySelector('.faq-question');
+            nextQuestion.focus();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeItems = document.querySelectorAll('.faq-item.active');
+                activeItems.forEach(item => {
+                    item.classList.remove('active');
+                    const question = item.querySelector('.faq-question');
+                    question.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+        
+        // ==================== Lógica do Chatbot ====================
+
+        let chatHistory = [];
+        
+        function initChatbot() {
+            const headerContactBtn = document.getElementById('header-contact-btn');
+            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
+            const chatbotModal = document.getElementById('chatbotModal');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+            const chatbox = document.getElementById('chatbox');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const initialMessage = "Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?";
+
+            chatHistory.push({ role: "model", parts: [{ text: initialMessage }] });
+
+            headerContactBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+            heroWhatsappBtn.addEventListener('click', () => {
+                chatbotModal.classList.add('visible');
+            });
+
+            closeChatBtn.addEventListener('click', () => {
+                chatbotModal.classList.remove('visible');
+            });
+            
+            sendBtn.addEventListener('click', handleUserMessage);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+            
+            appendMessage(initialMessage, 'ai');
+        }
+
+        async function handleUserMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            chatInput.value = '';
+            
+            appendMessage(message, 'user');
+            chatHistory.push({ role: "user", parts: [{ text: message }] });
+
+            const typingIndicator = appendMessage('...', 'ai-typing');
+            
+            try {
+                const responseText = await getChatbotResponse(chatHistory);
+                typingIndicator.remove();
+                appendMessage(responseText, 'ai');
+                chatHistory.push({ role: "model", parts: [{ text: responseText }] });
+            } catch (error) {
+                console.error('Erro ao obter a resposta do chatbot:', error);
+                typingIndicator.remove();
+                appendMessage('Desculpe, não consegui processar sua solicitação no momento. Tente novamente mais tarde.', 'ai');
+            }
+        }
+        
+        function appendMessage(text, sender) {
+            const chatbox = document.getElementById('chatbox');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+            return messageElement;
+        }
+
+        async function getChatbotResponse(history) {
+            const prompt = `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em serviços de cuidado para idosos no Itaim, São Paulo.
+            Seu objetivo é responder a perguntas de forma amigável e profissional, com base nas seguintes informações:
+            - A empresa oferece cuidadores, manicure/cabeleireiro, apoio psicológico e motorista para idosos.
+            - O diferencial é o treinamento dos profissionais na casa da fundadora, Dona Tereca, que tem 94 anos.
+            - Os serviços são personalizados.
+            - A área de atuação é o Itaim e bairros próximos em São Paulo.
+            - Para agendar um serviço ou obter um orçamento, o cliente deve preencher o formulário de contato. Não forneça preços diretamente.
+
+            Responda de forma concisa. Se a pergunta for sobre preços ou agendamentos, oriente o usuário a preencher o formulário na seção 'Contato'. Mantenha a conversa focada nos serviços e na filosofia da empresa.
+
+            Histórico da conversa: ${JSON.stringify(history)}
+            
+            Responda à última pergunta do usuário.`;
+
+            let chatHistoryWithPrompt = [];
+            chatHistoryWithPrompt.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = { contents: chatHistoryWithPrompt };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                return text;
+            } else {
+                return 'Desculpe, não consegui entender. Poderia reformular a pergunta?';
+            }
+        }
+        
+        function initCalculadora() {
+            class CalculadoraOrcamento {
+                constructor() {
+                    this.dados = {
+                        tipo: 'basico',
+                        preco: 30,
+                        horas: 12,
+                        dias: 7
+                    };
+                    this.init();
+                }
+                init() {
+                    this.bindEvents();
+                    this.calcular();
+                }
+                bindEvents() {
+                    document.querySelectorAll('.calculadora-container .option-card').forEach(card => {
+                        card.addEventListener('click', (e) => {
+                            const step = card.closest('.calc-step');
+                            step.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                            card.classList.add('selected');
+                            this.updateData(card);
+                            this.calcular();
+                            this.updateStepIndicator();
+                        });
+                    });
+                    document.getElementById('btnWhatsApp').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.enviarWhatsApp();
+                    });
+                }
+                updateData(card) {
+                    if (card.dataset.tipo) {
+                        this.dados.tipo = card.dataset.tipo;
+                        this.dados.preco = parseInt(card.dataset.preco);
+                    }
+                    if (card.dataset.horas) {
+                        this.dados.horas = parseInt(card.dataset.horas);
+                    }
+                    if (card.dataset.dias) {
+                        this.dados.dias = parseInt(card.dataset.dias);
+                    }
+                }
+                calcular() {
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
+                    document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('totalMensal').textContent = valorMensal.toLocaleString('pt-BR');
+                    document.getElementById('valorHora').textContent = this.dados.preco;
+                    const tipos = {
+                        'basico': 'Cuidado Básico',
+                        'medicacao': 'Com Medicação',
+                        'mobilidade': 'Mobilidade Reduzida',
+                        'intensivo': 'Cuidado Intensivo'
+                    };
+                    document.getElementById('tipoSelecionado').textContent = tipos[this.dados.tipo];
+                    document.getElementById('periodoSelecionado').textContent = `${this.dados.horas} horas`;
+                    document.getElementById('frequenciaSelecionada').textContent = `${this.dados.dias} dias/semana`;
+                    const resultado = document.getElementById('resultado');
+                    if (!resultado.classList.contains('visible')) {
+                        setTimeout(() => {
+                            resultado.classList.add('visible');
+                        }, 300);
+                    }
+                }
+                updateStepIndicator() {
+                    const dots = document.querySelectorAll('.calculadora-container .indicator-dot');
+                    dots.forEach((dot, index) => {
+                        if (index < 3) {
+                            dot.classList.add('completed');
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+                enviarWhatsApp() {
+                    const tipos = {
+                        'basico': 'Cuidado Básico',
+                        'medicacao': 'Com Medicação',
+                        'mobilidade': 'Mobilidade Reduzida',
+                        'intensivo': 'Cuidado Intensivo'
+                    };
+                    const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
+                    const mensagem = `Olá! Usei a calculadora do site e gostaria de um orçamento:🏥 Tipo: ${tipos[this.dados.tipo]}⏰ Período: ${this.dados.horas}h/dia📅 Frequência: ${this.dados.dias} dias/semana💰 Estimativa: R$ ${valorMensal.toLocaleString('pt-BR')}/mêsGostaria de agendar uma avaliação!`;
+                    const telefone = '5511999999999';
+                    const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+                    window.open(url, '_blank');
+                }
+            }
+            new CalculadoraOrcamento();
+        }
+
     </script>
 </body>
 </html>
+

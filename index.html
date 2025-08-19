@@ -794,7 +794,7 @@
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
             color: #555;
@@ -832,12 +832,7 @@
             position: relative;
             overflow: hidden;
         }
-
-        .testimonial-image:hover {
-            transform: scale(1.08) rotate(2deg);
-            box-shadow: 0 30px 60px rgba(139, 69, 19, 0.3);
-        }
-
+        
         .testimonial-image img {
             width: 100%;
             height: 300px;
@@ -1405,7 +1400,7 @@
         .parallax-bg-2 { animation-delay: 2s; animation-duration: 10s; }
         .parallax-bg-3 { animation-delay: 4s; animation-duration: 12s; }
         .header.scrolled { padding: 0.5rem 0; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); }
-        .testimonial-image:hover img { transform: scale(1.05); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); }
+        .testimonial-image:hover img { transform: scale(1.05); box-shadow: 25px rgba(0, 0, 0, 0.15); }
 
         /* ==================== Responsividade (Media Queries) ==================== */
         @media (max-width: 768px) {
@@ -2204,8 +2199,8 @@
         function initCarousel() {
             const carousel = document.querySelector('.testimonial-carousel');
             const slides = document.querySelectorAll('.testimonial-slide');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
+            const prevBtn = document.querySelector('.carousel-btn.prev-btn');
+            const nextBtn = document.querySelector('.carousel-btn.next-btn');
             const wrapper = document.querySelector('.testimonial-carousel-wrapper');
             let currentIndex = 0;
             let autoSlideInterval;
@@ -2213,6 +2208,14 @@
             let startPos = 0;
             let currentTranslate = 0;
             let prevTranslate = 0;
+
+            // Define a altura do wrapper do carrossel para que ele não mude
+            function setCarouselHeight() {
+                if(slides.length > 0) {
+                    const maxSlideHeight = Math.max(...Array.from(slides).map(s => s.offsetHeight));
+                    wrapper.style.height = `${maxSlideHeight}px`;
+                }
+            }
 
             function updateCarousel() {
                 currentTranslate = -currentIndex * slides[0].offsetWidth;
@@ -2226,7 +2229,10 @@
                     updateCarousel();
                 }, 5000);
             }
-
+            
+            window.addEventListener('resize', setCarouselHeight);
+            setCarouselHeight();
+            
             if (prevBtn) {
                 prevBtn.addEventListener('click', () => {
                     clearInterval(autoSlideInterval);
@@ -2293,10 +2299,12 @@
                         fullContent.classList.remove('visible');
                         readMoreBtn.textContent = 'Ler artigo';
                         shortText.classList.remove('hidden');
+                        readMoreBtn.classList.remove('decrease');
                     } else {
                         fullContent.classList.add('visible');
                         readMoreBtn.textContent = 'Diminuir';
                         shortText.classList.add('hidden');
+                        readMoreBtn.classList.add('decrease');
                     }
                 };
                 
@@ -2509,12 +2517,6 @@
                 const shortText = card.querySelector('.short-text');
                 const title = card.querySelector('.article-header h3');
 
-                // Esconde o botão de diminuir no footer inicialmente para todos os cards
-                const readMoreBtnInFooter = card.querySelector('.article-footer .read-more-btn');
-                if (readMoreBtnInFooter) {
-                    readMoreBtnInFooter.style.display = 'none';
-                }
-                
                 const toggleContent = (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -2523,12 +2525,10 @@
                         fullContent.classList.remove('visible');
                         readMoreBtn.textContent = 'Ler artigo';
                         shortText.classList.remove('hidden');
-                        readMoreBtn.classList.remove('decrease');
                     } else {
                         fullContent.classList.add('visible');
                         readMoreBtn.textContent = 'Diminuir';
                         shortText.classList.add('hidden');
-                        readMoreBtn.classList.add('decrease');
                     }
                 };
                 

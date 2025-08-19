@@ -27,6 +27,8 @@
             --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.1);
             --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.1);
+            --skeleton-bg-color: rgba(230, 230, 230, 0.5);
+            --skeleton-highlight-color: rgba(255, 255, 255, 0.5);
         }
 
         body {
@@ -1178,8 +1180,41 @@
             border: 1px solid rgba(139, 69, 19, 0.1);
             text-align: left;
             position: relative;
+            min-height: 50px;
         }
         
+        /* Estilos para o esqueleto de carregamento */
+        .loading-skeleton {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            animation: pulse-skeleton 1.5s infinite ease-in-out;
+        }
+        
+        .skeleton-line {
+            height: 15px;
+            background-color: var(--skeleton-bg-color);
+            border-radius: 5px;
+        }
+        
+        .skeleton-title {
+            width: 60%;
+        }
+        
+        .skeleton-text {
+            width: 100%;
+        }
+        
+        .skeleton-text-half {
+            width: 50%;
+        }
+        
+        /* Esconder o skeleton quando o conteúdo estiver visível */
+        .ai-tip-container.loaded .loading-skeleton {
+            display: none;
+        }
+
         .ai-tip-container .loader {
             border: 4px solid #f3f3f3;
             border-top: 4px solid var(--primary-color);
@@ -1213,100 +1248,6 @@
         .article-footer .read-more-btn {
             display: none !important;
         }
-
-        /* ==================== Botão Flutuante do WhatsApp ==================== */
-        .whatsapp-float-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: radial-gradient(circle at center, #20B358 0%, var(--whatsapp-green) 100%);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            text-decoration: none;
-        }
-
-        .whatsapp-float-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
-        }
-        
-        /* ==================== Modal de Confirmação ==================== */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1001;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 400px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: zoomIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .modal-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .modal-content p {
-            color: var(--text-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .close-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .close-btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        /* Corrigido o estilo para o botão "Diminuir" */
-        .blog-card .read-more-btn.decrease {
-             text-decoration: none;
-             font-weight: bold;
-        }
-        
-        .blog-card .read-more-btn.decrease:hover {
-            text-decoration: underline;
-        }
-
-        /* Remove a seta que estava sendo adicionada */
-        .blog-card-actions .read-more-btn::after {
-            display: none;
-        }
         
         .generate-tip-btn.loading {
             cursor: not-allowed;
@@ -1327,6 +1268,12 @@
             100% { transform: rotate(360deg); }
         }
 
+        @keyframes pulse-skeleton {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
         @keyframes logoGlow {
             0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
             50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
@@ -1643,7 +1590,11 @@
                             </button>
                         </div>
                         <div class="ai-tip-container" style="display: none;">
-                            <div class="loader"></div>
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                                <div class="skeleton-line skeleton-text-half"></div>
+                            </div>
                             <p class="ai-tip-text"></p>
                         </div>
                     </div>
@@ -1678,7 +1629,11 @@
                             </button>
                         </div>
                         <div class="ai-tip-container" style="display: none;">
-                            <div class="loader"></div>
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                                <div class="skeleton-line skeleton-text-half"></div>
+                            </div>
                             <p class="ai-tip-text"></p>
                         </div>
                     </div>
@@ -1713,7 +1668,11 @@
                             </button>
                         </div>
                         <div class="ai-tip-container" style="display: none;">
-                            <div class="loader"></div>
+                            <div class="loading-skeleton">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                                <div class="skeleton-line skeleton-text-half"></div>
+                            </div>
                             <p class="ai-tip-text"></p>
                         </div>
                     </div>
@@ -2311,14 +2270,15 @@
                 const card = button.closest('.blog-card-content');
                 const aiTipContainer = card.querySelector('.ai-tip-container');
                 const aiTipText = card.querySelector('.ai-tip-text');
-                const loader = card.querySelector('.loader');
+                const loadingSkeleton = card.querySelector('.loading-skeleton');
                 const audioBtn = card.querySelector('.audio-btn');
 
                 button.addEventListener('click', async () => {
                     const topic = button.getAttribute('data-topic');
                     aiTipText.textContent = '';
                     aiTipContainer.style.display = 'block';
-                    loader.style.display = 'block';
+                    loadingSkeleton.style.display = 'flex';
+                    aiTipContainer.classList.remove('loaded');
                     button.classList.add('loading');
                     button.disabled = true;
                     audioBtn.style.display = 'none';
@@ -2332,7 +2292,8 @@
                         aiTipText.textContent = 'Ocorreu um erro ao gerar a dica. Tente novamente.';
                         console.error('Erro ao gerar a dica:', error);
                     } finally {
-                        loader.style.display = 'none';
+                        loadingSkeleton.style.display = 'none';
+                        aiTipContainer.classList.add('loaded');
                         button.classList.remove('loading');
                         button.disabled = false;
                     }

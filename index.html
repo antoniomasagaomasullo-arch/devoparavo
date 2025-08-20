@@ -424,6 +424,7 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    margin-left: auto;
 }
 @media (max-width: 768px) {
     .header-actions {
@@ -3185,7 +3186,7 @@
         </div>
     </div>
 
-    <script>
+   <script>
     const API_KEY = "SUA_API_KEY_AQUI"; // Substitua pela sua chave API do Google Generative AI
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -3220,18 +3221,18 @@
         }, 2500);
     }
     
-  function initStickyHeader() {
-    const header = document.querySelector('.header');
-    if (!header) return;
+    function initStickyHeader() {
+        const header = document.querySelector('.header');
+        if (!header) return;
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) { 
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-}
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { 
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
 
     function initScrollReveal() {
         const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
@@ -3884,23 +3885,6 @@
         });
     }
     
-    async function generateNewTip(topic) {
-        const prompt = `Gere uma dica curta e útil (no máximo 50 palavras) para cuidadores de idosos, focada no tema de "${topic}". Formate a resposta como uma frase direta.`;
-        let chatHistory = [];
-        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-        const payload = { contents: chatHistory };
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
-        const result = await fetchGeminiApi(apiUrl, payload);
-
-        if (result.candidates && result.candidates.length > 0 &&
-            result.candidates[0].content && result.candidates[0].content.parts &&
-            result.candidates[0].content.parts.length > 0) {
-            return result.candidates[0].content.parts[0].text;
-        } else {
-            return 'Nenhuma dica gerada. Tente novamente.';
-        }
-    }
-    
     async function playAudio(text) {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const source = audioContext.createBufferSource();
@@ -3924,7 +3908,7 @@
 
         if (audioDataPart) {
             const base64Audio = audioDataPart.inlineData.data;
-            const pcmData = base64ToArrayBuffer(base64Audio);
+            const pcmData = base64ToArrayBuffer(base64);
             
             const sampleRate = 24000;
             
@@ -4056,7 +4040,7 @@
                 chatbotModal.classList.add('visible');
             });
         }
-
+        
         if (closeChatBtn) {
             closeChatBtn.addEventListener('click', () => {
                 chatbotModal.classList.remove('visible');
@@ -4352,4 +4336,3 @@
 </script>
 </body>
 </html>
-

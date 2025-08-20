@@ -879,10 +879,10 @@
             opacity: 1;
         }
         /* Adicionando estilos para os ícones de validação */
-        .form-group input:valid:not(:placeholder-shown) + .validation-icon.success-icon {
+        .form-group input:valid:not(:placeholder-shown) ~ .validation-icon.success-icon {
             display: inline;
         }
-        .form-group input:invalid:not([readonly]):not(:placeholder-shown) + .validation-icon.error-icon {
+        .form-group input:invalid:not([readonly]):not(:placeholder-shown) ~ .validation-icon.error-icon {
             display: inline;
         }
         .form-group > div {
@@ -1534,8 +1534,9 @@
         }
         .calc-step:not(.active) .options-grid {
             max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
             opacity: 0;
-            transform: scale(0.95);
             pointer-events: none;
         }
         .option-card {
@@ -1697,6 +1698,53 @@
             transform: translateY(-2px);
         }
 
+        /* Estilo do sumário flutuante para a calculadora */
+        .floating-summary {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            width: 250px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .floating-summary.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .floating-summary h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-xl);
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        .summary-details div {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--text-sm);
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        .summary-total {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--text-lg);
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+        
         /* ==================== Modal e Chatbot ==================== */
         .modal {
             position: fixed;
@@ -2079,143 +2127,11 @@
               top: 1.2rem;
               right: 4rem;
             }
-        }
-
-        /* --- Estilos Adicionados --- */
-        /* Back-to-top button e overlay para mobile */
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease;
-        }
-        .nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            z-index: 900;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        /* Adicionando ícones de validação no formulário */
-        .form-group .validation-feedback {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: var(--text-sm);
-            margin-top: 0.25rem;
-            height: 1.2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .form-group input:invalid:not([readonly]):not(:placeholder-shown) ~ .validation-feedback.error,
-        .form-group input:valid:not([readonly]):not(:placeholder-shown) ~ .validation-feedback.success {
-            opacity: 1;
-        }
-        .form-group input:invalid:not([readonly]):not(:placeholder-shown) ~ .validation-feedback.error {
-            color: var(--validation-error);
-        }
-        .form-group input:valid:not([readonly]):not(:placeholder-shown) ~ .validation-feedback.success {
-            color: var(--validation-success);
-        }
-        .form-group .validation-feedback svg {
-            width: 16px;
-            height: 16px;
-            stroke-width: 2.5;
-        }
-        
-        /* Novo estilo do modal de agendamento de ligação */
-        .modal-ligacao {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .modal-ligacao .input-group {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        .modal-ligacao .input-group input {
-            flex: 1;
-        }
-
-        /* Animação do logo do chatbot */
-        .chatbot-logo-icon {
-            font-size: 1.5rem;
-        }
-
-        /* Animação dos depoimentos */
-        .testimonial-carousel-wrapper:hover .carousel-btn {
-            opacity: 1;
-            transform: translateY(-50%) scale(1);
-        }
-
-        .carousel-btn {
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-            transform: translateY(-50%) scale(0.9);
-        }
-        
-        /* Efeito de hover no blog cards */
-        .blog-card:hover .blog-card-image {
-            transform: scale(1.05);
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .blog-card-image {
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        /* Estilo para a barra de navegação ativa */
-        .nav-menu a.active {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-        .nav-menu a.active::after {
-            width: 100%;
-        }
-
-        .ai-tip-container .ai-tip-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: var(--text-lg);
-            font-weight: bold;
-            color: var(--primary-color);
+            
+            /* Esconder sumário flutuante em telas menores */
+            .floating-summary {
+                display: none;
+            }
         }
         
     </style>
@@ -2252,7 +2168,7 @@
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-            <button class="cta-button" id="header-contact-btn" data-modal="agendamento">Agendar uma Avaliação</button>
+            <button class="cta-button" id="header-contact-btn">Agendar uma Avaliação</button>
         </div>
     </header>
 
@@ -2262,7 +2178,7 @@
                 <h1>Cuidando de quem você ama</h1>
                 <p class="hero-subtitle">Tratamento 360º: cuidados médicos, mobilidade e estética para idosos no Itaim</p>
                 <div class="hero-cta">
-                    <button class="whatsapp-btn" id="hero-whatsapp-btn" data-modal="agendamento">
+                    <button class="whatsapp-btn" id="hero-whatsapp-btn">
                         Agendar uma Avaliação
                     </button>
                 </div>
@@ -2501,6 +2417,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="floating-summary" id="floatingSummary">
+            <h4>Seu Orçamento</h4>
+            <div class="summary-details">
+                <div><span>Cuidado:</span> <strong id="summaryTipo">Básico</strong></div>
+                <div><span>Período:</span> <strong id="summaryPeriodo">12h/dia</strong></div>
+                <div><span>Frequência:</span> <strong id="summaryFrequencia">7 dias/sem</strong></div>
+            </div>
+            <div class="summary-total">
+                <span>Total Mensal</span>
+                <strong id="summaryTotal">R$ 10.320,00</strong>
+            </div>
+        </div>
     </section>
 
     <section class="testimonials" id="depoimentos">
@@ -2630,60 +2559,6 @@
                                 <span>Ler artigo</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                             </button>
-                            <button class="blog-action-btn generate-tip-btn" data-topic="hidratação">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line"></div>
-                                <div class="skeleton-line"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-card reveal delay-2 glassmorphism" data-tag="exercicios">
-                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image" loading="lazy">
-                    <div class="blog-card-content">
-                        <div class="blog-card-header">
-                            <span class="blog-card-tag">Exercícios</span>
-                            <div class="blog-card-info">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>5 min leitura</span>
-                            </div>
-                        </div>
-                        <h3>Exercícios leves para a mobilidade</h3>
-                        <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
-                        <div class="full-article-content">
-                            <div class="article-content">
-                                <h4>Benefícios da atividade física</h4>
-                                <p>Além de prevenir quedas, os exercícios melhoram a circulação sanguínea, fortalecem os ossos e promovem o bem-estar mental, combatendo o estresse e a ansiedade. Eles também contribuem para a autonomia e a independência do idoso no dia a dia.</p>
-                                <h4>Ideias de exercícios</h4>
-                                <p>É importante começar devagar e sempre consultar um médico ou fisioterapeuta antes de iniciar qualquer nova rotina de exercícios. Algumas atividades recomendadas incluem:</p>
-                                <ul>
-                                    <li><strong>Caminhada:</strong> Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
-                                    <li><strong>Natação e Hidroginástica:</strong> A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
-                                    <li><strong>Yoga ou Pilates:</strong> Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
-                                    <li><strong>Exercícios com faixas elásticas:</strong> Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
-                                </ul>
-                                <p>Compartilhe este artigo:</p>
-                                <div class="social-share-buttons">
-                                    <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12.04 2.162c-5.46 0-9.914 4.453-9.914 9.913 0 1.947.575 3.82 1.63 5.432l-1.127 4.12 4.218-1.096a9.927 9.927 0 0 0 4.2 1.025c5.46 0 9.914-4.452 9.914-9.913 0-5.46-4.454-9.913-9.914-9.913zM17.433 14.5c.243-.09.528-.184.62-.218.09-.033.2-.04.28-.04.09 0 .185.014.237.04.14.077.34.29.39.46.04.167.04.308.024.46a2.82 2.82 0 0 1-.5 1.14c-.31.32-.69.45-1.06.49-.37.042-.78.026-1.18-.088-.4-.112-2.38-.99-2.75-.958-3.31-1.378-4.43-5.32-4.44-5.35-.013-.03-.1-.137-.1-.318s.07-.46.1-.59.2-.19.3-.23.1-.06.2-.062c.1-.002.2-.002.28.006.18.017.37.037.49.12.12.08.19.2.27.31.08.11.16.2.22.3.06.1.15.2.25.33.1.13.16.2.2.23.05.03.11-.003.22-.058.11-.055.38-.14.65-.25.26-.11.43-.19.5-.23.06-.04.15-.09.2-.125.047-.035.1-.09.18-.21.08-.12.16-.32.22-.44.06-.12.12-.2.17-.22.05-.02.13-.02.2-.02.06 0 .15.016.22.03.07.015.15.023.2.06.05.038.16.14.3.36.14.22.3.4.4.47.1.066.2.066.3.048.1-.02.32-.08.47-.14s.24-.11.33-.17.15-.1.2-.15.11-.09.2-.14c.09-.05.2-.1.3-.13.1-.03.2-.06.28-.07.09-.01.2-.02.27-.02.08 0 .17.006.2.01.034.004.1.01.24.03.14.022.32.04.53.056.2.02.34.03.45.05.11.02.24.04.37.07.125.03.26.06.39.09.13.03.22.05.28.06.07.01.12.01.19-.007.06-.017.16-.07.3-.24.13-.17.3-.43.34-.51.05-.08.09-.13.13-.16.035-.03.07-.06.07-.06s.02-.03.02-.03c0-.02-.01-.06-.03-.1-.02-.04-.04-.07-.07-.1z"/></svg>
-                                    </a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no Facebook">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12 2.163c-5.32 0-9.682 4.363-9.682 9.682 0 4.846 3.524 8.878 8.145 9.539V15.54h-2.17V12h2.17V9.752c0-2.147 1.312-3.35 3.102-3.35 0.887 0 1.65.066 1.874.095V8.9l-1.285 0.006c-1.267 0-1.512 0.603-1.512 1.488V12h2.82l-0.46 3.54h-2.36V21.385c4.62-0.66 8.145-4.693 8.145-9.539C21.682 6.526 17.32 2.163 12 2.163z"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
-                                <span>Ler artigo</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </button>
                             <button class="blog-action-btn generate-tip-btn" data-topic="exercícios para mobilidade">Gerar dica de IA</button>
                             <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
                                 <span class="audio-icon">📢</span>
@@ -2716,100 +2591,6 @@
                                 <p>Com a idade, a produção de melatonina (o hormônio do sono) diminui, e o padrão de sono tende a ser mais leve e fragmentado. Além disso, condições médicas e o uso de certos medicamentos podem afetar a qualidade do sono.</p>
                                 <h4>Dicas para melhorar o sono</h4>
                                 <p>Estabeleça horários regulares para dormir e acordar, mesmo nos fins de semana. Evite cafeína e refeições pesadas à noite. Crie um ambiente relaxante no quarto, com pouca luz e temperatura agradável. A leitura de um livro ou ouvir música calma antes de dormir pode ajudar a relaxar a mente.</p>
-                                <p>Compartilhe este artigo:</p>
-                                <div class="social-share-buttons">
-                                    <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12.04 2.162c-5.46 0-9.914 4.453-9.914 9.913 0 1.947.575 3.82 1.63 5.432l-1.127 4.12 4.218-1.096a9.927 9.927 0 0 0 4.2 1.025c5.46 0 9.914-4.452 9.914-9.913 0-5.46-4.454-9.913-9.914-9.913zM17.433 14.5c.243-.09.528-.184.62-.218.09-.033.2-.04.28-.04.09 0 .185.014.237.04.14.077.34.29.39.46.04.167.04.308.024.46a2.82 2.82 0 0 1-.5 1.14c-.31.32-.69.45-1.06.49-.37.042-.78.026-1.18-.088-.4-.112-2.38-.99-2.75-.958-3.31-1.378-4.43-5.32-4.44-5.35-.013-.03-.1-.137-.1-.318s.07-.46.1-.59.2-.19.3-.23.1-.06.2-.062c.1-.002.2-.002.28.006.18.017.37.037.49.12.12.08.19.2.27.31.08.11.16.2.22.3.06.1.15.2.25.33.1.13.16.2.2.23.05.03.11-.003.22-.058.11-.055.38-.14.65-.25.26-.11.43-.19.5-.23.06-.04.15-.09.2-.125.047-.035.1-.09.18-.21.08-.12.16-.32.22-.44.06-.12.12-.2.17-.22.05-.02.13-.02.2-.02.06 0 .15.016.22.03.07.015.15.023.2.06.05.038.16.14.3.36.14.22.3.4.4.47.1.066.2.066.3.048.1-.02.32-.08.47-.14s.24-.11.33-.17.15-.1.2-.15.11-.09.2-.14c.09-.05.2-.1.3-.13.1-.03.2-.06.28-.07.09-.01.2-.02.27-.02.08 0 .17.006.2.01.034.004.1.01.24.03.14.022.32.04.53.056.2.02.34.03.45.05.11.02.24.04.37.07.125.03.26.06.39.09.13.03.22.05.28.06.07.01.12.01.19-.007.06-.017.16-.07.3-.24.13-.17.3-.43.34-.51.05-.08.09-.13.13-.16.035-.03.07-.06.07-.06s.02-.03.02-.03c0-.02-.01-.06-.03-.1-.02-.04-.04-.07-.07-.1z"/></svg>
-                                    </a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no Facebook">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12 2.163c-5.32 0-9.682 4.363-9.682 9.682 0 4.846 3.524 8.878 8.145 9.539V15.54h-2.17V12h2.17V9.752c0-2.147 1.312-3.35 3.102-3.35 0.887 0 1.65.066 1.874.095V8.9l-1.285 0.006c-1.267 0-1.512 0.603-1.512 1.488V12h2.82l-0.46 3.54h-2.36V21.385c4.62-0.66 8.145-4.693 8.145-9.539C21.682 6.526 17.32 2.163 12 2.163z"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
-                                <span>Ler artigo</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </button>
-                            <button class="blog-action-btn generate-tip-btn" data-topic="rotina de sono para idosos">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line"></div>
-                                <div class="skeleton-line"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-card reveal delay-4 glassmorphism" data-tag="alimentacao">
-                    <img src="https://images.unsplash.com/photo-1571772922119-913a26435c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxMHx8ZGlldGElMjBhdm98ZW58MHx8fHwxNzE3NTM2Nzk1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um avó preparando uma refeição" class="blog-card-image" loading="lazy">
-                    <div class="blog-card-content">
-                        <div class="blog-card-header">
-                            <span class="blog-card-tag">Alimentação</span>
-                            <div class="blog-card-info">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>5 min leitura</span>
-                            </div>
-                        </div>
-                        <h3>Alimentação saudável na terceira idade</h3>
-                        <p class="short-text">Uma dieta equilibrada é fundamental para manter a saúde e a vitalidade. Descubra quais são os nutrientes essenciais e como preparar refeições saborosas e nutritivas para os idosos.</p>
-                        <div class="full-article-content">
-                            <div class="article-content">
-                                <h4>Nutrientes essenciais</h4>
-                                <p>Com a idade, a absorção de certos nutrientes diminui. É importante incluir na dieta alimentos ricos em cálcio para a saúde dos ossos, vitamina D, fibras para a digestão, e proteínas para a manutenção da massa muscular.</p>
-                                <p>Compartilhe este artigo:</p>
-                                <div class="social-share-buttons">
-                                    <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12.04 2.162c-5.46 0-9.914 4.453-9.914 9.913 0 1.947.575 3.82 1.63 5.432l-1.127 4.12 4.218-1.096a9.927 9.927 0 0 0 4.2 1.025c5.46 0 9.914-4.452 9.914-9.913 0-5.46-4.454-9.913-9.914-9.913zM17.433 14.5c.243-.09.528-.184.62-.218.09-.033.2-.04.28-.04.09 0 .185.014.237.04.14.077.34.29.39.46.04.167.04.308.024.46a2.82 2.82 0 0 1-.5 1.14c-.31.32-.69.45-1.06.49-.37.042-.78.026-1.18-.088-.4-.112-2.38-.99-2.75-.958-3.31-1.378-4.43-5.32-4.44-5.35-.013-.03-.1-.137-.1-.318s.07-.46.1-.59.2-.19.3-.23.1-.06.2-.062c.1-.002.2-.002.28.006.18.017.37.037.49.12.12.08.19.2.27.31.08.11.16.2.22.3.06.1.15.2.25.33.1.13.16.2.2.23.05.03.11-.003.22-.058.11-.055.38-.14.65-.25.26-.11.43-.19.5-.23.06-.04.15-.09.2-.125.047-.035.1-.09.18-.21.08-.12.16-.32.22-.44.06-.12.12-.2.17-.22.05-.02.13-.02.2-.02.06 0 .15.016.22.03.07.015.15.023.2.06.05.038.16.14.3.36.14.22.3.4.4.47.1.066.2.066.3.048.1-.02.32-.08.47-.14s.24-.11.33-.17.15-.1.2-.15.11-.09.2-.14c.09-.05.2-.1.3-.13.1-.03.2-.06.28-.07.09-.01.2-.02.27-.02.08 0 .17.006.2.01.034.004.1.01.24.03.14.022.32.04.53.056.2.02.34.03.45.05.11.02.24.04.37.07.125.03.26.06.39.09.13.03.22.05.28.06.07.01.12.01.19-.007.06-.017.16-.07.3-.24.13-.17.3-.43.34-.51.05-.08.09-.13.13-.16.035-.03.07-.06.07-.06s.02-.03.02-.03c0-.02-.01-.06-.03-.1-.02-.04-.04-.07-.07-.1z"/></svg>
-                                    </a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no Facebook">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12 2.163c-5.32 0-9.682 4.363-9.682 9.682 0 4.846 3.524 8.878 8.145 9.539V15.54h-2.17V12h2.17V9.752c0-2.147 1.312-3.35 3.102-3.35 0.887 0 1.65.066 1.874.095V8.9l-1.285 0.006c-1.267 0-1.512 0.603-1.512 1.488V12h2.82l-0.46 3.54h-2.36V21.385c4.62-0.66 8.145-4.693 8.145-9.539C21.682 6.526 17.32 2.163 12 2.163z"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
-                                <span>Ler artigo</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </button>
-                            <button class="blog-action-btn generate-tip-btn" data-topic="alimentação para idosos">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line"></div>
-                                <div class="skeleton-line"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-card reveal delay-5 glassmorphism" data-tag="saude-mental">
-                    <img src="https://images.unsplash.com/photo-1516246415277-3310069b76c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHw3fHxlbGRlcmx5JTIwaWRvc28lMjBpbmRvb3JzfGVufDB8fHx8MTY5MDc3NDU1M3ww&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso e cuidador conversando" class="blog-card-image" loading="lazy">
-                    <div class="blog-card-content">
-                        <div class="blog-card-header">
-                            <span class="blog-card-tag">Saúde Mental</span>
-                            <div class="blog-card-info">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>5 min leitura</span>
-                            </div>
-                        </div>
-                        <h3>Mantendo a mente ativa e o bem-estar</h3>
-                        <p class="short-text">O bem-estar mental é tão importante quanto o físico. O isolamento social e a solidão podem afetar gravemente a saúde dos idosos. Conheça estratégias simples para promover a felicidade e a saúde emocional.</p>
-                        <div class="full-article-content">
-                            <div class="article-content">
-                                <h4>Combatendo o isolamento</h4>
-                                <p>Incentive a participação em atividades de grupo, como aulas de dança ou jogos de tabuleiro. O contato com a família e amigos, mesmo que por videochamada, é fundamental. Nossos cuidadores são treinados para serem companheiros atenciosos, estimulando a conversa e o convívio social.</p>
-                                <h4>Atividades para a mente</h4>
-                                <p>Manter o cérebro em atividade é crucial. Sugira a leitura de livros, a resolução de palavras cruzadas, quebra-cabeças ou aprender uma nova habilidade. A música, em particular, pode evocar memórias e melhorar o humor.</p>
                                 <p>Compartilhe este artigo:</p>
                                 <div class="social-share-buttons">
                                     <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
@@ -3859,317 +3640,6 @@
                 return text;
             } else {
                 return 'Nenhuma dica gerada. Tente novamente.';
-            }
-        }
-        
-        async function playAudio(text) {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const source = audioContext.createBufferSource();
-            const payload = {
-                contents: [{
-                    parts: [{ text: text }]
-                }],
-                generationConfig: {
-                    responseModalities: ["AUDIO"],
-                    speechConfig: {
-                        voiceConfig: {
-                            prebuiltVoiceConfig: { voiceName: "Puck" }
-                        }
-                    }
-                },
-                model: "gemini-2.5-flash-preview-tts"
-            };
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${API_KEY}`;
-
-            let response = null;
-            let retryDelay = 1000;
-            const maxRetries = 5;
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (response.ok) {
-                        break;
-                    } else if (response.status === 429) {
-                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
-                        await new Promise(resolve => setTimeout(resolve, retryDelay));
-                        retryDelay *= 2;
-                    } else {
-                        throw new Error(`Erro na API: ${response.statusText}`);
-                    }
-                } catch (error) {
-                    if (i === maxRetries - 1) {
-                        throw error;
-                    }
-                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
-                    await new Promise(resolve => setTimeout(resolve, retryDelay));
-                    retryDelay *= 2;
-                }
-            }
-            
-            if (!response || !response.ok) {
-                console.error("Não foi possível obter uma resposta de áudio da API após várias tentativas.");
-                return;
-            }
-
-            const result = await response.json();
-            const audioDataPart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
-
-            if (audioDataPart) {
-                const base64Audio = audioDataPart.inlineData.data;
-                const pcmData = base64ToArrayBuffer(base64Audio);
-                
-                const sampleRate = 24000;
-                
-                const audioBuffer = audioContext.createBuffer(1, pcmData.byteLength / 2, sampleRate);
-                const nowBuffering = audioBuffer.getChannelData(0);
-                const pcm16 = new Int16Array(pcmData);
-                for (let i = 0; i < pcm16.length; i++) {
-                    nowBuffering[i] = pcm16[i] / 32768;
-                }
-                
-                source.buffer = audioBuffer;
-                source.connect(audioContext.destination);
-                source.start();
-            }
-        }
-
-        function base64ToArrayBuffer(base64) {
-            const binaryString = window.atob(base64);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) {
-                bytes[i] = binaryString.charCodeAt(i);
-            }
-            return bytes.buffer;
-        }
-
-        function initFAQ() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
-                question.addEventListener('click', () => {
-                    toggleFAQItem(item, faqItems);
-                });
-                
-                question.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        toggleFAQItem(item, faqItems);
-                    }
-                    
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                        e.preventDefault();
-                        navigateFAQ(e.key, item, faqItems);
-                    }
-                });
-            });
-        }
-        
-        function toggleFAQItem(currentItem, allItems) {
-            const question = currentItem.querySelector('.faq-question');
-            const isActive = currentItem.classList.contains('active');
-            
-            allItems.forEach(item => {
-                if (item !== currentItem) {
-                    item.classList.remove('active');
-                    const otherQuestion = item.querySelector('.faq-question');
-                    otherQuestion.setAttribute('aria-expanded', 'false');
-                }
-            });
-            
-            if (isActive) {
-                currentItem.classList.remove('active');
-                question.setAttribute('aria-expanded', 'false');
-            } else {
-                currentItem.classList.add('active');
-                question.setAttribute('aria-expanded', 'true');
-                
-                setTimeout(() => {
-                    currentItem.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest'
-                    });
-                }, 100);
-            }
-        }
-        
-        function navigateFAQ(direction, currentItem, allItems) {
-            const currentIndex = Array.from(allItems).indexOf(currentItem);
-            let nextIndex;
-            
-            if (direction === 'ArrowDown') {
-                nextIndex = (currentIndex + 1) % allItems.length;
-            } else {
-                nextIndex = currentIndex === 0 ? allItems.length - 1 : currentIndex - 1;
-            }
-            
-            const nextQuestion = allItems[nextIndex].querySelector('.faq-question');
-            nextQuestion.focus();
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const activeItems = document.querySelectorAll('.faq-item.active');
-                activeItems.forEach(item => {
-                    item.classList.remove('active');
-                    const question = item.querySelector('.faq-question');
-                    question.setAttribute('aria-expanded', 'false');
-                });
-            }
-        });
-        
-        // ==================== Lógica do Chatbot ====================
-
-        let chatHistory = [];
-        
-        function initChatbot() {
-            const headerContactBtn = document.getElementById('header-contact-btn');
-            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
-            const chatbotModal = document.getElementById('chatbotModal');
-            const closeChatBtn = document.getElementById('closeChatBtn');
-            const chatbox = document.getElementById('chatbox');
-            const chatInput = document.getElementById('chatInput');
-            const sendBtn = document.getElementById('sendBtn');
-            const initialMessage = "Olá! Sou o assistente virtual do De Vó para Vó. Posso te ajudar com dúvidas sobre os nossos serviços, agendamentos e informações sobre a empresa. Como posso te ajudar hoje?";
-
-            chatHistory.push({ role: "model", parts: [{ text: initialMessage }] });
-
-            if (headerContactBtn) {
-                headerContactBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    chatbotModal.classList.add('visible');
-                });
-            }
-
-            if (heroWhatsappBtn) {
-                heroWhatsappBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    chatbotModal.classList.add('visible');
-                });
-            }
-
-            if (closeChatBtn) {
-                closeChatBtn.addEventListener('click', () => {
-                    chatbotModal.classList.remove('visible');
-                });
-            }
-            
-            if (sendBtn) {
-                sendBtn.addEventListener('click', handleUserMessage);
-            }
-
-            if (chatInput) {
-                chatInput.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') {
-                        handleUserMessage();
-                    }
-                });
-            }
-            
-            appendMessage(initialMessage, 'ai');
-        }
-
-        async function handleUserMessage() {
-            const chatInput = document.getElementById('chatInput');
-            const message = chatInput.value.trim();
-            if (message === '') return;
-
-            chatInput.value = '';
-            
-            appendMessage(message, 'user');
-            chatHistory.push({ role: "user", parts: [{ text: message }] });
-
-            const typingIndicator = appendMessage('...', 'ai-typing');
-            
-            try {
-                const responseText = await getChatbotResponse(chatHistory);
-                typingIndicator.remove();
-                appendMessage(responseText, 'ai');
-                chatHistory.push({ role: "model", parts: [{ text: responseText }] });
-            } catch (error) {
-                console.error('Erro ao obter a resposta do chatbot:', error);
-                typingIndicator.remove();
-                appendMessage('Desculpe, não consegui processar sua solicitação no momento. Tente novamente mais tarde.', 'ai');
-            }
-        }
-        
-        function appendMessage(text, sender) {
-            const chatbox = document.getElementById('chatbox');
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', sender);
-            messageElement.textContent = text;
-            chatbox.appendChild(messageElement);
-            chatbox.scrollTop = chatbox.scrollHeight;
-            return messageElement;
-        }
-
-        async function getChatbotResponse(history) {
-            const prompt = `Você é um assistente virtual para a empresa "De Vó para Vó", especializada em serviços de cuidado para idosos no Itaim, São Paulo.
-            Seu objetivo é responder a perguntas de forma amigável e profissional, com base nas seguintes informações:
-            - A empresa oferece cuidadores, manicure/cabeleireiro, apoio psicológico, motorista e terapia ocupacional para idosos.
-            - O diferencial é o treinamento dos profissionais na casa da fundadora, Dona Tereca, que tem 94 anos.
-            - Os serviços são personalizados.
-            - A área de atuação é o Itaim e bairros próximos em São Paulo, como Jardins, Panamby, Morumbi, Moema, Pinheiros e Vila Madalena.
-            - Para agendar um serviço ou obter um orçamento, o cliente deve preencher o formulário de contato. Não forneça preços diretamente.
-
-            Responda de forma concisa. Se a pergunta for sobre preços ou agendamentos, oriente o usuário a preencher o formulário na seção 'Contato'. Mantenha a conversa focada nos serviços e na filosofia da empresa.
-
-            Histórico da conversa: ${JSON.stringify(history)}
-            
-            Responda à última pergunta do usuário.`;
-
-            let chatHistoryWithPrompt = [];
-            chatHistoryWithPrompt.push({ role: "user", parts: [{ text: prompt }] });
-
-            const payload = { contents: chatHistoryWithPrompt };
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
-            
-            let response = null;
-            let retryDelay = 1000;
-            const maxRetries = 5;
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (response.ok) {
-                        break;
-                    } else if (response.status === 429) {
-                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
-                        await new Promise(resolve => setTimeout(resolve, retryDelay));
-                        retryDelay *= 2;
-                    } else {
-                        throw new Error(`Erro na API: ${response.statusText}`);
-                    }
-                } catch (error) {
-                    if (i === maxRetries - 1) {
-                        throw error;
-                    }
-                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
-                    await new Promise(resolve => setTimeout(resolve, retryDelay));
-                    retryDelay *= 2;
-                }
-            }
-            
-            if (!response || !response.ok) {
-                throw new Error("Não foi possível obter uma resposta da API após várias tentativas.");
-            }
-
-            const result = await response.json();
-            if (result.candidates && result.candidates.length > 0 &&
-                result.candidates[0].content && result.candidates[0].content.parts &&
-                result.candidates[0].content.parts.length > 0) {
-                const text = result.candidates[0].content.parts[0].text;
-                return text;
-            } else {
-                return 'Desculpe, não consegui entender. Poderia reformular a pergunta?';
             }
         }
         

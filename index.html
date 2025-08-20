@@ -47,17 +47,18 @@
             --text-5xl: 3.5rem;
         }
 
-        body {
-            /* Nova fonte para melhor legibilidade digital */
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--background-start);
-            min-height: 100vh;
-            overflow-x: hidden;
-            font-size: var(--text-base);
-            position: relative;
-        }
+       body {
+    /* Nova fonte para melhor legibilidade digital */
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7; /* Aumentado para maior conforto de leitura */
+    letter-spacing: 0.01em; /* Adicionado para evitar que as letras fiquem muito próximas */
+    color: var(--text-primary);
+    background: var(--background-start);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: var(--text-base);
+    position: relative;
+}
 
         body::before {
             content: '';
@@ -80,13 +81,12 @@
         }
         
         /* A tipografia principal agora herda do body */
-        p, .blog-card-content, .article-content, .cta-button, .whatsapp-btn, .blog-filter-btn {
-            font-family: 'Inter', sans-serif;
-        }
-        .article-content .hydration-table th {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
+      /* A tipografia principal agora herda do body */
+p, .blog-card-content, .article-content, .cta-button, .whatsapp-btn, .blog-filter-btn {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7; /* Reforça o espaçamento em elementos específicos */
+    letter-spacing: 0.01em;
+}
 
         /* Classes de utilidade para efeitos visuais repetidos */
         .glassmorphism {

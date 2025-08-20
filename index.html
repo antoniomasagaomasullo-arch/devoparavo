@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Vó para Vó - Cuidando de quem você ama</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==================== Estilos Globais e Reset ==================== */
         * {
@@ -47,7 +47,8 @@
         }
 
         body {
-            font-family: 'Lora', serif;
+            /* Nova fonte para melhor legibilidade digital */
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             background: var(--background-start);
@@ -77,8 +78,13 @@
             color: var(--text-primary);
         }
         
-        p, .blog-card-content, .article-content, .nav-menu a, .cta-button, .whatsapp-btn, .blog-filter-btn {
-            font-family: 'Lora', serif;
+        /* A tipografia principal agora herda do body */
+        p, .blog-card-content, .article-content, .cta-button, .whatsapp-btn, .blog-filter-btn {
+            font-family: 'Inter', sans-serif;
+        }
+        .article-content .hydration-table th {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
         }
 
         /* Classes de utilidade para efeitos visuais repetidos */
@@ -162,6 +168,12 @@
             100% { transform: translateY(1px); box-shadow: var(--shadow-sm); }
         }
 
+        /* Animação de splash para botões de tags */
+        @keyframes splash {
+          0% { transform: scale(0); opacity: 1; }
+          100% { transform: scale(1); opacity: 0; }
+        }
+        
         .cta-button:active, .whatsapp-btn:active {
             animation: subtlePress 0.2s ease-in-out;
         }
@@ -356,10 +368,59 @@
             width: 100%;
         }
 
+        /* Novo estilo para o indicador de seção ativa */
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        
         #header-contact-btn:hover {
             animation: subtlePulse 1.5s infinite;
         }
+        
+        /* Botão de acessibilidade - Tamanho da fonte */
+        .font-size-toggle-btn {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-weight: bold;
+            font-family: 'Inter', sans-serif;
+            font-size: var(--text-lg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+            right: 6rem;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+        }
 
+        .font-size-toggle-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--accent-color);
+        }
+
+        body.large-font {
+            font-size: var(--text-lg);
+        }
+
+        body.large-font p {
+            font-size: var(--text-lg);
+        }
+
+        body.large-font .nav-menu a {
+            font-size: var(--text-lg);
+        }
+        
         /* ==================== Hero Section ==================== */
         .hero {
             padding: 120px 0 60px;
@@ -817,6 +878,17 @@
             color: var(--validation-success);
             opacity: 1;
         }
+        /* Adicionando estilos para os ícones de validação */
+        .form-group input:valid:not(:placeholder-shown) + .validation-icon.success-icon {
+            display: inline;
+        }
+        .form-group input:invalid:not([readonly]):not(:placeholder-shown) + .validation-icon.error-icon {
+            display: inline;
+        }
+        .form-group > div {
+          position: relative;
+        }
+
 
         /* Container de tags de serviços (check-boxes) */
         .services-tags {
@@ -857,7 +929,27 @@
             cursor: pointer;
             height: 100%;
             width: 100%;
+            position: relative;
+            overflow: hidden;
         }
+        .services-tags label.service-tag span::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          background-color: var(--primary-light);
+          border-radius: 50%;
+          transform: scale(0);
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .services-tags label.service-tag:hover span::after {
+          animation: splash 0.6s ease-out;
+        }
+        
         .services-tags label.service-tag:hover span {
             border-color: var(--primary-color);
             background: rgba(249, 247, 244, 0.9);
@@ -1836,7 +1928,7 @@
             font-weight: 600;
         }
         .article-content .hydration-table th {
-            font-family: 'Lora', serif;
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
         }
         .article-content .hydration-table tr:nth-child(even) {
@@ -1980,6 +2072,12 @@
             .btn-primary, .btn-secondary {
                 width: 100%;
                 justify-content: center;
+            }
+
+            /* Posição do botão de acessibilidade para mobile */
+            .font-size-toggle-btn {
+              top: 1.2rem;
+              right: 4rem;
             }
         }
 
@@ -2141,6 +2239,7 @@
                     <a class="title" href="#">De Vó para Vó</a>
                 </div>
             </div>
+            <button class="font-size-toggle-btn" id="fontSizeToggleBtn" aria-label="Ajustar tamanho da fonte">Aa</button>
             <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Toggle navigation menu">☰</button>
             <nav>
                 <ul class="nav-menu" id="navMenu">
@@ -2153,7 +2252,7 @@
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-            <button class="cta-button" id="header-contact-btn">Agendar uma Avaliação</button>
+            <button class="cta-button" id="header-contact-btn" data-modal="agendamento">Agendar uma Avaliação</button>
         </div>
     </header>
 
@@ -2163,7 +2262,7 @@
                 <h1>Cuidando de quem você ama</h1>
                 <p class="hero-subtitle">Tratamento 360º: cuidados médicos, mobilidade e estética para idosos no Itaim</p>
                 <div class="hero-cta">
-                    <button class="whatsapp-btn" id="hero-whatsapp-btn">
+                    <button class="whatsapp-btn" id="hero-whatsapp-btn" data-modal="agendamento">
                         Agendar uma Avaliação
                     </button>
                 </div>
@@ -2960,7 +3059,11 @@
 
                 <div class="form-group">
                     <label for="cep">CEP</label>
-                    <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9">
+                    <div style="position: relative;">
+                        <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9">
+                        <span class="validation-icon success-icon" style="display: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%);">✅</span>
+                        <span class="validation-icon error-icon" style="display: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%);">❌</span>
+                    </div>
                     <span id="cep-status" class="validation-feedback"></span>
                 </div>
                 
@@ -3066,7 +3169,8 @@
             initBlogFilters();
             initFooter();
             initBackToTopButton();
-            initAgendamentoLigacao();
+            initAgendamentoLigacao(); // Nova função de inicialização
+            initFontSizeToggle(); // Nova função de inicialização
         });
 
         // ==================== Scripts de Inicialização ====================
@@ -3292,6 +3396,18 @@
             return masked;
         }
         
+        // Nova função para atualizar os ícones de validação
+        function updateValidationIcons(inputElement, isValid) {
+            const parent = inputElement.closest('.form-group');
+            if (!parent) return;
+
+            const successIcon = parent.querySelector('.success-icon');
+            const errorIcon = parent.querySelector('.error-icon');
+
+            if (successIcon) successIcon.style.display = isValid ? 'inline' : 'none';
+            if (errorIcon) errorIcon.style.display = isValid === false ? 'inline' : 'none';
+        }
+
         function initFormHandlers() {
             const form = document.querySelector('.contact-form');
             const cepInput = document.getElementById('cep');
@@ -3324,6 +3440,7 @@
                             cepStatus.textContent = '';
                             cepStatus.classList.remove('success', 'error');
                         }
+                        updateValidationIcons(cepInput, null);
                         document.getElementById('endereco').value = '';
                         document.getElementById('bairro').value = '';
                         document.getElementById('cidade').value = '';
@@ -3334,14 +3451,20 @@
             if (cpfInput) {
                 cpfInput.addEventListener('input', function(e) {
                     e.target.value = maskCPF(e.target.value);
+                    updateValidationIcons(e.target, validateCpfFormat(e.target.value));
                 });
             }
 
             if (telefoneInput) {
                 telefoneInput.addEventListener('input', function(e) {
                     e.target.value = maskTelefone(e.target.value);
+                    updateValidationIcons(e.target, validateTelefoneFormat(e.target.value));
                 });
             }
+            
+            document.getElementById('email').addEventListener('input', function(e) {
+                updateValidationIcons(e.target, e.target.validity.valid);
+            });
             
             if (form) {
                 form.addEventListener('submit', handleSubmit);
@@ -3362,6 +3485,7 @@
             const enderecoField = document.getElementById('endereco');
             const bairroField = document.getElementById('bairro');
             const cidadeField = document.getElementById('cidade');
+            const cepInput = document.getElementById('cep');
             const bairroTags = document.querySelectorAll('#bairros-atuacao .service-tag');
 
             if (!statusElement || !enderecoField || !bairroField || !cidadeField) return;
@@ -3418,6 +3542,7 @@
                         tagCorreta.classList.add('selected');
                         tagCorreta.setAttribute('aria-pressed', 'true');
                     }
+                    updateValidationIcons(cepInput, true);
                 } else {
                     statusElement.innerHTML = `❌ Infelizmente ainda não atendemos a sua região.`;
                     statusElement.classList.remove('success');
@@ -3426,6 +3551,7 @@
                     bairroField.value = '';
                     cidadeField.value = '';
                     enderecoField.setAttribute('readonly', true);
+                    updateValidationIcons(cepInput, false);
                 }
 
             } catch (error) {
@@ -3436,6 +3562,7 @@
                 bairroField.value = '';
                 cidadeField.value = '';
                 enderecoField.setAttribute('readonly', true);
+                updateValidationIcons(cepInput, false);
             }
         }
 
@@ -3494,7 +3621,7 @@
                     carousel.style.transform = `translateX(${currentTranslate}px)`;
                 }
             }
-
+            
             function startAutoSlide() {
                 clearInterval(autoSlideInterval);
                 autoSlideInterval = setInterval(() => {
@@ -3913,13 +4040,15 @@
             chatHistory.push({ role: "model", parts: [{ text: initialMessage }] });
 
             if (headerContactBtn) {
-                headerContactBtn.addEventListener('click', () => {
+                headerContactBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
                     chatbotModal.classList.add('visible');
                 });
             }
 
             if (heroWhatsappBtn) {
-                heroWhatsappBtn.addEventListener('click', () => {
+                heroWhatsappBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
                     chatbotModal.classList.add('visible');
                 });
             }
@@ -4044,6 +4173,167 @@
             }
         }
         
+        async function playAudio(text) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const source = audioContext.createBufferSource();
+            const payload = {
+                contents: [{
+                    parts: [{ text: text }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Puck" }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${API_KEY}`;
+
+            let response = null;
+            let retryDelay = 1000;
+            const maxRetries = 5;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break;
+                    } else if (response.status === 429) {
+                        console.warn(`Tentativa ${i + 1}: Rate limit excedido. Tentando novamente em ${retryDelay / 1000}s.`);
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        retryDelay *= 2;
+                    } else {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        throw error;
+                    }
+                    console.warn(`Tentativa ${i + 1}: Erro de rede. Tentando novamente em ${retryDelay / 1000}s.`, error);
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                console.error("Não foi possível obter uma resposta de áudio da API após várias tentativas.");
+                return;
+            }
+
+            const result = await response.json();
+            const audioDataPart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+
+            if (audioDataPart) {
+                const base64Audio = audioDataPart.inlineData.data;
+                const pcmData = base64ToArrayBuffer(base64Audio);
+                
+                const sampleRate = 24000;
+                
+                const audioBuffer = audioContext.createBuffer(1, pcmData.byteLength / 2, sampleRate);
+                const nowBuffering = audioBuffer.getChannelData(0);
+                const pcm16 = new Int16Array(pcmData);
+                for (let i = 0; i < pcm16.length; i++) {
+                    nowBuffering[i] = pcm16[i] / 32768;
+                }
+                
+                source.buffer = audioBuffer;
+                source.connect(audioContext.destination);
+                source.start();
+            }
+        }
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    toggleFAQItem(item, faqItems);
+                });
+                
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQItem(item, faqItems);
+                    }
+                    
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        navigateFAQ(e.key, item, faqItems);
+                    }
+                });
+            });
+        }
+        
+        function toggleFAQItem(currentItem, allItems) {
+            const question = currentItem.querySelector('.faq-question');
+            const isActive = currentItem.classList.contains('active');
+            
+            allItems.forEach(item => {
+                if (item !== currentItem) {
+                    item.classList.remove('active');
+                    const otherQuestion = item.querySelector('.faq-question');
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            if (isActive) {
+                currentItem.classList.remove('active');
+                question.setAttribute('aria-expanded', 'false');
+            } else {
+                currentItem.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+                
+                setTimeout(() => {
+                    currentItem.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }, 100);
+            }
+        }
+        
+        function navigateFAQ(direction, currentItem, allItems) {
+            const currentIndex = Array.from(allItems).indexOf(currentItem);
+            let nextIndex;
+            
+            if (direction === 'ArrowDown') {
+                nextIndex = (currentIndex + 1) % allItems.length;
+            } else {
+                nextIndex = currentIndex === 0 ? allItems.length - 1 : currentIndex - 1;
+            }
+            
+            const nextQuestion = allItems[nextIndex].querySelector('.faq-question');
+            nextQuestion.focus();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeItems = document.querySelectorAll('.faq-item.active');
+                activeItems.forEach(item => {
+                    item.classList.remove('active');
+                    const question = item.querySelector('.faq-question');
+                    question.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+        
         function initCalculadora() {
             class CalculadoraOrcamento {
                 constructor() {
@@ -4163,9 +4453,19 @@
             const agendamentoLigacaoModal = document.getElementById('agendamentoLigacaoModal');
             const closeLigacaoModalBtn = document.getElementById('closeLigacaoModalBtn');
             const formAgendamentoLigacao = document.getElementById('formAgendamentoLigacao');
+            const headerContactBtn = document.getElementById('header-contact-btn');
+            const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
 
-            if (agendamentoLigacaoBtn) {
-                agendamentoLigacaoBtn.addEventListener('click', () => {
+            if (headerContactBtn) {
+                headerContactBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    agendamentoLigacaoModal.classList.add('visible');
+                });
+            }
+
+            if (heroWhatsappBtn) {
+                heroWhatsappBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
                     agendamentoLigacaoModal.classList.add('visible');
                 });
             }
@@ -4192,6 +4492,17 @@
                     formAgendamentoLigacao.reset();
                 });
             }
+        }
+        
+        function initFontSizeToggle() {
+            const fontSizeToggleBtn = document.getElementById('fontSizeToggleBtn');
+            if (!fontSizeToggleBtn) return;
+
+            fontSizeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('large-font');
+                const isLargeFont = document.body.classList.contains('large-font');
+                fontSizeToggleBtn.setAttribute('aria-pressed', isLargeFont);
+            });
         }
     </script>
 </body>

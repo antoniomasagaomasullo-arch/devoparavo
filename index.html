@@ -299,7 +299,7 @@
         .cta-button {
             background-color: var(--primary-color);
             color: var(--text-on-dark);
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 2.5rem;
             border: none;
             border-radius: 40px;
             font-weight: bold;
@@ -308,11 +308,12 @@
             box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
-            font-size: var(--text-sm);
+             font-size: var(--text-sm);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            z-index: 1;
-        }
+           letter-spacing: 0.5px; /* Reduzir letter-spacing se necessário */
+    white-space: nowrap;
+    min-width: fit-content;
+}
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);

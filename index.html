@@ -320,109 +320,106 @@
         }
 
         /* ==================== Header ==================== */
-        .header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 1.5rem 0;
-            box-shadow: var(--shadow-sm);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        .logo .title {
-            font-family: 'Playfair Display', serif;
-            font-size: var(--text-3xl);
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-decoration: none;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .logo .title:hover {
-            color: var(--secondary-color);
-            transform: scale(1.05);
-        }
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            font-size: var(--text-lg);
-        }
-        .nav-menu a:hover {
-            color: var(--primary-color);
-        }
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            transition: width 0.3s ease;
-        }
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
+      .header {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 1.5rem 0;
+    box-shadow: var(--shadow-sm);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+}
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+.logo .title {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--primary-dark);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.logo .title:hover {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+}
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: var(--text-lg);
+}
+.nav-menu a:hover {
+    color: var(--primary-color);
+}
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: width 0.3s ease;
+}
+.nav-menu a:hover::after {
+    width: 100%;
+}
 
-        /* Novo estilo para o indicador de seção ativa */
-        .nav-menu a.active {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-        .nav-menu a.active::after {
-            width: 100%;
-        }
-        
-        #header-contact-btn:hover {
-            animation: subtlePulse 1.5s infinite;
-        }
-        
-        /* Botão de acessibilidade - Tamanho da fonte */
-        .font-size-toggle-btn {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-weight: bold;
-            font-family: 'Inter', sans-serif;
-            font-size: var(--text-lg);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: absolute;
-            right: 6rem;
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-dark);
-        }
+/* Novo estilo para o indicador de seção ativa */
+.nav-menu a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.nav-menu a.active::after {
+    width: 100%;
+}
+#header-contact-btn:hover {
+    animation: subtlePulse 1.5s infinite;
+}
 
-        .font-size-toggle-btn:hover {
-            transform: scale(1.1);
-            background-color: var(--accent-color);
-        }
+/* Botão de acessibilidade - Tamanho da fonte */
+.font-size-toggle-btn {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--text-lg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dark);
+}
+
+.font-size-toggle-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--accent-color);
+}
 
         body.large-font {
             font-size: var(--text-lg);

@@ -400,9 +400,13 @@
 
 /* REMOVER o margin-left negativo e ajustar corretamente */
 #header-contact-btn {
-   margin-left: 20px; /* Pequeno espaço após o menu */
-    margin-right: 70px; /* Espaço para o botão Aa */
-    white-space: nowrap; /* Evita quebra de linha */
+     position: absolute;
+    right: 60px; /* Reduzir de 80px para 60px - mais próximo da borda */
+    top: 50%;
+    transform: translateY(-50%);
+    min-width: fit-content;
+    padding: 0.8rem 2rem;
+    white-space: nowrap;
 }
         
         /* Botão de acessibilidade - Tamanho da fonte */

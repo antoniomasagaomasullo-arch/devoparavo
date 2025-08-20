@@ -397,27 +397,28 @@
         }
         
         /* Botão de acessibilidade - Tamanho da fonte */
-        .font-size-toggle-btn {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-weight: bold;
-            font-family: 'Inter', sans-serif;
-            font-size: var(--text-lg);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: absolute;
-            right: 6rem;
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-dark);
-        }
+      .font-size-toggle-btn {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--text-lg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: fixed;  /* Mudar de absolute para fixed */
+    top: 1.5rem;      /* Ajustar posição */
+    right: 2rem;      /* Mover para a direita */
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dark);
+}
 
         .font-size-toggle-btn:hover {
             transform: scale(1.1);
@@ -2008,8 +2009,9 @@
                 display: none;
                 flex-direction: column;
                 position: fixed;
-                top: 0;
+                top: 1rem;
                 left: 0;
+                right: 60px;
                 width: 70%;
                 height: 100vh;
                 background: rgba(255, 255, 255, 0.98);

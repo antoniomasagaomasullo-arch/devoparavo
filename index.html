@@ -335,14 +335,15 @@
             transition: all 0.4s ease;
         }
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-            position: relative;
-        }
+          .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    position: relative;
+}
         .logo .title {
             font-family: 'Playfair Display', serif;
             font-size: var(--text-3xl);
@@ -357,9 +358,12 @@
         }
         .nav-menu {
             display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+    list-style: none;
+    gap: 2rem;
+    margin: 0 2rem; /* Margem lateral */
+    flex-grow: 1; /* Cresce para ocupar espaço */
+    justify-content: center; /* Centraliza os itens */
+}
         .nav-menu a {
             text-decoration: none;
             color: var(--text-secondary);

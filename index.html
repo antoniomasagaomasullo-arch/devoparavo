@@ -3191,6 +3191,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             initLoadingScreen();
+            initStickyHeader();
             initScrollReveal();
             initParallax();
             initFormHandlers();
@@ -4002,7 +4003,18 @@
             const nextQuestion = allItems[nextIndex].querySelector('.faq-question');
             nextQuestion.focus();
         }
+function initStickyHeader() {
+    const header = document.querySelector('.header');
+    if (!header) return;
 
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) { // Você pode mudar o número 50 para ajustar a sensibilidade
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const activeItems = document.querySelectorAll('.faq-item.active');

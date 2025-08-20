@@ -3367,53 +3367,46 @@ p, .blog-card-content, .article-content, .cta-button, .whatsapp-btn, .blog-filte
             return cepRegex.test(value);
         }
 
-        function validateCpfFormat(value) {
-            const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-            return cpfRegex.test(value);
-        }
+   /* ==================== Funções de Validação e Máscara ==================== */
+function validateCpfFormat(value) {
+    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    return cpfRegex.test(value);
+}
 
-        function validateTelefoneFormat(value) {
-            const sanitized = value.replace(/\D/g, '');
-            if (sanitized.length === 11) {
-                const telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
-                return telefoneRegex.test(value);
-            } else if (sanitized.length === 10) {
-                const telefoneRegex = /^\(\d{2}\)\s\d{4}-\d{4}$/;
-                return telefoneRegex.test(value);
-            }
-            return false;
-        }
+function validateTelefoneFormat(value) {
+    const sanitized = value.replace(/\D/g, '');
+    if (sanitized.length === 11) {
+        const telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+        return telefoneRegex.test(value);
+    } else if (sanitized.length === 10) {
+        const telefoneRegex = /^\(\d{2}\)\s\d{4}-\d{4}$/;
+        return telefoneRegex.test(value);
+    }
+    return false;
+}
 
-        function maskCEP(value) {
-            let sanitized = value.replace(/\D/g, '');
-            if (sanitized.length > 5) {
-                sanitized = sanitized.substring(0, 5) + '-' + sanitized.substring(5, 8);
-            }
-            return sanitized;
-        }
+function maskCPF(value) {
+    let sanitized = value.replace(/\D/g, '');
+    sanitized = sanitized.replace(/^(\d{3})(\d)/, '$1.$2');
+    sanitized = sanitized.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+    sanitized = sanitized.replace(/\.(\d{3})(\d)/, '.$1-$2');
+    return sanitized.substring(0, 14);
+}
 
-        function maskCPF(value) {
-            let sanitized = value.replace(/\D/g, '');
-            sanitized = sanitized.replace(/^(\d{3})(\d)/, '$1.$2');
-            sanitized = sanitized.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
-            sanitized = sanitized.replace(/\.(\d{3})(\d)/, '.$1-$2');
-            return sanitized.substring(0, 14);
-        }
-
-        function maskTelefone(value) {
-            let sanitized = value.replace(/\D/g, '');
-            let masked = '';
-            if (sanitized.length > 0) {
-                masked = '(' + sanitized.substring(0, 2);
-            }
-            if (sanitized.length > 2) {
-                masked += ') ' + sanitized.substring(2, 7);
-            }
-            if (sanitized.length > 7) {
-                masked += '-' + sanitized.substring(7, 11);
-            }
-            return masked;
-        }
+function maskTelefone(value) {
+    let sanitized = value.replace(/\D/g, '');
+    let masked = '';
+    if (sanitized.length > 0) {
+        masked = '(' + sanitized.substring(0, 2);
+    }
+    if (sanitized.length > 2) {
+        masked += ') ' + sanitized.substring(2, 7);
+    }
+    if (sanitized.length > 7) {
+        masked += '-' + sanitized.substring(7, 11);
+    }
+    return masked;
+}
         
         // Nova função para atualizar os ícones de validação
         function updateValidationIcons(inputElement, isValid) {
@@ -3427,77 +3420,77 @@ p, .blog-card-content, .article-content, .cta-button, .whatsapp-btn, .blog-filte
             if (errorIcon) errorIcon.style.display = isValid === false ? 'inline' : 'none';
         }
 
-        function initFormHandlers() {
-            const form = document.querySelector('.contact-form');
-            const cepInput = document.getElementById('cep');
-            const cpfInput = document.getElementById('cpf');
-            const telefoneInput = document.getElementById('telefone');
-            const cepStatus = document.getElementById('cep-status');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const modal = document.getElementById('successModal');
-            const bairroTags = document.querySelectorAll('#bairros-atuacao .service-tag');
+    function initFormHandlers() {
+    const form = document.querySelector('.contact-form');
+    const cepInput = document.getElementById('cep');
+    const cpfInput = document.getElementById('cpf');
+    const telefoneInput = document.getElementById('telefone');
+    const cepStatus = document.getElementById('cep-status');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modal = document.getElementById('successModal');
+    const bairroTags = document.querySelectorAll('#bairros-atuacao .service-tag');
 
-            bairroTags.forEach(tag => {
-                tag.addEventListener('click', () => {
-                    bairroTags.forEach(t => {
-                        t.classList.remove('selected');
-                        t.setAttribute('aria-pressed', 'false');
-                    });
-                    tag.classList.add('selected');
-                    tag.setAttribute('aria-pressed', 'true');
-                });
+    bairroTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            bairroTags.forEach(t => {
+                t.classList.remove('selected');
+                t.setAttribute('aria-pressed', 'false');
             });
+            tag.classList.add('selected');
+            tag.setAttribute('aria-pressed', 'true');
+        });
+    });
 
-            if (cepInput) {
-                cepInput.addEventListener('input', function(e) {
-                    const value = e.target.value.replace(/\D/g, '');
-                    e.target.value = maskCEP(value);
-                    if (value.length === 8) {
-                        searchCEP(value);
-                    } else {
-                        if (cepStatus) {
-                            cepStatus.textContent = '';
-                            cepStatus.classList.remove('success', 'error');
-                        }
-                        updateValidationIcons(cepInput, null);
-                        document.getElementById('endereco').value = '';
-                        document.getElementById('bairro').value = '';
-                        document.getElementById('cidade').value = '';
-                    }
-                });
+    if (cepInput) {
+        cepInput.addEventListener('input', function(e) {
+            const value = e.target.value.replace(/\D/g, '');
+            e.target.value = maskCEP(value);
+            if (value.length === 8) {
+                searchCEP(value);
+            } else {
+                if (cepStatus) {
+                    cepStatus.textContent = '';
+                    cepStatus.classList.remove('success', 'error');
+                }
+                updateValidationIcons(cepInput, null);
+                document.getElementById('endereco').value = '';
+                document.getElementById('bairro').value = '';
+                document.getElementById('cidade').value = '';
             }
+        });
+    }
 
-            if (cpfInput) {
-                cpfInput.addEventListener('input', function(e) {
-                    e.target.value = maskCPF(e.target.value);
-                    updateValidationIcons(e.target, validateCpfFormat(e.target.value));
-                });
-            }
+    if (cpfInput) {
+        cpfInput.addEventListener('input', function(e) {
+            e.target.value = maskCPF(e.target.value);
+            updateValidationIcons(e.target, validateCpfFormat(e.target.value));
+        });
+    }
 
-            if (telefoneInput) {
-                telefoneInput.addEventListener('input', function(e) {
-                    e.target.value = maskTelefone(e.target.value);
-                    updateValidationIcons(e.target, validateTelefoneFormat(e.target.value));
-                });
+    if (telefoneInput) {
+        telefoneInput.addEventListener('input', function(e) {
+            e.target.value = maskTelefone(e.target.value);
+            updateValidationIcons(e.target, validateTelefoneFormat(e.target.value));
+        });
+    }
+    
+    document.getElementById('email').addEventListener('input', function(e) {
+        updateValidationIcons(e.target, e.target.validity.valid);
+    });
+    
+    if (form) {
+        form.addEventListener('submit', handleSubmit);
+    }
+    
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            if (modal) {
+                modal.classList.remove('visible');
+                form.reset();
             }
-            
-            document.getElementById('email').addEventListener('input', function(e) {
-                updateValidationIcons(e.target, e.target.validity.valid);
-            });
-            
-            if (form) {
-                form.addEventListener('submit', handleSubmit);
-            }
-            
-            if (closeModalBtn) {
-                closeModalBtn.addEventListener('click', () => {
-                    if (modal) {
-                        modal.classList.remove('visible');
-                        form.reset();
-                    }
-                });
-            }
-        }
+        });
+    }
+}
         
         async function searchCEP(cep) {
             const statusElement = document.getElementById('cep-status');

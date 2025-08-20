@@ -393,11 +393,16 @@
             width: 100%;
         }
         
-        #header-contact-btn:hover {
-            animation: subtlePulse 1.5s infinite;
-            margin-left: -1800;  /* Empurra para a direita */
-    margin-right: 1070px; /* Espaço para o botão Aa */
-        }
+     #header-contact-btn:hover {
+    animation: subtlePulse 1.5s infinite;
+}
+
+/* REMOVER o margin-left negativo e ajustar corretamente */
+#header-contact-btn {
+    margin-left: auto; /* Isso empurra para direita */
+    margin-right: 70px; /* Espaço para o botão Aa */
+    /* NÃO usar margin-left negativo */
+}
         
         /* Botão de acessibilidade - Tamanho da fonte */
      .font-size-toggle-btn {

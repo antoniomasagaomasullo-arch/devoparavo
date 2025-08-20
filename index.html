@@ -299,7 +299,7 @@
         .cta-button {
             background-color: var(--primary-color);
             color: var(--text-on-dark);
-            padding: 0.8rem 2.5rem;
+            padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 40px;
             font-weight: bold;
@@ -308,12 +308,11 @@
             box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
-             font-size: var(--text-sm);
+            font-size: var(--text-sm);
             text-transform: uppercase;
-           letter-spacing: 0.5px; /* Reduzir letter-spacing se necessário */
-    white-space: nowrap;
-    min-width: fit-content;
-}
+            letter-spacing: 1px;
+            z-index: 1;
+        }
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
@@ -335,15 +334,13 @@
             transition: all 0.4s ease;
         }
         .nav-container {
-          .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    position: relative;
-}
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
         .logo .title {
             font-family: 'Playfair Display', serif;
             font-size: var(--text-3xl);
@@ -358,12 +355,9 @@
         }
         .nav-menu {
             display: flex;
-    list-style: none;
-    gap: 2rem;
-    margin: 0 2rem; /* Margem lateral */
-    flex-grow: 1; /* Cresce para ocupar espaço */
-    justify-content: center; /* Centraliza os itens */
-}
+            list-style: none;
+            gap: 2rem;
+        }
         .nav-menu a {
             text-decoration: none;
             color: var(--text-secondary);
@@ -398,45 +392,33 @@
             width: 100%;
         }
         
-     #header-contact-btn:hover {
-    animation: subtlePulse 1.5s infinite;
-}
-
-/* REMOVER o margin-left negativo e ajustar corretamente */
-#header-contact-btn {
-     position: absolute;
-    right: 60px; /* Reduzir de 80px para 60px - mais próximo da borda */
-    top: 50%;
-    transform: translateY(-50%);
-    min-width: fit-content;
-    padding: 0.8rem 2rem;
-    white-space: nowrap;
-}
+        #header-contact-btn:hover {
+            animation: subtlePulse 1.5s infinite;
+        }
         
         /* Botão de acessibilidade - Tamanho da fonte */
-     .font-size-toggle-btn {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-weight: bold;
-    font-family: 'Inter', sans-serif;
-    font-size: var(--text-lg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: absolute;  /* Volta para absolute mas relativo ao nav-container */
-    right: -120px;         /* Bem no canto direito */
-    top: 50%;           /* Centralizado verticalmente */
-    transform: translateY(-50%);
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-dark);
-}
+        .font-size-toggle-btn {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-weight: bold;
+            font-family: 'Inter', sans-serif;
+            font-size: var(--text-lg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+            right: 6rem;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+        }
+
         .font-size-toggle-btn:hover {
             transform: scale(1.1);
             background-color: var(--accent-color);
@@ -2026,9 +2008,8 @@
                 display: none;
                 flex-direction: column;
                 position: fixed;
-                top: 1rem;
+                top: 0;
                 left: 0;
-                right: 60px;
                 width: 70%;
                 height: 100vh;
                 background: rgba(255, 255, 255, 0.98);

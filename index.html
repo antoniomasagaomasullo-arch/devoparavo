@@ -46,10 +46,20 @@
             --text-4xl: 2.5rem;
             --text-5xl: 3.5rem;
         }
-
+        /* Estilo de Foco Visível para Acessibilidade */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 3px;
+            box-shadow: 0 0 0 4px rgba(198, 164, 112, 0.4);
+            border-radius: 4px; /* Adiciona um leve arredondamento ao foco */
+        }
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.7;
+            line-height: 1.8; /* Aumentado de 1.7 para 1.8 */
             letter-spacing: 0.01em;
             color: var(--text-primary);
             background: var(--background-start);
@@ -83,6 +93,15 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.7;
             letter-spacing: 0.01em;
+        }
+        .story-text p, .article-content p, .faq-answer p {
+            max-width: 70ch; /* Limita a largura da linha para leitura ideal */
+        }
+        /* Se o texto não centralizar automaticamente, adicione: */
+        .story-text, .faq-answer {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* ou flex-start se preferir alinhado à esquerda */
         }
 
         /* Classes de utilidade para efeitos visuais repetidos */
@@ -482,1651 +501,6 @@
                     transform: translateY(0);
                 }
             }
-            .header-actions {
-                margin-left: auto;
-                padding-right: 2rem;
-            }
-            .font-size-toggle-btn {
-                position: static;
-                margin-right: 0;
-            }
-            .nav-toggle-btn {
-                display: block;
-                background: none;
-                border: none;
-                font-size: var(--text-4xl);
-                color: var(--primary-color);
-                cursor: pointer;
-                z-index: 1001;
-                position: relative;
-            }
-        }
-        @media (min-width: 769px) {
-            .nav-toggle-btn {
-                display: none;
-            }
-        }
-
-        /* ==================== Hero Section ==================== */
-        .hero {
-            padding: 120px 0 60px;
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        .hero-content h1 {
-            font-size: var(--text-5xl);
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-        .hero-subtitle {
-            font-size: var(--text-xl);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 400;
-            max-width: 80%;
-        }
-        .whatsapp-btn {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-md);
-            font-size: var(--text-base);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(93, 47, 9, 0.4);
-            background-color: var(--primary-dark);
-        }
-        .whatsapp-btn .icon {
-            transition: transform 0.3s ease;
-        }
-        .whatsapp-btn:hover .icon {
-            animation: subtleWiggle 0.5s infinite alternate;
-        }
-        .hero-image {
-            position: relative;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .hero-image:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        .hero-image img {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        /* ==================== Nossa História ==================== */
-        .our-story {
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .story-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        .story-text {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 3rem;
-            border-radius: 40px;
-            box-shadow: var(--shadow-md);
-        }
-        .story-text h2 {
-            font-size: var(--text-4xl);
-        }
-        .story-text h3 {
-            font-size: var(--text-xl);
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-top: -1rem;
-            margin-bottom: 1rem;
-        }
-        .story-text p {
-            font-size: var(--text-lg);
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 1.25rem;
-        }
-        .story-text .highlight {
-            font-size: var(--text-lg);
-            font-weight: 600;
-            color: var(--secondary-color);
-            font-style: italic;
-            margin-top: 1.5rem;
-            margin-bottom: 0;
-        }
-        .story-image {
-            position: relative;
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .story-image:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        .story-image img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            object-position: center;
-        }
-        .story-badge {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background-color: var(--secondary-color);
-            color: var(--text-on-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: var(--text-xs);
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* ==================== Serviços ==================== */
-        .services {
-            padding: 80px 0;
-            position: relative;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            align-items: stretch;
-        }
-        .service-card {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            border-radius: 40px;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .service-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-xl);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8));
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-on-dark);
-            font-size: var(--text-xl);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(5deg);
-            background-color: var(--secondary-color);
-            animation: subtleWiggle 1s infinite alternate;
-        }
-        .service-card:hover .service-icon svg {
-            transform: scale(1.1);
-        }
-        .service-card h3 {
-            font-size: var(--text-lg);
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .service-card:hover h3 {
-            color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-        .service-card p {
-            color: var(--text-secondary);
-            font-size: var(--text-sm);
-            transition: all 0.3s ease;
-        }
-        .service-card:hover p {
-            color: var(--text-primary);
-            transform: translateY(-2px);
-        }
-        .service-card .open-whatsapp-service-btn {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            overflow: hidden;
-            margin-top: 1.5rem;
-            font-size: var(--text-sm);
-            animation: none !important;
-        }
-        .service-card .open-whatsapp-service-btn:hover {
-            background-color: var(--primary-dark);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        /* ==================== Depoimentos ==================== */
-        .testimonials {
-            padding: 40px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .testimonial-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            min-height: 450px;
-        }
-        .testimonial-carousel-wrapper {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-        .testimonial-carousel {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            width: 100%;
-        }
-        .testimonial-slide {
-            flex-shrink: 0;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        .testimonial-content {
-            background: var(--background-start);
-            padding: 4rem;
-            border-radius: 25px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            overflow: hidden;
-            margin: 0;
-        }
-        .testimonial-content:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-md);
-        }
-        .testimonial-content::before {
-            content: '“';
-            font-family: 'Playfair Display', serif;
-            font-size: var(--text-5xl);
-            color: var(--primary-color);
-            position: absolute;
-            top: 1rem;
-            left: 2rem;
-            opacity: 0.4;
-            transition: all 0.3s ease;
-        }
-        .testimonial-content:hover::before {
-            opacity: 0.6;
-            transform: scale(1.1);
-        }
-        .testimonial-text {
-            font-size: var(--text-2xl);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: var(--text-secondary);
-            font-style: italic;
-            transition: all 0.3s ease;
-        }
-        .testimonial-content:hover .testimonial-text {
-            color: var(--text-primary);
-            transform: translateY(-2px);
-        }
-        .testimonial-author {
-            font-weight: bold;
-            color: var(--secondary-color);
-            transition: all 0.3s ease;
-        }
-        .testimonial-content:hover .testimonial-author {
-            transform: translateY(-2px);
-        }
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.5);
-            border: none;
-            color: var(--primary-dark);
-            font-size: var(--text-3xl);
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--secondary-color);
-        }
-        .prev-btn {
-            left: 1rem;
-        }
-        .next-btn {
-            right: 1rem;
-        }
-
-        /* ==================== Formulário de Contato ==================== */
-        .contact {
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 3rem;
-            border-radius: 40px;
-            box-shadow: var(--shadow-xl);
-            position: relative;
-            z-index: 1;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .contact-form:hover {
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-            transform: translateY(-5px);
-        }
-        .form-row {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .form-row .form-group {
-            flex: 1;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            font-size: var(--text-base);
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-        }
-        .form-group input:valid {
-            border-color: var(--validation-success);
-        }
-        .form-group input:invalid:not(:placeholder-shown) {
-            border-color: var(--validation-error);
-        }
-        .form-group input:valid:not([readonly]):focus {
-            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
-        }
-        .form-group input:invalid:not([readonly]):focus {
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.2);
-        }
-        .form-group input[readonly] {
-            background: rgba(240, 235, 228, 0.8);
-            color: var(--text-tertiary);
-            cursor: not-allowed;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-            transform: scale(1.01);
-        }
-        .form-group .validation-message {
-            font-size: var(--text-sm);
-            color: var(--validation-error);
-            margin-top: 0.25rem;
-            height: 1.2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .form-group input:invalid:not(:placeholder-shown) + .validation-message {
-            opacity: 1;
-        }
-        .form-group .validation-message.valid {
-            color: var(--validation-success);
-            opacity: 1;
-        }
-        /* Adicionando estilos para os ícones de validação */
-        .form-group input:valid:not(:placeholder-shown) + .validation-icon.success-icon {
-            display: inline;
-        }
-        .form-group input:invalid:not([readonly]):not(:placeholder-shown) + .validation-icon.error-icon {
-            display: inline;
-        }
-        .form-group > div {
-            position: relative;
-        }
-
-
-        /* Container de tags de serviços (check-boxes) */
-        .services-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-            justify-content: flex-start;
-        }
-        .services-tags label.service-tag {
-            position: relative;
-            user-select: none;
-            text-align: center;
-            flex-grow: 1;
-            flex-basis: auto;
-        }
-        .services-tags input[type="checkbox"]:disabled + span {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        .services-tags input[type="checkbox"] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .services-tags label.service-tag span {
-            display: inline-block;
-            padding: 0.6rem 1.2rem;
-            background: rgba(245, 245, 245, 0.8);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 25px;
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            height: 100%;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        .services-tags label.service-tag span::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary-light);
-            border-radius: 50%;
-            transform: scale(0);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .services-tags label.service-tag:hover span::after {
-            animation: splash 0.6s ease-out;
-        }
-        
-        .services-tags label.service-tag:hover span {
-            border-color: var(--primary-color);
-            background: rgba(249, 247, 244, 0.9);
-            transform: translateY(-2px);
-        }
-        .services-tags input[type="checkbox"]:checked+span {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            color: var(--text-on-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
-        }
-
-        /* Tags de Bairros (radio buttons) */
-        #bairros-atuacao.services-tags {
-            justify-content: flex-start;
-            gap: 0.75rem;
-        }
-        #bairros-atuacao .service-tag {
-            background: rgba(245, 245, 245, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 25px;
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            padding: 0.6rem 1.2rem;
-            text-align: center;
-            outline: none;
-            white-space: nowrap;
-        }
-        #bairros-atuacao .service-tag:focus,
-        #bairros-atuacao .service-tag.selected {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            color: var(--text-on-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
-        }
-        #bairros-atuacao .service-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-        }
-        
-        .submit-btn {
-            width: 100%;
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 40px;
-            font-size: var(--text-lg);
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
-        }
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-            background-color: var(--primary-dark);
-        }
-        
-        /* Adicionado para o mapa de cobertura */
-        .map-container {
-            width: 100%;
-            height: 300px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .map-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        .map-label {
-            margin-bottom: 1rem;
-            font-size: var(--text-lg);
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-
-        /* ==================== Footer ==================== */
-        .footer {
-            background-color: var(--primary-dark);
-            color: var(--text-on-dark);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .footer p {
-            opacity: 0.8;
-            margin: 0.5rem 0;
-        }
-
-        /* ==================== Blog Section ==================== */
-        .blog {
-            padding: 80px 0;
-            position: relative;
-        }
-        .blog-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-        .blog-filter-btn {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 30px;
-            padding: 0.75rem 1.5rem;
-            font-size: var(--text-base);
-            font-weight: 500;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .blog-filter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-            border-color: var(--primary-light);
-        }
-        .blog-filter-btn.active {
-            background: var(--primary-color);
-            color: var(--text-on-dark);
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow-md);
-        }
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        .blog-card {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 40px;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .blog-card.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .blog-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: var(--shadow-lg);
-        }
-        .blog-card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .blog-card-content {
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        .blog-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .blog-card-tag {
-            background-color: var(--secondary-color);
-            color: var(--text-on-dark);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: var(--text-sm);
-            font-weight: 600;
-        }
-        .blog-card-info {
-            display: flex;
-            align-items: center;
-            color: var(--text-tertiary);
-            font-size: var(--text-sm);
-            gap: 0.5rem;
-        }
-        .blog-card-content h3 {
-            font-size: var(--text-2xl);
-            margin-bottom: 0.5rem;
-            color: var(--primary-dark);
-            cursor: pointer;
-        }
-        .blog-card-content p {
-            font-size: var(--text-base);
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        .blog-card-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .blog-action-btn {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.6rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: var(--text-sm);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .blog-action-btn:hover {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            color: var(--text-on-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .blog-action-btn svg {
-            transition: transform 0.3s ease;
-            stroke: var(--primary-color);
-        }
-        .blog-action-btn:hover svg {
-            stroke: var(--text-on-dark);
-        }
-        .blog-action-btn.expanded svg {
-            transform: rotate(180deg);
-        }
-        .blog-action-btn::after {
-            display: none;
-        }
-
-        .full-article-content {
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .full-article-content.visible {
-            max-height: 2000px;
-            opacity: 1;
-            margin-top: 1rem;
-        }
-        .blog-card-content .short-text.hidden {
-            display: none;
-        }
-        .blog-card-content .read-more-btn.hidden {
-            display: none;
-        }
-        .article-content h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: var(--text-lg);
-            font-weight: 700;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: var(--primary-dark);
-        }
-        .article-content p {
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-        }
-        .article-content ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-        }
-        .article-content ul li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 0.75rem;
-        }
-        .article-content ul li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-        
-        .social-share-buttons {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            justify-content: center;
-        }
-        .social-share-buttons a {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        .social-share-buttons a:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.1) rotate(5deg);
-        }
-        .social-share-buttons a svg {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .ai-tip-container {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            text-align: left;
-            position: relative;
-            min-height: 50px;
-            opacity: 0;
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-        }
-        .ai-tip-container.visible {
-            opacity: 1;
-            transform: scaleY(1);
-        }
-        .loading-skeleton {
-            width: 100%;
-            display: none;
-            flex-direction: column;
-            gap: 0.75rem;
-            animation: pulse-skeleton 1.5s infinite ease-in-out;
-        }
-        .skeleton-line {
-            height: 15px;
-            background-color: var(--background-end);
-            border-radius: 5px;
-        }
-        .ai-tip-container.loaded .loading-skeleton {
-            display: none;
-        }
-        .ai-tip-container p {
-            margin: 0;
-            font-size: var(--text-sm);
-            color: var(--text-primary);
-        }
-        .blog-action-btn.loading {
-            cursor: not-allowed;
-            opacity: 0.7;
-            background: var(--text-tertiary);
-            border-color: var(--text-tertiary);
-            color: var(--text-on-dark);
-        }
-        .audio-btn {
-            background: var(--accent-color);
-            color: var(--primary-dark);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-            font-size: var(--text-lg);
-            font-weight: bold;
-        }
-        .audio-btn:hover {
-            transform: scale(1.1);
-            background: var(--primary-dark);
-            color: var(--accent-color);
-        }
-        @keyframes audio-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .audio-btn.loading-audio .audio-icon {
-            animation: audio-pulse 1.2s infinite ease-in-out;
-        }
-        
-        /* ==================== FAQ ==================== */
-        .faq {
-            padding: 80px 0;
-            position: relative;
-        }
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        .faq-item {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 20px;
-            margin-bottom: 1rem;
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .faq-item:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-3px);
-        }
-        .faq-item.active {
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary-color);
-            background-color: rgba(255, 255, 255, 0.6);
-        }
-        .faq-item:focus-within {
-            box-shadow: 0 0 0 3px var(--accent-color), var(--shadow-lg);
-        }
-        .faq-question {
-            width: 100%;
-            padding: 1.5rem;
-            background: none;
-            border: none;
-            text-align: left;
-            font-size: var(--text-lg);
-            font-weight: 600;
-            color: var(--primary-dark);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        .faq-question:hover {
-            background: rgba(245, 245, 245, 0.8);
-            color: var(--primary-color);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.4s ease;
-            background: rgba(255, 255, 255, 0.5);
-        }
-        .faq-item.active .faq-answer {
-            max-height: 400px;
-            padding: 0 1.5rem 1.5rem;
-        }
-        .faq-answer p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: var(--text-base);
-            margin: 0;
-            padding-top: 0.5rem;
-        }
-
-        /* ==================== Calculadora de Orçamento ==================== */
-        .calculadora-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--background-end) 0%, var(--background-start) 100%);
-        }
-        .calculadora-container {
-            max-width: 800px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 40px;
-            padding: 3rem;
-            box-shadow: var(--shadow-xl);
-            position: relative;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-        .calc-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-        .calc-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: var(--text-3xl);
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-        }
-        .calc-header p {
-            font-size: var(--text-lg);
-            color: var(--text-secondary);
-            opacity: 0.8;
-        }
-        .calc-steps {
-            display: grid;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-        .calc-step {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        .calc-step:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        .calc-step.completed {
-            border-color: var(--primary-color);
-            background: rgba(93, 47, 9, 0.05);
-        }
-        .calc-step.completed .step-title {
-            color: var(--secondary-color);
-        }
-        .step-label {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            cursor: pointer;
-        }
-        .step-number {
-            width: 32px;
-            height: 32px;
-            background: var(--primary-color);
-            color: var(--text-on-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        .step-number.completed {
-            background: var(--secondary-color);
-        }
-        .step-number.active {
-            animation: pulse-dots 1s infinite alternate;
-        }
-        .step-title {
-            font-size: var(--text-xl);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .step-subtitle {
-            font-size: var(--text-base);
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-        }
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            transition: all 0.5s ease;
-            max-height: 1000px;
-            opacity: 1;
-            transform: scale(1);
-            transform-origin: top;
-        }
-        .calc-step:not(.active) .options-grid {
-            max-height: 0;
-            opacity: 0;
-            transform: scale(0.95);
-            pointer-events: none;
-        }
-        .option-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .option-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary-light);
-        }
-        .option-card.selected {
-            border-color: var(--primary-color);
-            background: var(--primary-color);
-            color: var(--text-on-dark);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            animation: bounceIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .option-card .option-content {
-            position: relative;
-            z-index: 1;
-        }
-        .option-card.selected .option-content > * {
-            color: var(--text-on-dark) !important;
-            transition: color 0.3s ease;
-        }
-        .option-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-        .option-card:hover .option-icon {
-            transform: scale(1.1) rotate(-5deg);
-        }
-        .option-title {
-            font-weight: 600;
-            font-size: var(--text-lg);
-            margin-bottom: 0.5rem;
-        }
-        .option-description {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        .option-price {
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            font-weight: 500;
-            opacity: 0.7;
-        }
-        .resultado-container {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            padding: 3rem;
-            border-radius: 40px;
-            text-align: center;
-            color: var(--text-on-dark);
-            position: relative;
-            overflow: hidden;
-            margin-top: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .resultado-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .resultado-content {
-            position: relative;
-            z-index: 1;
-        }
-        .resultado-title {
-            font-size: var(--text-2xl);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0.9;
-        }
-        .preco-display {
-            margin: 2rem 0;
-        }
-        .preco-valor {
-            font-family: 'Playfair Display', serif;
-            font-size: var(--text-4xl);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .preco-periodo {
-            font-size: var(--text-lg);
-            opacity: 0.8;
-        }
-        .preco-detalhes {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 20px;
-            margin: 2rem 0;
-            backdrop-filter: blur(10px);
-        }
-        .detalhe-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: var(--text-base);
-        }
-        .detalhe-item:last-child {
-            margin-bottom: 0;
-            font-weight: 600;
-            padding-top: 0.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        .btn-primary {
-            background: var(--text-on-dark);
-            color: var(--primary-dark);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: var(--text-base);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.95);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-on-dark);
-            border: 2px solid var(--text-on-dark);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: var(--text-base);
-            text-decoration: none;
-        }
-        .btn-secondary:hover {
-            background: var(--text-on-dark);
-            color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* ==================== Modal e Chatbot ==================== */
-        .modal {
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .modal.visible {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-content {
-            background-color: var(--background-start);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow-xl);
-            max-width: 90%;
-            width: 450px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .modal.visible .modal-content {
-            transform: scale(1);
-        }
-        .modal-content h3 {
-            color: var(--primary-dark);
-            font-size: var(--text-2xl);
-            margin-bottom: 1rem;
-        }
-        .modal-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        .close-btn {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-        .close-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            background-color: var(--primary-dark);
-        }
-        .chatbot-content {
-            background-color: var(--background-start);
-            padding: 2.5rem;
-            border-radius: 25px;
-            box-shadow: var(--shadow-xl);
-            max-width: 90%;
-            width: 500px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .chatbot-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .chatbot-header h3 {
-            margin: 0;
-            color: var(--primary-dark);
-        }
-        .chatbot-header .close-btn-chat {
-            background: none;
-            border: none;
-            font-size: var(--text-3xl);
-            font-weight: 300;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .chatbot-header .close-btn-chat:hover {
-            color: var(--secondary-color);
-        }
-        .chatbox {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--chat-bg);
-            border-radius: 15px;
-            overflow-y: auto;
-            max-height: 400px;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            -webkit-overflow-scrolling: touch;
-        }
-        .message {
-            max-width: 80%;
-            padding: 0.8rem 1.2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-sm);
-            line-height: 1.5;
-            word-wrap: break-word;
-            animation: fadeIn 0.5s ease-out;
-        }
-        .message.user {
-            background-color: var(--user-message-bg);
-            color: var(--text-primary);
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-        .message.ai {
-            background-color: var(--ai-message-bg);
-            color: var(--text-secondary);
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-        }
-        .message.ai-typing {
-            font-style: italic;
-            color: var(--text-tertiary);
-            animation: pulse-dots 1s infinite;
-        }
-        .chatbot-input {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        .chatbot-input input {
-            flex-grow: 1;
-            padding: 1rem 1.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 25px;
-            font-size: var(--text-base);
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-        }
-        .chatbot-input button {
-            background-color: var(--primary-color);
-            color: var(--text-on-dark);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-        .chatbot-input button:hover {
-            background-color: var(--primary-dark);
-            box-shadow: var(--shadow-md);
-            transform: scale(1.05);
-        }
-        
-        /* ==================== Acordeão para a Calculadora ==================== */
-        .calc-step {
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .calc-step .step-title {
-            position: relative;
-        }
-        .calc-step .step-label::after {
-            content: '▼';
-            margin-left: auto;
-            font-size: 1.5rem;
-            line-height: 1;
-            transition: transform 0.3s ease;
-            color: var(--primary-color);
-        }
-        .calc-step.active .step-label::after {
-            transform: rotate(180deg);
-        }
-        .calc-step:not(.active) .options-grid {
-            max-height: 0;
-            padding-top: 0;
-            padding-bottom: 0;
-            opacity: 0;
-            pointer-events: none;
-        }
-        .calc-step.active .options-grid {
-            max-height: 1000px;
-            opacity: 1;
-            transition: max-height 0.7s ease-in, opacity 0.5s ease-in;
-        }
-        .calc-step.completed .step-number {
-            background-color: var(--secondary-color);
-        }
-        .calc-step.active .step-number {
-            background-color: var(--primary-color);
-        }
-
-        /* ==================== Tabela do Blog (Visualização Aprimorada) ==================== */
-        .article-content .hydration-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .article-content .hydration-table th,
-        .article-content .hydration-table td {
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 12px;
-            text-align: left;
-            font-size: var(--text-base);
-            color: var(--text-secondary);
-        }
-        .article-content .hydration-table thead {
-            background-color: var(--accent-color);
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-        .article-content .hydration-table th {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-        .article-content .hydration-table tr:nth-child(even) {
-            background-color: rgba(245, 245, 245, 0.5);
-        }
-
-        /* Melhoria: Aprimorando as listras de esqueleto do carregamento */
-        .loading-skeleton .skeleton-line {
-            background-color: rgba(0, 0, 0, 0.1);
-            height: 1rem;
-            border-radius: 5px;
-        }
-        .loading-skeleton .skeleton-line:nth-child(2) {
-            width: 80%;
-        }
-        .loading-skeleton .skeleton-line:nth-child(3) {
-            width: 60%;
-        }
-        .loading-skeleton .skeleton-line:nth-child(4) {
-            width: 90%;
-        }
-
-        /* Animação para digitação do GPT */
-        .typing-effect {
-            animation: typing 2s steps(40, end) forwards;
-            white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        /* ==================== Responsividade (Media Queries) ==================== */
-        @media (min-width: 769px) {
-            .nav-toggle-btn {
-                display: none;
-            }
-        }
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: flex; /* Mantenha como flex para o JS controlar */
-                flex-direction: column;
-                justify-content: center; /* Centraliza verticalmente */
-                align-items: center; /* Centraliza horizontalmente */
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(248, 244, 239, 0.95); /* Fundo com leve transparência */
-                backdrop-filter: blur(15px);
-                -webkit-backdrop-filter: blur(15px);
-                
-                /* Animação de entrada/saída */
-                opacity: 0;
-                visibility: hidden;
-                transform: scale(0.98);
-                transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
-                
-                z-index: 1000; /* Abaixo do botão de fechar */
-                gap: 2.5rem;
-            }
-
-            .nav-menu.active {
-                opacity: 1;
-                visibility: visible;
-                transform: scale(1);
-            }
-
-            .nav-menu a {
-                font-size: var(--text-2xl); /* Fontes maiores para impacto */
-                opacity: 0;
-                transform: translateY(10px);
-                animation: fadeInMenuItem 0.5s ease forwards;
-            }
-
-            /* Animação escalonada para os itens do menu */
-            .nav-menu.active li:nth-child(1) a { animation-delay: 0.2s; }
-            .nav-menu.active li:nth-child(2) a { animation-delay: 0.25s; }
-            .nav-menu.active li:nth-child(3) a { animation-delay: 0.3s; }
-            .nav-menu.active li:nth-child(4) a { animation-delay: 0.35s; }
-            .nav-menu.active li:nth-child(5) a { animation-delay: 0.4s; }
-            .nav-menu.active li:nth-child(6) a { animation-delay: 0.45s; }
-            .nav-menu.active li:nth-child(7) a { animation-delay: 0.5s; }
-
-            @keyframes fadeInMenuItem {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
             .nav-toggle-btn {
                 z-index: 1001; /* Garante que o botão fique sobre o menu */
             }
@@ -2137,16 +511,6 @@
             .font-size-toggle-btn {
                 position: static;
                 margin-right: 0;
-            }
-            .nav-toggle-btn {
-                display: block;
-                background: none;
-                border: none;
-                font-size: var(--text-4xl);
-                color: var(--primary-color);
-                cursor: pointer;
-                z-index: 1001;
-                position: relative;
             }
             .hero {
                 padding: 120px 0 60px;
@@ -2222,8 +586,22 @@
                 top: 1.2rem;
                 right: 4rem;
             }
+            .nav-toggle-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: var(--text-4xl);
+                color: var(--primary-color);
+                cursor: pointer;
+                z-index: 1001;
+                position: relative;
+            }
         }
-
+        @media (min-width: 769px) {
+            .nav-toggle-btn {
+                display: none;
+            }
+        }
         /* --- Estilos Adicionados --- */
         /* Back-to-top button e overlay para mobile */
         .nav-overlay {
@@ -2360,7 +738,56 @@
             font-weight: bold;
             color: var(--primary-color);
         }
-        
+        .step-number.completed::before {
+            content: '✔';
+            font-size: 0.9rem;
+            color: var(--text-on-dark);
+            position: absolute;
+        }
+        .step-number.completed {
+            background-color: var(--validation-success); /* Cor de sucesso */
+        }
+        .step-number.completed span { /* Esconde o número quando completo */
+            display: none;
+        }
+        /* Blog modal CSS */
+        .blog-modal .modal-content-blog {
+            background-color: var(--background-start);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-xl);
+            max-width: 90%;
+            width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: left;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .blog-modal.visible .modal-content-blog {
+            transform: scale(1);
+        }
+        .close-btn-blog {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .close-btn-blog:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+        #blogModalContent h3 {
+            font-size: var(--text-4xl);
+            margin-bottom: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -2493,7 +920,7 @@
             <div class="calc-steps">
                 <div class="calc-step active" id="step1">
                     <div class="step-label">
-                        <div class="step-number">1</div>
+                        <div class="step-number"><span>1</span></div>
                         <div>
                             <div class="step-title">Tipo de Cuidado</div>
                             <div class="step-subtitle">Qual o nível de cuidado necessário?</div>
@@ -2536,7 +963,7 @@
                 </div>
                 <div class="calc-step" id="step2">
                     <div class="step-label">
-                        <div class="step-number">2</div>
+                        <div class="step-number"><span>2</span></div>
                         <div>
                             <div class="step-title">Período de Cuidado</div>
                             <div class="step-subtitle">Quantas horas por dia?</div>
@@ -2575,7 +1002,7 @@
                 </div>
                 <div class="calc-step" id="step3">
                     <div class="step-label">
-                        <div class="step-number">3</div>
+                        <div class="step-number"><span>3</span></div>
                         <div>
                             <div class="step-title">Frequência Semanal</div>
                             <div class="step-subtitle">Quantos dias por semana?</div>
@@ -2652,7 +1079,7 @@
         <div class="container">
             <h2 class="section-title reveal">Depoimentos</h2>
             <div class="testimonial-container">
-                <button class="carousel-btn prev-btn" aria-label="Anterior">
+                <button class="carousel-btn prev-btn" aria-label="Depoimento Anterior">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
                 </button>
                 <div class="testimonial-carousel-wrapper">
@@ -2692,7 +1119,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-btn next-btn" aria-label="Próximo">
+                <button class="carousel-btn next-btn" aria-label="Próximo Depoimento">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
                 </button>
             </div>
@@ -2759,60 +1186,6 @@
                                 </div>
                                 <h4>Como incentivar?</h4>
                                 <p>Ofereça água em copos pequenos e em horários fixos. Inclua alimentos ricos em água na dieta, como frutas (melancia, laranja) e sopas. Tenha sempre uma garrafa de fácil acesso e explore opções como chás, sucos naturais e água saborizada com frutas.</p>
-                                <p>Compartilhe este artigo:</p>
-                                <div class="social-share-buttons">
-                                    <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12.04 2.162c-5.46 0-9.914 4.453-9.914 9.913 0 1.947.575 3.82 1.63 5.432l-1.127 4.12 4.218-1.096a9.927 9.927 0 0 0 4.2 1.025c5.46 0 9.914-4.452 9.914-9.913 0-5.46-4.454-9.913-9.914-9.913zM17.433 14.5c.243-.09.528-.184.62-.218.09-.033.2-.04.28-.04.09 0 .185.014.237.04.14.077.34.29.39.46.04.167.04.308.024.46a2.82 2.82 0 0 1-.5 1.14c-.31.32-.69.45-1.06.49-.37.042-.78.026-1.18-.088-.4-.112-2.38-.99-2.75-.958-3.31-1.378-4.43-5.32-4.44-5.35-.013-.03-.1-.137-.1-.318s.07-.46.1-.59.2-.19.3-.23.1-.06.2-.062c.1-.002.2-.002.28.006.18.017.37.037.49.12.12.08.19.2.27.31.08.11.16.2.22.3.06.1.15.2.25.33.1.13.16.2.2.23.05.03.11-.003.22-.058.11-.055.38-.14.65-.25.26-.11.43-.19.5-.23.06-.04.15-.09.2-.125.047-.035.1-.09.18-.21.08-.12.16-.32.22-.44.06-.12.12-.2.17-.22.05-.02.13-.02.2-.02.06 0 .15.016.22.03.07.015.15.023.2.06.05.038.16.14.3.36.14.22.3.4.4.47.1.066.2.066.3.048.1-.02.32-.08.47-.14s.24-.11.33-.17.15-.1.2-.15.11-.09.2-.14c.09-.05.2-.1.3-.13.1-.03.2-.06.28-.07.09-.01.2-.02.27-.02.08 0 .17.006.2.01.034.004.1.01.24.03.14.022.32.04.53.056.2.02.34.03.45.05.11.02.24.04.37.07.125.03.26.06.39.09.13.03.22.05.28.06.07.01.12.01.19-.007.06-.017.16-.07.3-.24.13-.17.3-.43.34-.51.05-.08.09-.13.13-.16.035-.03.07-.06.07-.06s.02-.03.02-.03c0-.02-.01-.06-.03-.1-.02-.04-.04-.07-.07-.1z"/></svg>
-                                    </a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no Facebook">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#F9FAFB" stroke="none"><path d="M12 2.163c-5.32 0-9.682 4.363-9.682 9.682 0 4.846 3.524 8.878 8.145 9.539V15.54h-2.17V12h2.17V9.752c0-2.147 1.312-3.35 3.102-3.35 0.887 0 1.65.066 1.874.095V8.9l-1.285 0.006c-1.267 0-1.512 0.603-1.512 1.488V12h2.82l-0.46 3.54h-2.36V21.385c4.62-0.66 8.145-4.693 8.145-9.539C21.682 6.526 17.32 2.163 12 2.163z"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-card-actions">
-                            <button class="blog-action-btn read-more-btn" data-action="toggle-content">
-                                <span>Ler artigo</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </button>
-                            <button class="blog-action-btn generate-tip-btn" data-topic="hidratação">Gerar dica de IA</button>
-                            <button class="audio-btn" style="display: none;" aria-label="Ouvir a dica de áudio">
-                                <span class="audio-icon">📢</span>
-                            </button>
-                        </div>
-                        <div class="ai-tip-container">
-                            <div class="loading-skeleton">
-                                <div class="skeleton-line"></div>
-                                <div class="skeleton-line"></div>
-                            </div>
-                            <p class="ai-tip-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-card reveal delay-2 glassmorphism" data-tag="exercicios">
-                    <img src="https://images.unsplash.com/photo-1602717140889-1384f67664c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyMHx8ZXhlcmNpc2VzfHNlYXJjaHwxNXx8Y3VpZGFkb3J8ZW58MHx8fHwxNzE3NTM2NjQxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Foto de um idoso fazendo exercícios leves" class="blog-card-image">
-                    <div class="blog-card-content">
-                        <div class="blog-card-header">
-                            <span class="blog-card-tag">Exercícios</span>
-                            <div class="blog-card-info">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>5 min leitura</span>
-                            </div>
-                        </div>
-                        <h3>Exercícios leves para a mobilidade</h3>
-                        <p class="short-text">A atividade física regular é fundamental para a saúde dos idosos. Ela ajuda a manter a força muscular, melhora o equilíbrio e a flexibilidade, reduzindo significativamente o risco de quedas.</p>
-                        <div class="full-article-content">
-                            <div class="article-content">
-                                <h4>Benefícios da atividade física</h4>
-                                <p>Além de prevenir quedas, os exercícios melhoram a circulação sanguínea, fortalecem os ossos e promovem o bem-estar mental, combatendo o estresse e a ansiedade. Eles também contribuem para a autonomia e a independência do idoso no dia a dia.</p>
-                                <h4>Ideias de exercícios</h4>
-                                <p>É importante começar devagar e sempre consultar um médico ou fisioterapeuta antes de iniciar qualquer nova rotina de exercícios. Algumas atividades recomendadas incluem:</p>
-                                <ul>
-                                    <li><strong>Caminhada:</strong> Comece com caminhadas curtas e aumente a duração e a intensidade gradualmente.</li>
-                                    <li><strong>Natação e Hidroginástica:</strong> A água reduz o impacto nas articulações, tornando esses exercícios ideais para manter a mobilidade e a força muscular.</li>
-                                    <li><strong>Yoga ou Pilates:</strong> Ajuda a melhorar o equilíbrio, a flexibilidade e a postura, além de promover relaxamento.</li>
-                                    <li><strong>Exercícios com faixas elásticas:</strong> Ótimos para fortalecer os músculos dos braços e pernas de forma segura.</li>
-                                </ul>
                                 <p>Compartilhe este artigo:</p>
                                 <div class="social-share-buttons">
                                     <a href="https://api.whatsapp.com/send?text=Confira este artigo incrível sobre a importância da hidratação para idosos: LINK_DO_ARTIGO" target="_blank" aria-label="Compartilhar no WhatsApp">
@@ -3256,7 +1629,7 @@
         <div class="chatbot-content">
             <div class="chatbot-header">
                 <h3>Olá! Como posso te ajudar? 👋</h3>
-                <button class="close-btn-chat" id="closeChatBtn">✕</button>
+                <button class="close-btn-chat" id="closeChatBtn" aria-label="Fechar chat">✕</button>
             </div>
             <div class="chatbox" id="chatbox">
                 <div class="message ai">
@@ -3292,6 +1665,13 @@
                 <button type="submit" class="cta-button">Agendar Agora</button>
             </form>
             <button class="close-btn" id="closeLigacaoModalBtn">Fechar</button>
+        </div>
+    </div>
+    <div id="blogModal" class="modal blog-modal">
+        <div class="modal-content-blog">
+            <button class="close-btn-blog" aria-label="Fechar artigo">&times;</button>
+            <div id="blogModalContent" class="article-content">
+            </div>
         </div>
     </div>
 
@@ -3848,39 +2228,35 @@
         }
         
         function initBlogLinks() {
-            const blogCards = document.querySelectorAll('.blog-card');
-            
-            blogCards.forEach(card => {
-                const readMoreBtn = card.querySelector('.read-more-btn');
-                const readMoreText = readMoreBtn.querySelector('span');
-                const readMoreIcon = readMoreBtn.querySelector('svg');
-                const fullContent = card.querySelector('.full-article-content');
-                const shortText = card.querySelector('.short-text');
-                const aiTipContainer = card.querySelector('.ai-tip-container');
+            const blogModal = document.getElementById('blogModal');
+            const blogModalContent = document.getElementById('blogModalContent');
+            const closeBtn = blogModal.querySelector('.close-btn-blog');
 
-                const toggleContent = (e) => {
+            document.querySelectorAll('.blog-card .read-more-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
                     e.preventDefault();
-                    e.stopPropagation();
+                    const cardContent = button.closest('.blog-card-content');
+                    const articleTitle = cardContent.querySelector('h3').cloneNode(true);
+                    const fullArticle = cardContent.querySelector('.full-article-content').cloneNode(true);
 
-                    if (fullContent.classList.contains('visible')) {
-                        fullContent.classList.remove('visible');
-                        readMoreText.textContent = 'Ler artigo';
-                        readMoreIcon.innerHTML = `<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
-                        readMoreBtn.classList.remove('expanded');
-                        shortText.classList.remove('hidden');
-                        aiTipContainer.classList.remove('visible');
-                    } else {
-                        fullContent.classList.add('visible');
-                        readMoreText.textContent = 'Diminuir';
-                        readMoreIcon.innerHTML = `<path d="m18 15-6-6-6 6"/></svg>`;
-                        readMoreBtn.classList.add('expanded');
-                        shortText.classList.add('hidden');
-                        aiTipContainer.classList.add('visible');
-                    }
-                };
-                
-                if (readMoreBtn) {
-                    readMoreBtn.addEventListener('click', toggleContent);
+                    blogModalContent.innerHTML = ''; // Limpa o conteúdo anterior
+                    blogModalContent.appendChild(articleTitle);
+                    blogModalContent.appendChild(fullArticle);
+                    
+                    blogModal.classList.add('visible');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            const closeModal = () => {
+                blogModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            };
+
+            closeBtn.addEventListener('click', closeModal);
+            blogModal.addEventListener('click', (e) => {
+                if (e.target === blogModal) {
+                    closeModal();
                 }
             });
         }
@@ -4243,56 +2619,60 @@
             class CalculadoraOrcamento {
                 constructor() {
                     this.dados = {
-                        tipo: 'basico',
-                        preco: 30,
-                        horas: 12,
-                        dias: 7,
-                        tipoLabel: 'Cuidado Básico',
-                        horasLabel: '12 horas/dia',
-                        diasLabel: '7 dias/semana'
+                        tipo: 'basico', preco: 30, tipoLabel: 'Cuidado Básico',
+                        horas: 12, horasLabel: '12 horas/dia',
+                        dias: 7, diasLabel: '7 dias/semana'
                     };
+                    this.steps = document.querySelectorAll('.calc-step');
                     this.init();
                 }
+                
                 init() {
-                    // Para ativar a persistência de dados, descomente a linha abaixo.
-                    // this.loadState();
                     this.bindEvents();
                     this.calcular();
                     this.updateStepIndicator();
                 }
+                
                 bindEvents() {
                     document.querySelectorAll('.calculadora-container .option-card').forEach(card => {
-                        card.addEventListener('click', (e) => {
-                            const step = card.closest('.calc-step');
-                            const stepOptions = step.querySelectorAll('.option-card');
-                            stepOptions.forEach(c => c.classList.remove('selected'));
+                        card.addEventListener('click', () => {
+                            const currentStep = card.closest('.calc-step');
+                            
+                            currentStep.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
                             card.classList.add('selected');
+                            
                             this.updateData(card);
                             this.calcular();
                             this.updateStepIndicator();
                             
-                            const nextStep = document.getElementById(`step${parseInt(step.id.slice(4)) + 1}`);
-                            if(nextStep) {
-                                document.querySelectorAll('.calc-step').forEach(s => s.classList.remove('active'));
+                            const currentStepIndex = Array.from(this.steps).indexOf(currentStep);
+                            const nextStep = this.steps[currentStepIndex + 1];
+                            
+                            if (nextStep) {
+                                this.steps.forEach(s => s.classList.remove('active'));
                                 nextStep.classList.add('active');
-                                nextStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                setTimeout(() => {
+                                    nextStep.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                }, 200);
                             }
                         });
                     });
                     
-                    document.querySelectorAll('.calculadora-container .step-label').forEach(label => {
-                        label.addEventListener('click', (e) => {
-                            const step = label.closest('.calc-step');
-                            document.querySelectorAll('.calc-step').forEach(s => s.classList.remove('active'));
+                    this.steps.forEach(step => {
+                        const label = step.querySelector('.step-label');
+                        label.addEventListener('click', () => {
+                            if (step.classList.contains('active')) return; // Não faz nada se já está ativo
+                            this.steps.forEach(s => s.classList.remove('active'));
                             step.classList.add('active');
                         });
                     });
-                    
+
                     document.getElementById('btnWhatsApp').addEventListener('click', (e) => {
                         e.preventDefault();
                         this.enviarWhatsApp();
                     });
                 }
+                
                 updateData(card) {
                     if (card.dataset.tipo) {
                         this.dados.tipo = card.dataset.tipo;
@@ -4307,9 +2687,8 @@
                         this.dados.dias = parseInt(card.dataset.dias);
                         this.dados.diasLabel = card.dataset.label;
                     }
-                    // Para ativar a persistência, descomente a linha abaixo
-                    // this.saveState();
                 }
+                
                 calcular() {
                     const valorMensal = this.dados.preco * this.dados.horas * this.dados.dias * 4.3;
                     document.getElementById('valorFinal').textContent = valorMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
@@ -4318,24 +2697,21 @@
                     document.getElementById('tipoSelecionado').textContent = this.dados.tipoLabel;
                     document.getElementById('periodoSelecionado').textContent = this.dados.horasLabel;
                     document.getElementById('frequenciaSelecionada').textContent = this.dados.diasLabel;
-                    const resultado = document.getElementById('resultado');
-                    if (!resultado.classList.contains('visible')) {
-                        setTimeout(() => {
-                            resultado.classList.add('visible');
-                        }, 300);
-                    }
                 }
+                
                 updateStepIndicator() {
-                    const steps = document.querySelectorAll('.calc-step');
-                    steps.forEach((step, index) => {
-                        const allOptionsSelected = Array.from(step.querySelectorAll('.option-card')).some(c => c.classList.contains('selected'));
-                        if (allOptionsSelected) {
+                    this.steps.forEach(step => {
+                        const stepNumber = step.querySelector('.step-number');
+                        if (step.querySelector('.option-card.selected')) {
                             step.classList.add('completed');
+                            stepNumber.classList.add('completed');
                         } else {
                             step.classList.remove('completed');
+                            stepNumber.classList.remove('completed');
                         }
                     });
                 }
+
                 enviarWhatsApp() {
                     const mensagem = `Olá! Usei a calculadora do site e gostaria de agendar uma avaliação com base no meu orçamento:
                     🏥 Tipo: ${this.dados.tipoLabel}
@@ -4346,33 +2722,6 @@
                     const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
                     window.open(url, '_blank');
                 }
-                // Métodos para persistência (descomentar para usar)
-                // saveState() {
-                //     localStorage.setItem('calculadoraData', JSON.stringify(this.dados));
-                // }
-                // loadState() {
-                //     const savedData = localStorage.getItem('calculadoraData');
-                //     if (savedData) {
-                //          this.dados = JSON.parse(savedData);
-                //          this.restoreUIFromState();
-                //     }
-                // }
-                // restoreUIFromState() {
-                //     const step1 = document.getElementById('step1');
-                //     const step2 = document.getElementById('step2');
-                //     const step3 = document.getElementById('step3');
-                //
-                //     const selectCard = (stepElement, dataKey, dataValue) => {
-                //         const card = stepElement.querySelector(`[data-${dataKey}="${dataValue}"]`);
-                //         if (card) {
-                //             card.classList.add('selected');
-                //         }
-                //     };
-                //
-                //     selectCard(step1, 'tipo', this.dados.tipo);
-                //     selectCard(step2, 'horas', this.dados.horas);
-                //     selectCard(step3, 'dias', this.dados.dias);
-                // }
             }
             new CalculadoraOrcamento();
         }
